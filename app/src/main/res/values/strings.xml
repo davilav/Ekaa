@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Ekaa</string>
+    <string name="web_name">wfp.org/es</string>
+    <string name="welcome">Welcome to Ekaa.</string>
+    <string name="options">More options</string>
+    <string name="terms">By tapping Log in, Create account or more options, I agree to Ekaa terms of service, Privacy Policiy and Non discrimination policy</string>
 </resources>
