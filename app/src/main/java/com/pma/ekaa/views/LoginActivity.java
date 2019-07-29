@@ -18,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final ButtonProgressBar bar = findViewById(R.id.nextButton);
+        final ButtonProgressBar bar = findViewById(R.id.btn_signUp);
         bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
