@@ -4,13 +4,19 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/pmalogo_white"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/pmalogo_white"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WelcomeActivity"></activity>
-        <activity android:name=".SplashActivity">
+        <activity android:name=".views.PasswordActivity"></activity>
+        <activity android:name=".views.RegisterActivity" />
+        <activity
+            android:name=".views.HomeActivity"
+            android:label="@string/title_activity_home" />
+        <activity android:name=".views.LoginActivity" />
+        <activity android:name=".views.WelcomeActivity" />
+        <activity android:name=".views.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

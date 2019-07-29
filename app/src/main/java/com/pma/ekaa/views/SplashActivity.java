@@ -1,4 +1,4 @@
-package com.pma.ekaa;
+package com.pma.ekaa.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.pma.ekaa.R;
 
 public class SplashActivity extends AppCompatActivity {
 
