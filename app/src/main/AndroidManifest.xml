@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pma.ekaa">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/pmalogo_white"
@@ -9,11 +11,11 @@
         android:roundIcon="@drawable/pmalogo_white"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.PasswordActivity"></activity>
-        <activity android:name=".views.RegisterActivity" />
         <activity
             android:name=".views.HomeActivity"
-            android:label="@string/title_activity_home" />
+            android:label="@string/title_activity_home"></activity>
+        <activity android:name=".views.PasswordActivity" />
+        <activity android:name=".views.RegisterActivity" />
         <activity android:name=".views.LoginActivity" />
         <activity android:name=".views.WelcomeActivity" />
         <activity android:name=".views.SplashActivity">

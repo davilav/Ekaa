@@ -31,7 +31,7 @@
                 app:srcCompat="@drawable/pmalogo_white" />
 
             <TextView
-                android:id="@+id/optionsText"
+                android:id="@+id/optionsButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -110,7 +110,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.571"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/optionsText" />
+                app:layout_constraintTop_toBottomOf="@+id/optionsButton" />
 
             <TextView
                 android:id="@+id/textView4"

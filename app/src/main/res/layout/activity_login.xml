@@ -46,7 +46,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="LOGIN"
+                    android:text="@string/loginaccount"
                     android:textColor="#ffffff"
                     android:textSize="22sp" />
 
@@ -153,11 +153,11 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif"
-                android:text="I agree to the Terms of Service"
+                android:text="@string/agreeterms"
                 android:textColor="#6e6e6e" />
 
             <github.ishaan.buttonprogressbar.ButtonProgressBar
-                android:id="@+id/btn_signUp"
+                android:id="@+id/btn_recovery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/chkBox1"
@@ -171,15 +171,16 @@
                 app:type="indeterminate" />
 
             <Button
+                android:id="@+id/passwordButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_signUp"
+                android:layout_below="@+id/btn_recovery"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="15dp"
                 android:background="#00000000"
                 android:fontFamily="sans-serif"
-                android:text="Forgot your password? Click Here"
+                android:text="@string/forgotyourpassword"
                 android:textAllCaps="false"
                 android:textColor="#6e6e6e"
                 android:textSize="13sp" />
