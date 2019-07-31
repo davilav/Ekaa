@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.pma.ekaa.R;
 import com.pma.ekaa.apis.ApiClient;
@@ -25,6 +29,7 @@ import static maes.tech.intentanim.CustomIntent.customType;
 public class LoginActivity extends AppCompatActivity implements Callback<ArrayList<User>> {
 
     Button passButton;
+    EditText txtEmail,txtPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,8 @@ public class LoginActivity extends AppCompatActivity implements Callback<ArrayLi
         setContentView(R.layout.activity_login);
 
         passButton = findViewById(R.id.passwordButton);
+        txtEmail = findViewById(R.id.emailText);
+        txtPassword = findViewById(R.id.passwordText);
 
         Call<ArrayList<User>> call = ApiClient.getApiService().getUsers();
         call.enqueue(this);

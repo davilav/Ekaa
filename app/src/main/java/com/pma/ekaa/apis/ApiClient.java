@@ -17,14 +17,15 @@ public class ApiClient {
 
         // Asociamos el interceptor a las peticiones
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient.addInterceptor(logging);
 
-        String baseUrl = "https://www.pmapae.com/api/";
+        String baseUrl = "http://www.pmapae.com/api/";
 
         if (API_SERVICE == null) {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(httpClient.build())
+                    .client(httpClient.build()) // <-- usamos el log level
                     .build();
             API_SERVICE = retrofit.create(ApiInterface.class);
 
