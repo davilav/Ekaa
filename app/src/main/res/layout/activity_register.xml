@@ -43,10 +43,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="REGISTER"
+                    android:text="@string/createaccount"
                     android:textColor="#ffffff"
                     android:textSize="22sp" />
 
@@ -87,7 +87,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_userIcon"
                     android:background="#DADADA"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
 
@@ -119,7 +119,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_passwordIcon"
                     android:background="#DADADA"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:inputType="textPassword"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
@@ -152,7 +152,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_confirmpasswordIcon"
                     android:background="#DADADA"
-                    android:hint="Confirm Password"
+                    android:hint="@string/confirmpassword"
                     android:inputType="textPassword"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
@@ -186,7 +186,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_repasswordIcon"
                     android:background="#DADADA"
-                    android:hint="Implentator Partner"
+                    android:hint="@string/implementatorpartner"
                     android:inputType="textPassword"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
@@ -234,7 +234,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif"
-                android:text="I agree to the Terms of Service"
+                android:text="@string/agreeterms"
                 android:textColor="#6e6e6e" />
 
             <github.ishaan.buttonprogressbar.ButtonProgressBar
@@ -261,7 +261,7 @@
                 android:layout_marginBottom="15dp"
                 android:background="#00000000"
                 android:fontFamily="sans-serif"
-                android:text="Already a member? Login Here"
+                android:text="@string/alreadymember"
                 android:textAllCaps="false"
                 android:textColor="#6e6e6e"
                 android:textSize="13sp" />

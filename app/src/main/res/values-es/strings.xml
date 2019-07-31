@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ekaa</string>
+    <string name="about">Acerca</string>
+    <string name="agreeterms">Acepto los terminos de servicio</string>
+    <string name="cloud">Nube</string>
+    <string name="create">Crear Cuenta</string>
+    <string name="createaccount">REGISTRO</string>
+    <string name="email">Correo</string>
+    <string name="forgotpassword">¿Olvidaste tu contraseña?</string>
+    <string name="forgotyourpassword">¿Olvidaste tu contraseña?, Toca Aqui</string>
+    <string name="inkind">Inkind</string>
+    <string name="kitchens">Comedores</string>
+    <string name="login">Iniciar sesion</string>
+    <string name="loginaccount">INICIO DE SESION</string>
+    <string name="mainmenu">Menu Principal</string>
+    <string name="options">¿Olvidaste tu contraseña?</string>
+    <string name="password">Contraseña</string>
+    <string name="register">¿No tienes una cuenta?, Unete ahora!</string>
+    <string name="school">Escolar</string>
+    <string name="settings">Configuracion</string>
+    <string name="terms">Al seleccionar iniciar sesion, crear cuenta o las demas opciones, aceptas los terminos de servicio de Ekaa, su politica de privacidad y su politica de no discriminacion</string>
+    <string name="url">Url</string>
+    <string name="walkers">Caminantes</string>
+    <string name="welcome">Bienvenido a Ekaa</string>
+    <string name="moremoreoptions">Mas Opciones</string>
+    <string name="alreadymember">¿Ya eres miembro? Toca aqui</string>
+    <string name="language">Idioma</string>
+    <string name="confirmpassword">CConfirmar contraseña</string>
+    <string name="implementatorpartner">Socio implementador</string>
+    <string name="confirmemail">Confirma tu correo</string>
+</resources>

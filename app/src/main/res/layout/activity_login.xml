@@ -168,7 +168,7 @@
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-medium"
                 app:bgColor="@color/colorPrimary"
-                app:text="Log In"
+                app:text="@string/login"
                 app:textColor="#ffffff"
                 app:type="indeterminate" />
 
