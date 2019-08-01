@@ -1,7 +1,7 @@
 package com.pma.ekaa.views;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,15 +9,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pma.ekaa.CreateBeneficiaryActivity;
 import com.pma.ekaa.R;
 import com.pma.ekaa.adapters.ItemAdapter;
 import com.pma.ekaa.models.Beneficiary;
 
 import java.util.ArrayList;
+
+import static maes.tech.intentanim.CustomIntent.customType;
 
 public class KitchenActivity extends AppCompatActivity {
 
@@ -26,11 +31,20 @@ public class KitchenActivity extends AppCompatActivity {
     private ItemAdapter itemAdapter;
 
     ImageView back;
+    FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kitchen);
+
+        floatingActionButton = findViewById(R.id.floatingActionButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarAlert();
+            }
+        });
 
         back = findViewById(R.id.backButton);
         back.setOnClickListener(new View.OnClickListener() {
@@ -210,6 +224,39 @@ public class KitchenActivity extends AppCompatActivity {
         celeb19.setProfilePhotoLocation("");
         celeb19.setFamily("A32424B");
         celebList.add(celeb19);
+
+
+    }
+
+    private void mostrarAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(KitchenActivity.this);
+
+        LayoutInflater inflater = getLayoutInflater();
+
+        View view = inflater.inflate(R.layout.layout_alert_message,null);
+
+        builder.setView(view);
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button btnAceptar = view.findViewById(R.id.ButtonAceptar);
+        btnAceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(KitchenActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                customType(KitchenActivity.this,"fadein-to-fadeout");
+            }
+        });
+
+        Button btnCancelar = view.findViewById(R.id.buttonCancelar);
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
 
 
     }

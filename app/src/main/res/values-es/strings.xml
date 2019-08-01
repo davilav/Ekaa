@@ -29,4 +29,8 @@
     <string name="confirmpassword">CConfirmar contraseña</string>
     <string name="implementatorpartner">Socio implementador</string>
     <string name="confirmemail">Confirma tu correo</string>
+    <string name="datapolicy">Acepto la politica de tratamiento de datos de Ekaa para crear un beneficiario nuevo. Para aceptar presiona ok, de lo contrario presiona cancelar</string>
+    <string name="datatitle">Política de tratamiento de datos</string>
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
 </resources>

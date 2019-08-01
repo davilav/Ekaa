@@ -38,6 +38,9 @@
     <string name="implementatorpartner">Implentator Partner</string>
     <string name="confirmemail">Confirm your email</string>
     <string name="title_activity_kitchen">KitchenActivity</string>
-
+    <string name="datapolicy">I agree Ekaa data processing policy to create a new beneficiary. To accept press ok, otherwise press cancel</string>
+    <string name="datatitle">Data Processing Policy</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
 
 </resources>
