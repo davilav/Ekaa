@@ -1,8 +1,8 @@
 <resources>
 
-    <string name="str_en" >English</string>
-    <string name="str_es" >Spanish</string>
-    <string-array name="languages" >
+    <string name="str_en">English</string>
+    <string name="str_es">Spanish</string>
+    <string-array name="languages">
         <item>@string/str_en</item>
         <item>@string/str_es</item>
     </string-array>
@@ -37,7 +37,7 @@
     <string name="confirmpassword">Confirm password</string>
     <string name="implementatorpartner">Implentator Partner</string>
     <string name="confirmemail">Confirm your email</string>
-
+    <string name="title_activity_kitchen">KitchenActivity</string>
 
 
 </resources>
