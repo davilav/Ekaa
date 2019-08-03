@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.pma.ekaa.CreateBeneficiaryActivity;
 import com.pma.ekaa.R;
 import com.pma.ekaa.adapters.ItemAdapter;
 import com.pma.ekaa.models.Beneficiary;
@@ -244,7 +243,7 @@ public class KitchenActivity extends AppCompatActivity {
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(KitchenActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(KitchenActivity.this, CreateBeneficiaryActivity.class);
                 startActivity(intent);
                 customType(KitchenActivity.this,"fadein-to-fadeout");
             }

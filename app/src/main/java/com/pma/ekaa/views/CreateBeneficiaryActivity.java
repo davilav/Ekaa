@@ -1,8 +1,10 @@
-package com.pma.ekaa;
+package com.pma.ekaa.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.pma.ekaa.R;
 
 public class CreateBeneficiaryActivity extends AppCompatActivity {
 

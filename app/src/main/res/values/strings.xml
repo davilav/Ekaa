@@ -42,5 +42,7 @@
     <string name="datatitle">Data Processing Policy</string>
     <string name="accept">Accept</string>
     <string name="cancel">Cancel</string>
+    <string name="add">Add beneficiary</string>
+    <string name="help">Do you need help?, Click here</string>
 
 </resources>

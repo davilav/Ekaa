@@ -33,4 +33,6 @@
     <string name="datatitle">Política de tratamiento de datos</string>
     <string name="accept">Aceptar</string>
     <string name="cancel">Cancelar</string>
+    <string name="add">Agregar beneficiario</string>
+    <string name="help">¿Necesitas ayuda?, Presiona aqui</string>
 </resources>
