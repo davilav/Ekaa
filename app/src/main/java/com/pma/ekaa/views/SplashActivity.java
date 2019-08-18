@@ -23,7 +23,7 @@ import retrofit2.Response;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
-public class SplashActivity extends AppCompatActivity implements Callback<ArrayList<User>> {
+public class SplashActivity extends AppCompatActivity {
 
     ImageView logo;
     TextView webname;
@@ -33,9 +33,6 @@ public class SplashActivity extends AppCompatActivity implements Callback<ArrayL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-        Call<ArrayList<User>> call = ApiClient.getApiService().getUsers();
-        call.enqueue(this);
 
         logo = findViewById(R.id.pmaLogo);
         webname = findViewById(R.id.pmaText);
@@ -56,16 +53,4 @@ public class SplashActivity extends AppCompatActivity implements Callback<ArrayL
         },2000);
     }
 
-    @Override
-    public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response) {
-        if(response.isSuccessful()) {
-            ArrayList<User> users =  response.body();
-            Log.d("onResponse user","Size of user => "+users.size());
-        }
-    }
-
-    @Override
-    public void onFailure(Call<ArrayList<User>> call, Throwable t) {
-
-    }
 }

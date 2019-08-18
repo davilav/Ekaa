@@ -7,9 +7,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static ApiInterface API_SERVICE;
+    private static final String BASE_URL = "http://192.168.0.9:8000/";
+    private static ApiClient mInstance;
+    private  Retrofit retrofit;
 
-    public static ApiInterface getApiService() {
+    private ApiClient(){
 
         // Creamos un interceptor y le indicamos el log level a usar
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -19,19 +21,26 @@ public class ApiClient {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(logging);
 
-        String baseUrl = "http://www.pmapae.com/api/";
-
-        if (API_SERVICE == null) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(baseUrl)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(httpClient.build()) // <-- usamos el log level
-                    .build();
-            API_SERVICE = retrofit.create(ApiInterface.class);
+        retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build()) // <-- usamos el log level
+                .build();
 
 
+    }
+
+    public static synchronized ApiClient getInstance(){
+
+        if (mInstance == null){
+            mInstance = new ApiClient();
         }
-        return API_SERVICE;
+
+        return mInstance;
+    }
+
+    public ApiInterface getApi(){
+
+        return retrofit.create(ApiInterface.class);
 
     }
 }

@@ -35,4 +35,5 @@
     <string name="cancel">Cancelar</string>
     <string name="add">Agregar beneficiario</string>
     <string name="help">¿Necesitas ayuda?, Presiona aqui</string>
+    <string name="logout">Cerrar Sesion</string>
 </resources>

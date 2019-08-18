@@ -1,20 +1,33 @@
 package com.pma.ekaa.apis;
 
+import android.content.ContentQueryMap;
+
+import com.pma.ekaa.models.Login;
 import com.pma.ekaa.models.User;
+import com.pma.ekaa.models.UserLog;
 
 import java.util.ArrayList;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    @GET("v1/user/1")
-    Call<ArrayList<User>> getUsers();
+    @POST("rest-auth/login/")
+    Call <UserLog> login(@Body Login login);
+
+    @POST("rest-auth/logout/")
+    Call<UserLog> login();
+
+    @GET("api/v1/persons/")
+    Call<ResponseBody> getToken(@Header("Authorization") String authToken);
 
 
 }

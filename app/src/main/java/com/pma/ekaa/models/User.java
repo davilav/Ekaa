@@ -3,6 +3,9 @@ package com.pma.ekaa.models;
 public class User {
 
     String email;
+    String firstname;
+    String lastname;
+    String user;
     String password;
     int partner_id;
     int rol_id;
@@ -13,6 +16,30 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getPassword() {
@@ -38,5 +65,4 @@ public class User {
     public void setRol_id(int rol_id) {
         this.rol_id = rol_id;
     }
-
 }

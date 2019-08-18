@@ -44,5 +44,7 @@
     <string name="cancel">Cancel</string>
     <string name="add">Add beneficiary</string>
     <string name="help">Do you need help?, Click here</string>
+    <string name="logout">Log Out</string>
+    <string name="title_activity_basic">BasicActivity</string>
 
 </resources>
