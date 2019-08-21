@@ -90,7 +90,6 @@ public class LoginActivity extends AppCompatActivity {
            return;
        }
 
-
        new Handler().postDelayed(new Runnable() {
            @Override
            public void run() {

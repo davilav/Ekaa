@@ -81,6 +81,7 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/emailtext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_userIcon"
@@ -113,6 +114,7 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/passtext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_passwordIcon"
@@ -146,6 +148,7 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/confirmtext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_confirmpasswordIcon"
@@ -180,6 +183,7 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/partnertext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_repasswordIcon"
@@ -212,6 +216,7 @@
                     android:tint="#ffffff" />
 
                 <TextView
+                    android:id="@+id/roltext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_emailIcon"
