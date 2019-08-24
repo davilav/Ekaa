@@ -128,6 +128,7 @@ public class RegisterActivity extends AppCompatActivity {
          public void onFailure(Call<User> call, Throwable t) {
              Toast.makeText(RegisterActivity.this, "Registro de ususario fallido", Toast.LENGTH_SHORT).show();
          }
+         
      });
     }
 }
