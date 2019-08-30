@@ -17,6 +17,9 @@ public class RegisterBeneficiary {
     private String phone;
     private String aditional_information;
     private String household_code;
+    private String id;
+    private String profilePhotoLocation;
+
 
     public RegisterBeneficiary(int nationality, int documentType, int gender, int agreement, String geolocation, String first_name, String second_name, String surname, String second_surname, String document, String birth_date, String pregnant, String phone, String aditional_information, String household_code) {
         this.nationality = nationality;
@@ -34,6 +37,22 @@ public class RegisterBeneficiary {
         this.phone = phone;
         this.aditional_information = aditional_information;
         this.household_code = household_code;
+    }
+
+    public String getProfilePhotoLocation() {
+        return profilePhotoLocation;
+    }
+
+    public void setProfilePhotoLocation(String profilePhotoLocation) {
+        this.profilePhotoLocation = profilePhotoLocation;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getNationality() {

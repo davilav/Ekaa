@@ -17,6 +17,24 @@ public class Beneficiary {
     private String phone;
     private String aditional_information;
     private String household_code;
+    private String id;
+    private String profilePhotoLocation;
+
+    public String getProfilePhotoLocation() {
+        return profilePhotoLocation;
+    }
+
+    public void setProfilePhotoLocation(String profilePhotoLocation) {
+        this.profilePhotoLocation = profilePhotoLocation;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public int getNationality() {
         return nationality;

@@ -31,10 +31,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemHolder> {
     @Override
     public void onBindViewHolder(ItemHolder holder, int position) {
         Beneficiary item = celebrityList.get(position);
-        holder.txtName.setText(item.getName());
-        holder.txtID.setText(item.getID());
-        holder.txtNation.setText(item.getNation());
-        holder.txtFamily.setText(item.getFamily());
+        holder.txtName.setText(item.getFirst_name());
+        holder.txtID.setText(item.getId());
+        holder.txtNation.setText(item.getNationality());
+        holder.txtFamily.setText(item.getHousehold_code());
     }
 
     @Override
