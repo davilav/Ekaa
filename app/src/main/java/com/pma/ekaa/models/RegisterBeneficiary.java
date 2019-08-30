@@ -1,6 +1,6 @@
 package com.pma.ekaa.models;
 
-public class Beneficiary {
+public class RegisterBeneficiary {
 
     private int  nationality;
     private int  documentType;
@@ -17,6 +17,24 @@ public class Beneficiary {
     private String phone;
     private String aditional_information;
     private String household_code;
+
+    public RegisterBeneficiary(int nationality, int documentType, int gender, int agreement, String geolocation, String first_name, String second_name, String surname, String second_surname, String document, String birth_date, String pregnant, String phone, String aditional_information, String household_code) {
+        this.nationality = nationality;
+        this.documentType = documentType;
+        this.gender = gender;
+        this.agreement = agreement;
+        this.geolocation = geolocation;
+        this.first_name = first_name;
+        this.second_name = second_name;
+        this.surname = surname;
+        this.second_surname = second_surname;
+        this.document = document;
+        this.birth_date = birth_date;
+        this.pregnant = pregnant;
+        this.phone = phone;
+        this.aditional_information = aditional_information;
+        this.household_code = household_code;
+    }
 
     public int getNationality() {
         return nationality;

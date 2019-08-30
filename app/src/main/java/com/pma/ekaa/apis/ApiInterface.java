@@ -2,8 +2,10 @@ package com.pma.ekaa.apis;
 
 import android.content.ContentQueryMap;
 
+import com.pma.ekaa.models.Beneficiary;
 import com.pma.ekaa.models.Login;
 import com.pma.ekaa.models.Register;
+import com.pma.ekaa.models.RegisterBeneficiary;
 import com.pma.ekaa.models.User;
 import com.pma.ekaa.models.UserLog;
 
@@ -29,6 +31,9 @@ public interface ApiInterface {
 
     @POST("rest-auth/registration/")
     Call<User> register(@Body Register register);
+
+    @POST("api/v1/beneficiaries/ ")
+    Call<Beneficiary> registerBeneficiary(@Body RegisterBeneficiary registerbeneficiary);
 
     @GET("api/v1/persons/")
     Call<ResponseBody> getToken(@Header("Authorization") String authToken);

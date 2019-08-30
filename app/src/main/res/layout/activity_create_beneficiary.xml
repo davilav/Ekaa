@@ -87,13 +87,14 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/namebeneficiary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_userIcon"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_userIcon"
                     android:background="#DADADA"
-                    android:hint="Nombre del auxiliar"
+                    android:hint="Primer Nombre"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
 
@@ -119,13 +120,14 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/seconenamebeneficiary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_passwordIcon"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_passwordIcon"
                     android:background="#DADADA"
-                    android:hint="Socio"
+                    android:hint="Segundo Nombre"
                     android:inputType="textPassword"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
@@ -152,13 +154,14 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/lastnamebeneficiary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_confirmpasswordIcon"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_confirmpasswordIcon"
                     android:background="#DADADA"
-                    android:hint="Departamento"
+                    android:hint="Primer Apellido"
                     android:inputType="textPassword"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
@@ -186,13 +189,14 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/surnamebeneficiary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_repasswordIcon"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_repasswordIcon"
                     android:background="#DADADA"
-                    android:hint="Municipio"
+                    android:hint="Segundo Apellido"
                     android:inputType="textPassword"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
@@ -218,13 +222,14 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/nationalitybeneficiary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_emailIcon"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_emailIcon"
                     android:background="#DADADA"
-                    android:hint="Nombre del comedor"
+                    android:hint="Nacionalidad"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
 
@@ -250,13 +255,14 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/documentTypebeneficiary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_emailIcon1"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_emailIcon1"
                     android:background="#DADADA"
-                    android:hint="Tipo de localidad"
+                    android:hint="Tipo de documento"
                     android:inputType="textPersonName"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
@@ -283,13 +289,14 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/documentbeneficiary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_emailIcon2"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_emailIcon2"
                     android:background="#DADADA"
-                    android:hint="Tipo de documento"
+                    android:hint="Numero de Documento"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
 
@@ -315,13 +322,14 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/pregnantbeneficiary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_emailIcon3"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_emailIcon3"
                     android:background="#DADADA"
-                    android:hint="Numero de documento"
+                    android:hint="Pregnant"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
 
@@ -346,46 +354,15 @@
                     android:src="@drawable/img_email"
                     android:tint="#ffffff" />
 
-                <EditText
+                <TextView
+                    android:id="@+id/birthdatebeneficiary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_emailIcon4"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_emailIcon4"
                     android:background="#DADADA"
-                    android:hint="Nacionalidad"
-                    android:paddingLeft="20dp"
-                    android:textSize="15sp" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/relativeLayout9"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="15dp">
-
-                <ImageView
-                    android:id="@+id/imgView_emailIcon5"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
-                    android:padding="8dp"
-                    android:src="@drawable/img_email"
-                    android:tint="#ffffff" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/imgView_emailIcon5"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/imgView_emailIcon5"
-                    android:background="#DADADA"
-                    android:hint="Estado migratorio"
+                    android:hint="Fecha de nacimiento"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
 
@@ -396,7 +373,7 @@
                 android:id="@+id/relativeLayout11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/relativeLayout10"
+                android:layout_below="@+id/relativeLayout9"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="15dp">
@@ -411,13 +388,14 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/genderbeneficiary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_emailIcon6"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_emailIcon6"
                     android:background="#DADADA"
-                    android:hint="Codigo hogar"
+                    android:hint="Sexo"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
 
@@ -443,13 +421,14 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/phonebeneficiary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_emailIcon7"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_emailIcon7"
                     android:background="#DADADA"
-                    android:hint="Primer nombre"
+                    android:hint="Numero de telefono"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
 
@@ -475,149 +454,52 @@
                     android:tint="#ffffff" />
 
                 <EditText
+                    android:id="@+id/informationbeneficiary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_emailIcon8"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_emailIcon8"
                     android:background="#DADADA"
-                    android:hint="Segundo Nombre"
+                    android:hint="Informacion adicional"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
 
 
             </RelativeLayout>
 
-            <RelativeLayout
-            android:id="@+id/relativeLayout14"
+    <RelativeLayout
+        android:id="@+id/relativeLayout14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout13"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp">
+
+        <ImageView
+            android:id="@+id/imgView_emailIcon9"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimary"
+            android:padding="8dp"
+            android:src="@drawable/img_email"
+            android:tint="#ffffff" />
+
+        <EditText
+            android:id="@+id/familybeneficiary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/relativeLayout13"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="15dp">
-
-            <ImageView
-                android:id="@+id/imgView_emailIcon9"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@color/colorPrimary"
-                android:padding="8dp"
-                android:src="@drawable/img_email"
-                android:tint="#ffffff" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/imgView_emailIcon9"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/imgView_emailIcon9"
-                android:background="#DADADA"
-                android:hint="Primer Apellido"
-                android:paddingLeft="20dp"
-                android:textSize="15sp" />
+            android:layout_alignBottom="@+id/imgView_emailIcon9"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/imgView_emailIcon9"
+            android:background="#DADADA"
+            android:hint="Codigo de familia"
+            android:paddingLeft="20dp"
+            android:textSize="15sp" />
 
 
-        </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/relativeLayout14"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="15dp">
-
-                <ImageView
-                    android:id="@+id/imgView_emailIcon10"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
-                    android:padding="8dp"
-                    android:src="@drawable/img_email"
-                    android:tint="#ffffff" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/imgView_emailIcon10"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/imgView_emailIcon10"
-                    android:background="#DADADA"
-                    android:hint="Segundo Apellido"
-                    android:paddingLeft="20dp"
-                    android:textSize="15sp" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout17"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/relativeLayout16"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="15dp">
-
-                <ImageView
-                    android:id="@+id/imgView_emailIcon12"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
-                    android:padding="8dp"
-                    android:src="@drawable/img_email"
-                    android:tint="#ffffff" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/imgView_emailIcon12"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/imgView_emailIcon12"
-                    android:background="#DADADA"
-                    android:hint="Fecha de nacimiento"
-                    android:paddingLeft="20dp"
-                    android:textSize="15sp" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout16"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/relativeLayout15"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="15dp">
-
-                <ImageView
-                    android:id="@+id/imgView_emailIcon11"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
-                    android:padding="8dp"
-                    android:src="@drawable/img_email"
-                    android:tint="#ffffff" />
-
-                <TextView
-                    android:id="@+id/age"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/imgView_emailIcon11"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/imgView_emailIcon11"
-                    android:background="#DADADA"
-                    android:hint="Sexo"
-                    android:paddingLeft="20dp"
-                    android:textSize="15sp" />
-
-
-            </RelativeLayout>
-
-
+    </RelativeLayout>
 
             <CheckBox
                 android:id="@+id/chkBox1"
@@ -666,6 +548,6 @@
 
     </androidx.cardview.widget.CardView>
 
-</ScrollView>
+    </ScrollView>
 
 </RelativeLayout>

@@ -254,6 +254,8 @@ public class KitchenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+                Intent intent = new Intent(KitchenActivity.this,CreateBeneficiaryActivity.class);
+                startActivity(intent);
             }
         });
 
