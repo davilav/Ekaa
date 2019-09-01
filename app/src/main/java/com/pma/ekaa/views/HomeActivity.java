@@ -13,7 +13,9 @@ import android.widget.Toast;
 
 import com.pma.ekaa.R;
 import com.pma.ekaa.apis.ApiClient;
+import com.pma.ekaa.models.RequestUser;
 import com.pma.ekaa.models.UserLog;
+import com.pma.ekaa.models.Utils;
 
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
@@ -25,16 +27,14 @@ import static maes.tech.intentanim.CustomIntent.customType;
 public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     ImageView kitchen,school,inkind,walkers,cloud,url,settings,info,menu;
+    String token = Utils.getInstance().getObj().getToken();
 
-    Intent intent = getIntent();
-    String token = intent.getStringExtra(LoginActivity.key);
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
 
 
 
@@ -57,8 +57,10 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         kitchen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                RequestUser obj = new RequestUser();
+                obj.setToken(token);
+                Utils.getInstance().setObj(obj);
                 Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
-                intent.putExtra("token",token);
                 startActivity(intent);;
                 customType(HomeActivity.this,"fadein-to-fadeout");
             }
@@ -67,9 +69,11 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         school.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                RequestUser obj = new RequestUser();
+                obj.setToken(token);
+                Utils.getInstance().setObj(obj);
                 Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
                 startActivity(intent);
-                intent.putExtra("token",token);
                 customType(HomeActivity.this,"fadein-to-fadeout");
             }
         });
@@ -77,9 +81,11 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         inkind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                RequestUser obj = new RequestUser();
+                obj.setToken(token);
+                Utils.getInstance().setObj(obj);
                 Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
                 startActivity(intent);
-                intent.putExtra("token",token);
                 customType(HomeActivity.this,"fadein-to-fadeout");
             }
         });
@@ -87,9 +93,11 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         walkers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                RequestUser obj = new RequestUser();
+                obj.setToken(token);
+                Utils.getInstance().setObj(obj);
                 Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
                 startActivity(intent);
-                intent.putExtra("token",token);
                 customType(HomeActivity.this,"fadein-to-fadeout");
             }
         });

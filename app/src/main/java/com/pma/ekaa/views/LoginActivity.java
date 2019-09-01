@@ -19,8 +19,10 @@ import com.pma.ekaa.R;
 import com.pma.ekaa.apis.ApiClient;
 import com.pma.ekaa.apis.ApiInterface;
 import com.pma.ekaa.models.Login;
+import com.pma.ekaa.models.RequestUser;
 import com.pma.ekaa.models.User;
 import com.pma.ekaa.models.UserLog;
+import com.pma.ekaa.models.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class LoginActivity extends AppCompatActivity{
 
     Button passButton;
     EditText txtEmail,txtPassword;
-    public static final String key = "token";
+
 
 
     @Override
@@ -110,8 +112,10 @@ public class LoginActivity extends AppCompatActivity{
                if (response.isSuccessful()) {
                    token =  response.body().getKey();
                    Toasty.success(LoginActivity.this, "Bienvenido!", Toast.LENGTH_SHORT, true).show();
+                   RequestUser obj = new RequestUser();
+                   obj.setToken(token);
+                   Utils.getInstance().setObj(obj);
                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                   intent.putExtra(key,token);
                    startActivity(intent);
                    customType(LoginActivity.this, "fadein-to-fadeout");
                }

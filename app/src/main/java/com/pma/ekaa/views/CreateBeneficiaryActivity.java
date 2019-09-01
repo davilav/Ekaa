@@ -36,6 +36,7 @@ import com.pma.ekaa.R;
 import com.pma.ekaa.apis.ApiClient;
 import com.pma.ekaa.models.Beneficiary;
 import com.pma.ekaa.models.RegisterBeneficiary;
+import com.pma.ekaa.models.Utils;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -64,8 +65,6 @@ public class CreateBeneficiaryActivity extends AppCompatActivity {
     String[] genders,types,nations;
 
 
-    Intent intent = getIntent();
-    String token = intent.getStringExtra(LoginActivity.key);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -355,6 +354,7 @@ public class CreateBeneficiaryActivity extends AppCompatActivity {
         final String Family = family.getText().toString();
         final int Agreement = 1;
         final String Geolocation = "1";
+        String token = Utils.getInstance().getObj().getToken();
 
 
 
