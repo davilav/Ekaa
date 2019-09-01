@@ -18,6 +18,7 @@ import com.pma.ekaa.models.Register;
 import com.pma.ekaa.models.User;
 import com.pma.ekaa.models.UserLog;
 
+import es.dmoral.toasty.Toasty;
 import github.ishaan.buttonprogressbar.ButtonProgressBar;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,7 +47,15 @@ public class RegisterActivity extends AppCompatActivity {
         bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        register();
+                        bar.stopLoader();
+
+                    }
+                }, 4000);
             }
         });
 
@@ -71,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
         Register register = new Register(user,email,pass,pass2);
 
      if (TextUtils.isEmpty(email)) {
-         Toast.makeText(this, "Se debe ingresar un email", Toast.LENGTH_SHORT).show();
+         Toasty.warning(RegisterActivity.this, "Debes ingresar tu email", Toast.LENGTH_SHORT, true).show();
          return;
      }
 
@@ -83,35 +92,29 @@ public class RegisterActivity extends AppCompatActivity {
 
 
      if (TextUtils.isEmpty(pass)) {
-         Toast.makeText(this, "Se debe ingresar una constraseña", Toast.LENGTH_SHORT).show();
+         Toasty.warning(RegisterActivity.this, "Debes ingresar una contraseña", Toast.LENGTH_SHORT, true).show();
          return;
      }
 
      if (TextUtils.isEmpty(user)) {
-         Toast.makeText(this, "Se debe ingresar un usuario", Toast.LENGTH_SHORT).show();
+         Toasty.warning(RegisterActivity.this, "Debes ingresar un usuario", Toast.LENGTH_SHORT, true).show();
          return;
      }
 
 
      if (TextUtils.isEmpty(pass2)) {
-         Toast.makeText(this, "Se debe ingresar una constraseña", Toast.LENGTH_SHORT).show();
+         Toasty.warning(RegisterActivity.this, "Debes ingresar una contraseña", Toast.LENGTH_SHORT, true).show();
          return;
      }
 
-     new Handler().postDelayed(new Runnable() {
-         @Override
-         public void run() {
-             bar.stopLoader();
 
-         }
-     }, 4000);
 
      Call<User> call = ApiClient.getInstance().getApi().register(register);
      call.enqueue(new Callback<User>() {
          @Override
          public void onResponse(Call<User> call, Response<User> response) {
              if (response.isSuccessful()) {
-                 Toast.makeText(RegisterActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                 Toasty.success(RegisterActivity.this, "Se ha registrado exitosamente!", Toast.LENGTH_SHORT, true).show();
                  Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                  startActivity(intent);
                  customType(RegisterActivity.this, "fadein-to-fadeout");
@@ -119,14 +122,14 @@ public class RegisterActivity extends AppCompatActivity {
 
              }
              else {
-                 Toast.makeText(RegisterActivity.this, "No se pudo registrar el usuario", Toast.LENGTH_SHORT).show();
+                 Toasty.error(RegisterActivity.this, "Error al crear usuario.", Toast.LENGTH_SHORT, true).show();
 
              }
          }
 
          @Override
          public void onFailure(Call<User> call, Throwable t) {
-             Toast.makeText(RegisterActivity.this, "Registro de ususario fallido", Toast.LENGTH_SHORT).show();
+             Toasty.warning(RegisterActivity.this, "Fallo al iniciar sesion", Toast.LENGTH_SHORT, true).show();
          }
          
      });

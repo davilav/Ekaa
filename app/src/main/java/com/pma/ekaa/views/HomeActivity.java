@@ -15,6 +15,7 @@ import com.pma.ekaa.R;
 import com.pma.ekaa.apis.ApiClient;
 import com.pma.ekaa.models.UserLog;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,12 +24,17 @@ import static maes.tech.intentanim.CustomIntent.customType;
 
 public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
+    Intent get = this.getIntent();
+    Bundle extra = get.getExtras();
+    String token = extra.getString("token");
     ImageView kitchen,school,inkind,walkers,cloud,url,settings,info,menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
 
         menu = findViewById(R.id.menupointbutton);
         kitchen = findViewById(R.id.kitchenButton);
@@ -49,6 +55,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
                 startActivity(intent);
+                intent.putExtra("token",token);
                 customType(HomeActivity.this,"fadein-to-fadeout");
             }
         });
@@ -58,6 +65,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
                 startActivity(intent);
+                intent.putExtra("token",token);
                 customType(HomeActivity.this,"fadein-to-fadeout");
             }
         });
@@ -67,6 +75,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
                 startActivity(intent);
+                intent.putExtra("token",token);
                 customType(HomeActivity.this,"fadein-to-fadeout");
             }
         });
@@ -76,6 +85,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
                 startActivity(intent);
+                intent.putExtra("token",token);
                 customType(HomeActivity.this,"fadein-to-fadeout");
             }
         });
@@ -93,16 +103,16 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.item1:
-                logout();
+                Toasty.info(HomeActivity.this, "Here is some info for you.", Toast.LENGTH_SHORT, true).show();
                 return true;
             case R.id.item2:
-                Toast.makeText(this, "Item 2 clicked", Toast.LENGTH_SHORT).show();
+                Toasty.info(HomeActivity.this, "Here is some info for you.", Toast.LENGTH_SHORT, true).show();
                 return true;
             case R.id.item3:
-                Toast.makeText(this, "Item 3 clicked", Toast.LENGTH_SHORT).show();
+                Toasty.info(HomeActivity.this, "Here is some info for you.", Toast.LENGTH_SHORT, true).show();
                 return true;
             case R.id.item4:
-                Toast.makeText(this, "Item 4 clicked", Toast.LENGTH_SHORT).show();
+                logout();
                 return true;
             default:
                 return false;
@@ -115,7 +125,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             @Override
             public void onResponse(Call<UserLog> call, Response<UserLog> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(HomeActivity.this, "Cierre de sesion exitoso", Toast.LENGTH_SHORT).show();
+                    Toasty.success(HomeActivity.this, "Adios!", Toast.LENGTH_SHORT, true).show();
                     Intent intent = new Intent(HomeActivity.this, WelcomeActivity.class);
                     startActivity(intent);
                     customType(HomeActivity.this, "fadein-to-fadeout");

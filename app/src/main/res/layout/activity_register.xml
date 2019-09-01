@@ -198,10 +198,43 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/relativeLayout4"
+                android:id="@+id/relativeLayout6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeLayout3"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="15dp">
+
+                <ImageView
+                    android:id="@+id/imgView_emailIcon4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="8dp"
+                    android:src="@drawable/img_email"
+                    android:tint="#ffffff" />
+
+                <EditText
+                    android:id="@+id/usertext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/imgView_emailIcon4"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/imgView_emailIcon4"
+                    android:background="#DADADA"
+                    android:hint="Rol"
+                    android:paddingLeft="20dp"
+                    android:textSize="15sp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeLayout6"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="15dp">
@@ -215,7 +248,7 @@
                     android:src="@drawable/img_email"
                     android:tint="#ffffff" />
 
-                <TextView
+                <EditText
                     android:id="@+id/roltext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -223,7 +256,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imgView_emailIcon"
                     android:background="#DADADA"
-                    android:hint="Rol"
+                    android:hint="Usuario"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
 

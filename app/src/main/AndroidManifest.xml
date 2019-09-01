@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".GeolocationActivity" />
         <activity android:name=".views.CreateBeneficiaryActivity" />
         <activity android:name=".views.KitchenActivity" />
         <activity android:name=".views.HomeActivity" />

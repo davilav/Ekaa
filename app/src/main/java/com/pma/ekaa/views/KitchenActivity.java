@@ -75,7 +75,7 @@ public class KitchenActivity extends AppCompatActivity {
         Beneficiary celeb1 = new Beneficiary();
         celeb1.setFirst_name("David Avila");
         celeb1.setId("1000335648");
-        celeb1.setNationality(1);
+       // celeb1.setNationality(1);
         celeb1.setProfilePhotoLocation("");
         celeb1.setHousehold_code("A32424B");
         celebList.add(celeb1);
@@ -83,7 +83,7 @@ public class KitchenActivity extends AppCompatActivity {
         Beneficiary celeb2 = new Beneficiary();
         celeb1.setFirst_name("Felipe Avila");
         celeb1.setId("10320335648");
-        celeb1.setNationality(1);
+       // celeb1.setNationality(1);
         celeb1.setProfilePhotoLocation("");
         celeb1.setHousehold_code("A33424B");
         celebList.add(celeb1);

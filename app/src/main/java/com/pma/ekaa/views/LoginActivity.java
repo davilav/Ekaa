@@ -2,7 +2,9 @@ package com.pma.ekaa.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -23,6 +25,7 @@ import com.pma.ekaa.models.UserLog;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import es.dmoral.toasty.Toasty;
 import github.ishaan.buttonprogressbar.ButtonProgressBar;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -32,7 +35,7 @@ import retrofit2.Retrofit;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity{
 
     Button passButton;
     EditText txtEmail,txtPassword;
@@ -53,7 +56,15 @@ public class LoginActivity extends AppCompatActivity {
         bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                bar.startLoader();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        login();
+                        bar.stopLoader();
+
+                    }
+                }, 4000);
 
             }
         });
@@ -80,23 +91,16 @@ public class LoginActivity extends AppCompatActivity {
        Login login = new Login(txtEmail.getText().toString(),txtPassword.getText().toString());
 
        if (TextUtils.isEmpty(email)) {
-           Toast.makeText(this, "Se debe ingresar un email", Toast.LENGTH_SHORT).show();
+           Toasty.warning(LoginActivity.this, "Debes ingresar tu usuario!", Toast.LENGTH_SHORT, true).show();
            return;
        }
 
 
        if (TextUtils.isEmpty(pass)) {
-           Toast.makeText(this, "Se debe ingresar una constraseña", Toast.LENGTH_SHORT).show();
+           Toasty.warning(LoginActivity.this, "Debes ingresar tu contraseña!", Toast.LENGTH_SHORT, true).show();
            return;
        }
 
-       new Handler().postDelayed(new Runnable() {
-           @Override
-           public void run() {
-               bar.stopLoader();
-
-           }
-       }, 4000);
 
        Call<UserLog> call = ApiClient.getInstance().getApi().login(login);
        call.enqueue(new Callback<UserLog>() {
@@ -104,52 +108,28 @@ public class LoginActivity extends AppCompatActivity {
            public void onResponse(Call<UserLog> call, Response<UserLog> response) {
 
                if (response.isSuccessful()) {
-                   Toast.makeText(LoginActivity.this, "Inicio de sesion exitoso", Toast.LENGTH_SHORT).show();
+                   token =  response.body().getKey();
+                   Toasty.success(LoginActivity.this, "Bienvenido!", Toast.LENGTH_SHORT, true).show();
                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                   intent.putExtra("token",token);
                    startActivity(intent);
                    customType(LoginActivity.this, "fadein-to-fadeout");
-                   token =  response.body().getToken();
-
                }
                else {
-                   Toast.makeText(LoginActivity.this, "inicio de sesion erroneo", Toast.LENGTH_SHORT).show();
+                   Toasty.error(LoginActivity.this, "Error al iniciar sesion.", Toast.LENGTH_SHORT, true).show();
 
                }
            }
 
            @Override
            public void onFailure(Call<UserLog> call, Throwable t) {
-               Toast.makeText(LoginActivity.this, "inicio de sesion fallido", Toast.LENGTH_SHORT).show();
+               Toasty.warning(LoginActivity.this, "Fallo al iniciar sesion", Toast.LENGTH_SHORT, true).show();
 
            }
        });
    }
-   private void getToken(){
-       Call<ResponseBody> call = ApiClient.getInstance().getApi().getToken(token);
-       call.enqueue(new Callback<ResponseBody>() {
-           @Override
-           public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-               if (response.isSuccessful()) {
-                   try {
-                       Toast.makeText(LoginActivity.this, response.body().string(), Toast.LENGTH_SHORT).show();
-                   }catch (IOException e) {
-                       e.printStackTrace();
-                   }
-
-               } else {
-                   Toast.makeText(LoginActivity.this,"NOT TOKEN", Toast.LENGTH_SHORT).show();
-               }
-           }
-
-           @Override
-           public void onFailure(Call<ResponseBody> call, Throwable t) {
-               Toast.makeText(LoginActivity.this, "NOT TOKEN", Toast.LENGTH_SHORT).show();
-           }
-       });
-
 
    }
-}
+
 
 

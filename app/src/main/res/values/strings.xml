@@ -7,6 +7,25 @@
         <item>@string/str_es</item>
     </string-array>
 
+
+    <string-array name="documentType">
+        <item>Document Type</item>
+        <item>CC</item>
+        <item>TI</item>
+
+    </string-array>
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+
+    </string-array>
+    <string-array name="nation">
+        <item>Nationality</item>
+        <item>Colombia</item>
+        <item>Venezuela</item>
+    </string-array>
+
     <string name="app_name">Ekaa</string>
     <string name="web_name">wfp.org/es</string>
     <string name="welcome">Welcome to Ekaa.</string>

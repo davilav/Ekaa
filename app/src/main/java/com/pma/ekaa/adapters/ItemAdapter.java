@@ -33,7 +33,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemHolder> {
         Beneficiary item = celebrityList.get(position);
         holder.txtName.setText(item.getFirst_name());
         holder.txtID.setText(item.getId());
-        holder.txtNation.setText(item.getNationality());
+       // holder.txtNation.setText(item.getNationality());
         holder.txtFamily.setText(item.getHousehold_code());
     }
 

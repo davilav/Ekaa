@@ -33,10 +33,10 @@ public interface ApiInterface {
     Call<User> register(@Body Register register);
 
     @POST("api/v1/beneficiaries/ ")
-    Call<Beneficiary> registerBeneficiary(@Body RegisterBeneficiary registerbeneficiary);
+    Call<Beneficiary> registerBeneficiary(@Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
 
-    @GET("api/v1/persons/")
-    Call<ResponseBody> getToken(@Header("Authorization") String authToken);
+    @GET("rest-auth/login/")
+    Call<ResponseBody> getKey(@Header("Authorization") String authToken);
 
 
 }

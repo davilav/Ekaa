@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.pma.ekaa.GeolocationActivity;
 import com.pma.ekaa.R;
 
 import java.util.Locale;
@@ -56,7 +55,7 @@ public class WelcomeActivity extends AppCompatActivity {
         password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(WelcomeActivity.this, GeolocationActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, KitchenActivity.class);
                 startActivity(intent);
                 customType(WelcomeActivity.this, "fadein-to-fadeout");
             }
