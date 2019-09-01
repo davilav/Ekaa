@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity{
 
     Button passButton;
     EditText txtEmail,txtPassword;
-
+    public static final String key = "token";
 
 
     @Override
@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity{
                    token =  response.body().getKey();
                    Toasty.success(LoginActivity.this, "Bienvenido!", Toast.LENGTH_SHORT, true).show();
                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                   intent.putExtra("token",token);
+                   intent.putExtra(key,token);
                    startActivity(intent);
                    customType(LoginActivity.this, "fadein-to-fadeout");
                }

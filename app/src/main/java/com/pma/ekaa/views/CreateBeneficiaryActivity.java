@@ -52,9 +52,7 @@ import static maes.tech.intentanim.CustomIntent.customType;
 
 public class CreateBeneficiaryActivity extends AppCompatActivity {
 
-    Intent get = this.getIntent();
-    Bundle extra = get.getExtras();
-    String token = extra.getString("token");
+
 
     Button registerButton;
     TextView age;
@@ -64,6 +62,10 @@ public class CreateBeneficiaryActivity extends AppCompatActivity {
     Spinner nationality,documenttype,gender;
     int location,dType,sex;
     String[] genders,types,nations;
+
+
+    Intent intent = getIntent();
+    String token = intent.getStringExtra(LoginActivity.key);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +87,8 @@ public class CreateBeneficiaryActivity extends AppCompatActivity {
         genders = getResources().getStringArray(R.array.gender);
         types = getResources().getStringArray(R.array.documentType);
         nations = getResources().getStringArray(R.array.nation);
+
+
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
@@ -351,6 +355,7 @@ public class CreateBeneficiaryActivity extends AppCompatActivity {
         final String Family = family.getText().toString();
         final int Agreement = 1;
         final String Geolocation = "1";
+
 
 
         if (TextUtils.isEmpty(Name)) {

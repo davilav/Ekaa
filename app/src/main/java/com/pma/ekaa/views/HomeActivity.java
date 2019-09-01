@@ -24,10 +24,11 @@ import static maes.tech.intentanim.CustomIntent.customType;
 
 public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
-    Intent get = this.getIntent();
-    Bundle extra = get.getExtras();
-    String token = extra.getString("token");
     ImageView kitchen,school,inkind,walkers,cloud,url,settings,info,menu;
+
+    Intent intent = getIntent();
+    String token = intent.getStringExtra(LoginActivity.key);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +37,14 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
 
 
+
+
         menu = findViewById(R.id.menupointbutton);
         kitchen = findViewById(R.id.kitchenButton);
         school = findViewById(R.id.schoolButton);
         inkind = findViewById(R.id.inkindButton);
         walkers = findViewById(R.id.walkersButton);
+
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,8 +58,8 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
-                startActivity(intent);
                 intent.putExtra("token",token);
+                startActivity(intent);;
                 customType(HomeActivity.this,"fadein-to-fadeout");
             }
         });
