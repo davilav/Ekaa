@@ -40,14 +40,14 @@ public class RegisterActivity extends AppCompatActivity {
         emailtxt = findViewById(R.id.emailtext);
         passtxt = findViewById(R.id.passtext);
         pass2txt = findViewById(R.id.confirmtext);
-        usernametxt = findViewById(R.id.partnertext);
+        usernametxt = findViewById(R.id.roltext);
 
 
         final ButtonProgressBar bar = findViewById(R.id.btn_recovery);
         bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                bar.startLoader();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

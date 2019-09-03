@@ -381,7 +381,7 @@ public class CreateBeneficiaryActivity extends AppCompatActivity {
 
         RegisterBeneficiary registerBeneficiary = new RegisterBeneficiary(Nationality,documentType,Gender,Agreement,Geolocation,Name,secondName,lastName,surName,Document,Age,Pregnant,Phone,Info,Family);
 
-        retrofit2.Call<Beneficiary> call = ApiClient.getInstance().getApi().registerBeneficiary(registerBeneficiary,token);
+        retrofit2.Call<Beneficiary> call = ApiClient.getInstance().getApi().registerBeneficiary(registerBeneficiary,("Token "+token));
         call.enqueue(new Callback<Beneficiary>() {
             @Override
             public void onResponse(retrofit2.Call<Beneficiary> call, Response<Beneficiary> response) {

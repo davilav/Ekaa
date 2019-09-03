@@ -191,7 +191,6 @@
                     android:layout_toRightOf="@+id/imgView_repasswordIcon"
                     android:background="#DADADA"
                     android:hint="@string/implementatorpartner"
-                    android:inputType="textPassword"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
 
@@ -254,6 +253,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_emailIcon"
                     android:layout_alignParentTop="true"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="-1dp"
                     android:layout_toRightOf="@+id/imgView_emailIcon"
                     android:background="#DADADA"
                     android:hint="Usuario"
