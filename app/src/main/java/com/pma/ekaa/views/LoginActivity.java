@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity{
 
            @Override
            public void onFailure(Call<UserLog> call, Throwable t) {
-               Toasty.warning(LoginActivity.this, "Fallo al iniciar sesion", Toast.LENGTH_SHORT, true).show();
+               Toasty.warning(LoginActivity.this, "Fallo la conexion con el servidor", Toast.LENGTH_SHORT, true).show();
 
            }
        });

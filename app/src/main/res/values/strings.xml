@@ -2,34 +2,13 @@
 
     <string name="str_en">English</string>
     <string name="str_es">Spanish</string>
-    <string-array name="languages">
-        <item>@string/str_en</item>
-        <item>@string/str_es</item>
-    </string-array>
-
-
-    <string-array name="documentType">
-        <item>Document Type</item>
-        <item>CC</item>
-        <item>TI</item>
-
-    </string-array>
-    <string-array name="gender">
-        <item>Gender</item>
-        <item>Male</item>
-        <item>Female</item>
-
-    </string-array>
-    <string-array name="nation">
-        <item>Nationality</item>
-        <item>Colombia</item>
-        <item>Venezuela</item>
-    </string-array>
-
     <string name="app_name">Ekaa</string>
+
+
     <string name="web_name">wfp.org/es</string>
     <string name="welcome">Welcome to Ekaa.</string>
     <string name="options">Forgot your password?</string>
+
     <string name="terms">By tapping Log in, Create account or more options, I agree to Ekaa terms of service, Privacy Policiy and Non discrimination policy</string>
     <string name="login">Log In</string>
     <string name="create">Create Account</string>
@@ -57,7 +36,8 @@
     <string name="implementatorpartner">Implentator Partner</string>
     <string name="confirmemail">Confirm your email</string>
     <string name="title_activity_kitchen">KitchenActivity</string>
-    <string name="datapolicy">I agree Ekaa data processing policy to create a new beneficiary. To accept press ok, otherwise press cancel</string>
+    <string name="datapolicy">Do you grant WFP permission to process your personal data and share it with your partners, including humanitarian and / or private organizations, and / or the Government in order to implement WFP food assistance program?
+If you decide not to grant consent to any of the required entities, WFP will endeavor to provide other forms of assistance that do not require such personal data, if applicable, and if possible, however, you may not be able to receive assistance.</string>
     <string name="datatitle">Data Processing Policy</string>
     <string name="accept">Accept</string>
     <string name="cancel">Cancel</string>
@@ -65,5 +45,26 @@
     <string name="help">Do you need help?, Click here</string>
     <string name="logout">Log Out</string>
     <string name="title_activity_basic">BasicActivity</string>
+    <string-array name="languages">
+        <item>@string/str_en</item>
+        <item>@string/str_es</item>
+    </string-array>
+    <string-array name="documentType">
+        <item>Document Type</item>
+        <item>CC</item>
+        <item>TI</item>
+
+    </string-array>
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+
+    </string-array>
+    <string-array name="nation">
+        <item>Nationality</item>
+        <item>Colombia</item>
+        <item>Venezuela</item>
+    </string-array>
 
 </resources>

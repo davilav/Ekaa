@@ -10,6 +10,7 @@ import com.pma.ekaa.models.User;
 import com.pma.ekaa.models.UserLog;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -37,6 +38,9 @@ public interface ApiInterface {
 
     @GET("rest-auth/login/")
     Call<ResponseBody> getKey(@Header("Authorization") String authToken);
+
+    @GET("/api/v1/beneficiaries/")
+    Call<List<Beneficiary>> listBeneficiary(@Header("Authorization") String authToken);
 
 
 }

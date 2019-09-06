@@ -1,5 +1,7 @@
 package com.pma.ekaa.adapters;
 
+import android.content.ClipData;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +16,12 @@ import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemHolder> {
 
-    private List<Beneficiary> celebrityList;
+    private List<Beneficiary> beneficiaries;
+    private Context context;
 
-    public ItemAdapter(List<Beneficiary> celebrityList) {
-        this.celebrityList = celebrityList;
+    public ItemAdapter(Context context, List<Beneficiary> beneficiaries) {
+        this.context = context;
+        this.beneficiaries = beneficiaries;
     }
 
     @Override
@@ -30,15 +34,16 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemHolder> {
 
     @Override
     public void onBindViewHolder(ItemHolder holder, int position) {
-        Beneficiary item = celebrityList.get(position);
-        holder.txtName.setText(item.getFirst_name());
-        holder.txtID.setText(item.getId());
+        Beneficiary item = beneficiaries.get(position);
+        holder.txtName.setText(beneficiaries.get(position).getFirst_name());
+        holder.txtlastName.setText(beneficiaries.get(position).getSurname());
+        holder.txtID.setText(beneficiaries.get(position).getDocument());
        // holder.txtNation.setText(item.getNationality());
-        holder.txtFamily.setText(item.getHousehold_code());
+        // holder.txtFamily.setText(beneficiaries.get(position).getHousehold_code());
     }
 
     @Override
     public int getItemCount() {
-        return celebrityList.size();
+        return beneficiaries.size();
     }
 }

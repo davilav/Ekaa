@@ -129,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
 
          @Override
          public void onFailure(Call<User> call, Throwable t) {
-             Toasty.warning(RegisterActivity.this, "Fallo al iniciar sesion", Toast.LENGTH_SHORT, true).show();
+             Toasty.warning(RegisterActivity.this, "Fallo la conexion con el servidor", Toast.LENGTH_SHORT, true).show();
          }
          
      });

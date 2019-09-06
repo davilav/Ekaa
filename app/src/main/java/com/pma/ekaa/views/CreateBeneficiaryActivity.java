@@ -92,7 +92,7 @@ public class CreateBeneficiaryActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
         } else {
-            locationStart();
+           // locationStart();
         }
 
 
@@ -253,7 +253,7 @@ public class CreateBeneficiaryActivity extends AppCompatActivity {
     };
 
 
-    private void locationStart() {
+   /* private void locationStart() {
         LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         CreateBeneficiaryActivity.Localizacion Local = new CreateBeneficiaryActivity.Localizacion();
         Local.setMainActivity(this);
@@ -294,7 +294,7 @@ public class CreateBeneficiaryActivity extends AppCompatActivity {
         }
     }
     /* Aqui empieza la Clase Localizacion */
-    public class Localizacion implements LocationListener {
+   /* public class Localizacion implements LocationListener {
         CreateBeneficiaryActivity geolocationActivity;
         public CreateBeneficiaryActivity getGeolocationActivity() {
             return geolocationActivity;
@@ -334,7 +334,7 @@ public class CreateBeneficiaryActivity extends AppCompatActivity {
                     break;
             }
         }
-    }
+    */
 
 
     void registerBeneficiary(){

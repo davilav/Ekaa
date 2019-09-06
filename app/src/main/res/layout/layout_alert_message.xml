@@ -20,12 +20,12 @@
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="0dp"
-        android:layout_height="91dp"
+        android:layout_width="370dp"
+        android:layout_height="209dp"
         android:text="@string/datapolicy"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:textStyle="normal"
         app:layout_constraintBottom_toTopOf="@+id/buttonCancelar"
         app:layout_constraintEnd_toEndOf="parent"

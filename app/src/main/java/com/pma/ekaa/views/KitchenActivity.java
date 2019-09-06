@@ -7,36 +7,60 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pma.ekaa.R;
 import com.pma.ekaa.adapters.ItemAdapter;
+import com.pma.ekaa.apis.ApiClient;
 import com.pma.ekaa.models.Beneficiary;
+import com.pma.ekaa.models.Utils;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
 public class KitchenActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-
     private ItemAdapter itemAdapter;
+    private List<Beneficiary> beneficiaries;
+    private final ArrayList<Beneficiary> itemList = new ArrayList<>();
 
-    ImageView back;
+    ProgressBar progressBar;
+    ImageView back,info;
     FloatingActionButton floatingActionButton;
+    CheckBox attendance;
+    Dialog myDialog;
+    String token = Utils.getInstance().getObj().getToken();
+    int contador = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kitchen);
 
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+        myDialog = new Dialog(this);
         floatingActionButton = findViewById(R.id.floatingActionButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,44 +77,23 @@ public class KitchenActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        ArrayList<Beneficiary> itemList = new ArrayList<>();
-
-        fillDummyData(itemList);
-
+        attendance = findViewById(R.id.Atencion);
 
         recyclerView = findViewById(R.id.recycler_view);
 
-        itemAdapter = new ItemAdapter(itemList);
+        itemAdapter = new ItemAdapter(getApplicationContext(),itemList);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(itemAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), mLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-    }
-
-    private void fillDummyData(ArrayList<Beneficiary> celebList) {
-        Beneficiary celeb1 = new Beneficiary();
-        celeb1.setFirst_name("David Avila");
-        celeb1.setId("1000335648");
-       // celeb1.setNationality(1);
-        celeb1.setProfilePhotoLocation("");
-        celeb1.setHousehold_code("A32424B");
-        celebList.add(celeb1);
-
-        Beneficiary celeb2 = new Beneficiary();
-        celeb1.setFirst_name("Felipe Avila");
-        celeb1.setId("10320335648");
-       // celeb1.setNationality(1);
-        celeb1.setProfilePhotoLocation("");
-        celeb1.setHousehold_code("A33424B");
-        celebList.add(celeb1);
-
-
+        listBeneficiary ();
 
     }
+
 
     private void mostrarAlert(){
         AlertDialog.Builder builder = new AlertDialog.Builder(KitchenActivity.this);
@@ -126,4 +129,65 @@ public class KitchenActivity extends AppCompatActivity {
 
 
     }
+
+    public void ShowPopup(View v) {
+        TextView txtclose;
+        Button btn;
+
+        btn = findViewById(R.id.countButton);
+
+        contador++;
+        btn.setText(Integer.toString(contador));
+
+        myDialog.setContentView(R.layout.kitchen_popup);
+        txtclose = myDialog.findViewById(R.id.txtclose);
+        txtclose.setText("X");
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+    }
+
+
+    public void listBeneficiary(){
+
+
+        retrofit2.Call<List<Beneficiary>> call = ApiClient.getInstance().getApi().listBeneficiary("Token "+token);
+        call.enqueue(new Callback<List<Beneficiary>>() {
+            @Override
+            public void onResponse(Call<List<Beneficiary>> call, Response<List<Beneficiary>> response) {
+                if (response.isSuccessful()) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    beneficiaries = response.body();
+                    recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries));
+
+            }
+                else {
+                    Toasty.error(KitchenActivity.this, "Error al cargar los datos", Toast.LENGTH_SHORT, true).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Beneficiary>> call, Throwable t) {
+                Toasty.warning(KitchenActivity.this, "Fallo la conexion con el servidor", Toast.LENGTH_SHORT, true).show();
+            }
+        });
+    }
+
+    public void goprofile(View v){
+        info = findViewById(R.id.editInfoButton);
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(KitchenActivity.this, BeneficiaryActivity.class);
+                startActivity(intent);
+                customType(KitchenActivity.this,"fadein-to-fadeout");
+            }
+        });
+    }
+
 }
