@@ -11,7 +11,9 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -20,8 +22,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Collections;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 import com.pma.ekaa.R;
 import com.pma.ekaa.adapters.ItemAdapter;
 import com.pma.ekaa.apis.ApiClient;
@@ -29,6 +33,8 @@ import com.pma.ekaa.models.Beneficiary;
 import com.pma.ekaa.models.Utils;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
@@ -36,6 +42,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
+import static com.pma.ekaa.views.BeneficiaryActivity.OBJECT_BENEFICIARIES;
 import static maes.tech.intentanim.CustomIntent.customType;
 
 public class KitchenActivity extends AppCompatActivity {
@@ -45,6 +53,7 @@ public class KitchenActivity extends AppCompatActivity {
     private List<Beneficiary> beneficiaries;
     private final ArrayList<Beneficiary> itemList = new ArrayList<>();
 
+
     ProgressBar progressBar;
     ImageView back,info;
     FloatingActionButton floatingActionButton;
@@ -52,6 +61,8 @@ public class KitchenActivity extends AppCompatActivity {
     Dialog myDialog;
     String token = Utils.getInstance().getObj().getToken();
     int contador = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,27 +141,6 @@ public class KitchenActivity extends AppCompatActivity {
 
     }
 
-    public void ShowPopup(View v) {
-        TextView txtclose;
-        Button btn;
-
-        btn = findViewById(R.id.countButton);
-
-        contador++;
-        btn.setText(Integer.toString(contador));
-
-        myDialog.setContentView(R.layout.kitchen_popup);
-        txtclose = myDialog.findViewById(R.id.txtclose);
-        txtclose.setText("X");
-        txtclose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myDialog.dismiss();
-            }
-        });
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        myDialog.show();
-    }
 
 
     public void listBeneficiary(){
@@ -161,11 +151,13 @@ public class KitchenActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Beneficiary>> call, Response<List<Beneficiary>> response) {
                 if (response.isSuccessful()) {
+
                     progressBar.setVisibility(View.INVISIBLE);
                     beneficiaries = response.body();
                     recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries));
 
-            }
+
+                }
                 else {
                     Toasty.error(KitchenActivity.this, "Error al cargar los datos", Toast.LENGTH_SHORT, true).show();
                 }
@@ -178,16 +170,7 @@ public class KitchenActivity extends AppCompatActivity {
         });
     }
 
-    public void goprofile(View v){
-        info = findViewById(R.id.editInfoButton);
-        info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(KitchenActivity.this, BeneficiaryActivity.class);
-                startActivity(intent);
-                customType(KitchenActivity.this,"fadein-to-fadeout");
-            }
-        });
-    }
+
+
 
 }

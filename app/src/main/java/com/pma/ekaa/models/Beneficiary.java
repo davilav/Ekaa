@@ -1,8 +1,11 @@
 package com.pma.ekaa.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 public class Beneficiary {
 
-    private float id;
+    private int id;
     private float nationality;
     private float document_type;
     private float gender;
@@ -23,7 +26,8 @@ public class Beneficiary {
 
     // Getter Methods
 
-    public float getId() {
+
+    public int getId() {
         return id;
     }
 
@@ -93,7 +97,8 @@ public class Beneficiary {
 
     // Setter Methods
 
-    public void setId(float id) {
+
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -160,4 +165,6 @@ public class Beneficiary {
     public void setRegistration_date(String registration_date) {
         this.registration_date = registration_date;
     }
+
+
 }
