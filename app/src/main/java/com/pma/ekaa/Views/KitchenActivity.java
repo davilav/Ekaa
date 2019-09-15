@@ -1,4 +1,4 @@
-package com.pma.ekaa.views;
+package com.pma.ekaa.Views;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,42 +8,38 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.nfc.Tag;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.SearchView;
 import android.widget.Toast;
-import java.util.Collections;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.gson.Gson;
 import com.pma.ekaa.R;
 import com.pma.ekaa.adapters.ItemAdapter;
 import com.pma.ekaa.apis.ApiClient;
+import com.pma.ekaa.apis.ApiInterface;
 import com.pma.ekaa.models.Beneficiary;
+import com.pma.ekaa.models.RequestUser;
 import com.pma.ekaa.models.Utils;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.GET;
 
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
-import static com.pma.ekaa.views.BeneficiaryActivity.OBJECT_BENEFICIARIES;
 import static maes.tech.intentanim.CustomIntent.customType;
 
 public class KitchenActivity extends AppCompatActivity {
@@ -52,7 +48,6 @@ public class KitchenActivity extends AppCompatActivity {
     private ItemAdapter itemAdapter;
     private List<Beneficiary> beneficiaries;
     private final ArrayList<Beneficiary> itemList = new ArrayList<>();
-
 
     ProgressBar progressBar;
     ImageView back,info;
@@ -68,6 +63,31 @@ public class KitchenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kitchen);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        final SearchView searchView = findViewById(R.id.searchView);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setQueryHint("Search Beneficiary");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (query.length() < 2){
+                searchBeneficiary(query);
+                }
+                return false;
+                }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                searchBeneficiary(s);
+                return false;
+            }
+        });
+
+
+
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
@@ -84,8 +104,7 @@ public class KitchenActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(KitchenActivity.this,HomeActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
         attendance = findViewById(R.id.Atencion);
@@ -101,7 +120,7 @@ public class KitchenActivity extends AppCompatActivity {
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), mLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-        listBeneficiary ();
+        listBeneficiary();
 
     }
 
@@ -122,6 +141,9 @@ public class KitchenActivity extends AppCompatActivity {
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                RequestUser obj = new RequestUser();
+                obj.setToken(token);
+                Utils.getInstance().setObj(obj);
                 Intent intent = new Intent(KitchenActivity.this, CreateBeneficiaryActivity.class);
                 startActivity(intent);
                 customType(KitchenActivity.this,"fadein-to-fadeout");
@@ -140,8 +162,6 @@ public class KitchenActivity extends AppCompatActivity {
 
 
     }
-
-
 
     public void listBeneficiary(){
 
@@ -170,7 +190,39 @@ public class KitchenActivity extends AppCompatActivity {
         });
     }
 
+    public void searchBeneficiary(final String keyword){
 
 
+        retrofit2.Call<List<Beneficiary>> call = ApiClient.getInstance().getApi().searchBeneficiary("Token "+token,keyword);
+        call.enqueue(new Callback<List<Beneficiary>>() {
+            @Override
+            public void onResponse(Call<List<Beneficiary>> call, Response<List<Beneficiary>> response) {
+                if (response.isSuccessful()) {
+
+                    progressBar.setVisibility(View.INVISIBLE);
+                    beneficiaries = response.body();
+                    recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries));
+
+
+                }
+                else {
+                    Toasty.error(KitchenActivity.this, "Error al cargar los datos", Toast.LENGTH_SHORT, true).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Beneficiary>> call, Throwable t) {
+                Toasty.warning(KitchenActivity.this, "Fallo la conexion con el servidor", Toast.LENGTH_SHORT, true).show();
+            }
+        });
+    }
 
 }
+
+
+
+
+
+
+
+

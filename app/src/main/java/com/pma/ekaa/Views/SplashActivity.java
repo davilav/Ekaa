@@ -1,25 +1,17 @@
-package com.pma.ekaa.views;
+package com.pma.ekaa.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pma.ekaa.R;
-import com.pma.ekaa.apis.ApiClient;
-import com.pma.ekaa.models.User;
-
-import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
@@ -33,6 +25,9 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
 
         logo = findViewById(R.id.pmaLogo);
         webname = findViewById(R.id.pmaText);

@@ -1,10 +1,11 @@
-package com.pma.ekaa.views;
+package com.pma.ekaa.Views;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +28,8 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         login = findViewById(R.id.loginButton);
         register = findViewById(R.id.registerButton);
@@ -55,7 +58,7 @@ public class WelcomeActivity extends AppCompatActivity {
         password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(WelcomeActivity.this, KitchenActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, PasswordActivity.class);
                 startActivity(intent);
                 customType(WelcomeActivity.this, "fadein-to-fadeout");
             }

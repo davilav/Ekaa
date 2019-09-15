@@ -1,7 +1,6 @@
 package com.pma.ekaa.adapters;
 
 import android.app.Dialog;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,7 +8,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -21,15 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
 import com.pma.ekaa.models.Beneficiary;
-import com.pma.ekaa.views.BeneficiaryActivity;
-import com.pma.ekaa.views.KitchenActivity;
+import com.pma.ekaa.Views.BeneficiaryActivity;
 
 
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-
-import static maes.tech.intentanim.CustomIntent.customType;
 
 
 public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -66,6 +61,8 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public int getItemCount() {
         return beneficiaries.size();
     }
+
+
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
@@ -130,8 +127,13 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     myDialog.show();
                 }
             });
+
+
         }
+
+
     }
+
 }
 
 

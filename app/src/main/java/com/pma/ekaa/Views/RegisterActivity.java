@@ -1,8 +1,9 @@
-package com.pma.ekaa.views;
+package com.pma.ekaa.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -15,8 +16,8 @@ import android.widget.Toast;
 import com.pma.ekaa.R;
 import com.pma.ekaa.apis.ApiClient;
 import com.pma.ekaa.models.Register;
+import com.pma.ekaa.models.RequestUser;
 import com.pma.ekaa.models.User;
-import com.pma.ekaa.models.UserLog;
 
 import es.dmoral.toasty.Toasty;
 import github.ishaan.buttonprogressbar.ButtonProgressBar;
@@ -35,6 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         memberButton = findViewById(R.id.memberButton);
         emailtxt = findViewById(R.id.emailtext);

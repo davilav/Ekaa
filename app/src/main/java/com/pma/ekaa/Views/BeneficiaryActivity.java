@@ -1,14 +1,13 @@
-package com.pma.ekaa.views;
+package com.pma.ekaa.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.text.style.IconMarginSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
@@ -28,6 +27,8 @@ public class BeneficiaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beneficiary);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         name = findViewById(R.id.tv_name);
         familyCode = findViewById(R.id.tv_family);
