@@ -18,9 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
-import com.pma.ekaa.models.Beneficiary;
 import com.pma.ekaa.Views.BeneficiaryActivity;
-
+import com.pma.ekaa.models.Result;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Beneficiary> beneficiaries;
+    private List<Result> beneficiaries;
     private Context context;
 
     public TextView txtName, txtID, txtnumberID, txtNation;
@@ -42,7 +41,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public TextView kitchenName;
     public int contador=0;
 
-    public ItemAdapter(Context context, List<Beneficiary> beneficiaries) {
+    public ItemAdapter(Context context, List<Result> beneficiaries) {
         this.context = context;
         this.beneficiaries = beneficiaries;
     }
@@ -84,15 +83,15 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         }
 
-        public void bindData(final Beneficiary beneficiary) {
-            txtName.setText(beneficiary.getFirst_name() + " " + beneficiary.getSurname());
-            txtID.setText(beneficiary.getDocument());
-            txtnumberID.setText(Integer.toString(beneficiary.getId()));
+        public void bindData(final Result result) {
+            txtName.setText(result.getFirstName() + " " + result.getSurname());
+            txtID.setText(result.getDocument());
+            txtnumberID.setText(Integer.toString(result.getId()));
 
             editInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String object = new Gson().toJson(beneficiary);
+                    String object = new Gson().toJson(result);
                     Intent intent = new Intent(context, BeneficiaryActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(BeneficiaryActivity.OBJECT_BENEFICIARIES, object);
@@ -115,7 +114,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     txtclose = myDialog.findViewById(R.id.txtclose);
                     kitchenName = myDialog.findViewById(R.id.kitchen_name);
                     txtclose.setText("X");
-                    kitchenName.setText(beneficiary.getFirst_name()+" "+beneficiary.getSurname());
+                    kitchenName.setText(result.getFirstName()+" "+ result.getSurname());
                     txtclose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

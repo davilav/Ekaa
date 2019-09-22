@@ -1,7 +1,5 @@
 package com.pma.ekaa.Views;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -9,9 +7,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
-import com.pma.ekaa.models.Beneficiary;
+import com.pma.ekaa.models.Result;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
@@ -45,9 +45,9 @@ public class BeneficiaryActivity extends AppCompatActivity {
         Intent intentExtras = getIntent();
         String object = intentExtras.getStringExtra(OBJECT_BENEFICIARIES);
 
-        Beneficiary beneficiary = new Gson().fromJson(object, Beneficiary.class);
+        Result result = new Gson().fromJson(object, Result.class);
 
-        completeBeneficiary(beneficiary);
+        completeBeneficiary(result);
 
 
         back = findViewById(R.id.backKitchenbutton);
@@ -61,15 +61,15 @@ public class BeneficiaryActivity extends AppCompatActivity {
         });
     }
 
-    public void completeBeneficiary(Beneficiary beneficiary){
+    public void completeBeneficiary(Result result){
 
-        name.setText(beneficiary.getFirst_name()+" "+ beneficiary.getSurname());
-        birthdate.setText(beneficiary.getBirth_date());
-        completeName.setText(beneficiary.getFirst_name()+" "+beneficiary.getSecond_name()+" "+beneficiary.getSurname()+" "+beneficiary.getSecond_surname());
-        documentNumber.setText(beneficiary.getDocument());
-        phone.setText(beneficiary.getPhone());
-        registration.setText(beneficiary.getRegistration_date());
-        info.setText(beneficiary.getAditional_information());
+        name.setText(result.getFirstName()+" "+ result.getSurname());
+        birthdate.setText(result.getBirthDate());
+        completeName.setText(result.getFirstName()+" "+ result.getSecondName()+" "+ result.getSurname()+" "+ result.getSecondSurname());
+        documentNumber.setText(result.getDocument());
+        phone.setText(result.getPhone());
+        registration.setText(result.getRegistrationDate());
+        info.setText(result.getAditionalInformation());
 
 
 

@@ -1,16 +1,18 @@
 package com.pma.ekaa.Views;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.pma.ekaa.R;
 import com.pma.ekaa.apis.ApiClient;
@@ -30,6 +32,7 @@ import static maes.tech.intentanim.CustomIntent.customType;
 public class LoginActivity extends AppCompatActivity{
 
     Button passButton;
+    ImageView eyeButton;
     EditText txtEmail,txtPassword;
 
 
@@ -44,6 +47,24 @@ public class LoginActivity extends AppCompatActivity{
         passButton = findViewById(R.id.passwordButton);
         txtEmail = findViewById(R.id.emailText);
         txtPassword = findViewById(R.id.passwordText);
+        eyeButton = findViewById(R.id.eyeButton);
+
+
+        eyeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (txtPassword.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+                    txtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    eyeButton.setBackgroundResource(R.drawable.eyehide);
+                } else {
+                    txtPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    eyeButton.setBackgroundResource(R.drawable.eyeshow);
+                }
+                txtPassword.setSelection(txtPassword.getText().length());
+
+            }
+        });
+
 
 
         final ButtonProgressBar bar = findViewById(R.id.btn_recovery);

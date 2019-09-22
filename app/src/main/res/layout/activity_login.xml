@@ -126,6 +126,21 @@
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
 
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="38dp"
+                    android:layout_height="40dp"
+                    android:layout_toEndOf="@id/passwordText"
+                    />
+
+                <ImageView
+                    android:id="@+id/eyeButton"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_toLeftOf="@id/imageView"
+                    android:src="@drawable/eyehide"
+                    android:foreground="?android:attr/selectableItemBackground"/>
+
             </RelativeLayout>
 
             <RelativeLayout

@@ -41,7 +41,7 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="datatitle">Data Processing Policy</string>
     <string name="accept">Accept</string>
     <string name="cancel">Cancel</string>
-    <string name="add">Add beneficiary</string>
+    <string name="add">Add result</string>
     <string name="help">Do you need help?, Click here</string>
     <string name="logout">Log Out</string>
     <string name="title_activity_basic">BasicActivity</string>

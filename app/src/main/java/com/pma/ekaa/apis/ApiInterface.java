@@ -1,15 +1,12 @@
 package com.pma.ekaa.apis;
 
-import com.pma.ekaa.Views.CreateBeneficiaryActivity;
-import com.pma.ekaa.Views.KitchenActivity;
-import com.pma.ekaa.models.Beneficiary;
+import com.pma.ekaa.models.BeneficiaryArray;
 import com.pma.ekaa.models.Login;
 import com.pma.ekaa.models.Register;
 import com.pma.ekaa.models.RegisterBeneficiary;
+import com.pma.ekaa.models.Result;
 import com.pma.ekaa.models.User;
 import com.pma.ekaa.models.UserLog;
-
-import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -32,17 +29,21 @@ public interface ApiInterface {
     Call<User> register(@Body Register register);
 
     @POST("api/v1/beneficiaries/ ")
-    Call<Beneficiary> registerBeneficiary(@Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
+    Call<Result> registerBeneficiary(@Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
 
     @GET("rest-auth/login/")
     Call<ResponseBody> getKey(@Header("Authorization") String authToken);
 
     @GET("/api/v1/beneficiaries/")
-    Call<List<Beneficiary>> listBeneficiary(@Header("Authorization") String authToken);
-
-    @GET("/api/v1/beneficiaries/?q=")
-    Call<List<Beneficiary>> searchBeneficiary(
+    Call<BeneficiaryArray> listBeneficiary(
             @Header("Authorization") String authToken,
-            @Query("q") String keyword);
+            @Query("q") String keyword,
+            @Query("page") int page);
+
+    /*@GET("/api/v1/beneficiaries/?q=")
+    Call<BeneficiaryArray> searchBeneficiary(
+            @Header("Authorization") String authToken,
+            @Query("q") String keyword,
+            @Query("page") int page);*/
 
 }

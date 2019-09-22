@@ -1,8 +1,5 @@
 package com.pma.ekaa.Views;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -13,7 +10,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.pma.ekaa.R;
 
@@ -36,7 +35,7 @@ public class PasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_password);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        bgapp = findViewById(R.id.bgapp12);
+
         memberButton = findViewById(R.id.memberButton);
         cloveranim = AnimationUtils.loadAnimation(this,R.anim.cloveranim);
         fromtop = AnimationUtils.loadAnimation(this,R.anim.fromtop);

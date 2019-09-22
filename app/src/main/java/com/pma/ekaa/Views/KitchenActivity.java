@@ -1,12 +1,5 @@
 package com.pma.ekaa.Views;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Context;
@@ -22,13 +15,20 @@ import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pma.ekaa.R;
 import com.pma.ekaa.adapters.ItemAdapter;
 import com.pma.ekaa.apis.ApiClient;
-import com.pma.ekaa.apis.ApiInterface;
-import com.pma.ekaa.models.Beneficiary;
+import com.pma.ekaa.models.BeneficiaryArray;
 import com.pma.ekaa.models.RequestUser;
+import com.pma.ekaa.models.Result;
 import com.pma.ekaa.models.Utils;
 
 import java.util.ArrayList;
@@ -38,7 +38,6 @@ import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.GET;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
@@ -46,9 +45,13 @@ public class KitchenActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ItemAdapter itemAdapter;
-    private List<Beneficiary> beneficiaries;
-    private final ArrayList<Beneficiary> itemList = new ArrayList<>();
+    private List<Result> beneficiaries;
+    private static int countPage = 1;
+    private final ArrayList<Result> itemList = new ArrayList<>();
 
+
+
+    ImageView nextpage,previouspage;
     ProgressBar progressBar;
     ImageView back,info;
     FloatingActionButton floatingActionButton;
@@ -59,6 +62,9 @@ public class KitchenActivity extends AppCompatActivity {
 
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,27 +72,29 @@ public class KitchenActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
+        nextpage = findViewById(R.id.nextArrowButton);
+        previouspage = findViewById(R.id.previousArrowButton);
+
+
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView = findViewById(R.id.searchView);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setQueryHint("Search Beneficiary");
+        searchView.setQueryHint("Search Result");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 if (query.length() < 2){
-                searchBeneficiary(query);
+                listBeneficiary(query,countPage);
                 }
                 return false;
                 }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                searchBeneficiary(s);
+              listBeneficiary(s,countPage);
                 return false;
             }
         });
-
-
 
 
         progressBar = findViewById(R.id.progressBar);
@@ -120,7 +128,7 @@ public class KitchenActivity extends AppCompatActivity {
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), mLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-        listBeneficiary();
+        listBeneficiary("",countPage);
 
     }
 
@@ -163,17 +171,60 @@ public class KitchenActivity extends AppCompatActivity {
 
     }
 
-    public void listBeneficiary(){
+    public void listBeneficiary(final String keyword, int page){
 
-
-        retrofit2.Call<List<Beneficiary>> call = ApiClient.getInstance().getApi().listBeneficiary("Token "+token);
-        call.enqueue(new Callback<List<Beneficiary>>() {
+        nextpage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<List<Beneficiary>> call, Response<List<Beneficiary>> response) {
+            public void onClick(View view) {
+                countPage+=1;
+                listBeneficiary("",countPage);
+                Toasty.success(KitchenActivity.this, "Pagina: "+countPage, Toast.LENGTH_SHORT, true).show();
+
+            }
+        });
+
+        previouspage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                countPage-=1;
+                listBeneficiary("",countPage);
+                Toasty.success(KitchenActivity.this, "Pagina: "+countPage, Toast.LENGTH_SHORT, true).show();
+            }
+        });
+
+        retrofit2.Call<BeneficiaryArray> call = ApiClient.getInstance().getApi().listBeneficiary("Token "+token,keyword,page);
+        call.enqueue(new Callback<BeneficiaryArray>() {
+            @Override
+            public void onResponse(Call<BeneficiaryArray> call, Response<BeneficiaryArray> response) {
                 if (response.isSuccessful()) {
 
                     progressBar.setVisibility(View.INVISIBLE);
-                    beneficiaries = response.body();
+                    beneficiaries =  response.body().getResults();
+                    recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries));
+
+                }
+                else {
+                    Toasty.error(KitchenActivity.this, "Error al cargar los datos", Toast.LENGTH_SHORT, true).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<BeneficiaryArray> call, Throwable t) {
+                Toasty.warning(KitchenActivity.this, "Fallo la conexion con el servidor", Toast.LENGTH_SHORT, true).show();
+            }
+        });
+    }
+
+   /* public void searchBeneficiary(final String keyword){
+
+
+        retrofit2.Call<BeneficiaryArray> call = ApiClient.getInstance().getApi().searchBeneficiary("Token "+token,keyword,1);
+        call.enqueue(new Callback<BeneficiaryArray>() {
+            @Override
+            public void onResponse(Call<BeneficiaryArray> call, Response<BeneficiaryArray> response) {
+                if (response.isSuccessful()) {
+
+                    progressBar.setVisibility(View.INVISIBLE);
+                    beneficiaries =  response.body().getResults();
                     recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries));
 
 
@@ -184,45 +235,10 @@ public class KitchenActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Beneficiary>> call, Throwable t) {
+            public void onFailure(Call<BeneficiaryArray> call, Throwable t) {
                 Toasty.warning(KitchenActivity.this, "Fallo la conexion con el servidor", Toast.LENGTH_SHORT, true).show();
             }
         });
-    }
-
-    public void searchBeneficiary(final String keyword){
-
-
-        retrofit2.Call<List<Beneficiary>> call = ApiClient.getInstance().getApi().searchBeneficiary("Token "+token,keyword);
-        call.enqueue(new Callback<List<Beneficiary>>() {
-            @Override
-            public void onResponse(Call<List<Beneficiary>> call, Response<List<Beneficiary>> response) {
-                if (response.isSuccessful()) {
-
-                    progressBar.setVisibility(View.INVISIBLE);
-                    beneficiaries = response.body();
-                    recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries));
-
-
-                }
-                else {
-                    Toasty.error(KitchenActivity.this, "Error al cargar los datos", Toast.LENGTH_SHORT, true).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Beneficiary>> call, Throwable t) {
-                Toasty.warning(KitchenActivity.this, "Fallo la conexion con el servidor", Toast.LENGTH_SHORT, true).show();
-            }
-        });
-    }
+    }*/
 
 }
-
-
-
-
-
-
-
-

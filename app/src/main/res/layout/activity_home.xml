@@ -378,7 +378,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/bgapp12"
+        android:id="@+id/bgapp"
         android:layout_width="526dp"
         android:layout_height="900dp"
         android:layout_marginEnd="8dp"

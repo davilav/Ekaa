@@ -1,7 +1,5 @@
 package com.pma.ekaa.Views;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -16,6 +14,8 @@ import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.pma.ekaa.R;
 import com.pma.ekaa.apis.ApiClient;
@@ -104,7 +104,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 obj.setToken(token);
                 Utils.getInstance().setObj(obj);
                 Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
-                startActivity(intent);;
+                startActivity(intent);
                 customType(HomeActivity.this,"fadein-to-fadeout");
             }
         });

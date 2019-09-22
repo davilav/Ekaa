@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.pma.ekaa.R;
 import com.pma.ekaa.apis.ApiClient;
-import com.pma.ekaa.models.Beneficiary;
+import com.pma.ekaa.models.Result;
 import com.pma.ekaa.models.RegisterBeneficiary;
 import com.pma.ekaa.models.Utils;
 
@@ -370,10 +370,10 @@ public class CreateBeneficiaryActivity extends AppCompatActivity {
 
         RegisterBeneficiary registerBeneficiary = new RegisterBeneficiary(Nationality,documentType,Gender,Agreement,Geolocation,Name,secondName,lastName,surName,Document,Age,Pregnant,Phone,Info,Family);
 
-        retrofit2.Call<Beneficiary> call = ApiClient.getInstance().getApi().registerBeneficiary(registerBeneficiary,("Token "+token));
-        call.enqueue(new Callback<Beneficiary>() {
+        retrofit2.Call<Result> call = ApiClient.getInstance().getApi().registerBeneficiary(registerBeneficiary,("Token "+token));
+        call.enqueue(new Callback<Result>() {
             @Override
-            public void onResponse(retrofit2.Call<Beneficiary> call, Response<Beneficiary> response) {
+            public void onResponse(retrofit2.Call<Result> call, Response<Result> response) {
                 if (response.isSuccessful()) {
                     Toasty.success(CreateBeneficiaryActivity.this, "Beneficiario creado exitosamente!", Toast.LENGTH_SHORT, true).show();
                     Intent intent = new Intent(CreateBeneficiaryActivity.this, KitchenActivity.class);
@@ -388,7 +388,7 @@ public class CreateBeneficiaryActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Beneficiary> call, Throwable t) {
+            public void onFailure(Call<Result> call, Throwable t) {
                 Toasty.warning(CreateBeneficiaryActivity.this, "Fallo al registrar beneficiario", Toast.LENGTH_SHORT, true).show();
             }
 
