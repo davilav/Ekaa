@@ -1,5 +1,12 @@
 package com.pma.ekaa.Views;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Context;
@@ -14,13 +21,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pma.ekaa.R;
@@ -41,7 +41,7 @@ import retrofit2.Response;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
-public class KitchenActivity extends AppCompatActivity {
+public class WalkersActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ItemAdapter itemAdapter;
@@ -59,6 +59,11 @@ public class KitchenActivity extends AppCompatActivity {
     Dialog myDialog;
     String token = Utils.getInstance().getObj().getToken();
     int contador = 0;
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,14 +84,14 @@ public class KitchenActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 if (query.length() < 2){
-                listBeneficiary(query,countPage);
+                    listBeneficiary(query,countPage);
                 }
                 return false;
-                }
+            }
 
             @Override
             public boolean onQueryTextChange(String s) {
-              listBeneficiary(s,countPage);
+                listBeneficiary(s,countPage);
                 return false;
             }
         });
@@ -129,7 +134,7 @@ public class KitchenActivity extends AppCompatActivity {
 
 
     private void mostrarAlert(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(KitchenActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(WalkersActivity.this);
 
         LayoutInflater inflater = getLayoutInflater();
 
@@ -147,9 +152,9 @@ public class KitchenActivity extends AppCompatActivity {
                 RequestUser obj = new RequestUser();
                 obj.setToken(token);
                 Utils.getInstance().setObj(obj);
-                Intent intent = new Intent(KitchenActivity.this, CreateBeneficiaryActivity.class);
+                Intent intent = new Intent(WalkersActivity.this, CreateBeneficiaryActivity.class);
                 startActivity(intent);
-                customType(KitchenActivity.this,"fadein-to-fadeout");
+                customType(WalkersActivity.this,"fadein-to-fadeout");
             }
         });
 
@@ -158,7 +163,7 @@ public class KitchenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                Intent intent = new Intent(KitchenActivity.this,CreateBeneficiaryActivity.class);
+                Intent intent = new Intent(WalkersActivity.this,CreateBeneficiaryActivity.class);
                 startActivity(intent);
             }
         });
@@ -173,7 +178,7 @@ public class KitchenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 countPage+=1;
                 listBeneficiary("",countPage);
-                Toasty.success(KitchenActivity.this, "Pagina: "+countPage, Toast.LENGTH_SHORT, true).show();
+                Toasty.success(WalkersActivity.this, "Pagina: "+countPage, Toast.LENGTH_SHORT, true).show();
 
             }
         });
@@ -183,7 +188,7 @@ public class KitchenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 countPage-=1;
                 listBeneficiary("",countPage);
-                Toasty.success(KitchenActivity.this, "Pagina: "+countPage, Toast.LENGTH_SHORT, true).show();
+                Toasty.success(WalkersActivity.this, "Pagina: "+countPage, Toast.LENGTH_SHORT, true).show();
             }
         });
 
@@ -199,41 +204,13 @@ public class KitchenActivity extends AppCompatActivity {
 
                 }
                 else {
-                    Toasty.error(KitchenActivity.this, "Error al cargar los datos", Toast.LENGTH_SHORT, true).show();
+                    Toasty.error(WalkersActivity.this, "Error al cargar los datos", Toast.LENGTH_SHORT, true).show();
                 }
             }
             @Override
             public void onFailure(Call<BeneficiaryArray> call, Throwable t) {
-                Toasty.warning(KitchenActivity.this, "Fallo la conexion con el servidor", Toast.LENGTH_SHORT, true).show();
+                Toasty.warning(WalkersActivity.this, "Fallo la conexion con el servidor", Toast.LENGTH_SHORT, true).show();
             }
         });
     }
-
-   /* public void searchBeneficiary(final String keyword){
-
-
-        retrofit2.Call<BeneficiaryArray> call = ApiClient.getInstance().getApi().searchBeneficiary("Token "+token,keyword,1);
-        call.enqueue(new Callback<BeneficiaryArray>() {
-            @Override
-            public void onResponse(Call<BeneficiaryArray> call, Response<BeneficiaryArray> response) {
-                if (response.isSuccessful()) {
-
-                    progressBar.setVisibility(View.INVISIBLE);
-                    beneficiaries =  response.body().getResults();
-                    recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries));
-
-
-                }
-                else {
-                    Toasty.error(KitchenActivity.this, "Error al cargar los datos", Toast.LENGTH_SHORT, true).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BeneficiaryArray> call, Throwable t) {
-                Toasty.warning(KitchenActivity.this, "Fallo la conexion con el servidor", Toast.LENGTH_SHORT, true).show();
-            }
-        });
-    }*/
-
 }

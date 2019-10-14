@@ -115,7 +115,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 RequestUser obj = new RequestUser();
                 obj.setToken(token);
                 Utils.getInstance().setObj(obj);
-                Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
+                Intent intent = new Intent(HomeActivity.this, SchoolActivity.class);
                 startActivity(intent);
                 customType(HomeActivity.this,"fadein-to-fadeout");
             }
@@ -127,7 +127,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 RequestUser obj = new RequestUser();
                 obj.setToken(token);
                 Utils.getInstance().setObj(obj);
-                Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
+                Intent intent = new Intent(HomeActivity.this, InkindActivity.class);
                 startActivity(intent);
                 customType(HomeActivity.this,"fadein-to-fadeout");
             }
@@ -139,7 +139,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 RequestUser obj = new RequestUser();
                 obj.setToken(token);
                 Utils.getInstance().setObj(obj);
-                Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
+                Intent intent = new Intent(HomeActivity.this, WalkersActivity.class);
                 startActivity(intent);
                 customType(HomeActivity.this,"fadein-to-fadeout");
             }

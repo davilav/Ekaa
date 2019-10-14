@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pma.ekaa">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/pmalogo_white"
@@ -11,9 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Views.SchoolActivity"></activity>
+        <activity android:name=".Views.InkindActivity" />
+        <activity android:name=".Views.WalkersActivity" />
         <activity
             android:name=".Views.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
         <activity android:name=".Views.BeneficiaryActivity" />
         <activity android:name=".Views.CreateBeneficiaryActivity" />
         <activity android:name=".Views.KitchenActivity" />
@@ -30,9 +37,5 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
 </manifest>

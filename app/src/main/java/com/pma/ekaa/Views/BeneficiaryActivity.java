@@ -21,7 +21,7 @@ public class BeneficiaryActivity extends AppCompatActivity {
 
     ImageView back;
     TextView name,familyCode,documentType,documentNumber;
-    TextView nation,gender,phone,registration,info,birthdate,completeName;
+    TextView nation,gender,phone,registration,info,birthdate,completeName,modality;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class BeneficiaryActivity extends AppCompatActivity {
         info = findViewById(R.id.tv_info);
         birthdate = findViewById(R.id.tv_birthdate);
         completeName = findViewById(R.id.tv_complete_name);
+        modality = findViewById(R.id.tv_modality);
 
         Intent intentExtras = getIntent();
         String object = intentExtras.getStringExtra(OBJECT_BENEFICIARIES);
@@ -70,6 +71,7 @@ public class BeneficiaryActivity extends AppCompatActivity {
         phone.setText(result.getPhone());
         registration.setText(result.getRegistrationDate());
         info.setText(result.getAditionalInformation());
+        modality.setText("");
 
 
 

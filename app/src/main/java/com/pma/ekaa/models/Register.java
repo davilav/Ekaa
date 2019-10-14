@@ -6,12 +6,16 @@ public class Register {
     String email;
     String password1;
     String password2;
+    Integer partner;
+    Integer rol;
 
-    public Register(String username, String email, String password1, String password2) {
+    public Register(String username, String email, String password1, String password2, Integer partner, Integer id) {
         this.username = username;
         this.email = email;
         this.password1 = password1;
         this.password2 = password2;
+        this.partner = partner;
+        this.rol = rol;
     }
 
     public String getUsername() {

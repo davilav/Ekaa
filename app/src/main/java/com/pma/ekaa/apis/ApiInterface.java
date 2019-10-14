@@ -1,5 +1,6 @@
 package com.pma.ekaa.apis;
 
+import com.pma.ekaa.models.Attendance;
 import com.pma.ekaa.models.BeneficiaryArray;
 import com.pma.ekaa.models.Login;
 import com.pma.ekaa.models.Register;
@@ -39,6 +40,9 @@ public interface ApiInterface {
             @Header("Authorization") String authToken,
             @Query("q") String keyword,
             @Query("page") int page);
+
+    @POST("/api/v1/attendances/")
+    Call<Attendance> registerAttendance(@Body Attendance attendance,@Header("Authorization") String authToken);
 
     /*@GET("/api/v1/beneficiaries/?q=")
     Call<BeneficiaryArray> searchBeneficiary(

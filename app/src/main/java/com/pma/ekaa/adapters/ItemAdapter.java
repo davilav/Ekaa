@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,11 +21,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
 import com.pma.ekaa.Views.BeneficiaryActivity;
+import com.pma.ekaa.Views.CreateBeneficiaryActivity;
+import com.pma.ekaa.apis.ApiClient;
+import com.pma.ekaa.models.Attendance;
 import com.pma.ekaa.models.Result;
+import com.pma.ekaa.models.Utils;
 
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
+import github.ishaan.buttonprogressbar.ButtonProgressBar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -39,6 +50,10 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public Dialog myDialog;
     public TextView txtclose;
     public TextView kitchenName;
+    public TextView firstCom,secondCom,thirdCom;
+
+    String token = Utils.getInstance().getObj().getToken();
+
     public int contador=0;
 
     public ItemAdapter(Context context, List<Result> beneficiaries) {
@@ -122,6 +137,23 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                             checkBox.setChecked(false);
                         }
                     });
+
+                    final ButtonProgressBar bar = myDialog.findViewById(R.id.btnfollow);
+                    bar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            bar.startLoader();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    registerAttendance();
+                                    bar.stopLoader();
+                                }
+                            }, 4000);
+
+                        }
+                    });
+
                     myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     myDialog.show();
                 }
@@ -133,6 +165,26 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     }
 
-}
+    private void registerAttendance() {
 
+                Attendance attendance = new Attendance("1","1","Comedor","","","");
+                Call<Attendance> call = ApiClient.getInstance().getApi().registerAttendance(attendance,("Token "+token));
+                call.enqueue(new Callback<Attendance>() {
+                    @Override
+                    public void onResponse(Call<Attendance> call, Response<Attendance> response) {
+                        Toasty.success(context, "Atención registrada exitosamente", Toast.LENGTH_SHORT, true).show();
+
+
+                    }
+
+            @Override
+            public void onFailure(Call<Attendance> call, Throwable t) {
+                Toasty.error(context, "Error al registrar la atención", Toast.LENGTH_SHORT, true).show();
+            }
+        });
+
+
+    }
+
+}
 

@@ -44,7 +44,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:text="Comedores"
             android:textColor="#000000" />
     </LinearLayout>
     <LinearLayout
@@ -61,6 +60,7 @@
             android:layout_height="100dp">
 
             <TextView
+                android:id="@+id/first_complement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AM"
@@ -83,6 +83,7 @@
             android:layout_height="100dp">
 
             <TextView
+                android:id="@+id/second_complement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lunch"
@@ -106,6 +107,7 @@
             android:layout_height="100dp">
 
             <TextView
+                android:id="@+id/third_complement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PM"

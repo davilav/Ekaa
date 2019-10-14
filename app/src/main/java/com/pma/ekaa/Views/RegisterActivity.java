@@ -79,8 +79,10 @@ public class RegisterActivity extends AppCompatActivity {
         final String pass = passtxt.getText().toString();
         final String pass2 = pass2txt.getText().toString();
         final String user = usernametxt.getText().toString();
+        final Integer partner = 1;
+        final Integer rol = 1;
 
-        Register register = new Register(user,email,pass,pass2);
+        Register register = new Register(user,email,pass,pass2,partner,rol);
 
      if (TextUtils.isEmpty(email)) {
          Toasty.warning(RegisterActivity.this, "Debes ingresar tu email", Toast.LENGTH_SHORT, true).show();
