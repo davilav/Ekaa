@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="str_en">Inglés</string>
+    <string name="str_es">Español</string>
     <string name="app_name">Ekaa</string>
     <string name="about">Acerca</string>
     <string name="agreeterms">Acepto los terminos de servicio</string>
@@ -22,11 +24,11 @@
     <string name="terms">Al seleccionar iniciar sesion, crear cuenta o las demas opciones, aceptas los terminos de servicio de Ekaa, su politica de privacidad y su politica de no discriminacion</string>
     <string name="url">Url</string>
     <string name="walkers">Caminantes</string>
-    <string name="welcome">Bienvenido a Ekaa</string>
-    <string name="moremoreoptions">Mas Opciones</string>
+    <string name="welcome">Bienvenido a Ekaa.</string>
+    <string name="moremoreoptions">Más Opciones</string>
     <string name="alreadymember">¿Ya eres miembro? Toca aqui</string>
     <string name="language">Idioma</string>
-    <string name="confirmpassword">CConfirmar contraseña</string>
+    <string name="confirmpassword">Confirmar contraseña</string>
     <string name="implementatorpartner">Socio implementador</string>
     <string name="confirmemail">Confirma tu correo</string>
     <string name="datapolicy">¿Otorga permiso al PMA para procesar sus datos personales y compartirlos con sus socios, incluidas organizaciones humanitarias y/o privadas, y/o el Gobierno con el fin de implementar el programa de asistencia alimentaria del PMA?
@@ -37,5 +39,47 @@ Si decide no otorgar el consentimiento a ninguna de las entidades requeridas, el
     <string name="add">Agregar beneficiario</string>
     <string name="help">¿Necesitas ayuda?, Presiona aqui</string>
     <string name="logout">Cerrar Sesion</string>
-    <string name="select">Por favor selecciona tu comedor</string>
+    <string name="select">Por favor selecciona tu institución.</string>
+
+
+    <string-array name="documentType">
+        <item>Tipo de Documento</item>
+        <item>Cédula de Ciudadanía</item>
+        <item>Tarjeta de Identidad</item>
+        <item>Cédula de Extranjeria</item>
+        <item>Registro Civil de Nacimiento</item>
+        <item>Cedula Venezonala</item>
+        <item>Pasaporte Venezolano</item>
+        <item>Permiso Especial de Permanencia (PEP)</item>
+        <item>Tarjeta de Movilidad Fronteriza (TMF)</item>
+        <item>WFP Smart Card</item>
+        <item>WFP Barcode-ID Card</item>
+        <item>No Disponible (Sin Documento)</item>
+
+    </string-array>
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>Masculino</item>
+        <item>Femenino</item>
+
+    </string-array>
+    <string-array name="nation">
+        <item>Nacionalidad</item>
+        <item>Colombia</item>
+        <item>Venezuela</item>
+    </string-array>
+    <string-array name="comedor">
+        <item>Comedor</item>
+        <item>Comedor 1</item>
+        <item>Comedor 2</item>
+        <item>Comedor 3</item>
+        <item>Comedor 4</item>
+        <item>Comedor 5</item>
+        <item>Comedor 6</item>
+        <item>Comedor 7</item>
+        <item>Comedor 8</item>
+    </string-array>
+
+
+
 </resources>

@@ -7,25 +7,25 @@ public class Attendance {
 
     @SerializedName("lon")
     @Expose
-    private String lon;
+    private Double lon;
     @SerializedName("lat")
     @Expose
-    private String lat;
+    private Double lat;
     @SerializedName("institution")
     @Expose
-    private String institution;
+    private Integer institution;
     @SerializedName("beneficiary")
     @Expose
-    private String beneficiary;
+    private Integer beneficiary;
     @SerializedName("person")
     @Expose
-    private String person;
+    private Integer person;
     @SerializedName("modality")
     @Expose
-    private String modality;
+    private Integer modality;
 
 
-    public Attendance(String lon, String lat, String institution, String beneficiary, String person, String modality) {
+    public Attendance(Double lon, Double lat, Integer institution, Integer beneficiary, Integer person, Integer modality) {
         this.lon = lon;
         this.lat = lat;
         this.institution = institution;
@@ -34,51 +34,52 @@ public class Attendance {
         this.modality = modality;
     }
 
-    public String getLon() {
+    public Double getLon() {
         return lon;
     }
 
-    public void setLon(String lon) {
+    public void setLon(Double lon) {
         this.lon = lon;
     }
 
-    public String getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(String lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
-    public String getInstitution() {
+    public Integer getInstitution() {
         return institution;
     }
 
-    public void setInstitution(String institution) {
+    public void setInstitution(Integer institution) {
         this.institution = institution;
     }
 
-    public String getBeneficiary() {
+    public Integer getBeneficiary() {
         return beneficiary;
     }
 
-    public void setBeneficiary(String beneficiary) {
+    public void setBeneficiary(Integer beneficiary) {
         this.beneficiary = beneficiary;
     }
 
-    public String getPerson() {
+    public Integer getPerson() {
         return person;
     }
 
-    public void setPerson(String person) {
+    public void setPerson(Integer person) {
         this.person = person;
     }
 
-    public String getModality() {
+    public Integer getModality() {
         return modality;
     }
 
-    public void setModality(String modality) {
+    public void setModality(Integer modality) {
         this.modality = modality;
     }
+
 }

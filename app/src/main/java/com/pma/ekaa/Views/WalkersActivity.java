@@ -61,14 +61,10 @@ public class WalkersActivity extends AppCompatActivity {
     int contador = 0;
 
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kitchen);
+        setContentView(R.layout.activity_walkers);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 

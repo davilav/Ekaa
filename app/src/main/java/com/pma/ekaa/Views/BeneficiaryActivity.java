@@ -55,9 +55,7 @@ public class BeneficiaryActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BeneficiaryActivity.this,KitchenActivity.class);
-                startActivity(intent);
-                customType(BeneficiaryActivity.this,"fadein-to-fadeout");
+                finish();
             }
         });
     }

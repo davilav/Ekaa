@@ -69,8 +69,17 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <!-- Sync Preferences -->
     <string-array name="documentType">
         <item>Document Type</item>
-        <item>CC</item>
-        <item>TI</item>
+        <item>Cédula de Ciudadanía</item>
+        <item>Tarjeta de Identidad</item>
+        <item>Cédula de Extranjeria</item>
+        <item>Registro Civil de Nacimiento</item>
+        <item>Cedula Venezonala</item>
+        <item>Pasaporte Venezolano</item>
+        <item>Permiso Especial de Permanencia (PEP)</item>
+        <item>Tarjeta de Movilidad Fronteriza (TMF)</item>
+        <item>WFP Smart Card</item>
+        <item>WFP Barcode-ID Card</item>
+        <item>No Disponible (Sin Documento)</item>
 
     </string-array>
     <string-array name="gender">
@@ -85,9 +94,18 @@ If you decide not to grant consent to any of the required entities, WFP will end
         <item>Venezuela</item>
     </string-array>
     <string-array name="comedor">
-        <item>Comedor</item>
-        <item>Comedor 1</item>
-        <item>Comedor 2</item>
+        <item>Institution</item>
+        <item>Kitchen 1</item>
+        <item>Kitchen 2</item>
+        <item>Kitchen 3</item>
+        <item>Kitchen 4</item>
+        <item>Kitchen 5</item>
+        <item>Kitchen 6</item>
+        <item>Kitchen 7</item>
+        <item>Kitchen 8</item>
+
+
+
     </string-array>
 
 </resources>

@@ -1,3 +1,4 @@
+
 package com.pma.ekaa.adapters;
 
 import android.app.Dialog;
@@ -53,7 +54,10 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public TextView firstCom,secondCom,thirdCom;
 
     String token = Utils.getInstance().getObj().getToken();
+    Double Longitude = Utils.getInstance().getObject().getLongitude();
+    Double Latitude = Utils.getInstance().getObject().getLatitude();
 
+    Integer id = 0;
     public int contador=0;
 
     public ItemAdapter(Context context, List<Result> beneficiaries) {
@@ -102,7 +106,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             txtName.setText(result.getFirstName() + " " + result.getSurname());
             txtID.setText(result.getDocument());
             txtnumberID.setText(Integer.toString(result.getId()));
-
+            id = result.getId();
             editInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -114,8 +118,6 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
                 }
             });
-
-
 
             checkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -162,20 +164,19 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         }
 
-
     }
 
     private void registerAttendance() {
 
-                Attendance attendance = new Attendance("1","1","Comedor","","","");
-                Call<Attendance> call = ApiClient.getInstance().getApi().registerAttendance(attendance,("Token "+token));
-                call.enqueue(new Callback<Attendance>() {
-                    @Override
-                    public void onResponse(Call<Attendance> call, Response<Attendance> response) {
-                        Toasty.success(context, "Atención registrada exitosamente", Toast.LENGTH_SHORT, true).show();
+        Attendance attendance = new Attendance(Longitude,Latitude,1,id,1,1);
+        Call<Attendance> call = ApiClient.getInstance().getApi().registerAttendance(attendance,("Token "+token));
+        call.enqueue(new Callback<Attendance>() {
+            @Override
+            public void onResponse(Call<Attendance> call, Response<Attendance> response) {
+                Toasty.success(context, "Atención registrada exitosamente", Toast.LENGTH_SHORT, true).show();
 
 
-                    }
+            }
 
             @Override
             public void onFailure(Call<Attendance> call, Throwable t) {
@@ -187,4 +188,3 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
 }
-

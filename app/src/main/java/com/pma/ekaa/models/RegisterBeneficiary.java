@@ -3,7 +3,7 @@ package com.pma.ekaa.models;
 public class RegisterBeneficiary {
 
     private int  nationality;
-    private int  documentType;
+    private int  document_Type;
     private int gender;
     private int agreement;
     private String geolocation;
@@ -23,7 +23,7 @@ public class RegisterBeneficiary {
 
     public RegisterBeneficiary(int nationality, int documentType, int gender, int agreement, String geolocation, String first_name, String second_name, String surname, String second_surname, String document, String birth_date, String pregnant, String phone, String aditional_information, String household_code) {
         this.nationality = nationality;
-        this.documentType = documentType;
+        this.document_Type = documentType;
         this.gender = gender;
         this.agreement = agreement;
         this.geolocation = geolocation;
@@ -64,11 +64,11 @@ public class RegisterBeneficiary {
     }
 
     public int getDocumentType() {
-        return documentType;
+        return document_Type;
     }
 
     public void setDocumentType(int documentType) {
-        this.documentType = documentType;
+        this.document_Type = documentType;
     }
 
     public int getGender() {

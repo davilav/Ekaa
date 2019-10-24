@@ -4,6 +4,9 @@ public class Utils {
 
     private static Utils INSTANCE = null;
     private static RequestUser obj;
+    private static Geolocation object;
+
+
 
     public Utils() {
 
@@ -17,7 +20,6 @@ public class Utils {
 
         return INSTANCE;
     }
-
     public void setObj(RequestUser obj1) {
         obj = obj1;
     }
@@ -25,6 +27,16 @@ public class Utils {
     public RequestUser getObj() {
 
         return obj;
+
+
+    }
+
+    public Geolocation getObject() {
+        return object;
+    }
+
+    public void setObject(Geolocation object) {
+        Utils.object = object;
     }
 }
 
