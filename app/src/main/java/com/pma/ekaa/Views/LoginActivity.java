@@ -14,12 +14,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
 import com.pma.ekaa.R;
 import com.pma.ekaa.apis.ApiClient;
 import com.pma.ekaa.models.Login;
 import com.pma.ekaa.models.RequestUser;
 import com.pma.ekaa.models.UserLog;
 import com.pma.ekaa.models.Utils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import es.dmoral.toasty.Toasty;
 import github.ishaan.buttonprogressbar.ButtonProgressBar;
@@ -35,20 +39,26 @@ public class LoginActivity extends AppCompatActivity{
     ImageView eyeButton;
     EditText txtEmail,txtPassword;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        initViews();
+
+    }
+
+    private static String token;
+
+
+    public void initViews(){
+
 
         passButton = findViewById(R.id.passwordButton);
         txtEmail = findViewById(R.id.emailText);
         txtPassword = findViewById(R.id.passwordText);
         eyeButton = findViewById(R.id.eyeButton);
-
 
         eyeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,8 +74,6 @@ public class LoginActivity extends AppCompatActivity{
 
             }
         });
-
-
 
         final ButtonProgressBar bar = findViewById(R.id.btn_recovery);
         bar.setOnClickListener(new View.OnClickListener() {
@@ -95,8 +103,6 @@ public class LoginActivity extends AppCompatActivity{
 
     }
 
-    private static String token;
-
    private void login(){
 
        final ButtonProgressBar bar = findViewById(R.id.btn_recovery);
@@ -122,7 +128,7 @@ public class LoginActivity extends AppCompatActivity{
            @Override
            public void onResponse(Call<UserLog> call, Response<UserLog> response) {
 
-               if (response.isSuccessful()) {
+               if (response.code() == 200) {
                    token =  response.body().getKey();
                    Toasty.success(LoginActivity.this, "Bienvenido!", Toast.LENGTH_SHORT, true).show();
                    RequestUser obj = new RequestUser();
@@ -131,6 +137,8 @@ public class LoginActivity extends AppCompatActivity{
                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                    startActivity(intent);
                    customType(LoginActivity.this, "fadein-to-fadeout");
+               } else if (response.code() == 400) {
+                   Toasty.error(LoginActivity.this, "Error al iniciar sesion.", Toast.LENGTH_SHORT, true).show();
                }
                else {
                    Toasty.error(LoginActivity.this, "Error al iniciar sesion.", Toast.LENGTH_SHORT, true).show();
@@ -146,7 +154,7 @@ public class LoginActivity extends AppCompatActivity{
        });
    }
 
-   }
+}
 
 
 

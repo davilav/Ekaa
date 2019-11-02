@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,12 +23,47 @@ public class BeneficiaryActivity extends AppCompatActivity {
     ImageView back;
     TextView name,familyCode,documentType,documentNumber;
     TextView nation,gender,phone,registration,info,birthdate,completeName,modality;
+    Button editBeneficiary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beneficiary);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        initViews();
+
+        Intent intentExtras = getIntent();
+        String object = intentExtras.getStringExtra(OBJECT_BENEFICIARIES);
+
+        final Result result = new Gson().fromJson(object, Result.class);
+
+        completeBeneficiary(result);
+
+        editBeneficiary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String object = new Gson().toJson(result);
+                Intent intent = new Intent(BeneficiaryActivity.this,EditBeneficiaryActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(BeneficiaryActivity.OBJECT_BENEFICIARIES, object);
+                startActivity(intent);
+                customType(BeneficiaryActivity.this,"fadein-to-fadeout");
+            }
+        });
+
+
+        back = findViewById(R.id.backKitchenbutton);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+
+    public void initViews(){
 
 
         name = findViewById(R.id.tv_name);
@@ -42,22 +78,9 @@ public class BeneficiaryActivity extends AppCompatActivity {
         birthdate = findViewById(R.id.tv_birthdate);
         completeName = findViewById(R.id.tv_complete_name);
         modality = findViewById(R.id.tv_modality);
-
-        Intent intentExtras = getIntent();
-        String object = intentExtras.getStringExtra(OBJECT_BENEFICIARIES);
-
-        Result result = new Gson().fromJson(object, Result.class);
-
-        completeBeneficiary(result);
+        editBeneficiary = findViewById(R.id.editKitchenbutton);
 
 
-        back = findViewById(R.id.backKitchenbutton);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
 
     public void completeBeneficiary(Result result){

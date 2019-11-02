@@ -56,8 +56,6 @@ public class WelcomeActivity extends AppCompatActivity {
             locationStart();
         }
 
-
-
         login = findViewById(R.id.loginButton);
         register = findViewById(R.id.registerButton);
         password = findViewById(R.id.optionsButton);

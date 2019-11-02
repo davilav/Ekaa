@@ -141,6 +141,7 @@
         android:layout_marginTop="20dp"
         android:text="AM en el comedor NO 123 a las 10:54 am"
         android:textColor="#000000" />
+
     <github.ishaan.buttonprogressbar.ButtonProgressBar
         android:id="@+id/btnfollow"
         android:layout_width="wrap_content"

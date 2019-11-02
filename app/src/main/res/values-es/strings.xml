@@ -40,6 +40,23 @@ Si decide no otorgar el consentimiento a ninguna de las entidades requeridas, el
     <string name="help">¿Necesitas ayuda?, Presiona aqui</string>
     <string name="logout">Cerrar Sesion</string>
     <string name="select">Por favor selecciona tu institución.</string>
+    <string name="dtype">Tipo de documento</string>
+    <string name="gender">Sexo</string>
+    <string name="nationality">Nacionalidad</string>
+    <string name="comedor">Comedor</string>
+    <string name="editar">Editar</string>
+    <string name="housecode">Código familiar</string>
+    <string name="completename">Nombre Completo</string>
+    <string name="birthdate">Fecha de nacimiento</string>
+    <string name="identificationnumber">Numero de identificación</string>
+    <string name="tel">Teléfono</string>
+    <string name="save">Guardar</string>
+    <string name="geolocationselect">Por favor selecciona tu localización.</string>
+    <string name="wfp">PMA</string>
+    <string name="Hpartners">Socios Humanitarios</string>
+    <string name="Ppartners">Socios Privados</string>
+    <string name="Gpartners">Socios Gubernamentales</string>
+
 
 
     <string-array name="documentType">

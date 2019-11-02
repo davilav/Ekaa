@@ -12,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +49,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public CircleImageView profileImage;
     public ImageView editInfo;
     public CheckBox checkBox;
+    public CheckBox AM,lunch,PM;
     public Button btn;
     public Dialog myDialog;
     public TextView txtclose;
@@ -99,10 +102,15 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             editInfo = view.findViewById(R.id.editInfoButton);
             checkBox = view.findViewById(R.id.Atencion);
             btn = view.findViewById(R.id.countButton);
+            AM = view.findViewById(R.id.AM);
+            PM = view.findViewById(R.id.PM);
+            lunch = view.findViewById(R.id.lunch);
+
 
         }
 
         public void bindData(final Result result) {
+
             txtName.setText(result.getFirstName() + " " + result.getSurname());
             txtID.setText(result.getDocument());
             txtnumberID.setText(Integer.toString(result.getId()));
@@ -119,7 +127,16 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
             });
 
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                    checkBox.setChecked(false);
+                }
+            });
+
+
             checkBox.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View view) {
 
@@ -132,6 +149,43 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     kitchenName = myDialog.findViewById(R.id.kitchen_name);
                     txtclose.setText("X");
                     kitchenName.setText(result.getFirstName()+" "+ result.getSurname());
+
+                    AM = myDialog.findViewById(R.id.AM);
+                    PM = myDialog.findViewById(R.id.PM);
+                    lunch = myDialog.findViewById(R.id.lunch);
+
+                    AM.setChecked(true);
+
+                    AM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                            if(isChecked){
+                                PM.setChecked(false);
+                                lunch.setChecked(false);
+                            }
+                        }
+                    });
+
+                    PM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                            if(isChecked){
+                                AM.setChecked(false);
+                                lunch.setChecked(false);
+                            }
+                        }
+                    });
+
+                    lunch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                            if(isChecked){
+                                PM.setChecked(false);
+                                AM.setChecked(false);
+                            }
+                        }
+                    });
+
                     txtclose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -139,6 +193,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                             checkBox.setChecked(false);
                         }
                     });
+
 
                     final ButtonProgressBar bar = myDialog.findViewById(R.id.btnfollow);
                     bar.setOnClickListener(new View.OnClickListener() {
@@ -148,8 +203,9 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    registerAttendance();
+                                    registerAttendance(result.getId());
                                     bar.stopLoader();
+                                    myDialog.dismiss();
                                 }
                             }, 4000);
 
@@ -166,9 +222,18 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     }
 
-    private void registerAttendance() {
+    private void registerAttendance(int userID) {
 
-        Attendance attendance = new Attendance(Longitude,Latitude,1,id,1,1);
+        int modality = 0;
+        if(AM.isChecked()){
+            modality = 1;
+        }else if (lunch.isChecked()){
+            modality = 2;
+        }else if(PM.isChecked()){
+            modality = 3;
+        }
+
+        Attendance attendance = new Attendance(Longitude,Latitude,1,userID,1,modality);
         Call<Attendance> call = ApiClient.getInstance().getApi().registerAttendance(attendance,("Token "+token));
         call.enqueue(new Callback<Attendance>() {
             @Override
@@ -183,7 +248,6 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 Toasty.error(context, "Error al registrar la atención", Toast.LENGTH_SHORT, true).show();
             }
         });
-
 
     }
 

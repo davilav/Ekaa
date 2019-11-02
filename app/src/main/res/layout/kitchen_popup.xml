@@ -68,6 +68,7 @@
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/AM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -91,6 +92,7 @@
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/lunch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -115,11 +117,13 @@
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/PM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
+
         </LinearLayout>
     </LinearLayout>
 

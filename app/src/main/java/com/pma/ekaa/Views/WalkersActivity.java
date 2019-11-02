@@ -169,6 +169,13 @@ public class WalkersActivity extends AppCompatActivity {
 
     public void listBeneficiary(final String keyword, int page){
 
+        if(countPage == 1){
+            previouspage.setVisibility(View.INVISIBLE);
+        }else{
+            previouspage.setVisibility(View.VISIBLE);
+        }
+
+
         nextpage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

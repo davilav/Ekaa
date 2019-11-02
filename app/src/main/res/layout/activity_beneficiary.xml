@@ -27,8 +27,8 @@
             android:adjustViewBounds="true"
             android:background="@android:color/transparent"
             android:scaleType="centerInside"
-            android:text="Editar"
-            android:textColor="#ffffff"/>
+            android:text="@string/editar"
+            android:textColor="#ffffff" />
 
         <ImageView
             android:id="@+id/backKitchenbutton"
@@ -124,7 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="Codigo familiar"
+                    android:text="@string/housecode"
                     android:textAllCaps="true"
                     android:textColor="#ffffff"
                     android:textSize="13sp" />
@@ -162,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="Tipo de documento"
+                    android:text="@string/dtype"
                     android:textAllCaps="true"
                     android:textColor="#ffffff"
                     android:textSize="13sp" />
@@ -202,7 +202,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nombre Completo"
+                    android:text="@string/completename"
                     android:textColor="#3797CF"
                     android:textSize="13sp" />
 
@@ -232,7 +232,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fecha de nacimiento"
+                    android:text="@string/birthdate"
                     android:textColor="#3797CF"
                     android:textSize="13sp" />
 
@@ -262,7 +262,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nacionalidad"
+                    android:text="@string/nationality"
                     android:textColor="#3797CF"
                     android:textSize="13sp" />
 
@@ -292,7 +292,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Numero de identificacion"
+                    android:text="@string/identificationnumber"
                     android:textColor="#3797CF"
                     android:textSize="13sp" />
 
@@ -322,7 +322,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sexo"
+                    android:text="@string/gender"
                     android:textColor="#3797CF"
                     android:textSize="13sp" />
 
@@ -352,7 +352,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Telefono"
+                    android:text="@string/tel"
                     android:textColor="#3797CF"
                     android:textSize="13sp" />
 
