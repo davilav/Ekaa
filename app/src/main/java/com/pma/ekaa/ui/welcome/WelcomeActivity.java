@@ -1,4 +1,4 @@
-package com.pma.ekaa.Views;
+package com.pma.ekaa.ui.welcome;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,26 +11,21 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.location.LocationProvider;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.pma.ekaa.R;
+import com.pma.ekaa.ui.login.LoginActivity;
+import com.pma.ekaa.ui.forgot_password.PasswordActivity;
+import com.pma.ekaa.ui.register.RegisterActivity;
 import com.pma.ekaa.models.Geolocation;
-import com.pma.ekaa.models.RequestUser;
 import com.pma.ekaa.models.Utils;
 
-import java.io.IOException;
-import java.text.DecimalFormat;
-import java.util.List;
 import java.util.Locale;
 
 import static maes.tech.intentanim.CustomIntent.customType;

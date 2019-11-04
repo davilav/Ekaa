@@ -1,4 +1,4 @@
-package com.pma.ekaa.Views;
+package com.pma.ekaa.ui.home;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -20,23 +20,25 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.pma.ekaa.R;
+import com.pma.ekaa.Views.InkindActivity;
+import com.pma.ekaa.Views.KitchenActivity;
+import com.pma.ekaa.Views.SchoolActivity;
+import com.pma.ekaa.Views.SettingsActivity;
+import com.pma.ekaa.Views.WalkersActivity;
 import com.pma.ekaa.apis.ApiClient;
-import com.pma.ekaa.models.BeneficiaryArray;
 import com.pma.ekaa.models.DataUser;
 import com.pma.ekaa.models.InstitutionByPartner;
 import com.pma.ekaa.models.RequestUser;
-import com.pma.ekaa.models.Result;
 import com.pma.ekaa.models.UserLog;
 import com.pma.ekaa.models.Utils;
+import com.pma.ekaa.ui.welcome.WelcomeActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 import github.ishaan.buttonprogressbar.ButtonProgressBar;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -132,7 +134,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this,SettingsActivity.class);
+                Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
                 startActivity(intent);
                 customType(HomeActivity.this,"fadein-to-fadeout");
             }

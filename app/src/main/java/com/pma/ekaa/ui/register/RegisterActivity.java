@@ -1,4 +1,4 @@
-package com.pma.ekaa.Views;
+package com.pma.ekaa.ui.register;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,9 +14,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.pma.ekaa.R;
+import com.pma.ekaa.ui.home.HomeActivity;
+import com.pma.ekaa.ui.login.LoginActivity;
 import com.pma.ekaa.apis.ApiClient;
 import com.pma.ekaa.models.Register;
-import com.pma.ekaa.models.RequestUser;
 import com.pma.ekaa.models.User;
 
 import es.dmoral.toasty.Toasty;
@@ -65,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
         memberButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 customType(RegisterActivity.this,"fadein-to-fadeout");
             }

@@ -1,4 +1,4 @@
-package com.pma.ekaa.Views;
+package com.pma.ekaa.ui.forgot_password;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.pma.ekaa.R;
+import com.pma.ekaa.ui.login.LoginActivity;
 
 import github.ishaan.buttonprogressbar.ButtonProgressBar;
 

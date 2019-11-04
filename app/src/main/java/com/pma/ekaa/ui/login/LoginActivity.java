@@ -1,4 +1,4 @@
-package com.pma.ekaa.Views;
+package com.pma.ekaa.ui.login;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -14,16 +14,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
 import com.pma.ekaa.R;
+import com.pma.ekaa.ui.home.HomeActivity;
 import com.pma.ekaa.apis.ApiClient;
 import com.pma.ekaa.models.Login;
 import com.pma.ekaa.models.RequestUser;
 import com.pma.ekaa.models.UserLog;
 import com.pma.ekaa.models.Utils;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import es.dmoral.toasty.Toasty;
 import github.ishaan.buttonprogressbar.ButtonProgressBar;

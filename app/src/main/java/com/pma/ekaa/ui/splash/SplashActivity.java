@@ -1,4 +1,4 @@
-package com.pma.ekaa.Views;
+package com.pma.ekaa.ui.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pma.ekaa.R;
+import com.pma.ekaa.ui.welcome.WelcomeActivity;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
