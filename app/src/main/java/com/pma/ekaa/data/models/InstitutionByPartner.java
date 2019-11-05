@@ -1,11 +1,7 @@
-package com.pma.ekaa.models;
-
-import android.content.Intent;
+package com.pma.ekaa.data.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 public class InstitutionByPartner {
 

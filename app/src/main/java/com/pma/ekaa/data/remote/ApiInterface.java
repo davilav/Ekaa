@@ -1,16 +1,16 @@
-package com.pma.ekaa.apis;
+package com.pma.ekaa.data.remote;
 
-import com.pma.ekaa.models.Attendance;
-import com.pma.ekaa.models.BeneficiaryArray;
-import com.pma.ekaa.models.DataUser;
-import com.pma.ekaa.models.InstitutionByPartner;
-import com.pma.ekaa.models.Login;
-import com.pma.ekaa.models.Modality;
-import com.pma.ekaa.models.Register;
-import com.pma.ekaa.models.RegisterBeneficiary;
-import com.pma.ekaa.models.Result;
-import com.pma.ekaa.models.User;
-import com.pma.ekaa.models.UserLog;
+import com.pma.ekaa.data.models.Attendance;
+import com.pma.ekaa.data.models.BeneficiaryArray;
+import com.pma.ekaa.data.models.DataUser;
+import com.pma.ekaa.data.models.InstitutionByPartner;
+import com.pma.ekaa.data.models.Login;
+import com.pma.ekaa.data.models.Modality;
+import com.pma.ekaa.data.models.Register;
+import com.pma.ekaa.data.models.RegisterBeneficiary;
+import com.pma.ekaa.data.models.Result;
+import com.pma.ekaa.data.models.User;
+import com.pma.ekaa.data.models.UserLog;
 
 import java.util.ArrayList;
 

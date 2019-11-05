@@ -25,12 +25,15 @@ import com.pma.ekaa.Views.KitchenActivity;
 import com.pma.ekaa.Views.SchoolActivity;
 import com.pma.ekaa.Views.SettingsActivity;
 import com.pma.ekaa.Views.WalkersActivity;
-import com.pma.ekaa.apis.ApiClient;
-import com.pma.ekaa.models.DataUser;
-import com.pma.ekaa.models.InstitutionByPartner;
-import com.pma.ekaa.models.RequestUser;
-import com.pma.ekaa.models.UserLog;
-import com.pma.ekaa.models.Utils;
+import com.pma.ekaa.data.remote.ApiClient;
+import com.pma.ekaa.data.models.DataUser;
+import com.pma.ekaa.data.models.InstitutionByPartner;
+import com.pma.ekaa.data.models.RequestUser;
+import com.pma.ekaa.data.models.UserLog;
+import com.pma.ekaa.ui.BaseActivity;
+import com.pma.ekaa.ui.home.presenter.HomePresenter;
+import com.pma.ekaa.ui.home.presenter.HomePresenterImpl;
+import com.pma.ekaa.utils.Utils;
 import com.pma.ekaa.ui.welcome.WelcomeActivity;
 
 import java.util.ArrayList;
@@ -45,25 +48,25 @@ import retrofit2.Response;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
-public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.OnMenuItemClickListener, View.OnClickListener {
 
-    ImageView kitchen,school,inkind,walkers,cloud,url,settings,info,menu,bgApp;
-    ImageView clover;
-    String token = Utils.getInstance().getObj().getToken();
+    private ImageView kitchen, school, inkind, walkers, cloud, url, settings, info, menu, bgApp, clover;
+    private String token = Utils.getInstance().getObj().getToken();
 
-    Animation bganim,cloveranim;
-    Animation fromtop,fromBottom;
-    LinearLayout textSplash,textHome,home;
-    Spinner partner,location;
-    TextView splashtext,userText,emailtext;
+    private Animation bganim, cloveranim, fromtop, fromBottom;
+    private LinearLayout textSplash, textHome, home;
+    private Spinner partner, location;
+    private TextView splashtext, userText, emailtext;
+    private ButtonProgressBar bar;
+    private int locationEmpty = 0;
+    private ArrayList typesSpinner1 = new ArrayList();
+    private ArrayList typesSpinner2 = new ArrayList();
 
-    int locationEmpty = 0;
-    ArrayList typesSpinner1 = new ArrayList();
-    ArrayList typesSpinner2 = new ArrayList();
+    private ArrayList<InstitutionByPartner> dataInstitutionbypartner = new ArrayList();
+    private HashMap<Integer, String> mapLocation = new HashMap();
+    private HashMap<Integer, String> mapInstitution = new HashMap();
 
-    ArrayList<InstitutionByPartner> dataInstitutionbypartner = new ArrayList();
-    HashMap<Integer,String> mapLocation = new HashMap();
-    HashMap<Integer,String> mapInstitution = new HashMap();
+    private HomePresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,74 +74,19 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         setContentView(R.layout.activity_home);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        presenter = new HomePresenterImpl(this);
+
         initViews();
-        getDataInstitutionByPartner();
-        capturateUserData();
 
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showPopup(view);
-            }
-        });
+        menu.setOnClickListener(this);
+        kitchen.setOnClickListener(this);
+        school.setOnClickListener(this);
+        inkind.setOnClickListener(this);
+        walkers.setOnClickListener(this);
+        settings.setOnClickListener(this);
 
-
-        kitchen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RequestUser obj = new RequestUser();
-                obj.setToken(token);
-                Utils.getInstance().setObj(obj);
-                Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
-                startActivity(intent);
-                customType(HomeActivity.this,"fadein-to-fadeout");
-            }
-        });
-
-        school.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RequestUser obj = new RequestUser();
-                obj.setToken(token);
-                Utils.getInstance().setObj(obj);
-                Intent intent = new Intent(HomeActivity.this, SchoolActivity.class);
-                startActivity(intent);
-                customType(HomeActivity.this,"fadein-to-fadeout");
-            }
-        });
-
-        inkind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RequestUser obj = new RequestUser();
-                obj.setToken(token);
-                Utils.getInstance().setObj(obj);
-                Intent intent = new Intent(HomeActivity.this, InkindActivity.class);
-                startActivity(intent);
-                customType(HomeActivity.this,"fadein-to-fadeout");
-            }
-        });
-
-        walkers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RequestUser obj = new RequestUser();
-                obj.setToken(token);
-                Utils.getInstance().setObj(obj);
-                Intent intent = new Intent(HomeActivity.this, WalkersActivity.class);
-                startActivity(intent);
-                customType(HomeActivity.this,"fadein-to-fadeout");
-            }
-        });
-
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
-                startActivity(intent);
-                customType(HomeActivity.this,"fadein-to-fadeout");
-            }
-        });
+        presenter.getDataInstitutionByPartner(Utils.getInstance().getObj());
+        presenter.getDataUser(Utils.getInstance().getObj());
 
         partner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -146,8 +94,6 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
                 String selectedItemText = (String) adapterView.getItemAtPosition(i);
                 int key = getKey(selectedItemText);
-
-
 
 
             }
@@ -164,14 +110,13 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 String selectedItemText = (String) adapterView.getItemAtPosition(i);
                 int key = getKey(selectedItemText);
 
-                if(key == locationEmpty){
+                if (key == locationEmpty) {
                     partner.setEnabled(false);
 
-                }else {
+                } else {
                     partner.setEnabled(true);
                     setSpinnerInstitution(key);
                 }
-
 
 
             }
@@ -184,30 +129,17 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     }
 
-    private int getKey(String selectedItemText) {
-        int key = 0;
-        for(Map.Entry<Integer,String> map : mapLocation.entrySet() ) {
-            if(map.getValue().equals(selectedItemText)){
-                key = map.getKey();
-                break;
-            }
-        }
+    public void initViews() {
 
-        return key;
-    }
-
-
-    public void initViews(){
-
-        cloveranim = AnimationUtils.loadAnimation(this,R.anim.cloveranim);
-        fromtop = AnimationUtils.loadAnimation(this,R.anim.fromtop);
-        fromBottom = AnimationUtils.loadAnimation(this,R.anim.fromdown);
+        cloveranim = AnimationUtils.loadAnimation(this, R.anim.cloveranim);
+        fromtop = AnimationUtils.loadAnimation(this, R.anim.fromtop);
+        fromBottom = AnimationUtils.loadAnimation(this, R.anim.fromdown);
         textSplash = findViewById(R.id.textsplash);
         splashtext = findViewById(R.id.splashUser);
         textHome = findViewById(R.id.textOptions);
         home = findViewById(R.id.menus);
         bgApp = findViewById(R.id.bgapp);
-        bganim = AnimationUtils.loadAnimation(this,R.anim.bganim);
+        bganim = AnimationUtils.loadAnimation(this, R.anim.bganim);
         menu = findViewById(R.id.menupointbutton);
         kitchen = findViewById(R.id.kitchenButton);
         school = findViewById(R.id.schoolButton);
@@ -221,39 +153,55 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         location = findViewById(R.id.spinnergeolocation);
         userText = findViewById(R.id.userText);
         emailtext = findViewById(R.id.textemailhome);
+        bar = findViewById(R.id.btn_recovery);
         partner.setEnabled(false);
-
 
     }
 
-    public void getDataInstitutionByPartner(){
-
-        retrofit2.Call<ArrayList<InstitutionByPartner>>  call = ApiClient.getInstance().getApi().getInstitutions("Token "+token);
-        call.enqueue(new Callback<ArrayList<InstitutionByPartner>> () {
-
-
-            @Override
-            public void onResponse(Call<ArrayList<InstitutionByPartner>> call, Response<ArrayList<InstitutionByPartner>> response) {
-
-                dataInstitutionbypartner = response.body();
-                setSpinnerLocation();
-
-
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<InstitutionByPartner>> call, Throwable t) {
-                Toast.makeText(HomeActivity.this, "Fallo al cerrar sesion", Toast.LENGTH_SHORT).show();
-
-            }
-
-        });
-
-        final ButtonProgressBar bar = findViewById(R.id.btn_recovery);
-        bar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bar.startLoader();
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.menupointbutton:
+                showPopup(view);
+                break;
+            case R.id.kitchenButton:
+                RequestUser obj = new RequestUser();
+                obj.setToken(token);
+                Utils.getInstance().setObj(obj);
+                Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
+                startActivity(intent);
+                customType(HomeActivity.this, "fadein-to-fadeout");
+                break;
+            case R.id.schoolButton:
+                /*RequestUser obj = new RequestUser();
+                obj.setToken(token);
+                Utils.getInstance().setObj(obj);*/
+                Intent intentSchool = new Intent(HomeActivity.this, SchoolActivity.class);
+                startActivity(intentSchool);
+                customType(HomeActivity.this, "fadein-to-fadeout");
+                break;
+            case R.id.inkindButton:
+                /*RequestUser obj = new RequestUser();
+                obj.setToken(token);
+                Utils.getInstance().setObj(obj);*/
+                Intent intentInkind = new Intent(HomeActivity.this, InkindActivity.class);
+                startActivity(intentInkind);
+                customType(HomeActivity.this, "fadein-to-fadeout");
+                break;
+            case R.id.walkersButton:
+                /*RequestUser obj = new RequestUser();
+                obj.setToken(token);
+                Utils.getInstance().setObj(obj);*/
+                Intent intentWalkers = new Intent(HomeActivity.this, WalkersActivity.class);
+                startActivity(intentWalkers);
+                customType(HomeActivity.this, "fadein-to-fadeout");
+                break;
+            case R.id.settingsButton:
+                Intent intentSettings = new Intent(HomeActivity.this, SettingsActivity.class);
+                startActivity(intentSettings);
+                customType(HomeActivity.this, "fadein-to-fadeout");
+                break;
+            case R.id.btn_recovery:
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -262,17 +210,38 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
                     }
                 }, 4000);
-
-            }
-        });
-
+        }
     }
+
+    private int getKey(String selectedItemText) {
+        int key = 0;
+        for (Map.Entry<Integer, String> map : mapLocation.entrySet()) {
+            if (map.getValue().equals(selectedItemText)) {
+                key = map.getKey();
+                break;
+            }
+        }
+
+        return key;
+    }
+
+    @Override
+    public void getInstitutionByPartnerSuccess(ArrayList<InstitutionByPartner> data) {
+        dataInstitutionbypartner = data;
+        setSpinnerLocation();
+    }
+
+    @Override
+    public void responseError(String msg) {
+        //MOstrar un mensaje de error
+    }
+
 
     private void setSpinnerLocation() {
 
-        mapLocation.put(0,"");
+        mapLocation.put(0, "");
 
-        for(int position = 0; position < dataInstitutionbypartner.size(); position++){
+        for (int position = 0; position < dataInstitutionbypartner.size(); position++) {
             mapLocation.put(dataInstitutionbypartner.get(position).getGeolocation().getId(), dataInstitutionbypartner.get(position).getGeolocation().getName());
         }
 
@@ -280,18 +249,18 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         typesSpinner1 = new ArrayList(mapLocation.values());
 
 
-        ArrayAdapter comboAdapterLocation = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,typesSpinner1);
+        ArrayAdapter comboAdapterLocation = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, typesSpinner1);
 
         location.setAdapter(comboAdapterLocation);
 
     }
 
 
-    private void setSpinnerInstitution(int keyLocation){
+    private void setSpinnerInstitution(int keyLocation) {
         mapInstitution.clear();
 
-        for(int position = 0; position < dataInstitutionbypartner.size(); position++){
-            if(keyLocation == dataInstitutionbypartner.get(position).getGeolocation().getId()){
+        for (int position = 0; position < dataInstitutionbypartner.size(); position++) {
+            if (keyLocation == dataInstitutionbypartner.get(position).getGeolocation().getId()) {
 
                 mapInstitution.put(dataInstitutionbypartner.get(position).getId(), dataInstitutionbypartner.get(position).getName());
 
@@ -301,13 +270,13 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
         typesSpinner2 = new ArrayList(mapInstitution.values());
 
-        ArrayAdapter comboAdapterInstitution = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,typesSpinner2);
+        ArrayAdapter comboAdapterInstitution = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, typesSpinner2);
         partner.setAdapter(comboAdapterInstitution);
 
     }
 
-    public void capturateUserData(){
-        retrofit2.Call<DataUser> call = ApiClient.getInstance().getApi().getDataUser("Token "+token);
+    public void capturateUserData() {
+        retrofit2.Call<DataUser> call = ApiClient.getInstance().getApi().getDataUser("Token " + token);
         call.enqueue(new Callback<DataUser>() {
             @Override
             public void onResponse(Call<DataUser> call, Response<DataUser> response) {
@@ -325,7 +294,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         });
     }
 
-    public void goHome(){
+    public void goHome() {
 
         bgApp.animate().translationY(-1900).setDuration(800).setStartDelay(300);
         clover.animate().alpha(0).setDuration(800).setStartDelay(600);
@@ -336,8 +305,8 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         home.startAnimation(fromBottom);
     }
 
-    private void showPopup(View v){
-        PopupMenu popupMenu = new PopupMenu(this,v);
+    private void showPopup(View v) {
+        PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.setOnMenuItemClickListener(this);
         popupMenu.inflate(R.menu.activity_home_drawer);
         popupMenu.show();
@@ -348,9 +317,9 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.item1:
-                Intent intent = new Intent(HomeActivity.this,SettingsActivity.class);
+                Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
                 startActivity(intent);
-                customType(HomeActivity.this,"fadein-to-fadeout");
+                customType(HomeActivity.this, "fadein-to-fadeout");
                 return true;
             case R.id.item2:
             case R.id.item3:
@@ -364,7 +333,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         }
     }
 
-    private void logout(){
+    private void logout() {
         Call<UserLog> call = ApiClient.getInstance().getApi().login();
         call.enqueue(new Callback<UserLog>() {
             @Override
@@ -374,7 +343,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                     Intent intent = new Intent(HomeActivity.this, WelcomeActivity.class);
                     startActivity(intent);
                     customType(HomeActivity.this, "fadein-to-fadeout");
-                }else{
+                } else {
                     Toast.makeText(HomeActivity.this, "Cierre de sesion fallida", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -385,4 +354,5 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             }
         });
     }
+
 }

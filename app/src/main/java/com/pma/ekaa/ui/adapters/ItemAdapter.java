@@ -1,5 +1,5 @@
 
-package com.pma.ekaa.adapters;
+package com.pma.ekaa.ui.adapters;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,11 +23,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
 import com.pma.ekaa.Views.BeneficiaryActivity;
-import com.pma.ekaa.Views.CreateBeneficiaryActivity;
-import com.pma.ekaa.apis.ApiClient;
-import com.pma.ekaa.models.Attendance;
-import com.pma.ekaa.models.Result;
-import com.pma.ekaa.models.Utils;
+import com.pma.ekaa.data.remote.ApiClient;
+import com.pma.ekaa.data.models.Attendance;
+import com.pma.ekaa.data.models.Result;
+import com.pma.ekaa.utils.Utils;
 
 import java.util.List;
 

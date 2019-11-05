@@ -1,4 +1,4 @@
-package com.pma.ekaa.apis;
+package com.pma.ekaa.data.remote;
 
 import java.io.IOException;
 import java.net.InetAddress;

@@ -1,4 +1,4 @@
-package com.pma.ekaa.apis;
+package com.pma.ekaa.data.remote;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

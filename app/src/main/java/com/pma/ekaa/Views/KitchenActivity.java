@@ -24,12 +24,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pma.ekaa.R;
-import com.pma.ekaa.adapters.ItemAdapter;
-import com.pma.ekaa.apis.ApiClient;
-import com.pma.ekaa.models.BeneficiaryArray;
-import com.pma.ekaa.models.RequestUser;
-import com.pma.ekaa.models.Result;
-import com.pma.ekaa.models.Utils;
+import com.pma.ekaa.ui.adapters.ItemAdapter;
+import com.pma.ekaa.data.remote.ApiClient;
+import com.pma.ekaa.data.models.BeneficiaryArray;
+import com.pma.ekaa.data.models.RequestUser;
+import com.pma.ekaa.data.models.Result;
+import com.pma.ekaa.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

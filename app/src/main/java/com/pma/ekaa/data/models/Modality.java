@@ -1,4 +1,4 @@
-package com.pma.ekaa.models;
+package com.pma.ekaa.data.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

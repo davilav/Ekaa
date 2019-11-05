@@ -1,4 +1,4 @@
-package com.pma.ekaa.models;
+package com.pma.ekaa.data.models;
 
 public class DataUser {
     private Integer pk;

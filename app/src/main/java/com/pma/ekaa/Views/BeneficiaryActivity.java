@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
-import com.pma.ekaa.models.Result;
+import com.pma.ekaa.data.models.Result;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 

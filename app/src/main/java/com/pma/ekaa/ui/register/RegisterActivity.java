@@ -16,9 +16,9 @@ import android.widget.Toast;
 import com.pma.ekaa.R;
 import com.pma.ekaa.ui.home.HomeActivity;
 import com.pma.ekaa.ui.login.LoginActivity;
-import com.pma.ekaa.apis.ApiClient;
-import com.pma.ekaa.models.Register;
-import com.pma.ekaa.models.User;
+import com.pma.ekaa.data.remote.ApiClient;
+import com.pma.ekaa.data.models.Register;
+import com.pma.ekaa.data.models.User;
 
 import es.dmoral.toasty.Toasty;
 import github.ishaan.buttonprogressbar.ButtonProgressBar;

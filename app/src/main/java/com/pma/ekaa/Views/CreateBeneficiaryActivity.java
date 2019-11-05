@@ -1,13 +1,10 @@
 package com.pma.ekaa.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,10 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pma.ekaa.R;
-import com.pma.ekaa.apis.ApiClient;
-import com.pma.ekaa.models.Result;
-import com.pma.ekaa.models.RegisterBeneficiary;
-import com.pma.ekaa.models.Utils;
+import com.pma.ekaa.data.remote.ApiClient;
+import com.pma.ekaa.data.models.Result;
+import com.pma.ekaa.data.models.RegisterBeneficiary;
+import com.pma.ekaa.utils.Utils;
 
 import java.util.Calendar;
 

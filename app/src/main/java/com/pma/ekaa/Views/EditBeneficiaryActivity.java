@@ -14,9 +14,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
-import com.pma.ekaa.models.Result;
-
-import static com.pma.ekaa.Views.BeneficiaryActivity.OBJECT_BENEFICIARIES;
+import com.pma.ekaa.data.models.Result;
 
 public class EditBeneficiaryActivity extends AppCompatActivity {
 
