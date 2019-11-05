@@ -44,6 +44,7 @@ public class SplashActivity extends AppCompatActivity {
                 Intent intent = new Intent(SplashActivity.this, WelcomeActivity.class);
                 startActivity(intent);
                 customType(SplashActivity.this,"fadein-to-fadeout");
+                finish();
             }
         },2000);
     }

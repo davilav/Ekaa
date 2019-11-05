@@ -57,6 +57,9 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="Hpartners">Humanitarian Partners</string>
     <string name="Ppartners">Private Partners</string>
     <string name="Gpartners">Government Partners</string>
+    <string name="ConfirmEmail">Confirm your email</string>
+    <string name="Enviar">Send</string>
+    <string name="aceptar">Confirm</string>
 
 
 

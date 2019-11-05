@@ -116,7 +116,7 @@
             android:layout_marginRight="30dp"
             android:fontFamily="sans-serif-medium"
             app:bgColor="#ffffff"
-            app:text="@string/aceptar"
+            app:text="Aceptar"
             app:textColor="@color/colorPrimary"
             app:type="indeterminate" />
 
@@ -398,15 +398,15 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginRight="40dp"
                 android:text="@string/settings"
-                android:textSize="15dp" />
+                android:textSize="15dp" />1
 
         </LinearLayout>
     </LinearLayout>
 
     <ImageView
         android:id="@+id/bgapp"
-        android:layout_width="526dp"
-        android:layout_height="900dp"
+        android:layout_width="1526dp"
+        android:layout_height="1900dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:scaleType="fitXY"

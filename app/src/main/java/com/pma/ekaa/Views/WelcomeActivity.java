@@ -67,6 +67,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                 startActivity(intent);
                 customType(WelcomeActivity.this, "fadein-to-fadeout");
+
             }
         });
 
@@ -76,6 +77,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(WelcomeActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 customType(WelcomeActivity.this, "fadein-to-fadeout");
+
 
             }
         });

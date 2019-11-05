@@ -5,6 +5,7 @@ public class Utils {
     private static Utils INSTANCE = null;
     private static RequestUser obj;
     private static Geolocation object;
+    private static AuthUser objectuser;
 
 
 
@@ -27,8 +28,6 @@ public class Utils {
     public RequestUser getObj() {
 
         return obj;
-
-
     }
 
     public Geolocation getObject() {
@@ -38,6 +37,16 @@ public class Utils {
     public void setObject(Geolocation object) {
         Utils.object = object;
     }
+
+    public AuthUser getObjectuser() {
+        return objectuser;
+    }
+
+    public void setObject(AuthUser objectuser) {
+        Utils.objectuser = objectuser;
+    }
+
+
 }
 
 

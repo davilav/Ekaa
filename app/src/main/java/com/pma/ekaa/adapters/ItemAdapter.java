@@ -48,7 +48,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public TextView txtName, txtID, txtnumberID, txtNation;
     public CircleImageView profileImage;
     public ImageView editInfo;
-    public CheckBox checkBox;
+    public ImageView checkBox;
     public CheckBox AM,lunch,PM;
     public Button btn;
     public Dialog myDialog;
@@ -59,6 +59,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     String token = Utils.getInstance().getObj().getToken();
     Double Longitude = Utils.getInstance().getObject().getLongitude();
     Double Latitude = Utils.getInstance().getObject().getLatitude();
+    int person = Utils.getInstance().getObjectuser().getPk();
 
     Integer id = 0;
     public int contador=0;
@@ -99,7 +100,6 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             profileImage = view.findViewById(R.id.profileImage);
             txtNation = view.findViewById(R.id.txtNation);
             txtnumberID = view.findViewById(R.id.txtnumberID);
-            editInfo = view.findViewById(R.id.editInfoButton);
             checkBox = view.findViewById(R.id.Atencion);
             btn = view.findViewById(R.id.countButton);
             AM = view.findViewById(R.id.AM);
@@ -114,8 +114,9 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             txtName.setText(result.getFirstName() + " " + result.getSurname());
             txtID.setText(result.getDocument());
             txtnumberID.setText(Integer.toString(result.getId()));
+            txtNation.setText(result.getBirthDate());
             id = result.getId();
-            editInfo.setOnClickListener(new View.OnClickListener() {
+            profileImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     String object = new Gson().toJson(result);
@@ -124,13 +125,6 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     intent.putExtra(BeneficiaryActivity.OBJECT_BENEFICIARIES, object);
                     context.startActivity(intent);
 
-                }
-            });
-
-            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                    checkBox.setChecked(false);
                 }
             });
 
@@ -190,7 +184,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         @Override
                         public void onClick(View v) {
                             myDialog.dismiss();
-                            checkBox.setChecked(false);
+
                         }
                     });
 
@@ -233,7 +227,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             modality = 3;
         }
 
-        Attendance attendance = new Attendance(Longitude,Latitude,1,userID,1,modality);
+        Attendance attendance = new Attendance(Longitude,Latitude,1,userID,person,modality);
         Call<Attendance> call = ApiClient.getInstance().getApi().registerAttendance(attendance,("Token "+token));
         call.enqueue(new Callback<Attendance>() {
             @Override

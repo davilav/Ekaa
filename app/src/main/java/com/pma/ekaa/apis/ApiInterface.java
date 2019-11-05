@@ -6,6 +6,7 @@ import com.pma.ekaa.models.DataUser;
 import com.pma.ekaa.models.InstitutionByPartner;
 import com.pma.ekaa.models.Login;
 import com.pma.ekaa.models.Modality;
+import com.pma.ekaa.models.Password;
 import com.pma.ekaa.models.Register;
 import com.pma.ekaa.models.RegisterBeneficiary;
 import com.pma.ekaa.models.Result;
@@ -33,6 +34,9 @@ public interface ApiInterface {
 
     @POST("rest-auth/registration/")
     Call<User> register(@Body Register register);
+
+    @POST("rest-auth/password/reset/")
+    Call <User> password(@Body Password password);
 
     @POST("api/v1/beneficiaries/ ")
     Call<Result> registerBeneficiary(@Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);

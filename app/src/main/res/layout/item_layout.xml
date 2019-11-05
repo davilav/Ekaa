@@ -40,18 +40,16 @@
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintVertical_bias="0.0" />
 
-        <CheckBox
+        <ImageView
             android:id="@+id/Atencion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="32dp"
-            android:text="Atencion"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/check"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toStartOf="@+id/countButton"
-            card_view:layout_constraintStart_toEndOf="@+id/editInfoButton"
             card_view:layout_constraintTop_toBottomOf="@+id/txtnumberID"
-            card_view:layout_constraintVertical_bias="0.679" />
+            card_view:layout_constraintVertical_bias="0.812" />
 
         <TextView
             android:id="@+id/txtName"
@@ -135,19 +133,17 @@
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintVertical_bias="0.48000002" />
 
-        <ImageView
-            android:id="@+id/editInfoButton"
-            android:layout_width="38dp"
-            android:layout_height="37dp"
-            android:layout_marginEnd="75dp"
-            android:onClick="ShowPopup"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Atención"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@+id/countButton"
-            card_view:layout_constraintHorizontal_bias="0.626"
+            card_view:layout_constraintEnd_toStartOf="@+id/Atencion"
+            card_view:layout_constraintHorizontal_bias="0.915"
             card_view:layout_constraintStart_toEndOf="@+id/txtNation"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.92"
-            card_view:srcCompat="@drawable/search" />
+            card_view:layout_constraintTop_toBottomOf="@+id/txtName"
+            card_view:layout_constraintVertical_bias="0.706" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

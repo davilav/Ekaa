@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.pma.ekaa.R;
 import com.pma.ekaa.apis.ApiClient;
+import com.pma.ekaa.models.AuthUser;
 import com.pma.ekaa.models.BeneficiaryArray;
 import com.pma.ekaa.models.DataUser;
 import com.pma.ekaa.models.InstitutionByPartner;
@@ -314,6 +315,10 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 userText.setText(response.body().getUsername());
                 emailtext.setText(response.body().getEmail());
 
+                AuthUser obj = new AuthUser();
+                obj.setPk(response.body().getPk());
+                Utils.getInstance().setObject(obj);
+
             }
 
             @Override
@@ -339,6 +344,11 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         popupMenu.setOnMenuItemClickListener(this);
         popupMenu.inflate(R.menu.activity_home_drawer);
         popupMenu.show();
+
+    }
+
+    @Override
+    public void onBackPressed() {
 
     }
 
@@ -372,6 +382,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                     Intent intent = new Intent(HomeActivity.this, WelcomeActivity.class);
                     startActivity(intent);
                     customType(HomeActivity.this, "fadein-to-fadeout");
+                    finish();
                 }else{
                     Toast.makeText(HomeActivity.this, "Cierre de sesion fallida", Toast.LENGTH_SHORT).show();
                 }

@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity{
         passButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                Intent intent = new Intent(LoginActivity.this, PasswordActivity.class);
                 startActivity(intent);
                 customType(LoginActivity.this,"fadein-to-fadeout");
             }
