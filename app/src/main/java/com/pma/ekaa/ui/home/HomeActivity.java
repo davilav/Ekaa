@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.pma.ekaa.R;
 import com.pma.ekaa.Views.InkindActivity;
@@ -33,6 +34,7 @@ import com.pma.ekaa.data.models.UserLog;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.home.presenter.HomePresenter;
 import com.pma.ekaa.ui.home.presenter.HomePresenterImpl;
+import com.pma.ekaa.ui.not_school.NotSchoolActivity;
 import com.pma.ekaa.utils.Utils;
 import com.pma.ekaa.ui.welcome.WelcomeActivity;
 
@@ -72,7 +74,6 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         presenter = new HomePresenterImpl(this);
 
@@ -84,23 +85,20 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         inkind.setOnClickListener(this);
         walkers.setOnClickListener(this);
         settings.setOnClickListener(this);
+        bar.setOnClickListener(this);
 
-        presenter.getDataInstitutionByPartner(Utils.getInstance().getObj());
         presenter.getDataUser(Utils.getInstance().getObj());
+        presenter.getDataInstitutionByPartner(Utils.getInstance().getObj());
 
         partner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
                 String selectedItemText = (String) adapterView.getItemAtPosition(i);
                 int key = getKey(selectedItemText);
-
-
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
@@ -109,21 +107,16 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItemText = (String) adapterView.getItemAtPosition(i);
                 int key = getKey(selectedItemText);
-
                 if (key == locationEmpty) {
                     partner.setEnabled(false);
-
                 } else {
                     partner.setEnabled(true);
                     setSpinnerInstitution(key);
                 }
-
-
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
@@ -164,36 +157,27 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
             case R.id.menupointbutton:
                 showPopup(view);
                 break;
-            case R.id.kitchenButton:
-                RequestUser obj = new RequestUser();
-                obj.setToken(token);
-                Utils.getInstance().setObj(obj);
-                Intent intent = new Intent(HomeActivity.this, KitchenActivity.class);
-                startActivity(intent);
-                customType(HomeActivity.this, "fadein-to-fadeout");
-                break;
             case R.id.schoolButton:
-                /*RequestUser obj = new RequestUser();
-                obj.setToken(token);
-                Utils.getInstance().setObj(obj);*/
                 Intent intentSchool = new Intent(HomeActivity.this, SchoolActivity.class);
                 startActivity(intentSchool);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
-            case R.id.inkindButton:
-                /*RequestUser obj = new RequestUser();
-                obj.setToken(token);
-                Utils.getInstance().setObj(obj);*/
-                Intent intentInkind = new Intent(HomeActivity.this, InkindActivity.class);
-                startActivity(intentInkind);
+            case R.id.kitchenButton:
+                Intent intent = new Intent(HomeActivity.this, NotSchoolActivity.class);
+                intent.putExtra(NotSchoolActivity.SELECTED_ITEM, NotSchoolActivity.KITCHEN);
+                startActivity(intent);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
             case R.id.walkersButton:
-                /*RequestUser obj = new RequestUser();
-                obj.setToken(token);
-                Utils.getInstance().setObj(obj);*/
-                Intent intentWalkers = new Intent(HomeActivity.this, WalkersActivity.class);
+                Intent intentWalkers = new Intent(HomeActivity.this, NotSchoolActivity.class);
+                intentWalkers.putExtra(NotSchoolActivity.SELECTED_ITEM, NotSchoolActivity.WALKERS);
                 startActivity(intentWalkers);
+                customType(HomeActivity.this, "fadein-to-fadeout");
+                break;
+            case R.id.inkindButton:
+                Intent intentInkind = new Intent(HomeActivity.this, NotSchoolActivity.class);
+                intentInkind.putExtra(NotSchoolActivity.SELECTED_ITEM, NotSchoolActivity.INKIND);
+                startActivity(intentInkind);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
             case R.id.settingsButton:
@@ -202,14 +186,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
             case R.id.btn_recovery:
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        goHome();
-                        bar.stopLoader();
-
-                    }
-                }, 4000);
+                goHome();
         }
     }
 
@@ -221,7 +198,6 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 break;
             }
         }
-
         return key;
     }
 
@@ -232,70 +208,50 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
     }
 
     @Override
-    public void responseError(String msg) {
-        //MOstrar un mensaje de error
+    public void getDataUserSuccess(DataUser dataUser) {
+        Utils.getInstance().setDataUser(dataUser);
+        splashtext.setText(Utils.getInstance().getDataUser().getUsername());
+        userText.setText(Utils.getInstance().getDataUser().getUsername());
+        emailtext.setText(Utils.getInstance().getDataUser().getEmail());
     }
 
+    @Override
+    public void getLogoutSuccess() {
+        Toasty.success(HomeActivity.this, "Adios!", Toast.LENGTH_SHORT, true).show();
+        Intent intent = new Intent(HomeActivity.this, WelcomeActivity.class);
+        startActivity(intent);
+        customType(HomeActivity.this, "fadein-to-fadeout");
+    }
+
+    @Override
+    public void responseError(String msg) {
+        Toasty.warning(HomeActivity.this, msg, Toast.LENGTH_SHORT, true).show();
+    }
 
     private void setSpinnerLocation() {
-
         mapLocation.put(0, "");
-
         for (int position = 0; position < dataInstitutionbypartner.size(); position++) {
             mapLocation.put(dataInstitutionbypartner.get(position).getGeolocation().getId(), dataInstitutionbypartner.get(position).getGeolocation().getName());
         }
-
-
         typesSpinner1 = new ArrayList(mapLocation.values());
-
-
         ArrayAdapter comboAdapterLocation = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, typesSpinner1);
-
         location.setAdapter(comboAdapterLocation);
-
     }
 
 
     private void setSpinnerInstitution(int keyLocation) {
         mapInstitution.clear();
-
         for (int position = 0; position < dataInstitutionbypartner.size(); position++) {
             if (keyLocation == dataInstitutionbypartner.get(position).getGeolocation().getId()) {
-
                 mapInstitution.put(dataInstitutionbypartner.get(position).getId(), dataInstitutionbypartner.get(position).getName());
-
             }
-
         }
-
         typesSpinner2 = new ArrayList(mapInstitution.values());
-
         ArrayAdapter comboAdapterInstitution = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, typesSpinner2);
         partner.setAdapter(comboAdapterInstitution);
-
-    }
-
-    public void capturateUserData() {
-        retrofit2.Call<DataUser> call = ApiClient.getInstance().getApi().getDataUser("Token " + token);
-        call.enqueue(new Callback<DataUser>() {
-            @Override
-            public void onResponse(Call<DataUser> call, Response<DataUser> response) {
-
-                splashtext.setText(response.body().getUsername());
-                userText.setText(response.body().getUsername());
-                emailtext.setText(response.body().getEmail());
-
-            }
-
-            @Override
-            public void onFailure(Call<DataUser> call, Throwable t) {
-                int a = 0;
-            }
-        });
     }
 
     public void goHome() {
-
         bgApp.animate().translationY(-1900).setDuration(800).setStartDelay(300);
         clover.animate().alpha(0).setDuration(800).setStartDelay(600);
         textSplash.animate().translationY(140).alpha(0).setDuration(800).setStartDelay(300);
@@ -326,33 +282,10 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 Toasty.info(HomeActivity.this, "Here is some info for you.", Toast.LENGTH_SHORT, true).show();
                 return true;
             case R.id.item4:
-                logout();
+                presenter.setLogout();
                 return true;
             default:
                 return false;
         }
     }
-
-    private void logout() {
-        Call<UserLog> call = ApiClient.getInstance().getApi().login();
-        call.enqueue(new Callback<UserLog>() {
-            @Override
-            public void onResponse(Call<UserLog> call, Response<UserLog> response) {
-                if (response.isSuccessful()) {
-                    Toasty.success(HomeActivity.this, "Adios!", Toast.LENGTH_SHORT, true).show();
-                    Intent intent = new Intent(HomeActivity.this, WelcomeActivity.class);
-                    startActivity(intent);
-                    customType(HomeActivity.this, "fadein-to-fadeout");
-                } else {
-                    Toast.makeText(HomeActivity.this, "Cierre de sesion fallida", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UserLog> call, Throwable t) {
-                Toast.makeText(HomeActivity.this, "Fallo al cerrar sesion", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
 }

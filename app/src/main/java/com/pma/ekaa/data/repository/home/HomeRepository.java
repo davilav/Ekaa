@@ -6,5 +6,7 @@ public interface HomeRepository {
 
     void getDataInstitutionByPartner(RequestUser requestUser);
 
+    void getDataUser(RequestUser requestUser);
 
+    void setLogout();
 }
