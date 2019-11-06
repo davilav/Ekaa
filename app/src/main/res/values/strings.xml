@@ -64,6 +64,8 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="gender">Gender</string>
     <string name="nationality">Nationality</string>
     <string name="comedor">Comedor</string>
+    <string name="Enviar">Send</string>
+    <string name="ConfirmEmail">Confirm your email</string>
 
 
     <string-array name="languages">

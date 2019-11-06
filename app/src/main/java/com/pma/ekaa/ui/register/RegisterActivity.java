@@ -86,12 +86,12 @@ public class RegisterActivity extends AppCompatActivity {
         Register register = new Register(user,email,pass,pass2,partner,rol);
 
      if (TextUtils.isEmpty(email)) {
-         Toasty.warning(RegisterActivity.this, "Debes ingresar tu email", Toast.LENGTH_SHORT, true).show();
+         Toasty.warning(RegisterActivity.this, "Debes ingresar tu Email", Toast.LENGTH_SHORT, true).show();
          return;
      }
 
      if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-         emailtxt.setError("Enter a valid email");
+         emailtxt.setError("Enter a valid Email");
          emailtxt.requestFocus();
          return;
      }

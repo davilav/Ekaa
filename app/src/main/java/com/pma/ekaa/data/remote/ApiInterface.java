@@ -3,9 +3,11 @@ package com.pma.ekaa.data.remote;
 import com.pma.ekaa.data.models.Attendance;
 import com.pma.ekaa.data.models.BeneficiaryArray;
 import com.pma.ekaa.data.models.DataUser;
+import com.pma.ekaa.data.models.Email;
 import com.pma.ekaa.data.models.InstitutionByPartner;
 import com.pma.ekaa.data.models.Login;
 import com.pma.ekaa.data.models.Modality;
+import com.pma.ekaa.data.models.Password;
 import com.pma.ekaa.data.models.Register;
 import com.pma.ekaa.data.models.RegisterBeneficiary;
 import com.pma.ekaa.data.models.Result;
@@ -54,6 +56,9 @@ public interface ApiInterface {
 
     @GET("rest-auth/user/")
     Call<DataUser> getDataUser(@Header("Authorization") String authToken);
+
+    @POST("rest-auth/password/reset/")
+    Call <Email> password(@Body Password password);
 
 
 }

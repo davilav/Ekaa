@@ -56,7 +56,8 @@ Si decide no otorgar el consentimiento a ninguna de las entidades requeridas, el
     <string name="Hpartners">Socios Humanitarios</string>
     <string name="Ppartners">Socios Privados</string>
     <string name="Gpartners">Socios Gubernamentales</string>
-
+    <string name="Enviar">Enviar</string>
+    <string name="ConfirmEmail">Confirma tu correo</string>
 
 
     <string-array name="documentType">
