@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pma.ekaa">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".EkaaApplication"
         android:allowBackup="true"
@@ -16,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.beneficiary.Beneficiary1Activity"></activity>
         <activity
             android:name=".ui.splash.SplashActivity"
             android:screenOrientation="portrait">
@@ -26,13 +23,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Views.EditBeneficiaryActivity" />
-        <activity android:name=".Views.SchoolActivity" />
-        <activity android:name=".Views.InkindActivity" />
-        <activity android:name=".Views.WalkersActivity" />
-        <activity android:name=".Views.SettingsActivity" />
+        <activity android:name=".ui.school.SchoolActivity" />
+        <activity android:name=".ui.settings.SettingsActivity" />
         <activity android:name=".Views.BeneficiaryActivity" />
         <activity android:name=".Views.CreateBeneficiaryActivity" />
-        <activity android:name=".Views.KitchenActivity" />
         <activity
             android:name=".ui.not_school.NotSchoolActivity"
             android:screenOrientation="portrait" />
@@ -52,5 +46,9 @@
             android:name=".ui.welcome.WelcomeActivity"
             android:screenOrientation="portrait" />
     </application>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

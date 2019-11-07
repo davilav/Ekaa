@@ -44,7 +44,7 @@ public class BeneficiaryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String object = new Gson().toJson(result);
-                Intent intent = new Intent(BeneficiaryActivity.this,EditBeneficiaryActivity.class);
+                Intent intent = new Intent(BeneficiaryActivity.this, EditBeneficiaryActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(BeneficiaryActivity.OBJECT_BENEFICIARIES, object);
                 startActivity(intent);

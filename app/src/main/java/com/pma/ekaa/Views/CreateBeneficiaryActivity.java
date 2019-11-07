@@ -23,6 +23,7 @@ import com.pma.ekaa.R;
 import com.pma.ekaa.data.remote.ApiClient;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.data.models.RegisterBeneficiary;
+import com.pma.ekaa.ui.not_school.NotSchoolActivity;
 import com.pma.ekaa.utils.Utils;
 
 import java.util.Calendar;
@@ -280,7 +281,7 @@ public class CreateBeneficiaryActivity extends AppCompatActivity {
             public void onResponse(retrofit2.Call<Result> call, Response<Result> response) {
                 if (response.isSuccessful()) {
                     Toasty.success(CreateBeneficiaryActivity.this, "Beneficiario creado exitosamente!", Toast.LENGTH_SHORT, true).show();
-                    Intent intent = new Intent(CreateBeneficiaryActivity.this, KitchenActivity.class);
+                    Intent intent = new Intent(CreateBeneficiaryActivity.this, NotSchoolActivity.class);
                     startActivity(intent);
                     customType(CreateBeneficiaryActivity.this, "fadein-to-fadeout");
 

@@ -26,6 +26,8 @@ import com.pma.ekaa.Views.BeneficiaryActivity;
 import com.pma.ekaa.data.remote.ApiClient;
 import com.pma.ekaa.data.models.Attendance;
 import com.pma.ekaa.data.models.Result;
+import com.pma.ekaa.ui.beneficiary.Beneficiary1Activity;
+import com.pma.ekaa.ui.not_school.NotSchoolActivity;
 import com.pma.ekaa.utils.Utils;
 
 import java.util.List;
@@ -55,9 +57,10 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public TextView firstCom,secondCom,thirdCom;
 
     String token = Utils.getInstance().getObj().getToken();
-    Double Longitude = Utils.getInstance().getObject().getLongitude();
-    Double Latitude = Utils.getInstance().getObject().getLatitude();
-
+    //Double Longitude = Utils.getInstance().getObject().getLongitude();
+    //Double Latitude = Utils.getInstance().getObject().getLatitude();
+    Double Longitude = 4.721688;
+    Double Latitude = -74.107999;
     Integer id = 0;
     public int contador=0;
 
@@ -116,10 +119,16 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             editInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String object = new Gson().toJson(result);
+                    /*String object = new Gson().toJson(result);
                     Intent intent = new Intent(context, BeneficiaryActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(BeneficiaryActivity.OBJECT_BENEFICIARIES, object);
+                    context.startActivity(intent);*/
+
+                    Intent intent = new Intent(context, Beneficiary1Activity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(Beneficiary1Activity.SELECTED_ITEM, Beneficiary1Activity.EDIT);
+                    intent.putExtra(NotSchoolActivity.SELECTED_ITEM, NotSchoolActivity.KITCHEN);
                     context.startActivity(intent);
 
                 }

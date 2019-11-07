@@ -1,9 +1,7 @@
 package com.pma.ekaa.ui.home;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -17,20 +15,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import com.pma.ekaa.R;
-import com.pma.ekaa.Views.InkindActivity;
-import com.pma.ekaa.Views.KitchenActivity;
-import com.pma.ekaa.Views.SchoolActivity;
-import com.pma.ekaa.Views.SettingsActivity;
-import com.pma.ekaa.Views.WalkersActivity;
-import com.pma.ekaa.data.remote.ApiClient;
+import com.pma.ekaa.ui.school.SchoolActivity;
+import com.pma.ekaa.ui.settings.SettingsActivity;
 import com.pma.ekaa.data.models.DataUser;
 import com.pma.ekaa.data.models.InstitutionByPartner;
-import com.pma.ekaa.data.models.RequestUser;
-import com.pma.ekaa.data.models.UserLog;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.home.presenter.HomePresenter;
 import com.pma.ekaa.ui.home.presenter.HomePresenterImpl;
@@ -44,9 +33,6 @@ import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 import github.ishaan.buttonprogressbar.ButtonProgressBar;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 

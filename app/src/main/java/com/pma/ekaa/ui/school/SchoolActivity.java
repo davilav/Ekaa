@@ -1,4 +1,4 @@
-package com.pma.ekaa.Views;
+package com.pma.ekaa.ui.school;
 
 import androidx.appcompat.app.AppCompatActivity;
 
