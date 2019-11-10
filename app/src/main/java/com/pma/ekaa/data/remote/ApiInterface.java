@@ -22,6 +22,8 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 
@@ -38,6 +40,11 @@ public interface ApiInterface {
 
     @POST("api/v1/beneficiaries/ ")
     Call<Result> registerBeneficiary(@Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
+
+
+    @PUT("api/v1/beneficiaries/{id}/")
+    Call<Result> updateBeneficiary(@Path("id") String id, @Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
+
 
     @GET("rest-auth/login/")
     Call<ResponseBody> getKey(@Header("Authorization") String authToken);

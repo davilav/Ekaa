@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -21,14 +22,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 import com.pma.ekaa.R;
-import com.pma.ekaa.Views.CreateBeneficiaryActivity;
 import com.pma.ekaa.data.models.BeneficiaryArray;
 import com.pma.ekaa.data.models.RequestUser;
 import com.pma.ekaa.data.models.Result;
-import com.pma.ekaa.data.remote.ApiClient;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.adapters.ItemAdapter;
+import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
 import com.pma.ekaa.ui.not_school.presenter.NotSchoolPresenter;
 import com.pma.ekaa.ui.not_school.presenter.NotSchoolPresenterImpl;
 import com.pma.ekaa.utils.Utils;
@@ -37,22 +38,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
-public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener {
+public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter{
 
-    public static String SELECTED_ITEM = "select_item";
+    public static String OPTION_ACTION = "option_action";
 
     public final static int KITCHEN = 0;
     public final static int WALKERS = 1;
     public final static int INKIND = 2;
 
     private NotSchoolPresenter presenter;
-    private int selectItem;
+    private int optionAction;
     private RecyclerView recyclerView;
     private ItemAdapter itemAdapter;
     private List<Result> beneficiaries;
@@ -62,18 +60,24 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private ProgressBar progressBar;
     private ImageView back,info;
     private FloatingActionButton floatingActionButton;
-    private CheckBox attendance;
     private TextView titleToolbar;
     private SearchView searchView;
+    private Dialog dialog;
+
+    //Double Longitude = Utils.getInstance().getObject().getLongitude();
+    //Double Latitude = Utils.getInstance().getObject().getLatitude();
+    private String agreement = "{\"agreement1\":\"AG1\",\"agreement2\":\"AG2\",\"agreement3\":\"AG3\",\"agreement4\":\"AG4\"}";
+    Double longitude = 4.721688;
+    Double latitude = -74.107999;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_not_school);
         if(savedInstanceState != null){
-            selectItem = savedInstanceState.getInt(SELECTED_ITEM);
+            optionAction = savedInstanceState.getInt(OPTION_ACTION);
         } else {
-            selectItem = getIntent().getIntExtra(SELECTED_ITEM, -1);
+            optionAction = getIntent().getIntExtra(OPTION_ACTION, -1);
         }
 
         presenter = new NotSchoolPresenterImpl(this);
@@ -84,7 +88,6 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         progressBar = findViewById(R.id.progressBar);
         floatingActionButton = findViewById(R.id.floatingActionButton);
         back = findViewById(R.id.backButton);
-        attendance = findViewById(R.id.Atencion);
         recyclerView = findViewById(R.id.recycler_view);
         titleToolbar = findViewById(R.id.titleToolbar);
 
@@ -102,7 +105,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     }
 
     private void setAdapterRecycler() {
-        itemAdapter = new ItemAdapter(getApplicationContext(),itemList);
+        itemAdapter = new ItemAdapter(getApplicationContext(),itemList, this);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -116,7 +119,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     }
 
     private void setTitleToolbar() {
-        switch (selectItem){
+        switch (optionAction){
             case KITCHEN :
                 titleToolbar.setText(getResources().getString(R.string.kitchens));
                 break;
@@ -187,16 +190,27 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         final AlertDialog dialog = builder.create();
         dialog.show();
 
+        final ArrayList<CheckBox> listCheckBox = new ArrayList<CheckBox>();
+        listCheckBox.add((CheckBox) view.findViewById(R.id.wfpCheckBox));
+        listCheckBox.add((CheckBox) view.findViewById(R.id.humanitarianCheckBox));
+        listCheckBox.add((CheckBox) view.findViewById(R.id.privateCheckBox));
+        listCheckBox.add((CheckBox) view.findViewById(R.id.governmentCheckBox));
+
+        final ArrayList<String> keys = new ArrayList<String>();
+        keys.add("AG1");
+        keys.add("AG2");
+        keys.add("AG3");
+        keys.add("AG4");
+
+
+
         Button btnAceptar = view.findViewById(R.id.ButtonAceptar);
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RequestUser obj = new RequestUser();
-                obj.setToken(Utils.getInstance().getObj().getToken());
-                Utils.getInstance().setObj(obj);
-                Intent intent = new Intent(getApplicationContext(), CreateBeneficiaryActivity.class);
-                startActivity(intent);
-                customType(getApplicationContext(),"fadein-to-fadeout");
+                dialog.dismiss();
+                String option = setOptionAgreement(listCheckBox, keys);
+                startBeneficiary(optionAction, BeneficiaryActivity.CREATE, option,null);
             }
         });
 
@@ -205,12 +219,25 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                Intent intent = new Intent(getApplicationContext(),CreateBeneficiaryActivity.class);
-                startActivity(intent);
+                String option = setOptionAgreement(listCheckBox, keys);
+                startBeneficiary(optionAction, BeneficiaryActivity.CREATE, option, null);
             }
         });
 
 
+    }
+
+    private String setOptionAgreement(ArrayList<CheckBox> listCheckBox, ArrayList<String> keys) {
+        String result = "";
+        for(int cont = 0; cont < listCheckBox.size(); cont++ ){
+            if(listCheckBox.get(cont).isChecked()){
+                result = agreement.replace(keys.get(cont), "1");
+            } else {
+                result =agreement.replace(keys.get(cont), "0");
+            }
+            agreement = result;
+        }
+        return agreement;
     }
 
     public void listBeneficiary(final String keyword, int page){
@@ -229,11 +256,46 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     public void getListBeneficiarySuccess(BeneficiaryArray beneficiaryArray) {
         progressBar.setVisibility(View.INVISIBLE);
         beneficiaries =  beneficiaryArray.getResults();
-        recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries));
+        recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries, this));
+    }
+
+    @Override
+    public void setRegisterAttendanceSuccess() {
+        dialog.dismiss();
+        Toasty.success(getApplicationContext(), "Atencion registrada exitosamente", Toast.LENGTH_SHORT, true).show();
     }
 
     @Override
     public void responseError(String msg) {
         Toasty.error(getApplicationContext(), msg, Toast.LENGTH_SHORT, true).show();
+    }
+
+    @Override
+    public void registerAttendance(Dialog myDialog, int institution, int userID, int person, int modality){
+        dialog = myDialog;
+        presenter.setRegisterAttendance(Utils.getInstance().getObj().getToken(), longitude, latitude, institution, userID, person, modality);
+    }
+
+    @Override
+    public void showBeneficiary(Result beneficiary) {
+        startBeneficiary(optionAction, BeneficiaryActivity.SHOW, "", beneficiary);
+    }
+
+    private void startBeneficiary(int option, int item, String agreement, Result beneficiary) {
+        Intent intent = new Intent(this, BeneficiaryActivity.class);
+        intent.putExtra(OPTION_ACTION, option);
+        intent.putExtra(BeneficiaryActivity.SELECTED_ITEM, item);
+        if(beneficiary != null) {
+            intent.putExtra(BeneficiaryActivity.OBJECT_BENEFICIARIES, new Gson().toJson(beneficiary));
+        } else {
+            intent.putExtra(BeneficiaryActivity.OBJECT_BENEFICIARIES, "");
+        }
+        if(agreement != null) {
+            intent.putExtra(BeneficiaryActivity.OPTION_AGREEMENT, agreement);
+        } else {
+            intent.putExtra(BeneficiaryActivity.OPTION_AGREEMENT, "");
+        }
+
+        startActivity(intent);
     }
 }

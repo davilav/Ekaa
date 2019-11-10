@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/wfpCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="228dp"
@@ -83,27 +83,27 @@
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/humanitarianCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Hpartners"
         app:layout_constraintEnd_toEndOf="@+id/textView14"
         app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/wfpCheckBox" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/privateCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Ppartners"
         app:layout_constraintEnd_toEndOf="@+id/textView14"
         app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        app:layout_constraintTop_toBottomOf="@+id/humanitarianCheckBox" />
 
     <CheckBox
-        android:id="@+id/checkBox4"
+        android:id="@+id/governmentCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Gpartners"
@@ -111,7 +111,7 @@
         app:layout_constraintEnd_toEndOf="@+id/textView14"
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3"
+        app:layout_constraintTop_toBottomOf="@+id/privateCheckBox"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

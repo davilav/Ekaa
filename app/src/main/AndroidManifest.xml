@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.beneficiary.Beneficiary1Activity"></activity>
+        <activity android:name=".ui.beneficiary.BeneficiaryActivity"></activity>
         <activity
             android:name=".ui.splash.SplashActivity"
             android:screenOrientation="portrait">
@@ -22,11 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Views.EditBeneficiaryActivity" />
         <activity android:name=".ui.school.SchoolActivity" />
         <activity android:name=".ui.settings.SettingsActivity" />
-        <activity android:name=".Views.BeneficiaryActivity" />
-        <activity android:name=".Views.CreateBeneficiaryActivity" />
         <activity
             android:name=".ui.not_school.NotSchoolActivity"
             android:screenOrientation="portrait" />

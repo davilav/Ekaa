@@ -20,13 +20,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
 import com.pma.ekaa.R;
-import com.pma.ekaa.Views.BeneficiaryActivity;
 import com.pma.ekaa.data.remote.ApiClient;
 import com.pma.ekaa.data.models.Attendance;
 import com.pma.ekaa.data.models.Result;
-import com.pma.ekaa.ui.beneficiary.Beneficiary1Activity;
+import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
 import com.pma.ekaa.ui.not_school.NotSchoolActivity;
 import com.pma.ekaa.utils.Utils;
 
@@ -45,28 +43,24 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Result> beneficiaries;
     private Context context;
 
-    public TextView txtName, txtID, txtnumberID, txtNation;
-    public CircleImageView profileImage;
-    public ImageView editInfo;
-    public CheckBox checkBox;
-    public CheckBox AM,lunch,PM;
-    public Button btn;
-    public Dialog myDialog;
-    public TextView txtclose;
-    public TextView kitchenName;
-    public TextView firstCom,secondCom,thirdCom;
+    private onListenerAdapter mListener;
 
-    String token = Utils.getInstance().getObj().getToken();
-    //Double Longitude = Utils.getInstance().getObject().getLongitude();
-    //Double Latitude = Utils.getInstance().getObject().getLatitude();
-    Double Longitude = 4.721688;
-    Double Latitude = -74.107999;
+    private TextView txtName, txtID, txtnumberID, txtNation;
+    private CircleImageView profileImage;
+    private ImageView editInfo, attention;
+    private CheckBox AM,lunch,PM;
+    private Button btn;
+    private Dialog myDialog;
+    private TextView txtclose;
+    private TextView kitchenName;
+
     Integer id = 0;
     public int contador=0;
 
-    public ItemAdapter(Context context, List<Result> beneficiaries) {
+    public ItemAdapter(Context context, List<Result> beneficiaries, onListenerAdapter mListener) {
         this.context = context;
         this.beneficiaries = beneficiaries;
+        this.mListener = mListener;
     }
 
     @NonNull
@@ -100,8 +94,8 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             profileImage = view.findViewById(R.id.profileImage);
             txtNation = view.findViewById(R.id.txtNation);
             txtnumberID = view.findViewById(R.id.txtnumberID);
-            editInfo = view.findViewById(R.id.editInfoButton);
-            checkBox = view.findViewById(R.id.Atencion);
+            attention = view.findViewById(R.id.image_atention);
+            //editInfo = view.findViewById(R.id.editInfoButton);
             btn = view.findViewById(R.id.countButton);
             AM = view.findViewById(R.id.AM);
             PM = view.findViewById(R.id.PM);
@@ -112,37 +106,37 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         public void bindData(final Result result) {
 
-            txtName.setText(result.getFirstName() + " " + result.getSurname());
+            txtName.setText(result.getFirst_name() + " " + result.getSurname());
             txtID.setText(result.getDocument());
             txtnumberID.setText(Integer.toString(result.getId()));
             id = result.getId();
-            editInfo.setOnClickListener(new View.OnClickListener() {
+
+            profileImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mListener.showBeneficiary(result);
+                }
+            });
+
+            /*editInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     /*String object = new Gson().toJson(result);
                     Intent intent = new Intent(context, BeneficiaryActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(BeneficiaryActivity.OBJECT_BENEFICIARIES, object);
-                    context.startActivity(intent);*/
+                    context.startActivity(intent);
 
-                    Intent intent = new Intent(context, Beneficiary1Activity.class);
+                    Intent intent = new Intent(context, BeneficiaryActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(Beneficiary1Activity.SELECTED_ITEM, Beneficiary1Activity.EDIT);
+                    intent.putExtra(BeneficiaryActivity.SELECTED_ITEM, BeneficiaryActivity.EDIT);
                     intent.putExtra(NotSchoolActivity.SELECTED_ITEM, NotSchoolActivity.KITCHEN);
                     context.startActivity(intent);
 
                 }
-            });
+            });*/
 
-            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                    checkBox.setChecked(false);
-                }
-            });
-
-
-            checkBox.setOnClickListener(new View.OnClickListener() {
+            attention.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
@@ -155,7 +149,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     txtclose = myDialog.findViewById(R.id.txtclose);
                     kitchenName = myDialog.findViewById(R.id.kitchen_name);
                     txtclose.setText("X");
-                    kitchenName.setText(result.getFirstName()+" "+ result.getSurname());
+                    kitchenName.setText(result.getFirst_name()+" "+ result.getSurname());
 
                     AM = myDialog.findViewById(R.id.AM);
                     PM = myDialog.findViewById(R.id.PM);
@@ -197,7 +191,6 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         @Override
                         public void onClick(View v) {
                             myDialog.dismiss();
-                            checkBox.setChecked(false);
                         }
                     });
 
@@ -207,15 +200,17 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         @Override
                         public void onClick(View v) {
                             bar.startLoader();
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    registerAttendance(result.getId());
-                                    bar.stopLoader();
-                                    myDialog.dismiss();
-                                }
-                            }, 4000);
 
+                            int modality = 0;
+                            if(AM.isChecked()){
+                                modality = 1;
+                            }else if (lunch.isChecked()){
+                                modality = 2;
+                            }else if(PM.isChecked()){
+                                modality = 3;
+                            }
+
+                            mListener.registerAttendance(myDialog, 1, result.getId(), 1, modality);
                         }
                     });
 
@@ -229,33 +224,9 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     }
 
-    private void registerAttendance(int userID) {
-
-        int modality = 0;
-        if(AM.isChecked()){
-            modality = 1;
-        }else if (lunch.isChecked()){
-            modality = 2;
-        }else if(PM.isChecked()){
-            modality = 3;
-        }
-
-        Attendance attendance = new Attendance(Longitude,Latitude,1,userID,1,modality);
-        Call<Attendance> call = ApiClient.getInstance().getApi().registerAttendance(attendance,("Token "+token));
-        call.enqueue(new Callback<Attendance>() {
-            @Override
-            public void onResponse(Call<Attendance> call, Response<Attendance> response) {
-                Toasty.success(context, "Atención registrada exitosamente", Toast.LENGTH_SHORT, true).show();
-
-
-            }
-
-            @Override
-            public void onFailure(Call<Attendance> call, Throwable t) {
-                Toasty.error(context, "Error al registrar la atención", Toast.LENGTH_SHORT, true).show();
-            }
-        });
-
+    public interface onListenerAdapter {
+        void registerAttendance(Dialog myDialog, int institution, int userID, int person, int modality);
+        void showBeneficiary(Result beneficiary);
     }
 
 }

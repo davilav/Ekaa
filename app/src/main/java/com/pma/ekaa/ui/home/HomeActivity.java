@@ -150,19 +150,19 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 break;
             case R.id.kitchenButton:
                 Intent intent = new Intent(HomeActivity.this, NotSchoolActivity.class);
-                intent.putExtra(NotSchoolActivity.SELECTED_ITEM, NotSchoolActivity.KITCHEN);
+                intent.putExtra(NotSchoolActivity.OPTION_ACTION, NotSchoolActivity.KITCHEN);
                 startActivity(intent);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
             case R.id.walkersButton:
                 Intent intentWalkers = new Intent(HomeActivity.this, NotSchoolActivity.class);
-                intentWalkers.putExtra(NotSchoolActivity.SELECTED_ITEM, NotSchoolActivity.WALKERS);
+                intentWalkers.putExtra(NotSchoolActivity.OPTION_ACTION, NotSchoolActivity.WALKERS);
                 startActivity(intentWalkers);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
             case R.id.inkindButton:
                 Intent intentInkind = new Intent(HomeActivity.this, NotSchoolActivity.class);
-                intentInkind.putExtra(NotSchoolActivity.SELECTED_ITEM, NotSchoolActivity.INKIND);
+                intentInkind.putExtra(NotSchoolActivity.OPTION_ACTION, NotSchoolActivity.INKIND);
                 startActivity(intentInkind);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
