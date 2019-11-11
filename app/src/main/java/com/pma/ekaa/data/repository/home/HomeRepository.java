@@ -8,5 +8,7 @@ public interface HomeRepository {
 
     void getDataUser(RequestUser requestUser);
 
+    void getModalities();
+
     void setLogout();
 }

@@ -218,7 +218,7 @@
                         android:src="@drawable/img_email"
                         android:tint="#ffffff" />
 
-                    <Spinner
+                    <EditText
                         android:id="@+id/nationalitybeneficiary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -228,6 +228,7 @@
                         android:background="#DADADA"
                         android:entries="@array/nation"
                         android:hint="Nacionalidad"
+                        android:focusable="false"
                         android:paddingLeft="20dp"
                         android:spinnerMode="dropdown"
                         android:textSize="15sp" />
@@ -253,7 +254,7 @@
                         android:src="@drawable/img_email"
                         android:tint="#ffffff" />
 
-                    <Spinner
+                    <EditText
                         android:id="@+id/documentTypebeneficiary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -262,7 +263,7 @@
                         android:layout_toRightOf="@+id/imgView_emailIcon1"
                         android:background="#DADADA"
                         android:hint="Tipo de documento"
-                        android:entries="@array/documentType"
+                        android:focusable="false"
                         android:inputType="textPersonName"
                         android:paddingLeft="20dp"
                         android:textSize="15sp" />
@@ -387,7 +388,7 @@
                         android:src="@drawable/img_email"
                         android:tint="#ffffff" />
 
-                    <Spinner
+                    <EditText
                         android:id="@+id/genderbeneficiary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -396,6 +397,7 @@
                         android:layout_toRightOf="@+id/imgView_emailIcon6"
                         android:background="#DADADA"
                         android:hint="Sexo"
+                        android:focusable="true"
                         android:entries="@array/gender"
                         android:paddingLeft="20dp"
                         android:textSize="15sp" />
@@ -530,6 +532,7 @@
                         android:layout_toRightOf="@+id/imgView_emailIcon11"
                         android:background="#DADADA"
                         android:hint="Estado Civil"
+                        android:focusable="false"
                         android:paddingLeft="20dp"
                         android:textSize="15sp" />
 

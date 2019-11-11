@@ -23,8 +23,10 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.BeneficiaryArray;
+import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.RequestUser;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.ui.BaseActivity;
@@ -44,6 +46,7 @@ import static maes.tech.intentanim.CustomIntent.customType;
 public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter{
 
     public static String OPTION_ACTION = "option_action";
+    public static String OPTION_MODALITY = "option_modality";
 
     public final static int KITCHEN = 0;
     public final static int WALKERS = 1;
@@ -56,6 +59,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private List<Result> beneficiaries;
     private static int countPage = 1;
     private final ArrayList<Result> itemList = new ArrayList<>();
+    private ArrayList<Modality>  modalities;
     private ImageView nextpage,previouspage;
     private ProgressBar progressBar;
     private ImageView back,info;
@@ -78,6 +82,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
             optionAction = savedInstanceState.getInt(OPTION_ACTION);
         } else {
             optionAction = getIntent().getIntExtra(OPTION_ACTION, -1);
+            modalities = new Gson().fromJson(getIntent().getStringExtra(OPTION_MODALITY), new TypeToken<List<Modality>>(){}.getType());
         }
 
         presenter = new NotSchoolPresenterImpl(this);
@@ -105,7 +110,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     }
 
     private void setAdapterRecycler() {
-        itemAdapter = new ItemAdapter(getApplicationContext(),itemList, this);
+        itemAdapter = new ItemAdapter(getApplicationContext(), itemList, modalities, this);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -256,7 +261,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     public void getListBeneficiarySuccess(BeneficiaryArray beneficiaryArray) {
         progressBar.setVisibility(View.INVISIBLE);
         beneficiaries =  beneficiaryArray.getResults();
-        recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries, this));
+        recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries, modalities, this));
     }
 
     @Override

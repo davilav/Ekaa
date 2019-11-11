@@ -3,10 +3,8 @@ package com.pma.ekaa.ui.adapters;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,28 +12,21 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pma.ekaa.R;
-import com.pma.ekaa.data.remote.ApiClient;
-import com.pma.ekaa.data.models.Attendance;
+import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.Result;
-import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
-import com.pma.ekaa.ui.not_school.NotSchoolActivity;
-import com.pma.ekaa.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import es.dmoral.toasty.Toasty;
 import github.ishaan.buttonprogressbar.ButtonProgressBar;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -45,7 +36,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private onListenerAdapter mListener;
 
-    private TextView txtName, txtID, txtnumberID, txtNation;
+    private TextView txtName, txtID, txtnumberID, txtNation, firstComplement, secondComplement, thirdComplement;
     private CircleImageView profileImage;
     private ImageView editInfo, attention;
     private CheckBox AM,lunch,PM;
@@ -53,14 +44,16 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Dialog myDialog;
     private TextView txtclose;
     private TextView kitchenName;
+    private ArrayList<Modality> arrayModality;
 
     Integer id = 0;
     public int contador=0;
 
-    public ItemAdapter(Context context, List<Result> beneficiaries, onListenerAdapter mListener) {
+    public ItemAdapter(Context context, List<Result> beneficiaries, ArrayList<Modality> modalities, onListenerAdapter mListener) {
         this.context = context;
         this.beneficiaries = beneficiaries;
         this.mListener = mListener;
+        this.arrayModality = modalities;
     }
 
     @NonNull
@@ -145,15 +138,30 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     contador++;
                     btn.setText(Integer.toString(contador));
 
-                    myDialog.setContentView(R.layout.kitchen_popup);
-                    txtclose = myDialog.findViewById(R.id.txtclose);
-                    kitchenName = myDialog.findViewById(R.id.kitchen_name);
-                    txtclose.setText("X");
-                    kitchenName.setText(result.getFirst_name()+" "+ result.getSurname());
+                    myDialog.setContentView(R.layout.beneficiary_popup);
 
                     AM = myDialog.findViewById(R.id.AM);
                     PM = myDialog.findViewById(R.id.PM);
                     lunch = myDialog.findViewById(R.id.lunch);
+                    txtclose = myDialog.findViewById(R.id.txtclose);
+                    kitchenName = myDialog.findViewById(R.id.kitchen_name);
+                    firstComplement = myDialog.findViewById(R.id.first_complement);
+                    secondComplement = myDialog.findViewById(R.id.second_complement);
+                    thirdComplement = myDialog.findViewById(R.id.third_complement);
+
+
+                    //Se deberia implementar un recycler view para listar las opciones
+
+                    firstComplement.setText(arrayModality.get(0).getName());
+                    secondComplement.setText(arrayModality.get(1).getName());
+                    thirdComplement.setText(arrayModality.get(2).getName());
+
+                    ((LinearLayout) myDialog.findViewById(R.id.color_first)).setBackgroundColor(Color.parseColor(arrayModality.get(0).getColor()));
+                    ((LinearLayout) myDialog.findViewById(R.id.color_second)).setBackgroundColor(Color.parseColor(arrayModality.get(1).getColor()));
+                    ((LinearLayout) myDialog.findViewById(R.id.color_third)).setBackgroundColor(Color.parseColor(arrayModality.get(2).getColor()));
+
+                    txtclose.setText("X");
+                    kitchenName.setText(result.getFirst_name()+" "+ result.getSurname());
 
                     AM.setChecked(true);
 

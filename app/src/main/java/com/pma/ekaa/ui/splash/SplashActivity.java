@@ -8,12 +8,16 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pma.ekaa.R;
 import com.pma.ekaa.ui.BaseActivity;
+import com.pma.ekaa.ui.login.LoginActivity;
 import com.pma.ekaa.ui.splash.presenter.SplashPresenter;
 import com.pma.ekaa.ui.splash.presenter.SplashPresenterImpl;
 import com.pma.ekaa.ui.welcome.WelcomeActivity;
+
+import es.dmoral.toasty.Toasty;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
@@ -33,20 +37,14 @@ public class SplashActivity extends BaseActivity implements SplashView {
         logo = findViewById(R.id.pmaLogo);
         webname = findViewById(R.id.pmaText);
 
-        presenter = new SplashPresenterImpl(this);
+        presenter = new SplashPresenterImpl(this, getApplication());
 
         setAnimation();
 
-        requestPermission();
+        presenter.getData();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashActivity.this, WelcomeActivity.class);
-                startActivity(intent);
-                customType(SplashActivity.this,"fadein-to-fadeout");
-            }
-        },2000);
+        //requestPermission();
+
     }
 
     private void setAnimation() {
@@ -57,4 +55,22 @@ public class SplashActivity extends BaseActivity implements SplashView {
         webname.setAnimation(fromBottom);
     }
 
+    @Override
+    public void getDataSuccess() {
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashActivity.this, WelcomeActivity.class);
+                startActivity(intent);
+                customType(SplashActivity.this,"fadein-to-fadeout");
+            }
+        },2000);
+
+    }
+
+    @Override
+    public void loginError(String msg) {
+        Toasty.warning(this, msg, Toast.LENGTH_SHORT, true).show();
+    }
 }

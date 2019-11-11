@@ -1,6 +1,8 @@
 package com.pma.ekaa.ui.welcome;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.FragmentManager;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -10,9 +12,11 @@ import android.widget.Button;
 
 import com.pma.ekaa.R;
 import com.pma.ekaa.ui.BaseActivity;
+import com.pma.ekaa.ui.dialog.SelectOptionDialog;
 import com.pma.ekaa.ui.login.LoginActivity;
 import com.pma.ekaa.ui.forgot_password.PasswordActivity;
 import com.pma.ekaa.ui.register.RegisterActivity;
+import com.pma.ekaa.utils.PreferencesHelper;
 
 import java.util.Locale;
 

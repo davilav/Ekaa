@@ -52,6 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:id="@+id/color_first"
             android:background="#eaad43"
             android:gravity="center"
             android:orientation="vertical"
@@ -63,11 +64,12 @@
                 android:id="@+id/first_complement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Canasta 1"
+                android:text="AM"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/AM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -75,6 +77,7 @@
                 android:textSize="18sp" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/color_second"
             android:background="#45bc62"
             android:gravity="center"
             android:orientation="vertical"
@@ -86,11 +89,12 @@
                 android:id="@+id/second_complement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Canasta 2"
+                android:text="Lunch"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/lunch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -99,6 +103,7 @@
                 android:textSize="18sp" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/color_third"
             android:background="#49acd5"
             android:gravity="center"
             android:orientation="vertical"
@@ -110,16 +115,18 @@
                 android:id="@+id/third_complement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Canasta 3"
+                android:text="PM"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/PM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
+
         </LinearLayout>
     </LinearLayout>
 
@@ -141,7 +148,6 @@
         android:layout_marginTop="20dp"
         android:text="AM en el comedor NO 123 a las 10:54 am"
         android:textColor="#000000" />
-
     <github.ishaan.buttonprogressbar.ButtonProgressBar
         android:id="@+id/btnfollow"
         android:layout_width="wrap_content"

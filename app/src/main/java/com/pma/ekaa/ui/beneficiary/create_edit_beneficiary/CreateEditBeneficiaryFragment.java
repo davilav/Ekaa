@@ -19,10 +19,13 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
+import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.RegisterBeneficiary;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
+import com.pma.ekaa.ui.dialog.SelectOptionDialog;
 import com.pma.ekaa.ui.not_school.NotSchoolActivity;
+import com.pma.ekaa.utils.PreferencesHelper;
 
 import java.util.Calendar;
 
@@ -39,7 +42,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
 
     private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, pregnantbeneficiary, phonebeneficiary,
             familybeneficiary, migratoryStatus, maritalStatus, ethnicGroup, note, infoAditional;
-    private Spinner nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary;
+    private EditText nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary;
     private TextView birthdatebeneficiary, titleForm;
     private Button btnRecovery;
 
@@ -117,6 +120,10 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         }
 
         btnRecovery.setOnClickListener(this);
+        genderbeneficiary.setOnClickListener(this);
+        nationalitybeneficiary.setOnClickListener(this);
+        documentTypebeneficiary.setOnClickListener(this);
+        maritalStatus.setOnClickListener(this);
 
         birthdatebeneficiary.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,6 +221,48 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
 
                 }
                 break;
+            case R.id.genderbeneficiary:
+                SelectOptionDialog.newInstance(
+                        PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_GENDERS, ""),
+                        false,
+                        new SelectOptionDialog.onListenerInterface() {
+                    @Override
+                    public void optionSelect(Data data) {
+                        genderbeneficiary.setText(data.getName());
+                    }
+                }).show(getActivity().getSupportFragmentManager(),"");
+                break;
+            case R.id.nationalitybeneficiary:
+                SelectOptionDialog.newInstance(
+                        PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_NATIONALITY, ""),
+                        false,
+                        new SelectOptionDialog.onListenerInterface() {
+                            @Override
+                            public void optionSelect(Data data) {
+                                nationalitybeneficiary.setText(data.getName());
+                            }
+                        }).show(getActivity().getSupportFragmentManager(), "");
+                break;
+            case R.id.documentTypebeneficiary:
+                SelectOptionDialog.newInstance(
+                        PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_DOCUMENTS, ""),
+                        false,
+                        new SelectOptionDialog.onListenerInterface() {
+                            @Override
+                            public void optionSelect(Data data) {
+                                documentTypebeneficiary.setText(data.getName());
+                            }
+                        }).show(getActivity().getSupportFragmentManager(), "");
+            case R.id.maritalStatus:
+                SelectOptionDialog.newInstance(
+                        PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_MARITAL, ""),
+                        false,
+                        new SelectOptionDialog.onListenerInterface() {
+                            @Override
+                            public void optionSelect(Data data) {
+                                maritalStatus.setText(data.getName());
+                            }
+                        }).show(getActivity().getSupportFragmentManager(), "");
             default:
                 break;
         }

@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -15,7 +16,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentManager;
+
+import com.google.gson.Gson;
 import com.pma.ekaa.R;
+import com.pma.ekaa.data.models.Data;
+import com.pma.ekaa.data.models.Modality;
+import com.pma.ekaa.ui.dialog.SelectOptionDialog;
 import com.pma.ekaa.ui.school.SchoolActivity;
 import com.pma.ekaa.ui.settings.SettingsActivity;
 import com.pma.ekaa.data.models.DataUser;
@@ -24,6 +31,7 @@ import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.home.presenter.HomePresenter;
 import com.pma.ekaa.ui.home.presenter.HomePresenterImpl;
 import com.pma.ekaa.ui.not_school.NotSchoolActivity;
+import com.pma.ekaa.utils.PreferencesHelper;
 import com.pma.ekaa.utils.Utils;
 import com.pma.ekaa.ui.welcome.WelcomeActivity;
 
@@ -43,12 +51,13 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
 
     private Animation bganim, cloveranim, fromtop, fromBottom;
     private LinearLayout textSplash, textHome, home;
-    private Spinner partner, location;
+    private EditText partner, location;
     private TextView splashtext, userText, emailtext;
     private ButtonProgressBar bar;
     private int locationEmpty = 0;
     private ArrayList typesSpinner1 = new ArrayList();
     private ArrayList typesSpinner2 = new ArrayList();
+    private ArrayList<Modality> arrayModality;
 
     private ArrayList<InstitutionByPartner> dataInstitutionbypartner = new ArrayList();
     private HashMap<Integer, String> mapLocation = new HashMap();
@@ -75,8 +84,9 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
 
         presenter.getDataUser(Utils.getInstance().getObj());
         presenter.getDataInstitutionByPartner(Utils.getInstance().getObj());
+        presenter.getModalities();
 
-        partner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*partner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItemText = (String) adapterView.getItemAtPosition(i);
@@ -104,6 +114,14 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
+        });*/
+
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*SelectOptionDialog editNameDialogFragment = SelectOptionDialog.newInstance(new Gson().toJson(getArrayData(mapLocation)), false);
+                editNameDialogFragment.show(getSupportFragmentManager(), "fragment_edit_name");*/
+            }
         });
 
     }
@@ -128,8 +146,6 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         location = findViewById(R.id.spinnergeolocation);
         clover = findViewById(R.id.clover);
         settings = findViewById(R.id.settingsButton);
-        partner = findViewById(R.id.spinnerpartner);
-        location = findViewById(R.id.spinnergeolocation);
         userText = findViewById(R.id.userText);
         emailtext = findViewById(R.id.textemailhome);
         bar = findViewById(R.id.btn_recovery);
@@ -151,18 +167,21 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
             case R.id.kitchenButton:
                 Intent intent = new Intent(HomeActivity.this, NotSchoolActivity.class);
                 intent.putExtra(NotSchoolActivity.OPTION_ACTION, NotSchoolActivity.KITCHEN);
+                intent.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(NotSchoolActivity.KITCHEN));
                 startActivity(intent);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
             case R.id.walkersButton:
                 Intent intentWalkers = new Intent(HomeActivity.this, NotSchoolActivity.class);
                 intentWalkers.putExtra(NotSchoolActivity.OPTION_ACTION, NotSchoolActivity.WALKERS);
+                intentWalkers.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(NotSchoolActivity.WALKERS));
                 startActivity(intentWalkers);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
             case R.id.inkindButton:
                 Intent intentInkind = new Intent(HomeActivity.this, NotSchoolActivity.class);
                 intentInkind.putExtra(NotSchoolActivity.OPTION_ACTION, NotSchoolActivity.INKIND);
+                intentInkind.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(NotSchoolActivity.INKIND));
                 startActivity(intentInkind);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
@@ -176,6 +195,37 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         }
     }
 
+    private String getModality(int option) {
+
+        ArrayList<Modality> filterModality = new ArrayList<Modality>();
+        int selector;
+
+        switch (option) {
+            case NotSchoolActivity.KITCHEN:
+                selector = 1;
+                break;
+            case NotSchoolActivity.WALKERS:
+                selector = 2;
+                break;
+            case NotSchoolActivity.INKIND:
+                selector = 4;
+                break;
+            default:
+                selector = 3;
+                break;
+        }
+
+
+        for(int cont = 0; cont < arrayModality.size(); cont++) {
+            if(arrayModality.get(cont).getModalityType() == selector) {
+                filterModality.add(arrayModality.get(cont));
+            }
+        }
+
+        return new Gson().toJson(filterModality);
+
+    }
+
     private int getKey(String selectedItemText) {
         int key = 0;
         for (Map.Entry<Integer, String> map : mapLocation.entrySet()) {
@@ -185,6 +235,17 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
             }
         }
         return key;
+    }
+
+    private ArrayList<Data> getArrayData(HashMap<Integer, String> mapData) {
+        ArrayList<Data> out = new ArrayList<>();
+        for (Map.Entry<Integer, String> map : mapData.entrySet()) {
+            Data data = new Data();
+            data.setId(map.getKey());
+            data.setName(map.getValue());
+            out.add(data);
+        }
+        return out;
     }
 
     @Override
@@ -210,18 +271,24 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
     }
 
     @Override
+    public void getModalitySuccess(ArrayList<Modality> modality) {
+        arrayModality = modality;
+    }
+
+    @Override
     public void responseError(String msg) {
         Toasty.warning(HomeActivity.this, msg, Toast.LENGTH_SHORT, true).show();
     }
 
     private void setSpinnerLocation() {
         mapLocation.put(0, "");
+        ArrayList<Data> dataLocation;
         for (int position = 0; position < dataInstitutionbypartner.size(); position++) {
             mapLocation.put(dataInstitutionbypartner.get(position).getGeolocation().getId(), dataInstitutionbypartner.get(position).getGeolocation().getName());
         }
-        typesSpinner1 = new ArrayList(mapLocation.values());
-        ArrayAdapter comboAdapterLocation = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, typesSpinner1);
-        location.setAdapter(comboAdapterLocation);
+        /*ArrayAdapter comboAdapterLocation = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, typesSpinner1);
+        location.setAdapter(comboAdapterLocation);*/
+
     }
 
 
@@ -234,7 +301,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         }
         typesSpinner2 = new ArrayList(mapInstitution.values());
         ArrayAdapter comboAdapterInstitution = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, typesSpinner2);
-        partner.setAdapter(comboAdapterInstitution);
+        //partner.setAdapter(comboAdapterInstitution);
     }
 
     public void goHome() {

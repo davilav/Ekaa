@@ -2,6 +2,7 @@ package com.pma.ekaa.ui.home.presenter;
 
 import com.pma.ekaa.data.models.DataUser;
 import com.pma.ekaa.data.models.InstitutionByPartner;
+import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.RequestUser;
 import com.pma.ekaa.data.repository.home.HomeRepository;
 import com.pma.ekaa.data.repository.home.HomeRepositoryImpl;
@@ -35,6 +36,9 @@ public class HomePresenterImpl implements HomePresenter {
     }
 
     @Override
+    public void getModalities() { repository.getModalities();}
+
+    @Override
     public void getInstitutionByPartnerSuccess(ArrayList<InstitutionByPartner> data) {
         view.getInstitutionByPartnerSuccess(data);
     }
@@ -47,6 +51,11 @@ public class HomePresenterImpl implements HomePresenter {
     @Override
     public void getLogoutSuccess() {
         view.getLogoutSuccess();
+    }
+
+    @Override
+    public void getModalitySuccess(ArrayList<Modality> modality) {
+        view.getModalitySuccess(modality);
     }
 
 

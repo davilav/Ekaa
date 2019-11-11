@@ -68,7 +68,7 @@
             android:textSize="24sp" />
 
 
-        <Spinner
+        <EditText
             android:id="@+id/spinnergeolocation"
             android:layout_width="300dp"
             android:layout_height="30dp"
@@ -94,13 +94,13 @@
 
 
 
-        <Spinner
+        <EditText
             android:id="@+id/spinnerpartner"
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:background="@drawable/login_rounded">
 
-        </Spinner>
+        </EditText>
 
         <TextView
             android:layout_width="wrap_content"
