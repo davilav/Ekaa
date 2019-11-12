@@ -1,22 +1,32 @@
 package com.pma.ekaa.ui.welcome;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 
 import com.pma.ekaa.R;
+import com.pma.ekaa.data.models.Geolocation;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.dialog.SelectOptionDialog;
 import com.pma.ekaa.ui.login.LoginActivity;
 import com.pma.ekaa.ui.forgot_password.PasswordActivity;
 import com.pma.ekaa.ui.register.RegisterActivity;
 import com.pma.ekaa.utils.PreferencesHelper;
+import com.pma.ekaa.utils.Utils;
 
 import java.util.Locale;
 
@@ -26,12 +36,22 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView {
 
     Button login, register, password, idioma;
     private Locale locale;
+    Double Latitude,Longitude;
     private Configuration config = new Configuration();
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
+            } else {
+                locationStart();
+            }
+
+
 
         login = findViewById(R.id.loginButton);
         register = findViewById(R.id.registerButton);
@@ -105,6 +125,79 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView {
         });
 
         b.show();
+    }
+
+
+
+    private void locationStart() {
+        LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        WelcomeActivity.Localizacion Local = new WelcomeActivity.Localizacion();
+        Local.setMainActivity(this);
+        final boolean gpsEnabled = mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if (!gpsEnabled) {
+            Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(settingsIntent);
+        }
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
+            return;
+        }
+        mlocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, (LocationListener) Local);
+        mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) Local);
+
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 1000) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                locationStart();
+                return;
+            }
+        }
+    }
+
+    public class Localizacion implements LocationListener {
+        WelcomeActivity geolocationActivity;
+
+        public WelcomeActivity getGeolocationActivity() {
+            return geolocationActivity;
+        }
+
+        public void setMainActivity(WelcomeActivity mainActivity) {
+            this.geolocationActivity = mainActivity;
+        }
+
+        @Override
+        public void onLocationChanged(Location loc) {
+            // Este metodo se ejecuta cada vez que el GPS recibe nuevas coordenadas
+            // debido a la deteccion de un cambio de ubicacion
+            Latitude = loc.getLatitude();
+            Longitude = loc.getLongitude();
+
+            double scale = Math.pow(10,7);
+            Latitude = Math.round(Latitude * scale) / scale;
+            Longitude = Math.round(Longitude * scale) / scale;
+
+            Geolocation obj = new Geolocation();
+            obj.setLatitude(Latitude);
+            obj.setLongitude(Longitude);
+            Utils.getInstance().setObject(obj);
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
     }
 
 }

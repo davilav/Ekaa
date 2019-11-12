@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -59,6 +60,7 @@ public class SelectOptionDialog extends DialogFragment implements SelectOptionAd
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setCancelable(false);
         return inflater.inflate(R.layout.layout_option_dialog, container);
     }
 
@@ -67,6 +69,13 @@ public class SelectOptionDialog extends DialogFragment implements SelectOptionAd
         super.onViewCreated(view, savedInstanceState);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerOption);
+        SearchView searchOption = view.findViewById(R.id.searchOption);
+
+        if(isSearchable){
+            searchOption.setVisibility(View.VISIBLE);
+        } else {
+            searchOption.setVisibility(View.GONE);
+        }
 
         SelectOptionAdapter itemAdapter = new SelectOptionAdapter(listData, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

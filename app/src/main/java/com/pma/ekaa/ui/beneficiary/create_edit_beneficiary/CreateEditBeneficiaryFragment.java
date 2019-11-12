@@ -253,6 +253,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
                                 documentTypebeneficiary.setText(data.getName());
                             }
                         }).show(getActivity().getSupportFragmentManager(), "");
+                break;
             case R.id.maritalStatus:
                 SelectOptionDialog.newInstance(
                         PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_MARITAL, ""),

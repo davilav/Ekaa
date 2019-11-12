@@ -1,6 +1,8 @@
 package com.pma.ekaa.data.remote;
 
 import com.pma.ekaa.data.models.Attendance;
+import com.pma.ekaa.data.models.AttendanceDetail;
+import com.pma.ekaa.data.models.AttendanceToday;
 import com.pma.ekaa.data.models.BeneficiaryArray;
 import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.DataUser;
@@ -39,11 +41,18 @@ public interface ApiInterface {
     @POST("rest-auth/registration/")
     Call<User> register(@Body Register register);
 
-    @POST("api/v1/beneficiaries/ ")
+    @POST("api/v1/beneficiary/ ")
     Call<Result> registerBeneficiary(@Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
 
-    @PUT("api/v1/beneficiaries/{id}/")
+    @PUT("api/v1/beneficiary/{id}/")
     Call<Result> updateBeneficiary(@Path("id") String id, @Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
+
+
+    @GET("api/v1/attendance/today/beneficiary/{id}/")
+    Call<AttendanceToday> getTodayAttendance(@Path("id") String id, @Header("Authorization") String authToken);
+
+    @GET("api/v1/attendance/detail/beneficiary/{id}/")
+    Call<AttendanceDetail> getDetailAttendance(@Path("id") String id, @Header("Authorization") String authToken);
 
     @GET("/api/v1/modalities/")
     Call<ArrayList<Modality>> getModality(@Header("Authorization") String authToken);

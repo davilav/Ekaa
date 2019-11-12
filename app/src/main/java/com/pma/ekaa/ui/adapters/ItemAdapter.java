@@ -40,20 +40,22 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private CircleImageView profileImage;
     private ImageView editInfo, attention;
     private CheckBox AM,lunch,PM;
-    private Button btn;
+    private Button cont;
     private Dialog myDialog;
     private TextView txtclose;
     private TextView kitchenName;
     private ArrayList<Modality> arrayModality;
+    private int institutionID;
 
     Integer id = 0;
     public int contador=0;
 
-    public ItemAdapter(Context context, List<Result> beneficiaries, ArrayList<Modality> modalities, onListenerAdapter mListener) {
+    public ItemAdapter(Context context, List<Result> beneficiaries, ArrayList<Modality> modalities, int institutionID, onListenerAdapter mListener) {
         this.context = context;
         this.beneficiaries = beneficiaries;
         this.mListener = mListener;
         this.arrayModality = modalities;
+        this.institutionID = institutionID;
     }
 
     @NonNull
@@ -89,7 +91,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             txtnumberID = view.findViewById(R.id.txtnumberID);
             attention = view.findViewById(R.id.image_atention);
             //editInfo = view.findViewById(R.id.editInfoButton);
-            btn = view.findViewById(R.id.countButton);
+            cont = view.findViewById(R.id.countButton);
             AM = view.findViewById(R.id.AM);
             PM = view.findViewById(R.id.PM);
             lunch = view.findViewById(R.id.lunch);
@@ -103,6 +105,8 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             txtID.setText(result.getDocument());
             txtnumberID.setText(Integer.toString(result.getId()));
             id = result.getId();
+            cont.setText(result.getAttendance());
+            //cont.setBackgroundColor(Color.parseColor("#"+result.getColor()));
 
             profileImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -134,9 +138,6 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 @Override
                 public void onClick(View view) {
 
-
-                    contador++;
-                    btn.setText(Integer.toString(contador));
 
                     myDialog.setContentView(R.layout.beneficiary_popup);
 
@@ -218,7 +219,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                                 modality = 3;
                             }
 
-                            mListener.registerAttendance(myDialog, 1, result.getId(), 1, modality);
+                            mListener.registerAttendance(myDialog, institutionID, result.getId(), 1, modality);
                         }
                     });
 

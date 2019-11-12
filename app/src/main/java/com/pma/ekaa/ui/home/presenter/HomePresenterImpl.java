@@ -36,7 +36,9 @@ public class HomePresenterImpl implements HomePresenter {
     }
 
     @Override
-    public void getModalities() { repository.getModalities();}
+    public void getModalities() {
+        repository.getModalities();
+    }
 
     @Override
     public void getInstitutionByPartnerSuccess(ArrayList<InstitutionByPartner> data) {
@@ -57,7 +59,6 @@ public class HomePresenterImpl implements HomePresenter {
     public void getModalitySuccess(ArrayList<Modality> modality) {
         view.getModalitySuccess(modality);
     }
-
 
     @Override
     public void responseError(String msg) {

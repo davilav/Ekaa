@@ -13,18 +13,16 @@ public class InstitutionByPartner {
     private String name;
     @SerializedName("institution_type")
     @Expose
-    private Institution institutionType;
+    private Data institutionType;
     @SerializedName("partner")
     @Expose
-    private Institution partner;
+    private Data partner;
     @SerializedName("modality_type")
     @Expose
-    private Institution modalityType;
+    private Data modalityType;
     @SerializedName("geolocation")
     @Expose
     private Institution geolocation;
-
-
 
     public Integer getId() {
         return id;
@@ -42,27 +40,27 @@ public class InstitutionByPartner {
         this.name = name;
     }
 
-    public Institution getInstitutionType() {
+    public Data getInstitutionType() {
         return institutionType;
     }
 
-    public void setInstitutionType(Institution institutionType) {
+    public void setInstitutionType(Data institutionType) {
         this.institutionType = institutionType;
     }
 
-    public Institution getPartner() {
+    public Data getPartner() {
         return partner;
     }
 
-    public void setPartner(Institution partner) {
+    public void setPartner(Data partner) {
         this.partner = partner;
     }
 
-    public Institution getModalityType() {
+    public Data getModalityType() {
         return modalityType;
     }
 
-    public void setModalityType(Institution modalityType) {
+    public void setModalityType(Data modalityType) {
         this.modalityType = modalityType;
     }
 

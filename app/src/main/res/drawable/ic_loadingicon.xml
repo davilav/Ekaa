@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr
+        name="android:drawable">
+        <vector
+            android:height="24dp"
+            android:viewportHeight="512"
+            android:viewportWidth="512"
+            android:width="24dp">
+            <group
+                android:name="rotationGroup"
+                android:pivotX="256"
+                android:pivotY="256">
+                <clip-path
+                    android:pathData="M0,0h512v512h-512z M 0,0"/>
+                <path
+                    android:fillColor="#FF000000"
+                    android:pathData="M256,0c-7.9,0 -14.2,6.4 -14.2,14.2v85.3c0,7.9 6.4,14.2 14.2,14.2c7.9,0 14.2,-6.4 14.2,-14.2V14.2C270.2,6.4 263.9,0 256,0M84.9,70.7c-3.6,0 -7,1.7 -9.8,4.4c-5.6,5.6 -5.6,14.4 0,20l60,60.4c5.6,5.6 14.9,5.6 20.4,0c5.6,-5.6 5.6,-14.9 0,-20.4l-60.4,-60C92.3,72.3 88.5,70.7 84.9,70.7M427.1,70.7c-3.6,0 -7.4,1.7 -10.2,4.4l-60.4,60c-5.6,5.6 -5.6,14.9 0,20.4c5.6,5.6 14.9,5.6 20.4,0l60,-60.4c5.6,-5.6 5.6,-14.4 0,-20C434.1,72.3 430.8,70.7 427.1,70.7M14.2,241.8C6.4,241.8 0,248.1 0,256c0,7.9 6.4,14.2 14.2,14.2h85.3c7.9,0 14.2,-6.4 14.2,-14.2c0,-7.9 -6.4,-14.2 -14.2,-14.2H14.2zM412.4,241.8c-7.9,0 -14.2,6.4 -14.2,14.2c0,7.9 6.4,14.2 14.2,14.2h85.3c7.9,0 14.2,-6.4 14.2,-14.2c0,-7.9 -6.4,-14.2 -14.2,-14.2H412.4zM145.3,352.4c-3.6,0 -7.4,1.2 -10.2,4l-60,60.4c-5.5,5.6 -5.6,14.4 0,20c5.6,5.6 14.4,5.6 20,0l60.4,-60c5.6,-5.6 5.6,-14.9 0,-20.4C152.8,353.7 149,352.4 145.3,352.4L145.3,352.4zM366.7,352.4c-3.6,0 -7.4,1.2 -10.2,4c-5.6,5.6 -5.6,14.9 0,20.4l60.4,60c5.6,5.6 14.4,5.6 20,0c5.6,-5.6 5.5,-14.4 0,-20l-60,-60.4C374.1,353.7 370.3,352.4 366.7,352.4L366.7,352.4zM256,398.2c-7.9,0 -14.2,6.4 -14.2,14.2v85.3c0,7.9 6.4,14.2 14.2,14.2c7.9,0 14.2,-6.4 14.2,-14.2v-85.3C270.2,404.6 263.9,398.2 256,398.2"/>
+            </group>
+        </vector>
+    </aapt:attr>
+
+    <target
+        android:name="rotationGroup">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="3000"
+                android:repeatCount="infinite"
+                android:startOffset="0"
+                android:propertyName="rotation"
+                android:valueFrom="0"
+                android:valueTo="360"/>
+        </aapt:attr>
+    </target>
+
+</animated-vector>

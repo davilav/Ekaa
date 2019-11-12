@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 public interface HomeView {
 
+    void showLoading();
+    void hideLoading();
+
     void getInstitutionByPartnerSuccess(ArrayList<InstitutionByPartner> data);
     void getDataUserSuccess(DataUser dataUser);
     void getLogoutSuccess();

@@ -47,6 +47,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
 
     public static String OPTION_ACTION = "option_action";
     public static String OPTION_MODALITY = "option_modality";
+    public static String INSTITUTION_ID = "institution_id";
 
     public final static int KITCHEN = 0;
     public final static int WALKERS = 1;
@@ -54,6 +55,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
 
     private NotSchoolPresenter presenter;
     private int optionAction;
+    private int institutionID;
     private RecyclerView recyclerView;
     private ItemAdapter itemAdapter;
     private List<Result> beneficiaries;
@@ -68,11 +70,9 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private SearchView searchView;
     private Dialog dialog;
 
-    //Double Longitude = Utils.getInstance().getObject().getLongitude();
-    //Double Latitude = Utils.getInstance().getObject().getLatitude();
+    Double Longitude = Utils.getInstance().getObject().getLongitude();
+    Double Latitude = Utils.getInstance().getObject().getLatitude();
     private String agreement = "{\"agreement1\":\"AG1\",\"agreement2\":\"AG2\",\"agreement3\":\"AG3\",\"agreement4\":\"AG4\"}";
-    Double longitude = 4.721688;
-    Double latitude = -74.107999;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,9 +80,12 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         setContentView(R.layout.activity_not_school);
         if(savedInstanceState != null){
             optionAction = savedInstanceState.getInt(OPTION_ACTION);
+            modalities = new Gson().fromJson(savedInstanceState.getString(OPTION_MODALITY), new TypeToken<List<Modality>>(){}.getType());
+            institutionID = savedInstanceState.getInt(INSTITUTION_ID);
         } else {
             optionAction = getIntent().getIntExtra(OPTION_ACTION, -1);
             modalities = new Gson().fromJson(getIntent().getStringExtra(OPTION_MODALITY), new TypeToken<List<Modality>>(){}.getType());
+            institutionID = getIntent().getIntExtra(INSTITUTION_ID, -1);
         }
 
         presenter = new NotSchoolPresenterImpl(this);
@@ -110,7 +113,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     }
 
     private void setAdapterRecycler() {
-        itemAdapter = new ItemAdapter(getApplicationContext(), itemList, modalities, this);
+        itemAdapter = new ItemAdapter(getApplicationContext(), itemList, modalities, institutionID, this);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -261,7 +264,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     public void getListBeneficiarySuccess(BeneficiaryArray beneficiaryArray) {
         progressBar.setVisibility(View.INVISIBLE);
         beneficiaries =  beneficiaryArray.getResults();
-        recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries, modalities, this));
+        recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries, modalities, institutionID, this));
     }
 
     @Override
@@ -278,7 +281,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     @Override
     public void registerAttendance(Dialog myDialog, int institution, int userID, int person, int modality){
         dialog = myDialog;
-        presenter.setRegisterAttendance(Utils.getInstance().getObj().getToken(), longitude, latitude, institution, userID, person, modality);
+        presenter.setRegisterAttendance(Utils.getInstance().getObj().getToken(), Longitude, Latitude, institution, userID, person, modality);
     }
 
     @Override

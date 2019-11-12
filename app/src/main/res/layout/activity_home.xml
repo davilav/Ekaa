@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <ImageView
         android:id="@+id/clover"
         android:layout_width="201dp"
@@ -72,7 +76,8 @@
             android:id="@+id/spinnergeolocation"
             android:layout_width="300dp"
             android:layout_height="30dp"
-            android:background="@drawable/login_rounded" />
+            android:background="@drawable/login_rounded"
+            android:focusable="false"/>
 
 
         <TextView
@@ -98,7 +103,8 @@
             android:id="@+id/spinnerpartner"
             android:layout_width="300dp"
             android:layout_height="30dp"
-            android:background="@drawable/login_rounded">
+            android:background="@drawable/login_rounded"
+            android:focusable="false">
 
         </EditText>
 
@@ -415,6 +421,10 @@
         app:layout_constraintHorizontal_bias="0.923"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include layout="@layout/progressbar"/>
 
 
 

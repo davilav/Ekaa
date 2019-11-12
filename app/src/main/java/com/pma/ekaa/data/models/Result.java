@@ -59,6 +59,12 @@ public class Result {
     private String registration_date;
     @Nullable
     private String updated_date;
+    @Nullable
+    private String attendance = null;
+    @Nullable
+    private String attendance_limit = null;
+    @Nullable
+    private String color = null;
 
 
     public Integer getId() {
@@ -267,5 +273,31 @@ public class Result {
 
     public void setUpdated_date(String updated_date) {
         this.updated_date = updated_date;
+    }
+
+    public String getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance( String attendance) {
+        this.attendance = attendance;
+    }
+
+
+    public String getAttendance_limit() {
+        return attendance_limit;
+    }
+
+    public void setAttendance_limit( String attendance_limit) {
+        this.attendance_limit = attendance_limit;
+    }
+
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }
