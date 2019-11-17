@@ -1,7 +1,7 @@
 package com.pma.ekaa.ui.home.presenter;
 
 import com.pma.ekaa.data.models.DataUser;
-import com.pma.ekaa.data.models.InstitutionByPartner;
+import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.RequestUser;
 import com.pma.ekaa.data.repository.home.HomeRepository;
@@ -21,8 +21,18 @@ public class HomePresenterImpl implements HomePresenter {
     }
 
     @Override
-    public void getDataInstitutionByPartner(RequestUser requestUser) {
-        repository.getDataInstitutionByPartner(requestUser);
+    public void getDataDepartment(RequestUser requestUser) {
+        repository.getDataDepartment(requestUser);
+    }
+
+    @Override
+    public void getDataTown(int departmentID, RequestUser requestUser) {
+        repository.getDataTown(departmentID, requestUser);
+    }
+
+    @Override
+    public void getDataInstitution(String partner, int townID, RequestUser requestUser) {
+        repository.getDataInstitution(partner, townID, requestUser);
     }
 
     @Override
@@ -41,8 +51,18 @@ public class HomePresenterImpl implements HomePresenter {
     }
 
     @Override
-    public void getInstitutionByPartnerSuccess(ArrayList<InstitutionByPartner> data) {
-        view.getInstitutionByPartnerSuccess(data);
+    public void getDepartmentSuccess(ArrayList<Data> data) {
+        view.getDepartmentSuccess(data);
+    }
+
+    @Override
+    public void getInstitutionSuccess(ArrayList<Data> data) {
+        view.getInstitutionSuccess(data);
+    }
+
+    @Override
+    public void getTownSuccess(ArrayList<Data> data) {
+        view.getTownSuccess(data);
     }
 
     @Override

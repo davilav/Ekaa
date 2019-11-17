@@ -1,6 +1,7 @@
 package com.pma.ekaa.ui.register;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -14,7 +15,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.pma.ekaa.R;
+import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.ui.BaseActivity;
+import com.pma.ekaa.ui.dialog.SelectOptionDialog;
 import com.pma.ekaa.ui.home.HomeActivity;
 import com.pma.ekaa.ui.login.LoginActivity;
 import com.pma.ekaa.data.remote.ApiClient;
@@ -23,6 +26,7 @@ import com.pma.ekaa.data.models.User;
 import com.pma.ekaa.ui.register.presenter.RegisterPresenter;
 import com.pma.ekaa.ui.register.presenter.RegisterPresenterImpl;
 import com.pma.ekaa.ui.welcome.WelcomeActivity;
+import com.pma.ekaa.utils.PreferencesHelper;
 
 import es.dmoral.toasty.Toasty;
 import github.ishaan.buttonprogressbar.ButtonProgressBar;
@@ -34,58 +38,67 @@ import static maes.tech.intentanim.CustomIntent.customType;
 
 public class RegisterActivity extends BaseActivity implements RegisterView, View.OnClickListener {
 
+    private ConstraintLayout loading;
     private Button memberButton;
-    private EditText emailtxt, passtxt, pass2txt, usernametxt;
+    private EditText nameUser, lastNameUser, emailUser, user, passUser, confirmPassUser, userPartner, userRol;
     private ButtonProgressBar bar;
     private RegisterPresenter presenter;
+    private int partnerID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        loading = findViewById(R.id.progressBar);
+        nameUser = findViewById(R.id.nameUser);
+        lastNameUser = findViewById(R.id.lastnameUser);
+        emailUser = findViewById(R.id.emailUser);
+        user = findViewById(R.id.user);
+        passUser = findViewById(R.id.passUser);
+        confirmPassUser = findViewById(R.id.confirmPassUser);
+        userPartner = findViewById(R.id.userPartner);
+        userRol = findViewById(R.id.userRol);
         memberButton = findViewById(R.id.memberButton);
-        emailtxt = findViewById(R.id.emailtext);
-        passtxt = findViewById(R.id.passtext);
-        pass2txt = findViewById(R.id.confirmtext);
-        usernametxt = findViewById(R.id.roltext);
         bar = findViewById(R.id.btn_recovery);
+
         presenter = new RegisterPresenterImpl(this);
+
+        userRol.setText("1");
+        userRol.setEnabled(false);
 
         bar.setOnClickListener(this);
         memberButton.setOnClickListener(this);
+        userPartner.setOnClickListener(this);
 
     }
 
     private void register() {
 
-        final String email = emailtxt.getText().toString();
-        final String pass = passtxt.getText().toString();
-        final String pass2 = pass2txt.getText().toString();
-        final String user = usernametxt.getText().toString();
-        final Integer partner = 1;
-        final Integer rol = 1;
-
-        //Register register = new Register(user, email, pass, pass2, partner, rol);
+        final String firstName = nameUser.getText().toString();
+        final String lastName = lastNameUser.getText().toString();
+        final String email = emailUser.getText().toString();
+        final String userName = user.getText().toString();
+        final String pass = passUser.getText().toString();
+        final String pass2 = confirmPassUser.getText().toString();
 
         if (TextUtils.isEmpty(email)) {
             Toasty.warning(RegisterActivity.this, "Debes ingresar tu Email", Toast.LENGTH_SHORT, true).show();
             bar.stopLoader();
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailtxt.setError("Enter a valid Email");
-            emailtxt.requestFocus();
+            emailUser.setError("Enter a valid Email");
+            emailUser.requestFocus();
             bar.stopLoader();
         } else if (TextUtils.isEmpty(pass)) {
             Toasty.warning(RegisterActivity.this, "Debes ingresar una contraseña", Toast.LENGTH_SHORT, true).show();
             bar.stopLoader();
-        } else if (TextUtils.isEmpty(user)) {
+        } else if (TextUtils.isEmpty(userName)) {
             Toasty.warning(RegisterActivity.this, "Debes ingresar un usuario", Toast.LENGTH_SHORT, true).show();
             bar.stopLoader();
         } else if (TextUtils.isEmpty(pass2)) {
             Toasty.warning(RegisterActivity.this, "Debes ingresar una contraseña", Toast.LENGTH_SHORT, true).show();
             bar.stopLoader();
         } else {
-            presenter.setRegister(user, email, pass, pass2, partner, rol);
+            presenter.setRegister(userName, email, pass, pass2, firstName, lastName, partnerID, Integer.parseInt(userRol.getText().toString()));
         }
     }
 
@@ -93,6 +106,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_recovery: {
+                showLoading();
                 bar.startLoader();
                 register();
                 break;
@@ -103,21 +117,45 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
                 customType(RegisterActivity.this, "fadein-to-fadeout");
                 break;
             }
+            case R.id.userPartner:
+                SelectOptionDialog.newInstance(
+                        PreferencesHelper.getPreference(getApplicationContext(), PreferencesHelper.KEY_PARTNER, ""),
+                        false,
+                        new SelectOptionDialog.onListenerInterface() {
+                            @Override
+                            public void optionSelect(Data data) {
+                                partnerID = data.getId();
+                                userPartner.setText(data.getName());
+                            }
+                        }).show(getSupportFragmentManager(), "");
+                break;
         }
     }
 
     @Override
     public void registerSuccess() {
+        hideLoading();
         bar.stopLoader();
-        Toasty.success(RegisterActivity.this, "Por favor confime la direccion de correo", Toast.LENGTH_SHORT, true).show();
-        Intent intent = new Intent(RegisterActivity.this, WelcomeActivity.class);
+        Toasty.success(RegisterActivity.this, "Se ha enviando un mensaje de texto", Toast.LENGTH_SHORT, true).show();
+        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
         customType(RegisterActivity.this, "fadein-to-fadeout");
     }
 
     @Override
     public void registerError(String msg) {
+        hideLoading();
         bar.stopLoader();
         Toasty.success(RegisterActivity.this, msg, Toast.LENGTH_SHORT, true).show();
+    }
+
+    @Override
+    public void showLoading() {
+        loading.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        loading.setVisibility(View.GONE);
     }
 }

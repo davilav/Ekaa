@@ -6,33 +6,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.FragmentManager;
 
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
-import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.ui.dialog.SelectOptionDialog;
 import com.pma.ekaa.ui.school.SchoolActivity;
 import com.pma.ekaa.ui.settings.SettingsActivity;
 import com.pma.ekaa.data.models.DataUser;
-import com.pma.ekaa.data.models.InstitutionByPartner;
+import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.home.presenter.HomePresenter;
 import com.pma.ekaa.ui.home.presenter.HomePresenterImpl;
 import com.pma.ekaa.ui.not_school.NotSchoolActivity;
-import com.pma.ekaa.utils.PreferencesHelper;
 import com.pma.ekaa.utils.Utils;
 import com.pma.ekaa.ui.welcome.WelcomeActivity;
 
@@ -48,24 +42,22 @@ import static maes.tech.intentanim.CustomIntent.customType;
 public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.OnMenuItemClickListener, View.OnClickListener {
 
     private ImageView kitchen, school, inkind, walkers, cloud, url, settings, info, menu, bgApp, clover;
-    private String token = Utils.getInstance().getObj().getToken();
     private ConstraintLayout loading;
     private Animation bganim, cloveranim, fromtop, fromBottom;
     private LinearLayout textSplash, textHome, home;
-    private EditText partner, location;
+    private EditText departmentGeolocation, townGeolocation, institutionGeolocation;
     private TextView splashtext, userText, emailtext;
     private ButtonProgressBar bar;
-    private int locationEmpty = 0;
-    private ArrayList typesSpinner1 = new ArrayList();
-    private ArrayList typesSpinner2 = new ArrayList();
-    private ArrayList<Modality> arrayModality;
 
-    private ArrayList<InstitutionByPartner> dataInstitutionbypartner = new ArrayList();
-    private HashMap<Integer, String> mapLocation = new HashMap();
-    private HashMap<Integer, String> mapInstitution = new HashMap();
-    private String locationArray;
-    private String institutionArray;
-    private int idInstitution;
+    private String arrayDepartment = "";
+    private String arrayTown = "";
+    private String arrayInstitution = "";
+
+    private int departmentID = 0;
+    private int townID = 0;
+    private int institutionID = 0;
+
+    private ArrayList<Modality> arrayModality;
 
     private HomePresenter presenter;
 
@@ -85,48 +77,15 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         walkers.setOnClickListener(this);
         settings.setOnClickListener(this);
         bar.setOnClickListener(this);
+        departmentGeolocation.setOnClickListener(this);
+        townGeolocation.setOnClickListener(this);
+        institutionGeolocation.setOnClickListener(this);
 
         showLoading();
 
         presenter.getDataUser(Utils.getInstance().getObj());
-        presenter.getDataInstitutionByPartner(Utils.getInstance().getObj());
+        presenter.getDataDepartment(Utils.getInstance().getObj());
         presenter.getModalities();
-
-        location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showLoading();
-                SelectOptionDialog.newInstance(locationArray, false, new SelectOptionDialog.onListenerInterface() {
-                    @Override
-                    public void optionSelect(Data data) {
-                        hideLoading();
-                        location.setText(data.getName());
-                        int key = getKey(data.getName(), mapLocation);
-                        if (key == locationEmpty) {
-                            partner.setEnabled(false);
-                        } else {
-                            partner.setEnabled(true);
-                            setSpinnerInstitution(key);
-                        }
-                    }
-                }).show(getSupportFragmentManager(), "fragment_edit_name");
-            }
-        });
-
-        partner.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showLoading();
-                SelectOptionDialog.newInstance(institutionArray, false, new SelectOptionDialog.onListenerInterface() {
-                    @Override
-                    public void optionSelect(Data data) {
-                        hideLoading();
-                        partner.setText(data.getName());
-                        idInstitution = getKey(data.getName(), mapInstitution);
-                    }
-                }).show(getSupportFragmentManager(), "fragment_edit_name");
-            }
-        });
 
     }
 
@@ -147,15 +106,17 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         school = findViewById(R.id.schoolButton);
         inkind = findViewById(R.id.inkindButton);
         walkers = findViewById(R.id.walkersButton);
-        partner = findViewById(R.id.spinnerpartner);
-        location = findViewById(R.id.spinnergeolocation);
+        departmentGeolocation = findViewById(R.id.departmentGeolocation);
+        townGeolocation = findViewById(R.id.townGeolocation);
+        institutionGeolocation = findViewById(R.id.institutionGeolocation);
         clover = findViewById(R.id.clover);
         settings = findViewById(R.id.settingsButton);
         userText = findViewById(R.id.userText);
         emailtext = findViewById(R.id.textemailhome);
         bar = findViewById(R.id.btn_recovery);
-        partner.setEnabled(false);
-
+        townGeolocation.setEnabled(false);
+        institutionGeolocation.setEnabled(false);
+        bar.setEnabled(false);
     }
 
     @Override
@@ -173,7 +134,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 Intent intent = new Intent(HomeActivity.this, NotSchoolActivity.class);
                 intent.putExtra(NotSchoolActivity.OPTION_ACTION, NotSchoolActivity.KITCHEN);
                 intent.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(NotSchoolActivity.KITCHEN));
-                intent.putExtra(NotSchoolActivity.INSTITUTION_ID, idInstitution);
+                intent.putExtra(NotSchoolActivity.INSTITUTION_ID, institutionID);
                 startActivity(intent);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
@@ -181,7 +142,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 Intent intentWalkers = new Intent(HomeActivity.this, NotSchoolActivity.class);
                 intentWalkers.putExtra(NotSchoolActivity.OPTION_ACTION, NotSchoolActivity.WALKERS);
                 intentWalkers.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(NotSchoolActivity.WALKERS));
-                intentWalkers.putExtra(NotSchoolActivity.INSTITUTION_ID, idInstitution);
+                intentWalkers.putExtra(NotSchoolActivity.INSTITUTION_ID, institutionID);
                 startActivity(intentWalkers);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
@@ -189,7 +150,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 Intent intentInkind = new Intent(HomeActivity.this, NotSchoolActivity.class);
                 intentInkind.putExtra(NotSchoolActivity.OPTION_ACTION, NotSchoolActivity.INKIND);
                 intentInkind.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(NotSchoolActivity.INKIND));
-                intentInkind.putExtra(NotSchoolActivity.INSTITUTION_ID, idInstitution);
+                intentInkind.putExtra(NotSchoolActivity.INSTITUTION_ID, institutionID);
                 startActivity(intentInkind);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
@@ -199,12 +160,69 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
             case R.id.btn_recovery:
-                if(idInstitution != 0){
-                    goHome();
+                goHome();
+                break;
+            case R.id.departmentGeolocation:
+                if(!arrayDepartment.equals("")) {
+                    SelectOptionDialog.newInstance(
+                            arrayDepartment,
+                            false,
+                            new SelectOptionDialog.onListenerInterface() {
+                                @Override
+                                public void optionSelect(Data data) {
+                                    departmentID = data.getId();
+                                    departmentGeolocation.setText(data.getName());
+                                    townGeolocation.setText("Seleccione una opcion");
+                                    townGeolocation.setEnabled(true);
+                                    institutionGeolocation.setEnabled(false);
+                                    bar.setEnabled(false);
+                                    showLoading();
+                                    presenter.getDataTown(departmentID, Utils.getInstance().getObj());
+                                }
+                            }).show(getSupportFragmentManager(), "");
                 } else {
-                    Toasty.warning(HomeActivity.this, "Debe seleccionar una institucion", Toast.LENGTH_SHORT, true).show();
+                    Toasty.warning(HomeActivity.this, "No se encontraron departamentos", Toast.LENGTH_SHORT, true).show();
                 }
-
+                break;
+            case R.id.townGeolocation:
+                if(!arrayTown.equals("")) {
+                    SelectOptionDialog.newInstance(
+                            arrayTown,
+                            false,
+                            new SelectOptionDialog.onListenerInterface() {
+                                @Override
+                                public void optionSelect(Data data) {
+                                    townID = data.getId();
+                                    townGeolocation.setText(data.getName());
+                                    institutionGeolocation.setText("Seleccione una opcion");
+                                    institutionGeolocation.setEnabled(true);
+                                    bar.setEnabled(false);
+                                    showLoading();
+                                    presenter.getDataInstitution("1", townID, Utils.getInstance().getObj());
+                                }
+                            }).show(getSupportFragmentManager(), "");
+                } else {
+                    Toasty.warning(HomeActivity.this, "No se encontraron municipios", Toast.LENGTH_SHORT, true).show();
+                }
+                break;
+            case R.id.institutionGeolocation:
+                if(!arrayInstitution.equals("")) {
+                    SelectOptionDialog.newInstance(
+                            arrayInstitution,
+                            false,
+                            new SelectOptionDialog.onListenerInterface() {
+                                @Override
+                                public void optionSelect(Data data) {
+                                    institutionID = data.getId();
+                                    institutionGeolocation.setText(data.getName());
+                                    bar.setEnabled(true);
+                                }
+                            }).show(getSupportFragmentManager(), "");
+                    break;
+                } else {
+                    Toasty.warning(HomeActivity.this, "No se encontraron instituciones", Toast.LENGTH_SHORT, true).show();
+                }
+                break;
         }
     }
 
@@ -239,28 +257,6 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
 
     }
 
-    private int getKey(String selectedItemText, HashMap<Integer, String> mapData) {
-        int key = 0;
-        for (Map.Entry<Integer, String> map : mapData.entrySet()) {
-            if (map.getValue().equals(selectedItemText)) {
-                key = map.getKey();
-                break;
-            }
-        }
-        return key;
-    }
-
-    private ArrayList<Data> getArrayData(HashMap<Integer, String> mapData) {
-        ArrayList<Data> out = new ArrayList<>();
-        for (Map.Entry<Integer, String> map : mapData.entrySet()) {
-            Data data = new Data();
-            data.setId(map.getKey());
-            data.setName(map.getValue());
-            out.add(data);
-        }
-        return out;
-    }
-
     @Override
     public void showLoading() {
         loading.setVisibility(View.VISIBLE);
@@ -272,9 +268,10 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
     }
 
     @Override
-    public void getInstitutionByPartnerSuccess(ArrayList<InstitutionByPartner> data) {
-        dataInstitutionbypartner = data;
-        setSpinnerLocation();
+    public void getDepartmentSuccess(ArrayList<Data> data) {
+        if(data.size() != 0){
+            arrayDepartment = new Gson().toJson(data);
+        }
         hideLoading();
     }
 
@@ -284,6 +281,22 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         splashtext.setText(Utils.getInstance().getDataUser().getUsername());
         userText.setText(Utils.getInstance().getDataUser().getUsername());
         emailtext.setText(Utils.getInstance().getDataUser().getEmail());
+    }
+
+    @Override
+    public void getTownSuccess(ArrayList<Data> data) {
+        if(data.size() != 0){
+            arrayTown = new Gson().toJson(data);
+        }
+        hideLoading();
+    }
+
+    @Override
+    public void getInstitutionSuccess(ArrayList<Data> data) {
+        if(data.size() != 0){
+            arrayInstitution = new Gson().toJson(data);
+        }
+        hideLoading();
     }
 
     @Override
@@ -305,7 +318,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         Toasty.warning(HomeActivity.this, msg, Toast.LENGTH_SHORT, true).show();
     }
 
-    private void setSpinnerLocation() {
+    /*private void setSpinnerLocation() {
         mapLocation.put(0, "");
         ArrayList<Data> dataLocation;
         for (int position = 0; position < dataInstitutionbypartner.size(); position++) {
@@ -314,7 +327,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         locationArray = new Gson().toJson(getArrayData(mapLocation));
         hideLoading();
         /*ArrayAdapter comboAdapterLocation = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, typesSpinner1);
-        location.setAdapter(comboAdapterLocation);*/
+        location.setAdapter(comboAdapterLocation);
 
     }
 
@@ -329,7 +342,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         institutionArray = new Gson().toJson(getArrayData(mapInstitution));
         hideLoading();
         //partner.setAdapter(comboAdapterInstitution);
-    }
+    }*/
 
     public void goHome() {
         bgApp.animate().translationY(-1900).setDuration(800).setStartDelay(300);

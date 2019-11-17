@@ -4,10 +4,9 @@ import com.pma.ekaa.data.models.Attendance;
 import com.pma.ekaa.data.models.AttendanceDetail;
 import com.pma.ekaa.data.models.AttendanceToday;
 import com.pma.ekaa.data.models.BeneficiaryArray;
-import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.DataUser;
 import com.pma.ekaa.data.models.Email;
-import com.pma.ekaa.data.models.InstitutionByPartner;
+import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.Login;
 import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.Password;
@@ -38,8 +37,8 @@ public interface ApiInterface {
     @POST("rest-auth/logout/")
     Call<UserLog> login();
 
-    @POST("rest-auth/registration/")
-    Call<User> register(@Body Register register);
+    @POST("/api/v1/persons/")
+    Call<Register> register(@Body Register register);
 
     @POST("api/v1/beneficiary/ ")
     Call<Result> registerBeneficiary(@Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
@@ -75,6 +74,9 @@ public interface ApiInterface {
     @GET("/api/v1/recipients/")
     Call<ArrayList<Data>> getRecipients();
 
+    @GET("/api/v1/partners")
+    Call<ArrayList<Data>> getPartners();
+
 
     @GET("rest-auth/login/")
     Call<ResponseBody> getKey(@Header("Authorization") String authToken);
@@ -88,8 +90,14 @@ public interface ApiInterface {
     @POST("/api/v1/attendances/")
     Call<Attendance> registerAttendance(@Body Attendance attendance,@Header("Authorization") String authToken);
 
-    @GET("api/v1/institutions/partner/1")
-    Call<ArrayList<InstitutionByPartner>> getInstitutions(@Header("Authorization") String authToken);
+    @GET("/api/v1/geolocationstype/1/geolocations/")
+    Call<ArrayList<Data>> getDepartments(@Header("Authorization") String authToken);
+
+    @GET("/api/v1/geolocationstype/2/geolocations/{id}")
+    Call<ArrayList<Data>> getTown(@Path("id") String id, @Header("Authorization") String authToken);
+
+    @GET("/api/v1/institutions/partner/{partner_id}/geolocation/{town_id}/ ")
+    Call<ArrayList<Data>> getInstitution(@Path("partner_id") String partnerID, @Path("town_id") String townID, @Header("Authorization") String authToken);
 
     @GET("rest-auth/user/")
     Call<DataUser> getDataUser(@Header("Authorization") String authToken);

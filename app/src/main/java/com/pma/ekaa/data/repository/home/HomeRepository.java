@@ -4,7 +4,11 @@ import com.pma.ekaa.data.models.RequestUser;
 
 public interface HomeRepository {
 
-    void getDataInstitutionByPartner(RequestUser requestUser);
+    void getDataDepartment(RequestUser requestUser);
+
+    void getDataTown(int departmentID, RequestUser requestUser);
+
+    void getDataInstitution(String partner, int townID, RequestUser requestUser);
 
     void getDataUser(RequestUser requestUser);
 
