@@ -4,8 +4,8 @@ import com.pma.ekaa.data.models.Attendance;
 
 public interface NotSchoolRepository {
 
-    void getListBeneficiary(String token, String keyword, int page);
+    void getListBeneficiary(String keyword, int page);
 
-    void setRegisterAttendance(String token, Attendance attendance);
+    void setRegisterAttendance(Attendance attendance);
 
 }

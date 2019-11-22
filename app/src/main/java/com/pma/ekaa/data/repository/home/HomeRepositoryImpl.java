@@ -1,6 +1,5 @@
 package com.pma.ekaa.data.repository.home;
 
-import com.pma.ekaa.data.models.DataUser;
 import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.RequestUser;
@@ -24,8 +23,8 @@ public class HomeRepositoryImpl implements HomeRepository {
     }
 
     @Override
-    public void getDataDepartment(RequestUser requestUser) {
-        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().getDepartments("Token " + requestUser.getToken());
+    public void getDataDepartment() {
+        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().getDepartments("Token " + Utils.getInstance().getDataUser().getToken());
         call.enqueue(new Callback<ArrayList<Data>>() {
             @Override
             public void onResponse(Call<ArrayList<Data>> call, Response<ArrayList<Data>> response) {
@@ -51,8 +50,8 @@ public class HomeRepositoryImpl implements HomeRepository {
     }
 
     @Override
-    public void getDataTown(int departmentID, RequestUser requestUser) {
-        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().getTown(Integer.toString(departmentID), "Token " + requestUser.getToken());
+    public void getDataTown(int departmentID) {
+        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().getTown(Integer.toString(departmentID), "Token " + Utils.getInstance().getDataUser().getToken());
         call.enqueue(new Callback<ArrayList<Data>>() {
             @Override
             public void onResponse(Call<ArrayList<Data>> call, Response<ArrayList<Data>> response) {
@@ -78,8 +77,8 @@ public class HomeRepositoryImpl implements HomeRepository {
     }
 
     @Override
-    public void getDataInstitution(String partner, int townID, RequestUser requestUser) {
-        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().getInstitution(partner, Integer.toString(townID), "Token " + requestUser.getToken());
+    public void getDataInstitution(int townID) {
+        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().getInstitution(String.valueOf(Utils.getInstance().getDataUser().getPartner()), Integer.toString(townID), "Token " + Utils.getInstance().getDataUser().getToken());
         call.enqueue(new Callback<ArrayList<Data>>() {
             @Override
             public void onResponse(Call<ArrayList<Data>> call, Response<ArrayList<Data>> response) {
@@ -105,35 +104,8 @@ public class HomeRepositoryImpl implements HomeRepository {
     }
 
     @Override
-    public void getDataUser(RequestUser requestUser) {
-        Call<DataUser> call = ApiClient.getInstance().getApi().getDataUser("Token " + requestUser.getToken());
-        call.enqueue(new Callback<DataUser>() {
-            @Override
-            public void onResponse(Call<DataUser> call, Response<DataUser> response) {
-                switch (response.code()) {
-                    case 200:
-                        presenter.getDataUserSuccess(response.body());
-                        break;
-                    case 400:
-                        presenter.responseError("Error");
-                        break;
-                    default:
-                        presenter.responseError("Error1");
-                        break;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DataUser> call, Throwable t) {
-                presenter.responseError("error");
-            }
-
-        });
-    }
-
-    @Override
     public void getModalities() {
-        Call<ArrayList<Modality>> call = ApiClient.getInstance().getApi().getModality("Token " + Utils.getInstance().getObj().getToken());
+        Call<ArrayList<Modality>> call = ApiClient.getInstance().getApi().getModality("Token " + Utils.getInstance().getDataUser().getToken());
         call.enqueue(new Callback<ArrayList<Modality>>() {
             @Override
             public void onResponse(Call<ArrayList<Modality>> call, Response<ArrayList<Modality>> response) {

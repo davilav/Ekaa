@@ -21,7 +21,7 @@ public class Location implements LocationListener {
         Geolocation obj = new Geolocation();
         obj.setLatitude(latitude);
         obj.setLongitude(longitude);
-        Utils.getInstance().setObject(obj);
+        Utils.getInstance().setGeolocation(obj);
     }
 
     @Override

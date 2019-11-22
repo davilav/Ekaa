@@ -2,7 +2,6 @@ package com.pma.ekaa.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.pma.ekaa.R;
-import com.pma.ekaa.data.models.RequestUser;
+import com.pma.ekaa.data.models.UserLog;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.forgot_password.PasswordActivity;
 import com.pma.ekaa.ui.home.HomeActivity;
@@ -94,9 +93,9 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
 
 
     @Override
-    public void loginSuccess(RequestUser requestUser) {
+    public void loginSuccess(UserLog response) {
         bar.stopLoader();
-        Utils.getInstance().setObj(requestUser);
+        Utils.getInstance().setDataUser(response);
         Toasty.success(LoginActivity.this, "Bienvenido!", Toast.LENGTH_SHORT, true).show();
         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(intent);

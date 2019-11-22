@@ -8,6 +8,7 @@ import com.pma.ekaa.data.models.BeneficiaryArray;
 import com.pma.ekaa.data.remote.ApiClient;
 import com.pma.ekaa.ui.adapters.ItemAdapter;
 import com.pma.ekaa.ui.not_school.presenter.NotSchoolPresenter;
+import com.pma.ekaa.utils.Utils;
 
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
@@ -23,8 +24,8 @@ public class NotSchoolRepositoryImpl implements NotSchoolRepository {
     }
 
     @Override
-    public void getListBeneficiary(String token, String keyword, int page) {
-        retrofit2.Call<BeneficiaryArray> call = ApiClient.getInstance().getApi().listBeneficiary("Token "+ token, keyword, page);
+    public void getListBeneficiary(String keyword, int page) {
+        retrofit2.Call<BeneficiaryArray> call = ApiClient.getInstance().getApi().listBeneficiary("Token "+ Utils.getInstance().getDataUser().getToken(), keyword, page);
         call.enqueue(new Callback<BeneficiaryArray>() {
             @Override
             public void onResponse(Call<BeneficiaryArray> call, Response<BeneficiaryArray> response) {
@@ -48,8 +49,8 @@ public class NotSchoolRepositoryImpl implements NotSchoolRepository {
     }
 
     @Override
-    public void setRegisterAttendance(String token, Attendance attendance) {
-        Call<Attendance> call = ApiClient.getInstance().getApi().registerAttendance(attendance,("Token "+token));
+    public void setRegisterAttendance(Attendance attendance) {
+        Call<Attendance> call = ApiClient.getInstance().getApi().registerAttendance(attendance,("Token "+Utils.getInstance().getDataUser().getToken()));
         call.enqueue(new Callback<Attendance>() {
             @Override
             public void onResponse(Call<Attendance> call, Response<Attendance> response) {

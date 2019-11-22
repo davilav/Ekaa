@@ -17,8 +17,8 @@ public class NotSchoolPresenterImpl implements NotSchoolPresenter {
     }
 
     @Override
-    public void getListBeneficiary(String token, String keyword, int page) {
-        repository.getListBeneficiary(token, keyword, page);
+    public void getListBeneficiary(String keyword, int page) {
+        repository.getListBeneficiary(keyword, page);
     }
 
     @Override
@@ -37,9 +37,8 @@ public class NotSchoolPresenterImpl implements NotSchoolPresenter {
     }
 
     @Override
-    public void setRegisterAttendance(String token, Double longitude, Double latitude, int institution, int userID, int person, int modality) {
+    public void setRegisterAttendance(Double longitude, Double latitude, int institution, int userID, int person, int modality) {
         repository.setRegisterAttendance(
-                token,
                 new Attendance(
                         longitude,
                         latitude,

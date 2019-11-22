@@ -1,6 +1,5 @@
 package com.pma.ekaa.ui.home.presenter;
 
-import com.pma.ekaa.data.models.DataUser;
 import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.RequestUser;
@@ -21,23 +20,18 @@ public class HomePresenterImpl implements HomePresenter {
     }
 
     @Override
-    public void getDataDepartment(RequestUser requestUser) {
-        repository.getDataDepartment(requestUser);
+    public void getDataDepartment() {
+        repository.getDataDepartment();
     }
 
     @Override
-    public void getDataTown(int departmentID, RequestUser requestUser) {
-        repository.getDataTown(departmentID, requestUser);
+    public void getDataTown(int departmentID) {
+        repository.getDataTown(departmentID);
     }
 
     @Override
-    public void getDataInstitution(String partner, int townID, RequestUser requestUser) {
-        repository.getDataInstitution(partner, townID, requestUser);
-    }
-
-    @Override
-    public void getDataUser(RequestUser requestUser) {
-        repository.getDataUser(requestUser);
+    public void getDataInstitution(int townID) {
+        repository.getDataInstitution(townID);
     }
 
     @Override
@@ -63,11 +57,6 @@ public class HomePresenterImpl implements HomePresenter {
     @Override
     public void getTownSuccess(ArrayList<Data> data) {
         view.getTownSuccess(data);
-    }
-
-    @Override
-    public void getDataUserSuccess(DataUser dataUser) {
-        view.getDataUserSuccess(dataUser);
     }
 
     @Override

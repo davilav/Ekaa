@@ -1,6 +1,5 @@
 package com.pma.ekaa.ui.home;
 
-import com.pma.ekaa.data.models.DataUser;
 import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.Modality;
 
@@ -12,7 +11,6 @@ public interface HomeView {
     void hideLoading();
 
     void getDepartmentSuccess(ArrayList<Data> data);
-    void getDataUserSuccess(DataUser dataUser);
     void getTownSuccess(ArrayList<Data> data);
     void getInstitutionSuccess(ArrayList<Data> data);
     void getLogoutSuccess();

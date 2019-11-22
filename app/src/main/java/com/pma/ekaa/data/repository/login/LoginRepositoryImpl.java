@@ -25,7 +25,7 @@ public class LoginRepositoryImpl implements LoginRepository {
             @Override
             public void onResponse(Call<UserLog> call, Response<UserLog> response) {
                 if (response.code() == 200) {
-                    presenter.responseSuccess(response.body().getKey());
+                    presenter.responseSuccess(response.body());
                 } else if (response.code() == 400) {
                     //Toasty.error(LoginActivity.this, "Error al iniciar sesion.", Toast.LENGTH_SHORT, true).show();
                     presenter.responseError("Error al iniciar sesion.");

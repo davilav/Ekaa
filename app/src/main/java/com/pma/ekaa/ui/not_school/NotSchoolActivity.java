@@ -27,7 +27,6 @@ import com.google.gson.reflect.TypeToken;
 import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.BeneficiaryArray;
 import com.pma.ekaa.data.models.Modality;
-import com.pma.ekaa.data.models.RequestUser;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.adapters.ItemAdapter;
@@ -40,8 +39,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
-
-import static maes.tech.intentanim.CustomIntent.customType;
 
 public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter{
 
@@ -70,8 +67,8 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private SearchView searchView;
     private Dialog dialog;
 
-    Double Longitude = Utils.getInstance().getObject().getLongitude();
-    Double Latitude = Utils.getInstance().getObject().getLatitude();
+    Double Longitude = Utils.getInstance().getGeolocation().getLongitude();
+    Double Latitude = Utils.getInstance().getGeolocation().getLatitude();
     private String agreement = "{\"agreement1\":\"AG1\",\"agreement2\":\"AG2\",\"agreement3\":\"AG3\",\"agreement4\":\"AG4\"}";
 
     @Override
@@ -256,7 +253,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
             previouspage.setVisibility(View.VISIBLE);
         }
 
-        presenter.getListBeneficiary(Utils.getInstance().getObj().getToken(),keyword,page);
+        presenter.getListBeneficiary(keyword,page);
 
     }
 
@@ -281,7 +278,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     @Override
     public void registerAttendance(Dialog myDialog, int institution, int userID, int person, int modality){
         dialog = myDialog;
-        presenter.setRegisterAttendance(Utils.getInstance().getObj().getToken(), Longitude, Latitude, institution, userID, person, modality);
+        presenter.setRegisterAttendance(Longitude, Latitude, institution, userID, person, modality);
     }
 
     @Override

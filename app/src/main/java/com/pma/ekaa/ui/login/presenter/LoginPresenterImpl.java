@@ -2,6 +2,7 @@ package com.pma.ekaa.ui.login.presenter;
 
 import com.pma.ekaa.data.models.Login;
 import com.pma.ekaa.data.models.RequestUser;
+import com.pma.ekaa.data.models.UserLog;
 import com.pma.ekaa.data.repository.login.LoginRepository;
 import com.pma.ekaa.data.repository.login.LoginRepositoryImpl;
 import com.pma.ekaa.ui.login.LoginView;
@@ -26,10 +27,10 @@ public class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Override
-    public void responseSuccess(String token) {
-        RequestUser requestUser = new RequestUser();
-        requestUser.setToken(token);
-        view.loginSuccess(requestUser);
+    public void responseSuccess(UserLog response) {
+        /*RequestUser requestUser = new RequestUser();
+        requestUser.setToken(response);*/
+        view.loginSuccess(response);
     }
 
     @Override

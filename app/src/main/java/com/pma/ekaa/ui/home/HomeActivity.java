@@ -21,7 +21,6 @@ import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.ui.dialog.SelectOptionDialog;
 import com.pma.ekaa.ui.school.SchoolActivity;
 import com.pma.ekaa.ui.settings.SettingsActivity;
-import com.pma.ekaa.data.models.DataUser;
 import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.home.presenter.HomePresenter;
@@ -31,8 +30,6 @@ import com.pma.ekaa.utils.Utils;
 import com.pma.ekaa.ui.welcome.WelcomeActivity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 import github.ishaan.buttonprogressbar.ButtonProgressBar;
@@ -83,8 +80,8 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
 
         showLoading();
 
-        presenter.getDataUser(Utils.getInstance().getObj());
-        presenter.getDataDepartment(Utils.getInstance().getObj());
+        setDataUserSuccess();
+        presenter.getDataDepartment();
         presenter.getModalities();
 
     }
@@ -177,7 +174,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                                     institutionGeolocation.setEnabled(false);
                                     bar.setEnabled(false);
                                     showLoading();
-                                    presenter.getDataTown(departmentID, Utils.getInstance().getObj());
+                                    presenter.getDataTown(departmentID);
                                 }
                             }).show(getSupportFragmentManager(), "");
                 } else {
@@ -198,7 +195,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                                     institutionGeolocation.setEnabled(true);
                                     bar.setEnabled(false);
                                     showLoading();
-                                    presenter.getDataInstitution("1", townID, Utils.getInstance().getObj());
+                                    presenter.getDataInstitution(townID);
                                 }
                             }).show(getSupportFragmentManager(), "");
                 } else {
@@ -275,9 +272,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         hideLoading();
     }
 
-    @Override
-    public void getDataUserSuccess(DataUser dataUser) {
-        Utils.getInstance().setDataUser(dataUser);
+    private void setDataUserSuccess() {
         splashtext.setText(Utils.getInstance().getDataUser().getUsername());
         userText.setText(Utils.getInstance().getDataUser().getUsername());
         emailtext.setText(Utils.getInstance().getDataUser().getEmail());
