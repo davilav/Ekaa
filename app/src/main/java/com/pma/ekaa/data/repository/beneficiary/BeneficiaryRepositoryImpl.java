@@ -22,7 +22,7 @@ public class BeneficiaryRepositoryImpl implements BeneficiaryRepository {
 
     @Override
     public void setCreateBeneficiary(RegisterBeneficiary registerBeneficiary) {
-        Call<Result> call = ApiClient.getInstance().getApi().registerBeneficiary(registerBeneficiary,"Token " + Utils.getInstance().getObj().getToken());
+        Call<Result> call = ApiClient.getInstance().getApi().registerBeneficiary(registerBeneficiary,"Token " + Utils.getInstance().getDataUser().getToken());
         call.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
@@ -50,7 +50,7 @@ public class BeneficiaryRepositoryImpl implements BeneficiaryRepository {
 
     @Override
     public void setUpdateBeneficiary(String id, RegisterBeneficiary registerBeneficiary) {
-        Call<Result> call = ApiClient.getInstance().getApi().updateBeneficiary(id,registerBeneficiary, "Token " + Utils.getInstance().getObj().getToken());
+        Call<Result> call = ApiClient.getInstance().getApi().updateBeneficiary(id,registerBeneficiary, "Token " + Utils.getInstance().getDataUser().getToken());
         call.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {

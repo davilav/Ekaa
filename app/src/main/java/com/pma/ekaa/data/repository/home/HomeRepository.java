@@ -1,12 +1,13 @@
 package com.pma.ekaa.data.repository.home;
 
-import com.pma.ekaa.data.models.RequestUser;
 
 public interface HomeRepository {
 
-    void getDataInstitutionByPartner(RequestUser requestUser);
+    void getDataDepartment();
 
-    void getDataUser(RequestUser requestUser);
+    void getDataTown(int departmentID);
+
+    void getDataInstitution(int townID);
 
     void getModalities();
 

@@ -1,14 +1,45 @@
 package com.pma.ekaa.data.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class User {
 
-    String email;
-    String firstname;
-    String lastname;
-    String user;
-    String password;
-    int partner_id;
-    int rol_id;
+    @SerializedName("username")
+    @Expose
+    private String username;
+    @SerializedName("email")
+    @Expose
+    private String email;
+    @SerializedName("first_name")
+    @Expose
+    private String firstName;
+    @SerializedName("last_name")
+    @Expose
+    private String lastName;
+    @SerializedName("password1")
+    @Expose
+    private String password1;
+    @SerializedName("password2")
+    @Expose
+    private String password2;
+
+    public User(String username, String email, String firstName, String lastName, String password1, String password2) {
+        this.username = username;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password1 = password1;
+        this.password2 = password2;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getEmail() {
         return email;
@@ -18,51 +49,35 @@ public class User {
         this.email = email;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getUser() {
-        return user;
+    public String getPassword1() {
+        return password1;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setPassword1(String password1) {
+        this.password1 = password1;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassword2() {
+        return password2;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getPartner_id() {
-        return partner_id;
-    }
-
-    public void setPartner_id(int partner_id) {
-        this.partner_id = partner_id;
-    }
-
-    public int getRol_id() {
-        return rol_id;
-    }
-
-    public void setRol_id(int rol_id) {
-        this.rol_id = rol_id;
+    public void setPassword2(String password2) {
+        this.password2 = password2;
     }
 }

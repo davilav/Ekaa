@@ -1,7 +1,6 @@
 package com.pma.ekaa.ui.home.presenter;
 
-import com.pma.ekaa.data.models.DataUser;
-import com.pma.ekaa.data.models.InstitutionByPartner;
+import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.RequestUser;
 
@@ -9,16 +8,20 @@ import java.util.ArrayList;
 
 public interface HomePresenter {
 
-    void getDataInstitutionByPartner(RequestUser requestUser);
-    void getDataUser(RequestUser requestUser);
+    void getDataDepartment();
+    void getDataTown(int departmentID);
+    void getDataInstitution(int townID);
+
     void setLogout();
     void getModalities();
+    void getDepartmentSuccess(ArrayList<Data> data);
+    void getInstitutionSuccess(ArrayList<Data> data);
 
-    void getInstitutionByPartnerSuccess(ArrayList<InstitutionByPartner> data);
-    void getDataUserSuccess(DataUser dataUser);
+    void getTownSuccess(ArrayList<Data> data);
+
     void getLogoutSuccess();
+
     void getModalitySuccess(ArrayList<Modality> modality);
 
     void responseError(String msg);
-
 }

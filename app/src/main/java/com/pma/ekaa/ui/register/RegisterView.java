@@ -5,4 +5,7 @@ public interface RegisterView {
     void registerSuccess();
     void registerError(String msg);
 
+    void showLoading();
+    void hideLoading();
+
 }

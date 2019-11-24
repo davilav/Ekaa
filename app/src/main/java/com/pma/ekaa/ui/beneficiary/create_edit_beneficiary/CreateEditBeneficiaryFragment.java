@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -224,7 +223,6 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             case R.id.genderbeneficiary:
                 SelectOptionDialog.newInstance(
                         PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_GENDERS, ""),
-                        false,
                         new SelectOptionDialog.onListenerInterface() {
                     @Override
                     public void optionSelect(Data data) {
@@ -235,7 +233,6 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             case R.id.nationalitybeneficiary:
                 SelectOptionDialog.newInstance(
                         PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_NATIONALITY, ""),
-                        false,
                         new SelectOptionDialog.onListenerInterface() {
                             @Override
                             public void optionSelect(Data data) {
@@ -246,7 +243,6 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             case R.id.documentTypebeneficiary:
                 SelectOptionDialog.newInstance(
                         PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_DOCUMENTS, ""),
-                        false,
                         new SelectOptionDialog.onListenerInterface() {
                             @Override
                             public void optionSelect(Data data) {
@@ -257,7 +253,6 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             case R.id.maritalStatus:
                 SelectOptionDialog.newInstance(
                         PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_MARITAL, ""),
-                        false,
                         new SelectOptionDialog.onListenerInterface() {
                             @Override
                             public void optionSelect(Data data) {

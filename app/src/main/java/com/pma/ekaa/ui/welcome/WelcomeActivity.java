@@ -1,6 +1,7 @@
 package com.pma.ekaa.ui.welcome;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 
@@ -10,30 +11,41 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.pma.ekaa.R;
+import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.Geolocation;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.dialog.SelectOptionDialog;
+import com.pma.ekaa.ui.home.HomeActivity;
 import com.pma.ekaa.ui.login.LoginActivity;
 import com.pma.ekaa.ui.forgot_password.PasswordActivity;
 import com.pma.ekaa.ui.register.RegisterActivity;
+import com.pma.ekaa.ui.welcome.presenter.WelcomePresenter;
+import com.pma.ekaa.ui.welcome.presenter.WelcomePresenterImpl;
+import com.pma.ekaa.utils.Location;
 import com.pma.ekaa.utils.PreferencesHelper;
 import com.pma.ekaa.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.Locale;
+
+import es.dmoral.toasty.Toasty;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
-public class WelcomeActivity extends BaseActivity implements WelcomeView {
+public class WelcomeActivity extends BaseActivity implements WelcomeView, View.OnClickListener {
 
+    private WelcomePresenter presenter;
+    private ConstraintLayout loading;
     Button login, register, password, idioma;
     private Locale locale;
     Double Latitude,Longitude;
@@ -43,55 +55,51 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-
-
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
-            } else {
-                locationStart();
-            }
-
-
-
+        presenter = new WelcomePresenterImpl(this);
+        loading = findViewById(R.id.progressBar);
         login = findViewById(R.id.loginButton);
         register = findViewById(R.id.registerButton);
         password = findViewById(R.id.optionsButton);
         idioma = findViewById(R.id.idiomaButton);
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        login.setOnClickListener(this);
+        register.setOnClickListener(this);
+        password.setOnClickListener(this);
+        idioma.setOnClickListener(this);
+
+        getLocation();
+
+    }
+
+    private void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
+        } else {
+            locationStart();
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId())  {
+            case R.id.loginButton:
                 Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                 startActivity(intent);
                 customType(WelcomeActivity.this, "fadein-to-fadeout");
-            }
-        });
-
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(WelcomeActivity.this, RegisterActivity.class);
-                startActivity(intent);
+                break;
+            case R.id.registerButton:
+                showLoading();
+                presenter.getPartnersData();
+                break;
+            case R.id.optionsButton:
+                Intent intent2 = new Intent(WelcomeActivity.this, PasswordActivity.class);
+                startActivity(intent2);
                 customType(WelcomeActivity.this, "fadein-to-fadeout");
-
-            }
-        });
-
-        password.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(WelcomeActivity.this, PasswordActivity.class);
-                startActivity(intent);
-                customType(WelcomeActivity.this, "fadein-to-fadeout");
-            }
-        });
-
-        idioma.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View view) {
-                        showDialog();
-                    }
-                });
+                break;
+            case R.id.idiomaButton:
+                showDialog();
+                break;
+        }
     }
 
 
@@ -131,8 +139,7 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView {
 
     private void locationStart() {
         LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        WelcomeActivity.Localizacion Local = new WelcomeActivity.Localizacion();
-        Local.setMainActivity(this);
+        Location Local = new Location();
         final boolean gpsEnabled = mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         if (!gpsEnabled) {
             Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -156,50 +163,33 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView {
         }
     }
 
-    public class Localizacion implements LocationListener {
-        WelcomeActivity geolocationActivity;
-
-        public WelcomeActivity getGeolocationActivity() {
-            return geolocationActivity;
-        }
-
-        public void setMainActivity(WelcomeActivity mainActivity) {
-            this.geolocationActivity = mainActivity;
-        }
-
-        @Override
-        public void onLocationChanged(Location loc) {
-            // Este metodo se ejecuta cada vez que el GPS recibe nuevas coordenadas
-            // debido a la deteccion de un cambio de ubicacion
-            Latitude = loc.getLatitude();
-            Longitude = loc.getLongitude();
-
-            double scale = Math.pow(10,7);
-            Latitude = Math.round(Latitude * scale) / scale;
-            Longitude = Math.round(Longitude * scale) / scale;
-
-            Geolocation obj = new Geolocation();
-            obj.setLatitude(Latitude);
-            obj.setLongitude(Longitude);
-            Utils.getInstance().setObject(obj);
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-
+    @Override
+    public void getPartnersSuccess(ArrayList<Data> data) {
+        if(data.size() != 0) {
+            PreferencesHelper.setPreference(getApplication(), PreferencesHelper.KEY_PARTNER, new Gson().toJson(data));
+            Intent intent = new Intent(WelcomeActivity.this, RegisterActivity.class);
+            startActivity(intent);
+            customType(WelcomeActivity.this, "fadein-to-fadeout");
+        } else {
+            responseError("Se ha producido un error");
         }
     }
 
+    @Override
+    public void responseError(String msg) {
+        hideLoading();
+        Toasty.warning(WelcomeActivity.this, msg, Toast.LENGTH_SHORT, true).show();
+    }
+
+    @Override
+    public void showLoading() {
+        loading.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        loading.setVisibility(View.GONE);
+    }
 }
 
 

@@ -1,52 +1,41 @@
 package com.pma.ekaa.data.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Register {
 
-    String username;
-    String email;
-    String password1;
-    String password2;
-    Integer partner;
-    Integer rol;
+    @SerializedName("user")
+    @Expose
+    private User user;
+    @SerializedName("partner")
+    @Expose
+    private int partner;
+    @SerializedName("rol")
+    @Expose
+    private int rol;
 
-    public Register(String username, String email, String password1, String password2, Integer partner, Integer id) {
-        this.username = username;
-        this.email = email;
-        this.password1 = password1;
-        this.password2 = password2;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getPartner() {
+        return partner;
+    }
+
+    public void setPartner(int partner) {
         this.partner = partner;
+    }
+
+    public int getRol() {
+        return rol;
+    }
+
+    public void setRol(int rol) {
         this.rol = rol;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword1() {
-        return password1;
-    }
-
-    public void setPassword1(String password1) {
-        this.password1 = password1;
-    }
-
-    public String getPassword2() {
-        return password2;
-    }
-
-    public void setPassword2(String password2) {
-        this.password2 = password2;
     }
 }

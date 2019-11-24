@@ -8,10 +8,11 @@ import androidx.preference.PreferenceManager;
 public class PreferencesHelper {
 
     public static String KEY_NATIONALITY = "key_nationality";
-    public static String KEY_DOCUMENTS= "key_documents";
-    public static String KEY_GENDERS= "key_genders";
-    public static String KEY_MARITAL= "key_marital";
-    public static String KEY_MIGRATORY= "key_migratory";
+    public static String KEY_DOCUMENTS = "key_documents";
+    public static String KEY_GENDERS = "key_genders";
+    public static String KEY_MARITAL = "key_marital";
+    public static String KEY_MIGRATORY = "key_migratory";
+    public static String KEY_PARTNER = "key_partner";
 
     /** Called to save supplied value in shared preferences against given key.
      * @param context Context of caller activity

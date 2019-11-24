@@ -27,22 +27,26 @@ public class RegisterRepositoryImpl implements RegisterRepository {
 
     @Override
     public void setRegister(Register register) {
-        Call<User> call = ApiClient.getInstance().getApi().register(register);
-        call.enqueue(new Callback<User>() {
+        Call<Register> call = ApiClient.getInstance().getApi().register(register);
+        call.enqueue(new Callback<Register>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<Register> call, Response<Register> response) {
                 switch (response.code()){
                     case 200:
+                    case 201:
                         presenter.responseSuccess();
                         break;
+                    case 400:
+                        presenter.responseError("Error");
+                        break;
                     default:
-                        presenter.responseError("Fallo la conexion con el servidor");
+                        presenter.responseError("Error1");
                         break;
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<Register> call, Throwable t) {
                 presenter.responseError("Fallo la conexion con el servidor");
             }
 

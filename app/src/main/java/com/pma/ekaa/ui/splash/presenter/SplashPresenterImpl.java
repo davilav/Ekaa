@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.repository.splash.SplashRepository;
 import com.pma.ekaa.data.repository.splash.SplashRepositoryImpl;
-import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.splash.SplashView;
 import com.pma.ekaa.utils.PreferencesHelper;
 
