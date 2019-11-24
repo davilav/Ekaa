@@ -138,4 +138,26 @@ public class SplashRepositoryImpl implements SplashRepository {
             }
         });
     }
+
+    @Override
+    public void getHouseHoldRole() {
+
+        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().gethouseholdRoles();
+        call.enqueue(new Callback<ArrayList<Data>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Data>> call, Response<ArrayList<Data>> response) {
+                if(response.isSuccessful()){
+                    presenter.getHouseHoldRoleSuccess(response.body());
+                } else {
+                    presenter.loginError("ERROR");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Data>> call, Throwable t) {
+                presenter.loginError("ERROR");
+            }
+        });
+
+    }
 }

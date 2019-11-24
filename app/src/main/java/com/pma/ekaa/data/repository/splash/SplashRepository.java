@@ -12,4 +12,6 @@ public interface SplashRepository {
     void getMigratoryStatus();
 
     void getRecipient();
+
+    void getHouseHoldRole();
 }

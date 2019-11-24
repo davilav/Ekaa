@@ -19,5 +19,7 @@ public interface SplashPresenter {
 
     void getRecipientSuccess(ArrayList<Data> recipient);
 
+    void getHouseHoldRoleSuccess(ArrayList<Data> houseRole);
+
     void loginError(String msg);
 }
