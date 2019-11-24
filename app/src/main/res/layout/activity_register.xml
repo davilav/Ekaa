@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.register.RegisterActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -75,26 +77,20 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="30dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_userIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_user"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/nameUser"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_userIcon"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_userIcon"
-                        android:background="#DADADA"
-                        android:hint="Nombre"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/nameUser"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nombre"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
 
                 </RelativeLayout>
 
@@ -108,26 +104,18 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_passwordIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_authentication"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/lastnameUser"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_passwordIcon"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_passwordIcon"
-                        android:background="#DADADA"
-                        android:hint="Apellido"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/lastnameUser"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Apellido"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
 
@@ -141,26 +129,18 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_confirmpasswordIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_authentication"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/emailUser"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_confirmpasswordIcon"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_confirmpasswordIcon"
-                        android:background="#DADADA"
-                        android:hint="@string/email"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/emailUser"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/email"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
 
@@ -173,28 +153,18 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_repasswordIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginTop="0dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_authentication"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/user"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_repasswordIcon"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_repasswordIcon"
-                        android:background="#DADADA"
-                        android:hint="Usuario"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/user"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Usuario"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
 
@@ -207,26 +177,18 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon4"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/passUser"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon4"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_emailIcon4"
-                        android:background="#DADADA"
-                        android:hint="@string/password"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/passUser"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/password"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                 </RelativeLayout>
@@ -241,29 +203,18 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/confirmPassUser"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="-1dp"
-                        android:layout_toRightOf="@+id/imgView_emailIcon"
-                        android:background="#DADADA"
-                        android:hint="@string/confirmpassword"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/confirmPassUser"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/confirmpassword"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                 </RelativeLayout>
@@ -277,30 +228,19 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/userPartner"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon1"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="-1dp"
-                        android:layout_toRightOf="@+id/imgView_emailIcon1"
-                        android:background="#DADADA"
-                        android:focusable="false"
-                        android:hint="@string/implementatorpartner"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/userPartner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:hint="@string/implementatorpartner"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                 </RelativeLayout>
@@ -315,29 +255,18 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon2"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/userRol"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon2"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="-1dp"
-                        android:layout_toRightOf="@+id/imgView_emailIcon2"
-                        android:background="#DADADA"
-                        android:hint="Rol"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/userRol"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Rol"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                 </RelativeLayout>
@@ -388,8 +317,12 @@
 
         </androidx.cardview.widget.CardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+
 
     <include layout="@layout/progressbar"/>
+
+
 
 </RelativeLayout>

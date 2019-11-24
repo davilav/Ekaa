@@ -60,7 +60,13 @@ public class SplashPresenterImpl implements SplashPresenter {
 
     @Override
     public void getRecipientSuccess(ArrayList<Data> recipient) {
-        PreferencesHelper.setPreference(application, PreferencesHelper.KEY_MIGRATORY, new Gson().toJson(recipient));
+        PreferencesHelper.setPreference(application, PreferencesHelper.KEY_RECIPIENT, new Gson().toJson(recipient));
+        repository.getHouseHoldRole();
+    }
+
+    @Override
+    public void getHouseHoldRoleSuccess(ArrayList<Data> houserole) {
+        PreferencesHelper.setPreference(application, PreferencesHelper.KEY_HOUSESHOLD, new Gson().toJson(houserole));
         view.getDataSuccess();
     }
 

@@ -41,7 +41,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
 
     private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, pregnantbeneficiary, phonebeneficiary,
             familybeneficiary, migratoryStatus, maritalStatus, ethnicGroup, note, infoAditional;
-    private EditText nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary;
+    private EditText nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary,recipientBeneficiary,householdRoleBeneficiary;
     private TextView birthdatebeneficiary, titleForm;
     private Button btnRecovery;
 
@@ -106,6 +106,8 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         pregnantbeneficiary = view.findViewById(R.id.pregnantbeneficiary);
         maritalStatus = view.findViewById(R.id.maritalStatus);
         familybeneficiary = view.findViewById(R.id.familybeneficiary);
+        recipientBeneficiary = view.findViewById(R.id.recipientID);
+        householdRoleBeneficiary = view.findViewById(R.id.houseHoldRole);
         btnRecovery = view.findViewById(R.id.btn_recovery);
 
         if(optionAction == NotSchoolActivity.KITCHEN){
@@ -115,7 +117,9 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             migratoryStatus = view.findViewById(R.id.migratoryStatus);
             ethnicGroup = view.findViewById(R.id.ethnicGroup);
         } else {
-
+            ethnicGroup = view.findViewById(R.id.ethnicGroup);
+            note = view.findViewById(R.id.note);
+            infoAditional = view.findViewById(R.id.infoAditional);
         }
 
         btnRecovery.setOnClickListener(this);

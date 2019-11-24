@@ -77,26 +77,17 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="30dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_userIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_user"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/namebeneficiary"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_userIcon"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_userIcon"
-                        android:background="#DADADA"
-                        android:hint="Primer Nombre"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/namebeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Primer Nombre"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
 
@@ -110,26 +101,19 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_passwordIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_authentication"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/seconenamebeneficiary"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_passwordIcon"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_passwordIcon"
-                        android:background="#DADADA"
-                        android:hint="Segundo Nombre"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/seconenamebeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Segundo Nombre"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
 
                 </RelativeLayout>
 
@@ -143,26 +127,19 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_confirmpasswordIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_authentication"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/lastnamebeneficiary"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_confirmpasswordIcon"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_confirmpasswordIcon"
-                        android:background="#DADADA"
-                        android:hint="Primer Apellido"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/lastnamebeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Primer Apellido"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
 
                 </RelativeLayout>
 
@@ -175,28 +152,18 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_repasswordIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginTop="0dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_authentication"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/surnamebeneficiary"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_repasswordIcon"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_repasswordIcon"
-                        android:background="#DADADA"
-                        android:hint="Segundo Apellido"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/surnamebeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Segundo Apellido"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
 
                 </RelativeLayout>
 
@@ -209,30 +176,18 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/nationalitybeneficiary"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_emailIcon"
-                        android:background="#DADADA"
-                        android:entries="@array/nation"
-                        android:hint="Nacionalidad"
-                        android:focusable="false"
-                        android:paddingLeft="20dp"
-                        android:spinnerMode="dropdown"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
 
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/nationalitybeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:hint="Nacionalidad"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
 
@@ -245,28 +200,18 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/documentTypebeneficiary"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon1"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_emailIcon1"
-                        android:background="#DADADA"
-                        android:hint="Tipo de documento"
-                        android:focusable="false"
-                        android:inputType="textPersonName"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/documentTypebeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:hint="Tipo de documento"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                 </RelativeLayout>
@@ -280,26 +225,17 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon2"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/documentbeneficiary"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon2"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_emailIcon2"
-                        android:background="#DADADA"
-                        android:hint="Numero de Documento"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/documentbeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Numero de Documento"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                 </RelativeLayout>
@@ -313,27 +249,17 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon3"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/pregnantbeneficiary"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon3"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_emailIcon3"
-                        android:background="#DADADA"
-                        android:hint="Pregnant"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
 
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/pregnantbeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Pregnant"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
 
@@ -346,26 +272,17 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon4"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <TextView
-                        android:id="@+id/birthdatebeneficiary"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon4"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_emailIcon4"
-                        android:background="#DADADA"
-                        android:hint="Fecha de nacimiento"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/birthdatebeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Fecha de nacimiento"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                 </RelativeLayout>
@@ -379,28 +296,18 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon6"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/genderbeneficiary"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon6"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_emailIcon6"
-                        android:background="#DADADA"
-                        android:hint="Sexo"
-                        android:focusable="true"
-                        android:entries="@array/gender"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/genderbeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:hint="Sexo"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                 </RelativeLayout>
@@ -414,26 +321,17 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon7"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/phonebeneficiary"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon7"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_emailIcon7"
-                        android:background="#DADADA"
-                        android:hint="Numero de telefono"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/phonebeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Numero de telefono"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                 </RelativeLayout>
@@ -447,26 +345,17 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon9"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/familybeneficiary"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon9"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_emailIcon9"
-                        android:background="#DADADA"
-                        android:hint="Codigo de familia"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/familybeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Codigo de familia"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                 </RelativeLayout>
@@ -481,26 +370,18 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon10"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/migratoryStatus"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon10"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_emailIcon10"
-                        android:background="#DADADA"
-                        android:hint="Estado Migratorio"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/note"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nota"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                 </RelativeLayout>
@@ -514,30 +395,22 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon11"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/maritalStatus"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon11"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_emailIcon11"
-                        android:background="#DADADA"
-                        android:hint="Estado Civil"
-                        android:focusable="false"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
 
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/maritalStatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:hint="Estado Civil"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
+
 
                 <RelativeLayout
                     android:id="@+id/relativeLayout17"
@@ -548,63 +421,46 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
 
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon12"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/ethnicGroup"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon12"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_emailIcon12"
-                        android:background="#DADADA"
-                        android:hint="Etnia"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
 
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ethnicGroup"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Etnia"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
 
 
                 <RelativeLayout
-                android:id="@+id/relativeLayout18"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/relativeLayout17"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="15dp">
-
-                <ImageView
-                    android:id="@+id/imgView_emailIcon13"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
-                    android:padding="8dp"
-                    android:src="@drawable/img_email"
-                    android:tint="#ffffff" />
-
-                <EditText
-                    android:id="@+id/note"
+                    android:id="@+id/relativeLayout18"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/imgView_emailIcon13"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/imgView_emailIcon13"
-                    android:background="#DADADA"
-                    android:hint="Nota"
-                    android:paddingLeft="20dp"
-                    android:textSize="15sp" />
+                    android:layout_below="@+id/relativeLayout17"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="15dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/recipientID"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="¿Recibe?"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
-            </RelativeLayout>
+                </RelativeLayout>
 
 
                 <RelativeLayout
@@ -615,37 +471,51 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
-
-                    <ImageView
-                        android:id="@+id/imgView_emailIcon14"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
-                        android:src="@drawable/img_email"
-                        android:tint="#ffffff" />
-
-                    <EditText
-                        android:id="@+id/infoAditional"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/imgView_emailIcon14"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/imgView_emailIcon14"
-                        android:background="#DADADA"
-                        android:hint="Informacion Adicional"
-                        android:paddingLeft="20dp"
-                        android:textSize="15sp" />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/houseHoldRole"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Rol de Familia"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:id="@+id/relativeLayout20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/relativeLayout19"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="15dp">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/infoAditional"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Información Adicional"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </RelativeLayout>
 
                 <CheckBox
                     android:id="@+id/chkBox2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/relativeLayout19"
+                    android:layout_below="@id/relativeLayout20"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp"

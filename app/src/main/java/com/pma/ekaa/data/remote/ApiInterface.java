@@ -72,6 +72,10 @@ public interface ApiInterface {
     @GET("/api/v1/recipients/")
     Call<ArrayList<Data>> getRecipients();
 
+    @GET("/api/v1/householdroles/")
+    Call<ArrayList<Data>> gethouseholdRoles();
+
+
     @GET("/api/v1/partners")
     Call<ArrayList<Data>> getPartners();
 
