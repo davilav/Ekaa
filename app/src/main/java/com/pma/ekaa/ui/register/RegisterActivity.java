@@ -120,7 +120,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
             case R.id.userPartner:
                 SelectOptionDialog.newInstance(
                         PreferencesHelper.getPreference(getApplicationContext(), PreferencesHelper.KEY_PARTNER, ""),
-                        false,
                         new SelectOptionDialog.onListenerInterface() {
                             @Override
                             public void optionSelect(Data data) {

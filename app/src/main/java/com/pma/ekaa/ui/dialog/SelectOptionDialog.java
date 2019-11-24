@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,23 +25,21 @@ import java.util.List;
 public class SelectOptionDialog extends DialogFragment implements SelectOptionAdapter.onAdapterListener {
 
     private static String LIST_DATA = "list_data";
-    private static String IS_SEARCHABLE = "is_searchable";
     private static onListenerInterface mListener;
 
     private ArrayList<Data> listData;
-    private Boolean isSearchable;
-
+    private SearchView searchBox;
+    private SelectOptionAdapter mAdapter;
 
     public SelectOptionDialog() {
         // Empty constructor required for DialogFragment
     }
 
-    public static SelectOptionDialog newInstance(String listData, Boolean isSearchable, onListenerInterface callback) {
+    public static SelectOptionDialog newInstance(String listData, onListenerInterface callback) {
         mListener = callback;
         SelectOptionDialog frag = new SelectOptionDialog();
         Bundle args = new Bundle();
         args.putString(LIST_DATA, listData);
-        args.putBoolean(IS_SEARCHABLE, isSearchable);
         frag.setArguments(args);
         return frag;
     }
@@ -51,7 +50,6 @@ public class SelectOptionDialog extends DialogFragment implements SelectOptionAd
         setStyle(DialogFragment.STYLE_NO_TITLE, android.R.style.Theme_Material_Light_Dialog_Alert);
         if (getArguments() != null) {
             listData = new Gson().fromJson(getArguments().getString(LIST_DATA), new TypeToken<List<Data>>(){}.getType());
-            isSearchable = getArguments().getBoolean(IS_SEARCHABLE);
         }
     }
 
@@ -67,19 +65,30 @@ public class SelectOptionDialog extends DialogFragment implements SelectOptionAd
         super.onViewCreated(view, savedInstanceState);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerOption);
-        SearchView searchOption = view.findViewById(R.id.searchOption);
+        searchBox = view.findViewById(R.id.searchBox);
 
-        if(isSearchable){
-            searchOption.setVisibility(View.VISIBLE);
-        } else {
-            searchOption.setVisibility(View.GONE);
-        }
-
-        SelectOptionAdapter itemAdapter = new SelectOptionAdapter(listData, this);
+        mAdapter = new SelectOptionAdapter(listData, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.HORIZONTAL));
-        recyclerView.setAdapter(itemAdapter);
+        recyclerView.setAdapter(mAdapter);
+
+
+        searchBox.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                mAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
 
         view.findViewById(R.id.textCancel).setOnClickListener(new View.OnClickListener() {
             @Override

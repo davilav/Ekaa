@@ -163,7 +163,6 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 if(!arrayDepartment.equals("")) {
                     SelectOptionDialog.newInstance(
                             arrayDepartment,
-                            false,
                             new SelectOptionDialog.onListenerInterface() {
                                 @Override
                                 public void optionSelect(Data data) {
@@ -185,7 +184,6 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 if(!arrayTown.equals("")) {
                     SelectOptionDialog.newInstance(
                             arrayTown,
-                            false,
                             new SelectOptionDialog.onListenerInterface() {
                                 @Override
                                 public void optionSelect(Data data) {
@@ -206,7 +204,6 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 if(!arrayInstitution.equals("")) {
                     SelectOptionDialog.newInstance(
                             arrayInstitution,
-                            false,
                             new SelectOptionDialog.onListenerInterface() {
                                 @Override
                                 public void optionSelect(Data data) {
