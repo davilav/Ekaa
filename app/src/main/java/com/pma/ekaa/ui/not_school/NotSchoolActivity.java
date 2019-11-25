@@ -1,6 +1,7 @@
 package com.pma.ekaa.ui.not_school;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,7 +17,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,7 +60,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private final ArrayList<Result> itemList = new ArrayList<>();
     private ArrayList<Modality>  modalities;
     private ImageView nextpage,previouspage;
-    private ProgressBar progressBar;
+    private ConstraintLayout loading;
     private ImageView back,info;
     private FloatingActionButton floatingActionButton;
     private TextView titleToolbar;
@@ -90,7 +90,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         nextpage = findViewById(R.id.nextArrowButton);
         previouspage = findViewById(R.id.previousArrowButton);
         searchView = findViewById(R.id.searchView);
-        progressBar = findViewById(R.id.progressBar);
+        loading = findViewById(R.id.progressBar);
         floatingActionButton = findViewById(R.id.floatingActionButton);
         back = findViewById(R.id.backButton);
         recyclerView = findViewById(R.id.recycler_view);
@@ -246,7 +246,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     }
 
     public void listBeneficiary(final String keyword, int page){
-
+        showLoading();
         if(countPage == 1){
             previouspage.setVisibility(View.INVISIBLE);
         }else{
@@ -259,24 +259,28 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
 
     @Override
     public void getListBeneficiarySuccess(BeneficiaryArray beneficiaryArray) {
-        progressBar.setVisibility(View.INVISIBLE);
+        hideLoading();
         beneficiaries =  beneficiaryArray.getResults();
         recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries, modalities, institutionID, this));
     }
 
     @Override
     public void setRegisterAttendanceSuccess() {
+        hideLoading();
         dialog.dismiss();
         Toasty.success(getApplicationContext(), "Atencion registrada exitosamente", Toast.LENGTH_SHORT, true).show();
+        listBeneficiary("",countPage);
     }
 
     @Override
     public void responseError(String msg) {
+        hideLoading();
         Toasty.error(getApplicationContext(), msg, Toast.LENGTH_SHORT, true).show();
     }
 
     @Override
     public void registerAttendance(Dialog myDialog, int institution, int userID, int person, int modality){
+        showLoading();
         dialog = myDialog;
         presenter.setRegisterAttendance(Longitude, Latitude, institution, userID, person, modality);
     }
@@ -302,5 +306,22 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         }
 
         startActivity(intent);
+    }
+
+    @Override
+    public void showLoading() {
+        loading.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        loading.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        itemAdapter.notifyDataSetChanged();
+        listBeneficiary("",countPage);
     }
 }

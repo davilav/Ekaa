@@ -69,8 +69,12 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         if (getArguments() != null) {
             optionAction = getArguments().getInt(NotSchoolActivity.OPTION_ACTION);
             selectItem = getArguments().getInt(BeneficiaryActivity.SELECTED_ITEM);
-            objectBeneficiary = new Gson().fromJson(getArguments().getString(BeneficiaryActivity.OBJECT_BENEFICIARIES), Result.class);
             agreement = getArguments().getString(BeneficiaryActivity.OPTION_AGREEMENT);
+            if(selectItem == BeneficiaryActivity.EDIT) {
+                objectBeneficiary = new Gson().fromJson(getArguments().getString(BeneficiaryActivity.OBJECT_BENEFICIARIES), Result.class);
+            } else {
+                objectBeneficiary = new Result();
+            }
         }
     }
 
