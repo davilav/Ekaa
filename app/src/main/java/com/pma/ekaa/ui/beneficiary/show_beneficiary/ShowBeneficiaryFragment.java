@@ -95,7 +95,8 @@ public class ShowBeneficiaryFragment extends Fragment implements View.OnClickLis
         phone.setText(objectBeneficiary.getPhone());
         registration.setText(objectBeneficiary.getRegistration_date());
         info.setText(objectBeneficiary.getAditional_information());
-        modality.setText("");
+        familyCode.setText(objectBeneficiary.getHousehold_code());
+
     }
 
 

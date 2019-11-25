@@ -3,7 +3,9 @@ package com.pma.ekaa.ui.adapters;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +23,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.Result;
+import com.pma.ekaa.ui.attendence.AttendanceDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import dalvik.annotation.TestTarget;
 import de.hdodenhof.circleimageview.CircleImageView;
 import github.ishaan.buttonprogressbar.ButtonProgressBar;
 
@@ -39,6 +43,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private TextView txtName, txtID, txtnumberID, txtNation, firstComplement, secondComplement, thirdComplement;
     private CircleImageView profileImage;
     private ImageView editInfo, attention;
+    private TextView detail;
     private CheckBox AM,lunch,PM;
     private Button cont;
     private Dialog myDialog;
@@ -95,6 +100,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             AM = view.findViewById(R.id.AM);
             PM = view.findViewById(R.id.PM);
             lunch = view.findViewById(R.id.lunch);
+            detail = view.findViewById(R.id.detail);
 
 
         }
@@ -106,6 +112,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             txtnumberID.setText(Integer.toString(result.getId()));
             id = result.getId();
             cont.setText(result.getAttendance());
+            txtNation.setText(result.getBirth_date());
             //cont.setBackgroundColor(Color.parseColor("#"+result.getColor()));
 
             profileImage.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +140,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
             });*/
 
+
             attention.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -149,7 +157,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     firstComplement = myDialog.findViewById(R.id.first_complement);
                     secondComplement = myDialog.findViewById(R.id.second_complement);
                     thirdComplement = myDialog.findViewById(R.id.third_complement);
-
+                    detail = myDialog.findViewById(R.id.detail);
 
                     //Se deberia implementar un recycler view para listar las opciones
 
@@ -196,6 +204,13 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         }
                     });
 
+                    detail.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mListener.showAttendanceDetail();
+                        }
+                    });
+
                     txtclose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -236,6 +251,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public interface onListenerAdapter {
         void registerAttendance(Dialog myDialog, int institution, int userID, int person, int modality);
         void showBeneficiary(Result beneficiary);
+        void showAttendanceDetail();
     }
 
 }

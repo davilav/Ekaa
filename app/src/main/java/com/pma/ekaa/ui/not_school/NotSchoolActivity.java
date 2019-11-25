@@ -30,6 +30,7 @@ import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.adapters.ItemAdapter;
+import com.pma.ekaa.ui.attendence.AttendanceDetailActivity;
 import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
 import com.pma.ekaa.ui.not_school.presenter.NotSchoolPresenter;
 import com.pma.ekaa.ui.not_school.presenter.NotSchoolPresenterImpl;
@@ -284,6 +285,12 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     @Override
     public void showBeneficiary(Result beneficiary) {
         startBeneficiary(optionAction, BeneficiaryActivity.SHOW, "", beneficiary);
+    }
+
+    @Override
+    public void showAttendanceDetail() {
+        Intent intent = new Intent(NotSchoolActivity.this, AttendanceDetailActivity.class);
+        startActivity(intent);
     }
 
     private void startBeneficiary(int option, int item, String agreement, Result beneficiary) {

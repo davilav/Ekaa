@@ -1,17 +1,42 @@
 package com.pma.ekaa.data.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class AttendanceDetail {
 
+    @SerializedName("institution")
+    @Expose
     private String institution;
+    @SerializedName("geolocation")
+    @Expose
     private String geolocation;
+    @SerializedName("partner")
+    @Expose
     private String partner;
-    private Integer modality_type_id;
-    private String modality_type;
+    @SerializedName("modality_type_id")
+    @Expose
+    private Integer modalityTypeId;
+    @SerializedName("modality_type")
+    @Expose
+    private String modalityType;
+    @SerializedName("modality")
+    @Expose
     private String modality;
+    @SerializedName("color")
+    @Expose
     private String color;
-    private Integer beneficiary_id;
+    @SerializedName("beneficiary_id")
+    @Expose
+    private Integer beneficiaryId;
+    @SerializedName("attendance")
+    @Expose
     private Integer attendance;
+    @SerializedName("year")
+    @Expose
     private Integer year;
+    @SerializedName("month")
+    @Expose
     private Integer month;
 
     public String getInstitution() {
@@ -38,20 +63,20 @@ public class AttendanceDetail {
         this.partner = partner;
     }
 
-    public Integer getModality_type_id() {
-        return modality_type_id;
+    public Integer getModalityTypeId() {
+        return modalityTypeId;
     }
 
-    public void setModality_type_id(Integer modality_type_id) {
-        this.modality_type_id = modality_type_id;
+    public void setModalityTypeId(Integer modalityTypeId) {
+        this.modalityTypeId = modalityTypeId;
     }
 
-    public String getModality_type() {
-        return modality_type;
+    public String getModalityType() {
+        return modalityType;
     }
 
-    public void setModality_type(String modality_type) {
-        this.modality_type = modality_type;
+    public void setModalityType(String modalityType) {
+        this.modalityType = modalityType;
     }
 
     public String getModality() {
@@ -70,12 +95,12 @@ public class AttendanceDetail {
         this.color = color;
     }
 
-    public Integer getBeneficiary_id() {
-        return beneficiary_id;
+    public Integer getBeneficiaryId() {
+        return beneficiaryId;
     }
 
-    public void setBeneficiary_id(Integer beneficiary_id) {
-        this.beneficiary_id = beneficiary_id;
+    public void setBeneficiaryId(Integer beneficiaryId) {
+        this.beneficiaryId = beneficiaryId;
     }
 
     public Integer getAttendance() {
@@ -101,4 +126,5 @@ public class AttendanceDetail {
     public void setMonth(Integer month) {
         this.month = month;
     }
+
 }
