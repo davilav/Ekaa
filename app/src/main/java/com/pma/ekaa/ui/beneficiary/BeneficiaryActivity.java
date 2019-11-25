@@ -1,8 +1,10 @@
 package com.pma.ekaa.ui.beneficiary;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -30,7 +32,7 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
     public final static int CREATE = 1;
     public final static int EDIT = 2;
 
-
+    private ConstraintLayout loading;
     private int selectItem;
     private int optionAction;
     private String objectBeneficiary;
@@ -57,6 +59,7 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
         }
 
         container = findViewById(R.id.containerBeneficiary);
+        loading = findViewById(R.id.progressBar);
         presenter = new BeneficiaryPresenterImpl(this);
         selectAction();
 
@@ -88,23 +91,37 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
 
     @Override
     public void setUploadBeneficiary(String id, RegisterBeneficiary registerBeneficiary, int selectItem) {
+        showLoading();
         presenter.setUploadBeneficiary(id, registerBeneficiary, selectItem);
     }
 
     @Override
     public void createBeneficiarySuccess() {
+        hideLoading();
         Toasty.success(this, "Usuario creado con exito", Toast.LENGTH_SHORT, true).show();
         finish();
     }
 
     @Override
     public void updateBeneficiarySuccess() {
+        hideLoading();
         Toasty.success(this, "Usuario actualizado con exito", Toast.LENGTH_SHORT, true).show();
         finish();
     }
 
     @Override
     public void responseError(String msg) {
+        hideLoading();
         Toasty.warning(this, "Adios!", Toast.LENGTH_SHORT, true).show();
+    }
+
+    @Override
+    public void showLoading() {
+        loading.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        loading.setVisibility(View.GONE);
     }
 }
