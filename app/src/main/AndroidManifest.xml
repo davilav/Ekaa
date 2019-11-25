@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.attendence.AttendanceDetailActivity"></activity>
+        <activity android:name=".ui.attendance.AttendanceDetailActivity"></activity>
         <activity android:name=".ui.beneficiary.BeneficiaryActivity" />
         <activity
             android:name=".ui.splash.SplashActivity"

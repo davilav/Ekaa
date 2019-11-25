@@ -30,7 +30,7 @@ import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.adapters.ItemAdapter;
-import com.pma.ekaa.ui.attendence.AttendanceDetailActivity;
+import com.pma.ekaa.ui.attendance.AttendanceDetailActivity;
 import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
 import com.pma.ekaa.ui.not_school.presenter.NotSchoolPresenter;
 import com.pma.ekaa.ui.not_school.presenter.NotSchoolPresenterImpl;
@@ -40,6 +40,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
+
+import static com.pma.ekaa.ui.attendance.AttendanceDetailActivity.USER_ID;
 
 public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter{
 
@@ -292,8 +294,9 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     }
 
     @Override
-    public void showAttendanceDetail() {
+    public void showAttendanceDetail(int userID) {
         Intent intent = new Intent(NotSchoolActivity.this, AttendanceDetailActivity.class);
+        intent.putExtra(USER_ID, userID);
         startActivity(intent);
     }
 
