@@ -141,13 +141,14 @@
         android:textColor="#000000" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:text="AM en el comedor NO 123 a las 10:54 am"
-        android:textColor="#000000" />
+        android:text="@string/detail"
+        android:textColor="#1f75fe" />
+
     <github.ishaan.buttonprogressbar.ButtonProgressBar
         android:id="@+id/btnfollow"
         android:layout_width="wrap_content"

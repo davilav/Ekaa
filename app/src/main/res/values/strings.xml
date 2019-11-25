@@ -65,6 +65,7 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="comedor">Comedor</string>
     <string name="Enviar">Send</string>
     <string name="ConfirmEmail">Confirm your email</string>
+    <string name="detail"><u>See detail</u></string>
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
