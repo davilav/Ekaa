@@ -7,4 +7,7 @@ public interface BeneficiaryView {
 
     void responseError(String msg);
 
+    void showLoading();
+    void hideLoading();
+
 }

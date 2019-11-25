@@ -20,7 +20,7 @@ public class Result {
     @Nullable
     private Integer household_role;
     @Nullable
-    private String recipient = null;
+    private Integer recipient;
     @Nullable
     private Integer status;
     @Nullable
@@ -28,7 +28,7 @@ public class Result {
     @Nullable
     private Integer migratory_status;
     @Nullable
-    private String marital_status = null;
+    private Integer marital_status;
     @Nullable
     private String first_name;
     @Nullable
@@ -115,11 +115,11 @@ public class Result {
         this.household_role = household_role;
     }
 
-    public String getRecipient() {
+    public Integer getRecipient() {
         return recipient;
     }
 
-    public void setRecipient(String recipient) {
+    public void setRecipient(Integer recipient) {
         this.recipient = recipient;
     }
 
@@ -147,11 +147,11 @@ public class Result {
         this.migratory_status = migratory_status;
     }
 
-    public String getMarital_status() {
+    public Integer getMarital_status() {
         return marital_status;
     }
 
-    public void setMarital_status(String marital_status) {
+    public void setMarital_status(Integer marital_status) {
         this.marital_status = marital_status;
     }
 
