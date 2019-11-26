@@ -200,7 +200,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     detail.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            mListener.showAttendanceDetail(result.getId());
+                            mListener.showAttendanceDetail(result);
                         }
                     });
 
@@ -244,7 +244,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public interface onListenerAdapter {
         void registerAttendance(Dialog myDialog, int institution, int userID, int person, int modality);
         void showBeneficiary(Result beneficiary);
-        void showAttendanceDetail(int userID);
+        void showAttendanceDetail(Result beneficiary);
     }
 
 }

@@ -41,8 +41,6 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
-import static com.pma.ekaa.ui.attendance.AttendanceDetailActivity.USER_ID;
-
 public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter{
 
     public static String OPTION_ACTION = "option_action";
@@ -294,9 +292,9 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     }
 
     @Override
-    public void showAttendanceDetail(int userID) {
-        Intent intent = new Intent(NotSchoolActivity.this, AttendanceDetailActivity.class);
-        intent.putExtra(USER_ID, userID);
+    public void showAttendanceDetail(Result beneficiary) {
+        Intent intent = new Intent(this, AttendanceDetailActivity.class);
+        intent.putExtra(AttendanceDetailActivity.USER_DETAIL, new Gson().toJson(beneficiary));
         startActivity(intent);
     }
 
