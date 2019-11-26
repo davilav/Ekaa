@@ -3,9 +3,7 @@ package com.pma.ekaa.ui.adapters;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,12 +21,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.Result;
-import com.pma.ekaa.ui.attendence.AttendanceDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import dalvik.annotation.TestTarget;
 import de.hdodenhof.circleimageview.CircleImageView;
 import github.ishaan.buttonprogressbar.ButtonProgressBar;
 
@@ -100,9 +96,6 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             AM = view.findViewById(R.id.AM);
             PM = view.findViewById(R.id.PM);
             lunch = view.findViewById(R.id.lunch);
-            detail = view.findViewById(R.id.detail);
-
-
         }
 
         public void bindData(final Result result) {
@@ -207,7 +200,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     detail.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            mListener.showAttendanceDetail();
+                            mListener.showAttendanceDetail(result);
                         }
                     });
 
@@ -251,7 +244,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public interface onListenerAdapter {
         void registerAttendance(Dialog myDialog, int institution, int userID, int person, int modality);
         void showBeneficiary(Result beneficiary);
-        void showAttendanceDetail();
+        void showAttendanceDetail(Result beneficiary);
     }
 
 }
