@@ -102,6 +102,17 @@
             android:scrollbars="vertical"
             android:layout_below="@id/linlay1"/>
 
+        <TextView
+            android:id="@+id/textNotFound"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:text="No se encontraron resultados"
+            android:textAlignment="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_below="@id/linlay1"/>
+
     </RelativeLayout>
 
     <include layout="@layout/progressbar"/>

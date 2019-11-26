@@ -49,7 +49,7 @@ public interface ApiInterface {
     Call<AttendanceToday> getTodayAttendance(@Path("id") String id, @Header("Authorization") String authToken);
 
     @GET("api/v1/attendance/detail/beneficiary/{id}/")
-    Call<AttendanceDetail> getDetailAttendance(@Path("id") String id, @Header("Authorization") String authToken);
+    Call<ArrayList<AttendanceDetail>> getDetailAttendance(@Path("id") String id, @Header("Authorization") String authToken);
 
     @GET("/api/v1/modalities/")
     Call<ArrayList<Modality>> getModality(@Header("Authorization") String authToken);

@@ -9,8 +9,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.pma.ekaa.R;
+import com.pma.ekaa.data.models.AttendanceDetail;
 import com.pma.ekaa.ui.attendance.presenter.AttendancePresenter;
 import com.pma.ekaa.ui.attendance.presenter.AttendancePresenterImpl;
+import com.pma.ekaa.utils.Utils;
+
+import java.util.ArrayList;
 
 public class AttendanceDetailActivity extends AppCompatActivity implements AttendanceView {
 
@@ -19,7 +23,7 @@ public class AttendanceDetailActivity extends AppCompatActivity implements Atten
     private AttendancePresenter presenter;
     private int userID;
     private ConstraintLayout loading;
-    private TextView nameUser;
+    private TextView nameUser, textNotFound;
     private RecyclerView recyclerAttendance;
 
     @Override
@@ -31,11 +35,26 @@ public class AttendanceDetailActivity extends AppCompatActivity implements Atten
         }
         nameUser = findViewById(R.id.tv_name);
         recyclerAttendance = findViewById(R.id.recycler_attendance);
-
+        textNotFound = findViewById(R.id.textNotFound);
         presenter = new AttendancePresenterImpl(this);
 
-        presenter.getAttendanceUser(userID);
+        String name= Utils.getInstance().getDataUser().getFirstName() + " " + Utils.getInstance().getDataUser().getLastName();
+        nameUser.setText(name);
 
+        showLoading();
+        presenter.getAttendanceUser(userID);
+    }
+
+    @Override
+    public void getAttendanceUserSuccess(ArrayList<AttendanceDetail> data) {
+        if(data.size() == 0){
+            recyclerAttendance.setVisibility(View.GONE);
+            textNotFound.setVisibility(View.VISIBLE);
+
+        } else {
+            recyclerAttendance.setVisibility(View.VISIBLE);
+            textNotFound.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -46,5 +65,10 @@ public class AttendanceDetailActivity extends AppCompatActivity implements Atten
     @Override
     public void hideLoading() {
         loading.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void responseError(String msg) {
+        hideLoading();
     }
 }

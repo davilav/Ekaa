@@ -1,8 +1,11 @@
 package com.pma.ekaa.ui.attendance.presenter;
 
+import com.pma.ekaa.data.models.AttendanceDetail;
 import com.pma.ekaa.data.repository.attendence.AttendanceRepository;
 import com.pma.ekaa.data.repository.attendence.AttendanceRepositoryImpl;
 import com.pma.ekaa.ui.attendance.AttendanceView;
+
+import java.util.ArrayList;
 
 public class AttendancePresenterImpl implements AttendancePresenter {
 
@@ -20,7 +23,12 @@ public class AttendancePresenterImpl implements AttendancePresenter {
     }
 
     @Override
-    public void responseError(String msg) {
+    public void getAttendanceUserSuccess(ArrayList<AttendanceDetail> data) {
+        view.getAttendanceUserSuccess(data);
+    }
 
+    @Override
+    public void responseError(String msg) {
+        view.responseError(msg);
     }
 }
