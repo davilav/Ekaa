@@ -67,6 +67,9 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="ConfirmEmail">Confirm your email</string>
     <string name="detail"><u>See detail</u></string>
 
+    <string name="groupselect">Please select your group</string>
+    <string name="classselect">Please select your class</string>
+
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -79,6 +79,9 @@ public interface ApiInterface {
     @GET("/api/v1/partners")
     Call<ArrayList<Data>> getPartners();
 
+    @GET("/api/v1/school/groups/")
+    Call<ArrayList<Data>> getGroups(@Header("Authorization") String authToken);
+
 
     @GET("rest-auth/login/")
     Call<ResponseBody> getKey(@Header("Authorization") String authToken);

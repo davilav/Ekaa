@@ -54,7 +54,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private NotSchoolPresenter presenter;
     private int optionAction;
     private int institutionID;
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView,detail;
     private ItemAdapter itemAdapter;
     private List<Result> beneficiaries;
     private static int countPage = 1;

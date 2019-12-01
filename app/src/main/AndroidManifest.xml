@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.attendance.AttendanceDetailActivity"></activity>
+        <activity android:name=".ui.school.show_students.StudentsByGroupActivity"></activity>
+        <activity android:name=".ui.attendance.AttendanceDetailActivity" />
         <activity android:name=".ui.beneficiary.BeneficiaryActivity" />
         <activity
             android:name=".ui.splash.SplashActivity"

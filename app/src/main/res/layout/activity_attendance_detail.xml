@@ -97,10 +97,10 @@
             android:id="@+id/recycler_attendance"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
+            android:layout_below="@id/linlay1"
+            android:layout_marginTop="5dp"
             android:orientation="vertical"
-            android:scrollbars="vertical"
-            android:layout_below="@id/linlay1"/>
+            android:scrollbars="vertical" />
 
         <TextView
             android:id="@+id/textNotFound"

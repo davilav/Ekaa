@@ -31,6 +31,7 @@ public class AttendanceDetailActivity extends AppCompatActivity implements Atten
     private ConstraintLayout loading;
     private TextView nameUser, textNotFound;
     private RecyclerView recyclerAttendance;
+    LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class AttendanceDetailActivity extends AppCompatActivity implements Atten
 
         showLoading();
         presenter.getAttendanceUser(user.getId());
+
     }
 
     @Override
@@ -68,6 +70,7 @@ public class AttendanceDetailActivity extends AppCompatActivity implements Atten
             AttendanceAdapter mAdapter = new AttendanceAdapter(data);
             recyclerAttendance.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             recyclerAttendance.setAdapter(mAdapter);
+
         }
     }
 

@@ -50,6 +50,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             detailTime = itemView.findViewById(R.id.detailTime);
             detailType = itemView.findViewById(R.id.detailType);
             detailFood = itemView.findViewById(R.id.detailFood);
+
+
         }
 
         public void bindData(final AttendanceDetail data) {
