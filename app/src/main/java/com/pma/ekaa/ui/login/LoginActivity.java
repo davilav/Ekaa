@@ -107,6 +107,7 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         bar.stopLoader();
         Toasty.warning(LoginActivity.this, msg, Toast.LENGTH_SHORT, true).show();
     }
+
 }
 
 
