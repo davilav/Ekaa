@@ -66,6 +66,23 @@ public class Result {
     @Nullable
     private String color = null;
 
+    @SerializedName("school")
+    @Expose
+    private Integer school;
+    @SerializedName("school_class")
+    @Expose
+    private Integer schoolClass;
+    @SerializedName("school_group")
+    @Expose
+    private Integer schoolGroup;
+    @SerializedName("school_class_name")
+    @Expose
+    private String schoolClassName;
+    @SerializedName("belongs_program")
+    @Expose
+    private Integer belongsProgram;
+
+
 
     public Integer getId() {
         return id;
@@ -300,4 +317,45 @@ public class Result {
     public void setColor(String color) {
         this.color = color;
     }
+
+    public Integer getSchool() {
+        return school;
+    }
+
+    public void setSchool(Integer school) {
+        this.school = school;
+    }
+
+    public Integer getSchoolClass() {
+        return schoolClass;
+    }
+
+    public void setSchoolClass(Integer schoolClass) {
+        this.schoolClass = schoolClass;
+    }
+
+    public Integer getSchoolGroup() {
+        return schoolGroup;
+    }
+
+    public void setSchoolGroup(Integer schoolGroup) {
+        this.schoolGroup = schoolGroup;
+    }
+
+    public String getSchoolClassName() {
+        return schoolClassName;
+    }
+
+    public void setSchoolClassName(String schoolClassName) {
+        this.schoolClassName = schoolClassName;
+    }
+
+    public Integer getBelongsProgram() {
+        return belongsProgram;
+    }
+
+    public void setBelongsProgram(Integer belongsProgram) {
+        this.belongsProgram = belongsProgram;
+    }
+
 }

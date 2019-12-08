@@ -44,9 +44,14 @@ public interface ApiInterface {
     @PUT("api/v1/beneficiary/{id}/")
     Call<Result> updateBeneficiary(@Path("id") String id, @Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
 
+    @POST("/api/v1/school/students/ ")
+    Call<Result> registerStudents(@Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
+
+    @PUT("api/v1/school/students/{id}/")
+    Call<Result> updateStudent(@Path("id") String id, @Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
 
     @GET("api/v1/attendance/today/beneficiary/{id}/")
-    Call<AttendanceToday> getTodayAttendance(@Path("id") String id, @Header("Authorization") String authToken);
+    Call<ArrayList<AttendanceToday>> getTodayAttendance(@Path("id") String id, @Header("Authorization") String authToken);
 
     @GET("api/v1/attendance/detail/beneficiary/{id}/")
     Call<ArrayList<AttendanceDetail>> getDetailAttendance(@Path("id") String id, @Header("Authorization") String authToken);
@@ -88,6 +93,12 @@ public interface ApiInterface {
 
     @GET("/api/v1/beneficiaries/")
     Call<BeneficiaryArray> listBeneficiary(
+            @Header("Authorization") String authToken,
+            @Query("q") String keyword,
+            @Query("page") int page);
+
+    @GET("/api/v1/school/2/group/1/students/")
+    Call<BeneficiaryArray> listStudents(
             @Header("Authorization") String authToken,
             @Query("q") String keyword,
             @Query("page") int page);

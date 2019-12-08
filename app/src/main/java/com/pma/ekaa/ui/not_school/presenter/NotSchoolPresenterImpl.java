@@ -1,10 +1,13 @@
 package com.pma.ekaa.ui.not_school.presenter;
 
 import com.pma.ekaa.data.models.Attendance;
+import com.pma.ekaa.data.models.AttendanceToday;
 import com.pma.ekaa.data.models.BeneficiaryArray;
 import com.pma.ekaa.data.repository.not_school.NotSchoolRepository;
 import com.pma.ekaa.data.repository.not_school.NotSchoolRepositoryImpl;
 import com.pma.ekaa.ui.not_school.NotSchoolView;
+
+import java.util.ArrayList;
 
 public class NotSchoolPresenterImpl implements NotSchoolPresenter {
 
@@ -32,6 +35,16 @@ public class NotSchoolPresenterImpl implements NotSchoolPresenter {
     }
 
     @Override
+    public void attendanceTodaySuccess(ArrayList<AttendanceToday> response) {
+        view.attendanceTodaySuccess(response);
+    }
+
+    @Override
+    public void getAttendanceToday(int userID) {
+        repository.getAttendanceToday(userID);
+    }
+
+    @Override
     public void responseError(String msg) {
         view.responseError(msg);
     }
@@ -49,4 +62,5 @@ public class NotSchoolPresenterImpl implements NotSchoolPresenter {
                 )
         );
     }
+
 }
