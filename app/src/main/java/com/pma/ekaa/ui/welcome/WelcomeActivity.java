@@ -165,6 +165,7 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView, View.O
 
     @Override
     public void getPartnersSuccess(ArrayList<Data> data) {
+        hideLoading();
         if(data.size() != 0) {
             PreferencesHelper.setPreference(getApplication(), PreferencesHelper.KEY_PARTNER, new Gson().toJson(data));
             Intent intent = new Intent(WelcomeActivity.this, RegisterActivity.class);

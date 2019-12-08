@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.pma.ekaa.R;
@@ -41,6 +43,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
     private ConstraintLayout loading;
     private Button memberButton;
     private EditText nameUser, lastNameUser, emailUser, user, passUser, confirmPassUser, userPartner, userRol;
+    private ImageView eyePass, eyeConfirm;
     private ButtonProgressBar bar;
     private RegisterPresenter presenter;
     private int partnerID;
@@ -59,6 +62,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
         userPartner = findViewById(R.id.userPartner);
         userRol = findViewById(R.id.userRol);
         memberButton = findViewById(R.id.memberButton);
+        eyePass = findViewById(R.id.hidePassword);
+        eyeConfirm = findViewById(R.id.hideConfirm);
         bar = findViewById(R.id.btn_recovery);
 
         presenter = new RegisterPresenterImpl(this);
@@ -69,6 +74,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
         bar.setOnClickListener(this);
         memberButton.setOnClickListener(this);
         userPartner.setOnClickListener(this);
+        eyeConfirm.setOnClickListener(this);
+        eyePass.setOnClickListener(this);
 
     }
 
@@ -127,6 +134,27 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
                                 userPartner.setText(data.getName());
                             }
                         }).show(getSupportFragmentManager(), "");
+                break;
+            case R.id.hidePassword:
+                if (passUser.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+                    passUser.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    eyePass.setBackgroundResource(R.drawable.eyehide);
+                } else {
+                    passUser.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    eyePass.setBackgroundResource(R.drawable.eyeshow);
+                }
+                passUser.setSelection(passUser.getText().length());
+                break;
+
+            case R.id.hideConfirm:
+                if (confirmPassUser.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+                    confirmPassUser.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    eyeConfirm.setBackgroundResource(R.drawable.eyehide);
+                } else {
+                    confirmPassUser.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    eyeConfirm.setBackgroundResource(R.drawable.eyeshow);
+                }
+                confirmPassUser.setSelection(confirmPassUser.getText().length());
                 break;
         }
     }
