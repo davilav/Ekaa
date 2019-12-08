@@ -74,22 +74,20 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView1"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="30dp">
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/nameUser"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Nombre"
-                            />
+                            android:hint="Nombre" />
                     </com.google.android.material.textfield.TextInputLayout>
-
 
 
                 </RelativeLayout>
@@ -101,20 +99,19 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout1"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/lastnameUser"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Apellido"
-                            />
+                            android:hint="Apellido" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
@@ -126,20 +123,19 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout2"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/emailUser"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/email"
-                            />
+                            android:hint="@string/email" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
@@ -150,20 +146,19 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout5"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/user"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Usuario"
-                            />
+                            android:hint="Usuario" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
@@ -174,12 +169,12 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout3"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -187,7 +182,17 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/password"
-                            />
+                            android:inputType="textPassword" />
+
+                        <ImageView
+                            android:id="@+id/hidePassword"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="260dp"
+                            android:layout_marginTop="-45dp"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            app:srcCompat="@drawable/eyehide" />
+
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -200,12 +205,12 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout6"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -213,7 +218,17 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/confirmpassword"
-                            />
+                            android:inputType="textPassword" />
+
+
+                        <ImageView
+                            android:id="@+id/hideConfirm"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="260dp"
+                            android:layout_marginTop="-45dp"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            app:srcCompat="@drawable/eyehide" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -225,12 +240,12 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout4"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -238,8 +253,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
-                            android:hint="@string/implementatorpartner"
-                            />
+                            android:hint="@string/implementatorpartner" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -252,20 +266,19 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout7"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/userRol"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Rol"
-                            />
+                            android:hint="Rol" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -277,8 +290,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/relativeLayout8"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp"
                     android:fontFamily="sans-serif"
                     android:text="@string/agreeterms"
                     android:textColor="#6e6e6e" />
@@ -289,8 +302,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/chkBox1"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp"
                     android:fontFamily="sans-serif-medium"
                     app:bgColor="@color/colorPrimary"
                     app:text="SIGN UP"

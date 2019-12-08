@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +18,7 @@ import com.pma.ekaa.ui.login.LoginActivity;
 import com.pma.ekaa.ui.splash.presenter.SplashPresenter;
 import com.pma.ekaa.ui.splash.presenter.SplashPresenterImpl;
 import com.pma.ekaa.ui.welcome.WelcomeActivity;
+import com.pma.ekaa.utils.ProgressBarAnim;
 
 import es.dmoral.toasty.Toasty;
 
@@ -24,8 +27,9 @@ import static maes.tech.intentanim.CustomIntent.customType;
 public class SplashActivity extends BaseActivity implements SplashView {
 
     ImageView logo;
-    TextView webname;
+    TextView webname,loading;
     Animation fromtop,fromBottom;
+    ProgressBar progressBar;
 
     private SplashPresenter presenter;
 
@@ -34,8 +38,15 @@ public class SplashActivity extends BaseActivity implements SplashView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         logo = findViewById(R.id.pmaLogo);
         webname = findViewById(R.id.pmaText);
+        progressBar = findViewById(R.id.progressLoading);
+        loading = findViewById(R.id.textLoading);
+
+        progressBar.setMax(100);
+        progressBar.setScaleY(3f);
 
         presenter = new SplashPresenterImpl(this, getApplication());
 
@@ -53,6 +64,17 @@ public class SplashActivity extends BaseActivity implements SplashView {
 
         logo.setAnimation(fromtop);
         webname.setAnimation(fromBottom);
+        progressBar.setAnimation(fromBottom);
+        loading.setAnimation(fromBottom);
+        progressAnimation();
+    }
+
+    public void progressAnimation(){
+
+        ProgressBarAnim anim = new ProgressBarAnim(this,progressBar,loading,0f,100f);
+        anim.setDuration(13500);
+        progressBar.setAnimation(anim);
+
     }
 
     @Override
