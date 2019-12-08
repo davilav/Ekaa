@@ -190,6 +190,11 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView, View.O
     public void hideLoading() {
         loading.setVisibility(View.GONE);
     }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }
 
 

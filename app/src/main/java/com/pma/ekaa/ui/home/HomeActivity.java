@@ -40,11 +40,14 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
 
     private ImageView kitchen, school, inkind, walkers, cloud, url, settings, info, menu, bgApp, clover;
     private ConstraintLayout loading;
+    private ConstraintLayout containerUbication;
+    private ConstraintLayout containerHome;
     private Animation bganim, cloveranim, fromtop, fromBottom;
     private LinearLayout textSplash, textHome, home;
     private EditText departmentGeolocation, townGeolocation, institutionGeolocation;
     private TextView splashtext, userText, emailtext;
     private ButtonProgressBar bar;
+
 
     private String arrayDepartment = "";
     private String arrayTown = "";
@@ -52,7 +55,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
 
     private int departmentID = 0;
     private int townID = 0;
-    private int institutionID = 0;
+    private Data institution;
 
     private ArrayList<Modality> arrayModality;
 
@@ -89,14 +92,16 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
     public void initViews() {
 
         loading = findViewById(R.id.progressBar);
+        containerHome = findViewById(R.id.containerHome);
+        containerUbication = findViewById(R.id.containerUbication);
         cloveranim = AnimationUtils.loadAnimation(this, R.anim.cloveranim);
         fromtop = AnimationUtils.loadAnimation(this, R.anim.fromtop);
         fromBottom = AnimationUtils.loadAnimation(this, R.anim.fromdown);
         textSplash = findViewById(R.id.textsplash);
         splashtext = findViewById(R.id.splashUser);
-        textHome = findViewById(R.id.textOptions);
+        //textHome = findViewById(R.id.textOptions);
         home = findViewById(R.id.menus);
-        bgApp = findViewById(R.id.bgapp);
+        //bgApp = findViewById(R.id.bgapp);
         bganim = AnimationUtils.loadAnimation(this, R.anim.bganim);
         menu = findViewById(R.id.menupointbutton);
         kitchen = findViewById(R.id.kitchenButton);
@@ -125,7 +130,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
             case R.id.schoolButton:
                 Intent intentSchool = new Intent(HomeActivity.this, SchoolActivity.class);
                 intentSchool.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(3));
-                intentSchool.putExtra(SchoolActivity.INSTITUTION_ID, institutionID);
+                intentSchool.putExtra(SchoolActivity.INSTITUTION_ID, institution.getId());
                 startActivity(intentSchool);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
@@ -133,7 +138,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 Intent intent = new Intent(HomeActivity.this, NotSchoolActivity.class);
                 intent.putExtra(NotSchoolActivity.OPTION_ACTION, NotSchoolActivity.KITCHEN);
                 intent.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(NotSchoolActivity.KITCHEN));
-                intent.putExtra(NotSchoolActivity.INSTITUTION_ID, institutionID);
+                intent.putExtra(NotSchoolActivity.INSTITUTION_ID, institution.getId());
                 startActivity(intent);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
@@ -141,7 +146,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 Intent intentWalkers = new Intent(HomeActivity.this, NotSchoolActivity.class);
                 intentWalkers.putExtra(NotSchoolActivity.OPTION_ACTION, NotSchoolActivity.WALKERS);
                 intentWalkers.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(NotSchoolActivity.WALKERS));
-                intentWalkers.putExtra(NotSchoolActivity.INSTITUTION_ID, institutionID);
+                intentWalkers.putExtra(NotSchoolActivity.INSTITUTION_ID, institution.getId());
                 startActivity(intentWalkers);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
@@ -149,7 +154,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 Intent intentInkind = new Intent(HomeActivity.this, NotSchoolActivity.class);
                 intentInkind.putExtra(NotSchoolActivity.OPTION_ACTION, NotSchoolActivity.INKIND);
                 intentInkind.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(NotSchoolActivity.INKIND));
-                intentInkind.putExtra(NotSchoolActivity.INSTITUTION_ID, institutionID);
+                intentInkind.putExtra(NotSchoolActivity.INSTITUTION_ID, institution.getId());
                 startActivity(intentInkind);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
@@ -159,6 +164,8 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;
             case R.id.btn_recovery:
+                showLoading();
+                containerUbication.setVisibility(View.GONE);
                 goHome();
                 break;
             case R.id.departmentGeolocation:
@@ -209,7 +216,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                             new SelectOptionDialog.onListenerInterface() {
                                 @Override
                                 public void optionSelect(Data data) {
-                                    institutionID = data.getId();
+                                    institution = data;
                                     institutionGeolocation.setText(data.getName());
                                     bar.setEnabled(true);
                                 }
@@ -312,40 +319,53 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         Toasty.warning(HomeActivity.this, msg, Toast.LENGTH_SHORT, true).show();
     }
 
-    /*private void setSpinnerLocation() {
-        mapLocation.put(0, "");
-        ArrayList<Data> dataLocation;
-        for (int position = 0; position < dataInstitutionbypartner.size(); position++) {
-            mapLocation.put(dataInstitutionbypartner.get(position).getGeolocation().getId(), dataInstitutionbypartner.get(position).getGeolocation().getName());
-        }
-        locationArray = new Gson().toJson(getArrayData(mapLocation));
-        hideLoading();
-        /*ArrayAdapter comboAdapterLocation = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, typesSpinner1);
-        location.setAdapter(comboAdapterLocation);
-
-    }
-
-    private void setSpinnerInstitution(int keyLocation) {
-        showLoading();
-        mapInstitution.clear();
-        for (int position = 0; position < dataInstitutionbypartner.size(); position++) {
-            if (keyLocation == dataInstitutionbypartner.get(position).getGeolocation().getId()) {
-                mapInstitution.put(dataInstitutionbypartner.get(position).getId(), dataInstitutionbypartner.get(position).getName());
-            }
-        }
-        institutionArray = new Gson().toJson(getArrayData(mapInstitution));
-        hideLoading();
-        //partner.setAdapter(comboAdapterInstitution);
-    }*/
-
     public void goHome() {
-        bgApp.animate().translationY(-1900).setDuration(800).setStartDelay(300);
-        clover.animate().alpha(0).setDuration(800).setStartDelay(600);
-        textSplash.animate().translationY(140).alpha(0).setDuration(800).setStartDelay(300);
-        textHome.setVisibility(View.VISIBLE);
-        home.setVisibility(View.VISIBLE);
-        textHome.startAnimation(fromBottom);
-        home.startAnimation(fromBottom);
+        //bgApp.animate().translationY(-1900).setDuration(800).setStartDelay(300);
+        //clover.animate().alpha(0).setDuration(800).setStartDelay(600);
+        //textSplash.animate().translationY(140).alpha(0).setDuration(800).setStartDelay(300);
+        //textHome.setVisibility(View.VISIBLE);
+        //home.setVisibility(View.VISIBLE);
+        //textHome.startAnimation(fromBottom);
+        //home.startAnimation(fromBottom);
+
+        containerHome.setVisibility(View.VISIBLE);
+
+        switch (institution.getModalityType()){
+            case 1:
+                walkers.setImageAlpha(120);
+                school.setImageAlpha(120);
+                inkind.setImageAlpha(120);
+                walkers.setClickable(false);
+                school.setClickable(false);
+                inkind.setClickable(false);
+                break;
+            case 2:
+                kitchen.setImageAlpha(120);
+                school.setImageAlpha(120);
+                inkind.setImageAlpha(120);
+                kitchen.setClickable(false);
+                school.setClickable(false);
+                inkind.setClickable(false);
+                break;
+            case 3:
+                kitchen.setImageAlpha(120);
+                walkers.setImageAlpha(120);
+                inkind.setImageAlpha(120);
+                kitchen.setClickable(false);
+                walkers.setClickable(false);
+                inkind.setClickable(false);
+                break;
+            default:
+                kitchen.setImageAlpha(120);
+                walkers.setImageAlpha(120);
+                school.setImageAlpha(120);
+                kitchen.setClickable(false);
+                walkers.setClickable(false);
+                school.setClickable(false);
+                break;
+        }
+
+        hideLoading();
     }
 
     private void showPopup(View v) {
@@ -375,4 +395,11 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 return false;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
+
 }

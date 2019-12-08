@@ -29,7 +29,7 @@ public class SchoolRepositoryImpl implements SchoolRepository {
 
     @Override
     public void getListBeneficiary(String keyword, int page, int idSchool, int idGroup) {
-        retrofit2.Call<BeneficiaryArray> call = ApiClient.getInstance().getApi().listStudents("Token "+ Utils.getInstance().getDataUser().getToken(), "1", "1", keyword, page);
+        retrofit2.Call<BeneficiaryArray> call = ApiClient.getInstance().getApi().listStudents("Token "+ Utils.getInstance().getDataUser().getToken(), String.valueOf(idSchool), String.valueOf(idGroup), keyword, page);
         call.enqueue(new Callback<BeneficiaryArray>() {
             @Override
             public void onResponse(Call<BeneficiaryArray> call, Response<BeneficiaryArray> response) {
