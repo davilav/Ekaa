@@ -124,6 +124,8 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 break;
             case R.id.schoolButton:
                 Intent intentSchool = new Intent(HomeActivity.this, SchoolActivity.class);
+                intentSchool.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(3));
+                intentSchool.putExtra(SchoolActivity.INSTITUTION_ID, institutionID);
                 startActivity(intentSchool);
                 customType(HomeActivity.this, "fadein-to-fadeout");
                 break;

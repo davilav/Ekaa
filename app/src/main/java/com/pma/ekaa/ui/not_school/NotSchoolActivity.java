@@ -11,12 +11,16 @@ import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +29,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.pma.ekaa.R;
+import com.pma.ekaa.data.models.AttendanceToday;
 import com.pma.ekaa.data.models.BeneficiaryArray;
 import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.Result;
@@ -40,6 +45,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
+import github.ishaan.buttonprogressbar.ButtonProgressBar;
 
 public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter{
 
@@ -54,7 +60,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private NotSchoolPresenter presenter;
     private int optionAction;
     private int institutionID;
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView,detail;
     private ItemAdapter itemAdapter;
     private List<Result> beneficiaries;
     private static int countPage = 1;
@@ -66,7 +72,8 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private FloatingActionButton floatingActionButton;
     private TextView titleToolbar;
     private SearchView searchView;
-    private Dialog dialog;
+    private Dialog attendanceDialog;
+    private Result selectBeneficiary;
 
     Double Longitude = Utils.getInstance().getGeolocation().getLongitude();
     Double Latitude = Utils.getInstance().getGeolocation().getLatitude();
@@ -268,9 +275,15 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     @Override
     public void setRegisterAttendanceSuccess() {
         hideLoading();
-        dialog.dismiss();
+        attendanceDialog.dismiss();
         Toasty.success(getApplicationContext(), "Atencion registrada exitosamente", Toast.LENGTH_SHORT, true).show();
         listBeneficiary("",countPage);
+    }
+
+    @Override
+    public void attendanceTodaySuccess(ArrayList<AttendanceToday> response) {
+        hideLoading();
+        showAttendanceDialog(selectBeneficiary, response);
     }
 
     @Override
@@ -279,10 +292,8 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         Toasty.error(getApplicationContext(), msg, Toast.LENGTH_SHORT, true).show();
     }
 
-    @Override
-    public void registerAttendance(Dialog myDialog, int institution, int userID, int person, int modality){
+    private void registerAttendance(int institution, int userID, int person, int modality){
         showLoading();
-        dialog = myDialog;
         presenter.setRegisterAttendance(Longitude, Latitude, institution, userID, person, modality);
     }
 
@@ -292,7 +303,118 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     }
 
     @Override
-    public void showAttendanceDetail(Result beneficiary) {
+    public void attendanceToday(Result beneficiary) {
+        showLoading();
+        selectBeneficiary = beneficiary;
+        presenter.getAttendanceToday(beneficiary.getId());
+    }
+
+    private void showAttendanceDialog(final Result beneficiary, ArrayList<AttendanceToday> response) {
+
+        attendanceDialog = new Dialog(this);
+        attendanceDialog.setContentView(R.layout.beneficiary_popup);
+
+        final CheckBox AM = attendanceDialog.findViewById(R.id.AM);
+        final CheckBox PM = attendanceDialog.findViewById(R.id.PM);
+        final CheckBox lunch = attendanceDialog.findViewById(R.id.lunch);
+        TextView txtclose = attendanceDialog.findViewById(R.id.txtclose);
+        TextView kitchenName = attendanceDialog.findViewById(R.id.kitchen_name);
+        TextView firstComplement = attendanceDialog.findViewById(R.id.first_complement);
+        TextView secondComplement = attendanceDialog.findViewById(R.id.second_complement);
+        TextView thirdComplement = attendanceDialog.findViewById(R.id.third_complement);
+        TextView detailAttendance = attendanceDialog.findViewById(R.id.detail);
+        final ButtonProgressBar bar = attendanceDialog.findViewById(R.id.btnfollow);
+
+        //Se deberia implementar un recycler view para listar las opciones
+
+        firstComplement.setText(modalities.get(0).getName());
+        secondComplement.setText(modalities.get(1).getName());
+        thirdComplement.setText(modalities.get(2).getName());
+
+        ((LinearLayout) attendanceDialog.findViewById(R.id.color_first)).setBackgroundColor(Color.parseColor(modalities.get(0).getColor()));
+        ((LinearLayout) attendanceDialog.findViewById(R.id.color_second)).setBackgroundColor(Color.parseColor(modalities.get(1).getColor()));
+        ((LinearLayout) attendanceDialog.findViewById(R.id.color_third)).setBackgroundColor(Color.parseColor(modalities.get(2).getColor()));
+
+        txtclose.setText("X");
+        kitchenName.setText(beneficiary.getFirst_name()+" "+ beneficiary.getSurname());
+
+        for(int cont = 0; cont < response.size(); cont++){
+            if(response.get(cont).getModality_id() == 1){
+                AM.setEnabled(false);
+            } else if(response.get(cont).getModality_id() == 2){
+                lunch.setEnabled(false);
+            } else {
+                PM.setEnabled(false);
+            }
+        }
+
+        AM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked){
+                    PM.setChecked(false);
+                    lunch.setChecked(false);
+                }
+            }
+        });
+
+        PM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked){
+                    AM.setChecked(false);
+                    lunch.setChecked(false);
+                }
+            }
+        });
+
+        lunch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked){
+                    PM.setChecked(false);
+                    AM.setChecked(false);
+                }
+            }
+        });
+
+        detailAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAttendanceDetail(beneficiary);
+            }
+        });
+
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                attendanceDialog.dismiss();
+            }
+        });
+
+        bar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bar.startLoader();
+
+                int modality = 0;
+                if(AM.isChecked()){
+                    modality = 1;
+                }else if (lunch.isChecked()){
+                    modality = 2;
+                }else if(PM.isChecked()){
+                    modality = 3;
+                }
+
+                registerAttendance(institutionID, beneficiary.getId(), 1, modality);
+            }
+        });
+
+        attendanceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        attendanceDialog.show();
+    }
+
+    private void showAttendanceDetail(Result beneficiary) {
         Intent intent = new Intent(this, AttendanceDetailActivity.class);
         intent.putExtra(AttendanceDetailActivity.USER_DETAIL, new Gson().toJson(beneficiary));
         startActivity(intent);

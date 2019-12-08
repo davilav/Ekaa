@@ -4,7 +4,7 @@ import com.pma.ekaa.data.models.RegisterBeneficiary;
 
 public interface BeneficiaryRepository {
 
-    void setCreateBeneficiary(RegisterBeneficiary registerBeneficiary);
+        void setCreateBeneficiary(RegisterBeneficiary registerBeneficiary);
 
-    void setUpdateBeneficiary(String id, RegisterBeneficiary registerBeneficiary);
+        void setUpdateBeneficiary(String id, RegisterBeneficiary registerBeneficiary);
 }

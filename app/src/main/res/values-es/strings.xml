@@ -59,6 +59,11 @@ Si decide no otorgar el consentimiento a ninguna de las entidades requeridas, el
     <string name="Enviar">Enviar</string>
     <string name="ConfirmEmail">Confirma tu correo</string>
     <string name="detail"><u>Ver detalle</u></string>
+    <string name="groupselect">Por favor selecciona tu grupo</string>
+    <string name="classselect">Por favor selecciona tu clase</string>
+    <string name="School">Escuela</string>
+    <string name="SchoolGroup">Grupo Escolar</string>
+    <string name="AddStudent">Agregar Estudiante</string>
 
 
     <string-array name="documentType">

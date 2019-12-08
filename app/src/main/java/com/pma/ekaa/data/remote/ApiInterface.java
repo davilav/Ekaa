@@ -11,6 +11,7 @@ import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.Password;
 import com.pma.ekaa.data.models.Register;
 import com.pma.ekaa.data.models.RegisterBeneficiary;
+import com.pma.ekaa.data.models.RegisterStudent;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.data.models.UserLog;
 
@@ -44,9 +45,14 @@ public interface ApiInterface {
     @PUT("api/v1/beneficiary/{id}/")
     Call<Result> updateBeneficiary(@Path("id") String id, @Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
 
+    @POST("/api/v1/school/students/ ")
+    Call<Result> registerStudents(@Body RegisterStudent registerStudent, @Header("Authorization") String authToken);
+
+    @PUT("api/v1/school/students/{id}/")
+    Call<Result> updateStudent(@Path("id") String id, @Body RegisterStudent registerStudent, @Header("Authorization") String authToken);
 
     @GET("api/v1/attendance/today/beneficiary/{id}/")
-    Call<AttendanceToday> getTodayAttendance(@Path("id") String id, @Header("Authorization") String authToken);
+    Call<ArrayList<AttendanceToday>> getTodayAttendance(@Path("id") String id, @Header("Authorization") String authToken);
 
     @GET("api/v1/attendance/detail/beneficiary/{id}/")
     Call<ArrayList<AttendanceDetail>> getDetailAttendance(@Path("id") String id, @Header("Authorization") String authToken);
@@ -79,6 +85,9 @@ public interface ApiInterface {
     @GET("/api/v1/partners")
     Call<ArrayList<Data>> getPartners();
 
+    @GET("/api/v1/school/groups/")
+    Call<ArrayList<Data>> getGroups(@Header("Authorization") String authToken);
+
 
     @GET("rest-auth/login/")
     Call<ResponseBody> getKey(@Header("Authorization") String authToken);
@@ -86,6 +95,14 @@ public interface ApiInterface {
     @GET("/api/v1/beneficiaries/")
     Call<BeneficiaryArray> listBeneficiary(
             @Header("Authorization") String authToken,
+            @Query("q") String keyword,
+            @Query("page") int page);
+
+    @GET("/api/v1/school/{id_school}/group/{id_group}/students/")
+    Call<BeneficiaryArray> listStudents(
+            @Header("Authorization") String authToken,
+            @Path("id_school") String idSchool,
+            @Path("id_group") String idGroup,
             @Query("q") String keyword,
             @Query("page") int page);
 
