@@ -5,6 +5,7 @@ import com.pma.ekaa.data.models.AttendanceToday;
 import com.pma.ekaa.data.models.BeneficiaryArray;
 import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.RegisterBeneficiary;
+import com.pma.ekaa.data.models.RegisterStudent;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.data.remote.ApiClient;
 import com.pma.ekaa.ui.home.presenter.HomePresenter;
@@ -27,8 +28,8 @@ public class SchoolRepositoryImpl implements SchoolRepository {
 
 
     @Override
-    public void getListBeneficiary(String keyword, int page) {
-        retrofit2.Call<BeneficiaryArray> call = ApiClient.getInstance().getApi().listStudents("Token "+ Utils.getInstance().getDataUser().getToken(), keyword, page);
+    public void getListBeneficiary(String keyword, int page, int idSchool, int idGroup) {
+        retrofit2.Call<BeneficiaryArray> call = ApiClient.getInstance().getApi().listStudents("Token "+ Utils.getInstance().getDataUser().getToken(), "1", "1", keyword, page);
         call.enqueue(new Callback<BeneficiaryArray>() {
             @Override
             public void onResponse(Call<BeneficiaryArray> call, Response<BeneficiaryArray> response) {
@@ -82,9 +83,9 @@ public class SchoolRepositoryImpl implements SchoolRepository {
     }
 
     @Override
-    public void setCreateBeneficiary(RegisterBeneficiary registerBeneficiary) {
+    public void setCreateBeneficiary(RegisterStudent registerStudent) {
 
-        Call<Result> call = ApiClient.getInstance().getApi().registerStudents(registerBeneficiary,"Token " + Utils.getInstance().getDataUser().getToken());
+        Call<Result> call = ApiClient.getInstance().getApi().registerStudents(registerStudent,"Token " + Utils.getInstance().getDataUser().getToken());
         call.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
@@ -112,8 +113,8 @@ public class SchoolRepositoryImpl implements SchoolRepository {
     }
 
     @Override
-    public void setUpdateBeneficiary(String id, RegisterBeneficiary registerBeneficiary) {
-        Call<Result> call = ApiClient.getInstance().getApi().updateStudent(id,registerBeneficiary, "Token " + Utils.getInstance().getDataUser().getToken());
+    public void setUpdateBeneficiary(String id, RegisterStudent registerStudent) {
+        Call<Result> call = ApiClient.getInstance().getApi().updateStudent(id, registerStudent, "Token " + Utils.getInstance().getDataUser().getToken());
         call.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {

@@ -19,7 +19,9 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
+import com.pma.ekaa.data.models.Beneficiary;
 import com.pma.ekaa.data.models.Data;
+import com.pma.ekaa.data.models.RegisterStudent;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
 import com.pma.ekaa.ui.dialog.SelectOptionDialog;
@@ -32,13 +34,17 @@ import java.util.Calendar;
 
 public class CreateEditStudentFragment extends Fragment implements View.OnClickListener {
 
+    private static String REGISTER_STUDENT = "register_student";
+
     private int selectItem;
     private Result objectBeneficiary;
 
-    private String getUID;
-    private String id;
+    private RegisterStudent registerStudent;
 
-    private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, ethnicGroup;
+    private String getUID;
+    private Integer id;
+
+    private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, ethnicGroup, familybeneficiary;
     private EditText nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary;
     private Button btnRecovery;
     private TextView birthdatebeneficiary, titleForm;
@@ -48,11 +54,12 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
 
     }
 
-    public static CreateEditStudentFragment newInstance(int selectItem, String objectBeneficiary) {
+    public static CreateEditStudentFragment newInstance(int selectItem, String objectBeneficiary, String registerStudent) {
         CreateEditStudentFragment fragment = new CreateEditStudentFragment();
         Bundle args = new Bundle();
         args.putInt(StudentActivity.SELECTED_ITEM, selectItem);
         args.putString(StudentActivity.OBJECT_BENEFICIARIES, objectBeneficiary);
+        args.putString(REGISTER_STUDENT, registerStudent);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,7 +69,8 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             selectItem = getArguments().getInt(StudentActivity.SELECTED_ITEM);
-            if(selectItem == BeneficiaryActivity.EDIT) {
+            registerStudent = new Gson().fromJson(getArguments().getString(REGISTER_STUDENT), RegisterStudent.class);
+            if (selectItem == BeneficiaryActivity.EDIT) {
                 objectBeneficiary = new Gson().fromJson(getArguments().getString(BeneficiaryActivity.OBJECT_BENEFICIARIES), Result.class);
             } else {
                 objectBeneficiary = new Result();
@@ -92,6 +100,7 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
         birthdatebeneficiary = view.findViewById(R.id.birthdatebeneficiary);
         nationalitybeneficiary = view.findViewById(R.id.nationalitybeneficiary);
         ethnicGroup = view.findViewById(R.id.ethnicGroup);
+        familybeneficiary = view.findViewById(R.id.familybeneficiary);
         btnRecovery = view.findViewById(R.id.btn_recovery);
 
         btnRecovery.setOnClickListener(this);
@@ -112,17 +121,17 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
             }
         });
 
-        if(selectItem == StudentActivity.EDIT){
+        if (selectItem == StudentActivity.EDIT) {
             titleForm.setText("Editar Estudiante");
             getUID = objectBeneficiary.getUid();
-            id = objectBeneficiary.getId().toString();
+            id = objectBeneficiary.getId();
             btnRecovery.setText("Actualizar");
             setInfoForm();
         } else {
             btnRecovery.setText("Registrar");
             titleForm.setText("Crear Estudiante");
             getUID = "";
-            id = "";
+            id = null;
         }
 
     }
@@ -135,20 +144,21 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
         documentbeneficiary.setText(objectBeneficiary.getDocument());
         ethnicGroup.setText(objectBeneficiary.getEthnicity());
         birthdatebeneficiary.setText(objectBeneficiary.getBirth_date());
+        familybeneficiary.setText(objectBeneficiary.getHousehold_code());
 
-        if(objectBeneficiary.getNationality() != null) {
+        if (objectBeneficiary.getNationality() != null) {
             nationalitybeneficiary.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getNationality(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_NATIONALITY, "")));
         } else {
             nationalitybeneficiary.setText("");
         }
 
-        if(objectBeneficiary.getDocument_type() != null) {
+        if (objectBeneficiary.getDocument_type() != null) {
             documentTypebeneficiary.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getDocument_type(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_DOCUMENTS, "")));
         } else {
             documentTypebeneficiary.setText("");
         }
 
-        if(objectBeneficiary.getGender() != null) {
+        if (objectBeneficiary.getGender() != null) {
             genderbeneficiary.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getGender(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_GENDERS, "")));
         } else {
             genderbeneficiary.setText("");
@@ -181,6 +191,13 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_recovery:
+                Beneficiary beneficiary = new Beneficiary(
+                        id, namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
+                        surnamebeneficiary.getText().toString(), objectBeneficiary.getDocument_type(), documentbeneficiary.getText().toString(), objectBeneficiary.getGender(),
+                        ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(), objectBeneficiary.getNationality(), familybeneficiary.getText().toString());
+                registerStudent.setBeneficiary(beneficiary);
+                registerStudent.setBelongsProgram("1");
+                mListener.setUploadBeneficiary(registerStudent, selectItem);
                 break;
             case R.id.genderbeneficiary:
                 SelectOptionDialog.newInstance(
@@ -191,7 +208,7 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
                                 objectBeneficiary.setGender(data.getId());
                                 genderbeneficiary.setText(data.getName());
                             }
-                        }).show(getActivity().getSupportFragmentManager(),"");
+                        }).show(getActivity().getSupportFragmentManager(), "");
                 break;
             case R.id.nationalitybeneficiary:
                 SelectOptionDialog.newInstance(
@@ -222,6 +239,6 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
 
 
     public interface OnFragmentInteractionListener {
-
+        void setUploadBeneficiary(RegisterStudent registerStudent, int optionAction);
     }
 }

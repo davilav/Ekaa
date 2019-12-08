@@ -34,8 +34,8 @@ public class SchoolPresenterImpl implements SchoolPresenter{
     }
 
     @Override
-    public void getListBeneficiary(String keyword, int page) {
-        repository.getListBeneficiary(keyword, page);
+    public void getListBeneficiary(String keyword, int page, int idSchool, int idGroup) {
+        repository.getListBeneficiary(keyword, page, idSchool, idGroup);
     }
 
     @Override

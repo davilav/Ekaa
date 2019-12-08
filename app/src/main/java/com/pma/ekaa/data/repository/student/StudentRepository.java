@@ -1,10 +1,11 @@
 package com.pma.ekaa.data.repository.student;
 
 import com.pma.ekaa.data.models.RegisterBeneficiary;
+import com.pma.ekaa.data.models.RegisterStudent;
 
 public interface StudentRepository {
 
-    void setCreateStudent(RegisterBeneficiary registerBeneficiary);
+    void setCreateStudent(RegisterStudent registerStudent);
 
-    void setUpdateStudent(String id, RegisterBeneficiary registerBeneficiary);
+    void setUpdateStudent(RegisterStudent registerStudent);
 }

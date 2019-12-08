@@ -11,6 +11,7 @@ import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.Password;
 import com.pma.ekaa.data.models.Register;
 import com.pma.ekaa.data.models.RegisterBeneficiary;
+import com.pma.ekaa.data.models.RegisterStudent;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.data.models.UserLog;
 
@@ -45,10 +46,10 @@ public interface ApiInterface {
     Call<Result> updateBeneficiary(@Path("id") String id, @Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
 
     @POST("/api/v1/school/students/ ")
-    Call<Result> registerStudents(@Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
+    Call<Result> registerStudents(@Body RegisterStudent registerStudent, @Header("Authorization") String authToken);
 
     @PUT("api/v1/school/students/{id}/")
-    Call<Result> updateStudent(@Path("id") String id, @Body RegisterBeneficiary registerbeneficiary , @Header("Authorization") String authToken);
+    Call<Result> updateStudent(@Path("id") String id, @Body RegisterStudent registerStudent, @Header("Authorization") String authToken);
 
     @GET("api/v1/attendance/today/beneficiary/{id}/")
     Call<ArrayList<AttendanceToday>> getTodayAttendance(@Path("id") String id, @Header("Authorization") String authToken);
@@ -97,9 +98,11 @@ public interface ApiInterface {
             @Query("q") String keyword,
             @Query("page") int page);
 
-    @GET("/api/v1/school/2/group/1/students/")
+    @GET("/api/v1/school/{id_school}/group/{id_group}/students/")
     Call<BeneficiaryArray> listStudents(
             @Header("Authorization") String authToken,
+            @Path("id_school") String idSchool,
+            @Path("id_group") String idGroup,
             @Query("q") String keyword,
             @Query("page") int page);
 

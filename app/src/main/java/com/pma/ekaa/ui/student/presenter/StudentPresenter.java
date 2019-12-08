@@ -1,9 +1,11 @@
 package com.pma.ekaa.ui.student.presenter;
 
 import com.pma.ekaa.data.models.RegisterBeneficiary;
+import com.pma.ekaa.data.models.RegisterStudent;
 
 public interface StudentPresenter {
-    void setUploadStudent(String id , RegisterBeneficiary registerBeneficiary, int optionAction);
+
+    void setUploadStudent(RegisterStudent registerStudent, int selectItem);
 
     void createStudentSuccess();
     void updateStudentSuccess();

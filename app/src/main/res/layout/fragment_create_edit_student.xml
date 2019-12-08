@@ -314,12 +314,36 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:id="@+id/relativeLayout14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/relativeLayout11"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="15dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/familybeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Codigo de familia"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </RelativeLayout>
+
 
                 <CheckBox
                     android:id="@+id/chkBox2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/relativeLayout11"
+                    android:layout_below="@id/relativeLayout14"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="30dp"

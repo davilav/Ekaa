@@ -12,7 +12,7 @@ public interface SchoolPresenter {
     void getDataGroup();
     void getDataClass();
 
-    void getListBeneficiary(String keyword, int page);
+    void getListBeneficiary(String keyword, int page, int idSchool, int idGroup);
     void setRegisterAttendance(Double longitude, Double latitude, int institution, int userID, int person, int modality);
     void getAttendanceToday(int userID);
 

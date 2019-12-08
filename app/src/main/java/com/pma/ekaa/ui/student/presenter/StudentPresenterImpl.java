@@ -1,10 +1,12 @@
 package com.pma.ekaa.ui.student.presenter;
 
 import com.pma.ekaa.data.models.RegisterBeneficiary;
+import com.pma.ekaa.data.models.RegisterStudent;
 import com.pma.ekaa.data.repository.beneficiary.BeneficiaryRepositoryImpl;
 import com.pma.ekaa.data.repository.student.StudentRepository;
 import com.pma.ekaa.data.repository.student.StudentRepositoryImpl;
 import com.pma.ekaa.ui.beneficiary.BeneficiaryView;
+import com.pma.ekaa.ui.student.StudentActivity;
 import com.pma.ekaa.ui.student.StudentView;
 
 public class StudentPresenterImpl implements StudentPresenter {
@@ -19,8 +21,15 @@ public class StudentPresenterImpl implements StudentPresenter {
     }
 
     @Override
-    public void setUploadStudent(String id, RegisterBeneficiary registerBeneficiary, int optionAction) {
-
+    public void setUploadStudent(RegisterStudent registerStudent, int selectItem) {
+        switch (selectItem) {
+            case StudentActivity.CREATE:
+                repository.setCreateStudent(registerStudent);
+                break;
+            case StudentActivity.EDIT:
+                repository.setUpdateStudent(registerStudent);
+                break;
+        }
     }
 
     @Override
@@ -30,11 +39,11 @@ public class StudentPresenterImpl implements StudentPresenter {
 
     @Override
     public void updateStudentSuccess() {
-
+        view.updateStudentSuccess();
     }
 
     @Override
     public void responseError(String msg) {
-
+        view.responseError(msg);
     }
 }

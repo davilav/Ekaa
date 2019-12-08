@@ -53,6 +53,7 @@ import github.ishaan.buttonprogressbar.ButtonProgressBar;
 public class SchoolActivity extends BaseActivity implements SchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter {
 
     public static String OPTION_MODALITY = "option_modality";
+    public static String INSTITUTION_ID = "institution_id";
 
     private LinearLayout schoolSplash;
     private ConstraintLayout students, loading;
@@ -92,8 +93,10 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
 
         if(savedInstanceState != null){
             modalities = new Gson().fromJson(savedInstanceState.getString(OPTION_MODALITY), new TypeToken<List<Modality>>(){}.getType());
+            institutionID = savedInstanceState.getInt(INSTITUTION_ID);
         } else {
             modalities = new Gson().fromJson(getIntent().getStringExtra(OPTION_MODALITY), new TypeToken<List<Modality>>(){}.getType());
+            institutionID = getIntent().getIntExtra(INSTITUTION_ID, -1);
         }
 
         presenter = new SchoolPresenterImpl(this);
@@ -104,11 +107,6 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         bar.setOnClickListener(this);
 
         showLoading();
-
-        searchManager();
-
-        setAdapterRecycler();
-
         presenter.getDataGroup();
         presenter.getDataClass();
 
@@ -160,7 +158,7 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
             previouspage.setVisibility(View.VISIBLE);
         }
 
-        presenter.getListBeneficiary(keyword,page);
+        presenter.getListBeneficiary(keyword,page, institutionID, groupID);
 
     }
 
@@ -169,6 +167,8 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         schoolSplash.animate().translationY(140).alpha(0).setDuration(800).setStartDelay(300);
         students.setVisibility(View.VISIBLE);
         students.startAnimation(fromBottom);
+        searchManager();
+        setAdapterRecycler();
     }
 
 
@@ -417,6 +417,8 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     private void startStudent(int item, Result beneficiary) {
         Intent intent = new Intent(this, StudentActivity.class);
         intent.putExtra(StudentActivity.SELECTED_ITEM, item);
+        intent.putExtra(StudentActivity.INSTITUTION_ID, institutionID);
+        intent.putExtra(StudentActivity.GROUP_ID, groupID);
         if(beneficiary != null) {
             intent.putExtra(StudentActivity.OBJECT_BENEFICIARIES, new Gson().toJson(beneficiary));
         } else {
