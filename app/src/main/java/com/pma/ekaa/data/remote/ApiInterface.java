@@ -75,6 +75,7 @@ public interface ApiInterface {
     @GET("/api/v1/migratorystatus/")
     Call<ArrayList<Data>> getMigratoryStatus();
 
+
     @GET("/api/v1/recipients/")
     Call<ArrayList<Data>> getRecipients();
 
@@ -85,8 +86,15 @@ public interface ApiInterface {
     @GET("/api/v1/partners")
     Call<ArrayList<Data>> getPartners();
 
+    @GET("api/v1/disabilities/")
+    Call<ArrayList<Data>> getDisabilities();
+
+    @GET("/api/v1/school/programs/")
+    Call<ArrayList<Data>> getPrograms();
+
+
     @GET("/api/v1/school/groups/")
-    Call<ArrayList<Data>> getGroups(@Header("Authorization") String authToken);
+    Call<ArrayList<Data>> getGroups();
 
 
     @GET("rest-auth/login/")
@@ -98,11 +106,10 @@ public interface ApiInterface {
             @Query("q") String keyword,
             @Query("page") int page);
 
-    @GET("/api/v1/school/{id_school}/group/{id_group}/students/")
+    @GET("/api/v1/school/{id_school}/students/")
     Call<BeneficiaryArray> listStudents(
             @Header("Authorization") String authToken,
             @Path("id_school") String idSchool,
-            @Path("id_group") String idGroup,
             @Query("q") String keyword,
             @Query("page") int page);
 

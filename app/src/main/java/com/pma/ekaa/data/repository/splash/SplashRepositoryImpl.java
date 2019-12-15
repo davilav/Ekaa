@@ -160,4 +160,68 @@ public class SplashRepositoryImpl implements SplashRepository {
         });
 
     }
+
+    @Override
+    public void getDisabilities() {
+
+        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().getDisabilities();
+        call.enqueue(new Callback<ArrayList<Data>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Data>> call, Response<ArrayList<Data>> response) {
+                if(response.isSuccessful()){
+                    presenter.getDisabilitiesSuccess(response.body());
+                } else {
+                    presenter.loginError("ERROR");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Data>> call, Throwable t) {
+                presenter.loginError("ERROR");
+            }
+        });
+
+    }
+
+    @Override
+    public void getPrograms() {
+
+        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().getPrograms();
+        call.enqueue(new Callback<ArrayList<Data>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Data>> call, Response<ArrayList<Data>> response) {
+                if(response.isSuccessful()){
+                    presenter.getProgramsSuccess(response.body());
+                } else {
+                    presenter.loginError("ERROR");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Data>> call, Throwable t) {
+                presenter.loginError("ERROR");
+            }
+        });
+
+    }
+
+    @Override
+    public void getGroups() {
+        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().getGroups();
+        call.enqueue(new Callback<ArrayList<Data>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Data>> call, Response<ArrayList<Data>> response) {
+                if(response.isSuccessful()){
+                    presenter.getGroupsSuccess(response.body());
+                } else {
+                    presenter.loginError("ERROR");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Data>> call, Throwable t) {
+                presenter.loginError("ERROR");
+            }
+        });
+    }
 }

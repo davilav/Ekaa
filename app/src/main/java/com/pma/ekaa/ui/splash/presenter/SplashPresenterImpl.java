@@ -67,6 +67,24 @@ public class SplashPresenterImpl implements SplashPresenter {
     @Override
     public void getHouseHoldRoleSuccess(ArrayList<Data> houserole) {
         PreferencesHelper.setPreference(application, PreferencesHelper.KEY_HOUSESHOLD, new Gson().toJson(houserole));
+        repository.getDisabilities();
+    }
+
+    @Override
+    public void getDisabilitiesSuccess(ArrayList<Data> disabilities) {
+        PreferencesHelper.setPreference(application, PreferencesHelper.KEY_DISABILITIES, new Gson().toJson(disabilities));
+        repository.getPrograms();
+    }
+
+    @Override
+    public void getProgramsSuccess(ArrayList<Data> programs) {
+        PreferencesHelper.setPreference(application, PreferencesHelper.KEY_PROGRAMS, new Gson().toJson(programs));
+        repository.getGroups();
+    }
+
+    @Override
+    public void getGroupsSuccess(ArrayList<Data> groups) {
+        PreferencesHelper.setPreference(application, PreferencesHelper.KEY_GROUPS, new Gson().toJson(groups));
         view.getDataSuccess();
     }
 

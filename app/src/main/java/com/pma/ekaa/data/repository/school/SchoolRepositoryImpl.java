@@ -29,7 +29,7 @@ public class SchoolRepositoryImpl implements SchoolRepository {
 
     @Override
     public void getListBeneficiary(String keyword, int page, int idSchool, int idGroup) {
-        retrofit2.Call<BeneficiaryArray> call = ApiClient.getInstance().getApi().listStudents("Token "+ Utils.getInstance().getDataUser().getToken(), String.valueOf(idSchool), String.valueOf(idGroup), keyword, page);
+        retrofit2.Call<BeneficiaryArray> call = ApiClient.getInstance().getApi().listStudents("Token "+ Utils.getInstance().getDataUser().getToken(), String.valueOf(idSchool), keyword, page);
         call.enqueue(new Callback<BeneficiaryArray>() {
             @Override
             public void onResponse(Call<BeneficiaryArray> call, Response<BeneficiaryArray> response) {
@@ -79,7 +79,31 @@ public class SchoolRepositoryImpl implements SchoolRepository {
 
     @Override
     public void setRegisterAttendance(Attendance attendance) {
+        Call<Attendance> call = ApiClient.getInstance().getApi().registerAttendance(attendance,("Token "+Utils.getInstance().getDataUser().getToken()));
+        call.enqueue(new Callback<Attendance>() {
+            @Override
+            public void onResponse(Call<Attendance> call, Response<Attendance> response) {
 
+                switch (response.code()) {
+                    case 200:
+                    case 201:
+                        presenter.setRegisterAttendanceSuccess();
+                        break;
+                    case 400:
+                        presenter.responseError("Error");
+                        break;
+                    default:
+                        presenter.responseError("Error1");
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Attendance> call, Throwable t) {
+                presenter.responseError("Error1");
+            }
+        });
     }
 
     @Override
@@ -140,34 +164,4 @@ public class SchoolRepositoryImpl implements SchoolRepository {
 
     }
 
-    @Override
-    public void getDataGroup() {
-        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().getGroups("Token " + Utils.getInstance().getDataUser().getToken());
-        call.enqueue(new Callback<ArrayList<Data>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Data>> call, Response<ArrayList<Data>> response) {
-                switch (response.code()) {
-                    case 200:
-                        presenter.getGroupSuccess(response.body());
-                        break;
-                    case 400:
-                        presenter.responseError("Error");
-                        break;
-                    default:
-                        presenter.responseError("Error1");
-                        break;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Data>> call, Throwable t) {
-
-            }
-        });
-    }
-
-    @Override
-    public void getDataClass() {
-
-    }
 }

@@ -86,6 +86,9 @@ Si decide no otorgar el consentimiento a ninguna de las entidades requeridas, el
     <string name="familyhead">¿Es cabeza de familia?</string>
     <string name="migratorio">Estado Migratorio</string>
     <string name="option">Por favor selecciona la opción</string>
+    <string name="disabilities">Discapacidad</string>
+    <string name="programs">Programa</string>
+    <string name="classnumber">Clase</string>
 
 
 

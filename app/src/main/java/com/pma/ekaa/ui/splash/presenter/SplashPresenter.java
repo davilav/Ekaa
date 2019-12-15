@@ -21,5 +21,11 @@ public interface SplashPresenter {
 
     void getHouseHoldRoleSuccess(ArrayList<Data> houseRole);
 
+    void getDisabilitiesSuccess(ArrayList<Data> disabilities);
+
+    void getProgramsSuccess(ArrayList<Data> programs);
+
+    void getGroupsSuccess(ArrayList<Data> groups);
+
     void loginError(String msg);
 }

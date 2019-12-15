@@ -14,6 +14,9 @@ public class PreferencesHelper {
     public static String KEY_MIGRATORY = "key_migratory";
     public static String KEY_RECIPIENT = "key_recipient";
     public static String KEY_HOUSESHOLD = "key_household";
+    public static String KEY_DISABILITIES = "key_disabilities";
+    public static String KEY_PROGRAMS = "key_programs";
+    public static String KEY_GROUPS = "key_groups";
     public static String KEY_PARTNER = "key_partner";
 
     /** Called to save supplied value in shared preferences against given key.

@@ -88,9 +88,9 @@ public class ShowStudentFragment extends Fragment implements View.OnClickListene
         birthdate.setText(objectBeneficiary.getBirth_date());
         completeName.setText(objectBeneficiary.getFirst_name()+" "+ objectBeneficiary.getSecond_name()+" "+ objectBeneficiary.getSurname()+" "+ objectBeneficiary.getSecond_surname());
         documentNumber.setText(objectBeneficiary.getDocument());
-        school.setText(objectBeneficiary.getSchool());
+        //school.setText(objectBeneficiary.getSchool());
         registration.setText(objectBeneficiary.getRegistration_date());
-        group.setText(objectBeneficiary.getSchoolGroup());
+       // group.setText(objectBeneficiary.getSchoolGroup());
         familyCode.setText(objectBeneficiary.getHousehold_code());
     }
 

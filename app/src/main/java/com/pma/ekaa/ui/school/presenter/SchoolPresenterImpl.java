@@ -1,5 +1,6 @@
 package com.pma.ekaa.ui.school.presenter;
 
+import com.pma.ekaa.data.models.Attendance;
 import com.pma.ekaa.data.models.AttendanceToday;
 import com.pma.ekaa.data.models.BeneficiaryArray;
 import com.pma.ekaa.data.models.Data;
@@ -24,23 +25,22 @@ public class SchoolPresenterImpl implements SchoolPresenter{
     }
 
     @Override
-    public void getDataGroup() {
-        repository.getDataGroup();
-    }
-
-    @Override
-    public void getDataClass() {
-    repository.getDataClass();
-    }
-
-    @Override
     public void getListBeneficiary(String keyword, int page, int idSchool, int idGroup) {
         repository.getListBeneficiary(keyword, page, idSchool, idGroup);
     }
 
     @Override
     public void setRegisterAttendance(Double longitude, Double latitude, int institution, int userID, int person, int modality) {
-
+        repository.setRegisterAttendance(
+                new Attendance(
+                        longitude,
+                        latitude,
+                        institution,
+                        userID,
+                        person,
+                        modality
+                )
+        );
     }
 
     @Override
@@ -55,7 +55,7 @@ public class SchoolPresenterImpl implements SchoolPresenter{
 
     @Override
     public void setRegisterAttendanceSuccess() {
-
+        view.setRegisterAttendanceSuccess();
     }
 
     @Override
@@ -63,15 +63,7 @@ public class SchoolPresenterImpl implements SchoolPresenter{
         view.attendanceTodaySuccess(response);
     }
 
-    @Override
-    public void getGroupSuccess(ArrayList<Data> data) {
-        view.getGroupSuccess(data);
-    }
 
-    @Override
-    public void getClassSuccess(ArrayList<Data> data) {
-
-    }
 
     @Override
     public void createBeneficiarySuccess() {

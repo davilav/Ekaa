@@ -12,6 +12,7 @@ public class RegisterBeneficiary {
     private Integer beneficiary_type;
     private Integer migratory_status;
     private Integer marital_status;
+    private Integer disability;
     private String first_name;
     private String second_name;
     private String surname;
@@ -26,7 +27,8 @@ public class RegisterBeneficiary {
     private String household_code;
     private String agreement;
 
-    public RegisterBeneficiary(String uid, Integer nationality, Integer document_type, Integer gender, Integer household_role, Integer recipient, Integer status, Integer beneficiary_type, Integer migratory_status, Integer marital_status, String first_name, String second_name, String surname, String second_surname, String document, String ethnicity, String birth_date, String pregnant, String phone, String aditional_information, String note, String household_code, String agreement) {
+
+    public RegisterBeneficiary(String uid, Integer nationality, Integer document_type, Integer gender, Integer household_role, Integer recipient, Integer status, Integer beneficiary_type, Integer migratory_status, Integer marital_status, Integer disability, String first_name, String second_name, String surname, String second_surname, String document, String ethnicity, String birth_date, String pregnant, String phone, String aditional_information, String note, String household_code, String agreement) {
         this.uid = uid;
         this.nationality = nationality;
         this.document_type = document_type;
@@ -37,6 +39,7 @@ public class RegisterBeneficiary {
         this.beneficiary_type = beneficiary_type;
         this.migratory_status = migratory_status;
         this.marital_status = marital_status;
+        this.disability = disability;
         this.first_name = first_name;
         this.second_name = second_name;
         this.surname = surname;
@@ -234,5 +237,9 @@ public class RegisterBeneficiary {
 
     public void setAgreement(String agreement) {
         this.agreement = agreement;
+    }
+
+    public void setDisability(Integer disability) {
+        this.disability = disability;
     }
 }

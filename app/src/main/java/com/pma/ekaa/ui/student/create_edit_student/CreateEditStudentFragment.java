@@ -45,7 +45,7 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
     private Integer id;
 
     private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, ethnicGroup;
-    private EditText nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary;
+    private EditText nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary, disabilitiesbenenficiary,programbeneficiary,groupbeneficiary,classbeneficiary;
     private Button btnRecovery;
     private TextView birthdatebeneficiary, titleForm;
     private OnFragmentInteractionListener mListener;
@@ -99,6 +99,10 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
         genderbeneficiary = view.findViewById(R.id.genderbeneficiary);
         birthdatebeneficiary = view.findViewById(R.id.birthdatebeneficiary);
         nationalitybeneficiary = view.findViewById(R.id.nationalitybeneficiary);
+        disabilitiesbenenficiary = view.findViewById(R.id.disabilitiesbeneficiary);
+        programbeneficiary = view.findViewById(R.id.programbeneficiary);
+        groupbeneficiary = view.findViewById(R.id.groupbeneficiary);
+        classbeneficiary = view.findViewById(R.id.classbeneficiary);
         ethnicGroup = view.findViewById(R.id.ethnicGroup);
         btnRecovery = view.findViewById(R.id.btn_recovery);
 
@@ -106,6 +110,10 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
         genderbeneficiary.setOnClickListener(this);
         nationalitybeneficiary.setOnClickListener(this);
         documentTypebeneficiary.setOnClickListener(this);
+        disabilitiesbenenficiary.setOnClickListener(this);
+        programbeneficiary.setOnClickListener(this);
+        groupbeneficiary.setOnClickListener(this);
+        classbeneficiary.setOnClickListener(this);
 
         birthdatebeneficiary.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,6 +169,24 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
         } else {
             genderbeneficiary.setText("");
         }
+
+        if (objectBeneficiary.getDisability() != null) {
+            disabilitiesbenenficiary.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getDisability(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_DISABILITIES, "")));
+        } else {
+            disabilitiesbenenficiary.setText("");
+        }
+
+        if (objectBeneficiary.getSchoolProgram() != null) {
+            programbeneficiary.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getSchoolProgram(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_PROGRAMS, "")));
+        } else {
+            programbeneficiary.setText("");
+        }
+
+        if (objectBeneficiary.getSchoolGroup() != null) {
+            groupbeneficiary.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getSchoolGroup(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_GROUPS, "")));
+        } else {
+            groupbeneficiary.setText("");
+        }
     }
 
     private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -192,7 +218,7 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
                 Beneficiary beneficiary = new Beneficiary(
                         id, namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                         surnamebeneficiary.getText().toString(), objectBeneficiary.getDocument_type(), documentbeneficiary.getText().toString(), objectBeneficiary.getGender(),
-                        ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(), objectBeneficiary.getNationality(), documentbeneficiary.getText().toString());
+                        ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(), objectBeneficiary.getNationality(), documentbeneficiary.getText().toString(), objectBeneficiary.getDisability());
                 registerStudent.setBeneficiary(beneficiary);
                 registerStudent.setBelongsProgram("1");
                 mListener.setUploadBeneficiary(registerStudent, selectItem);
@@ -227,6 +253,41 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
                             public void optionSelect(Data data) {
                                 objectBeneficiary.setDocument_type(data.getId());
                                 documentTypebeneficiary.setText(data.getName());
+                            }
+                        }).show(getActivity().getSupportFragmentManager(), "");
+                break;
+
+            case R.id.disabilitiesbeneficiary:
+                SelectOptionDialog.newInstance(
+                        PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_DISABILITIES, ""),
+                        new SelectOptionDialog.onListenerInterface() {
+                            @Override
+                            public void optionSelect(Data data) {
+                                objectBeneficiary.setDisability(data.getId());
+                                disabilitiesbenenficiary.setText(data.getName());
+                            }
+                        }).show(getActivity().getSupportFragmentManager(), "");
+                break;
+            case R.id.programbeneficiary:
+                SelectOptionDialog.newInstance(
+                        PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_PROGRAMS, ""),
+                        new SelectOptionDialog.onListenerInterface() {
+                            @Override
+                            public void optionSelect(Data data) {
+                                objectBeneficiary.setSchoolProgram(data.getId());
+                                programbeneficiary.setText(data.getName());
+                            }
+                        }).show(getActivity().getSupportFragmentManager(), "");
+                break;
+
+            case R.id.groupbeneficiary:
+                SelectOptionDialog.newInstance(
+                        PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_GROUPS, ""),
+                        new SelectOptionDialog.onListenerInterface() {
+                            @Override
+                            public void optionSelect(Data data) {
+                                objectBeneficiary.setSchoolGroup(data.getId());
+                                groupbeneficiary.setText(data.getName());
                             }
                         }).show(getActivity().getSupportFragmentManager(), "");
                 break;

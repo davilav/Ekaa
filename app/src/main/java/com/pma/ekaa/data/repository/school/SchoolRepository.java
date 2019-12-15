@@ -14,7 +14,5 @@ public interface SchoolRepository {
 
     void setUpdateBeneficiary(String id, RegisterStudent registerStudent);
 
-    void getDataGroup();
-    void getDataClass();
 
 }

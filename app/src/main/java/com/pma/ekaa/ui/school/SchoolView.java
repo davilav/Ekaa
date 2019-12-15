@@ -11,11 +11,9 @@ public interface SchoolView {
     void showLoading();
     void hideLoading();
 
-    void getGroupSuccess(ArrayList<Data> data);
-    void getClassSuccess(ArrayList<Data> data);
     void getListBeneficiarySuccess(BeneficiaryArray beneficiaryArray);
     void attendanceTodaySuccess(ArrayList<AttendanceToday> response);
-
+    void setRegisterAttendanceSuccess();
     void createBeneficiarySuccess();
     void updateBeneficiarySuccess();
 

@@ -42,7 +42,11 @@ public class Beneficiary {
     @Expose
     private String householdCode;
 
-    public Beneficiary(Integer id, String firstName, String secondName, String surname, String secondSurname, Integer documentType, String document, Integer gender, String ethnicity, String birthDate, Integer nationality, String householdCode) {
+    @SerializedName("disability")
+    @Expose
+    private Integer disability;
+
+    public Beneficiary(Integer id, String firstName, String secondName, String surname, String secondSurname, Integer documentType, String document, Integer gender, String ethnicity, String birthDate, Integer nationality, String householdCode, Integer disability) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -55,6 +59,7 @@ public class Beneficiary {
         this.birthDate = birthDate;
         this.nationality = nationality;
         this.householdCode = householdCode;
+        this.disability = disability;
     }
 
     public Integer getId() {
@@ -151,5 +156,13 @@ public class Beneficiary {
 
     public void setHouseholdCode(String householdCode) {
         this.householdCode = householdCode;
+    }
+
+    public Integer getDisability() {
+        return disability;
+    }
+
+    public void setDisability(Integer disability) {
+        this.disability = disability;
     }
 }

@@ -72,7 +72,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
     public void progressAnimation(){
 
         ProgressBarAnim anim = new ProgressBarAnim(this,progressBar,loading,0f,100f);
-        anim.setDuration(13500);
+        anim.setDuration(14500);
         progressBar.setAnimation(anim);
 
     }
