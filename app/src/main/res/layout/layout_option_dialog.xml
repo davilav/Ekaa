@@ -16,7 +16,7 @@
             android:id="@+id/spinerTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LISTA"
+            android:text="@string/option"
             android:textSize="17sp"
             android:textStyle="bold" />
 

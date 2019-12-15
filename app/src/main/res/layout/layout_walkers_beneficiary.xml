@@ -86,7 +86,7 @@
                             android:id="@+id/namebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Primer Nombre"/>
+                            android:hint="@string/firstname"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
@@ -110,7 +110,7 @@
                             android:id="@+id/seconenamebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Segundo Nombre"/>
+                            android:hint="@string/secondname"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -136,7 +136,7 @@
                             android:id="@+id/lastnamebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Primer Apellido"/>
+                            android:hint="@string/lastname"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -161,7 +161,7 @@
                             android:id="@+id/surnamebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Segundo Apellido"/>
+                            android:hint="@string/surname"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -185,7 +185,7 @@
                             android:id="@+id/nationalitybeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Nacionalidad"
+                            android:hint="@string/nationality"
                             android:focusable="false"
                             />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -210,7 +210,7 @@
                             android:id="@+id/documentTypebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Tipo de documento"
+                            android:hint="@string/dtype"
                             android:focusable="false"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -235,7 +235,7 @@
                             android:id="@+id/documentbeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Numero de Documento"/>
+                            android:hint="@string/identificationnumber" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -283,7 +283,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
-                            android:hint="Fecha de nacimiento"/>
+                            android:hint="@string/birthdate"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -307,7 +307,7 @@
                             android:id="@+id/genderbeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Sexo"
+                            android:hint="@string/gender"
                             android:focusable="false"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -332,7 +332,7 @@
                             android:id="@+id/phonebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Numero de telefono"/>
+                            android:hint="@string/phonenumber"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -356,7 +356,7 @@
                             android:id="@+id/familybeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Codigo de familia"/>
+                            android:hint="@string/housecode"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -381,7 +381,7 @@
                             android:id="@+id/migratoryStatus"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Estado Migratorio"
+                            android:hint="@string/migratorio"
                             android:focusable="false"
                             />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -407,7 +407,7 @@
                         android:id="@+id/maritalStatus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Estado Civil"
+                        android:hint="@string/maritalstatus"
                         android:focusable="false"
                         />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -433,7 +433,7 @@
                         android:id="@+id/ethnicGroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Etnia"
+                        android:hint="@string/etnia"
                         />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -459,7 +459,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
-                            android:hint="¿Recibe?"
+                            android:hint="@string/recipient"
                             />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -484,7 +484,7 @@
                             android:id="@+id/houseHoldRole"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Rol de Familia"
+                            android:hint="@string/familyrol"
                             android:focusable="false"
                             />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -501,48 +501,21 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp"
                     android:fontFamily="sans-serif"
-                    android:text="¿Es cabeza de familia?"
+                    android:text="@string/familyhead"
                     android:textColor="#6e6e6e" />
 
-                <CheckBox
-                    android:id="@+id/chkBox1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/chkBox2"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/agreeterms"
-                    android:textColor="#6e6e6e" />
 
                 <Button
                     android:id="@+id/btn_recovery"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/chkBox1"
+                    android:layout_below="@+id/chkBox2"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp"
                     android:fontFamily="sans-serif-medium"
                     android:background="@color/colorPrimary"
                     android:textColor="@android:color/white"/>
-
-                <Button
-                    android:id="@+id/memberButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/btn_recovery"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="#00000000"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/help"
-                    android:textAllCaps="false"
-                    android:textColor="#6e6e6e"
-                    android:textSize="13sp" />
-
 
 
             </RelativeLayout>

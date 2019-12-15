@@ -9,6 +9,7 @@
     <string name="create">Crear Cuenta</string>
     <string name="createaccount">REGISTRO</string>
     <string name="email">Correo</string>
+    <string name="user">Nombre de usuario</string>
     <string name="forgotpassword">¿Olvidaste tu contraseña?</string>
     <string name="forgotyourpassword">¿Olvidaste tu contraseña?, Toca Aqui</string>
     <string name="inkind">Inkind</string>
@@ -51,7 +52,8 @@ Si decide no otorgar el consentimiento a ninguna de las entidades requeridas, el
     <string name="identificationnumber">Numero de identificación</string>
     <string name="tel">Teléfono</string>
     <string name="save">Guardar</string>
-    <string name="geolocationselect">Por favor selecciona tu localización.</string>
+    <string name="departamentselect">Por favor selecciona tu departamento</string>
+    <string name="townselect">Por favor selecciona tu municipio</string>
     <string name="wfp">PMA</string>
     <string name="Hpartners">Socios Humanitarios</string>
     <string name="Ppartners">Socios Privados</string>
@@ -64,6 +66,28 @@ Si decide no otorgar el consentimiento a ninguna de las entidades requeridas, el
     <string name="School">Escuela</string>
     <string name="SchoolGroup">Grupo Escolar</string>
     <string name="AddStudent">Agregar Estudiante</string>
+    <string name="schoolstring">Colegio</string>
+    <string name="group">Grupo</string>
+    <string name="registrationdate">Fecha de Registro</string>
+    <string name="attention">Atenciones</string>
+    <string name="lastAttention">La última atención fue:</string>
+    <string name="firstname">Primer Nombre</string>
+    <string name="secondname">Segundo Nombre</string>
+    <string name="lastname">Primer Apellido</string>
+    <string name="surname">Segundo Apellido</string>
+    <string name="etnia">Etnia</string>
+    <string name="belongs">¿Pertenece al programa?</string>
+    <string name="phonenumber">Número de Teléfono</string>
+    <string name="note">Nota</string>
+    <string name="maritalstatus">Estado Civil</string>
+    <string name="recipient">¿Recibe?</string>
+    <string name="familyrol">Rol de Familia</string>
+    <string name="aditionalinfo">Información Adicional</string>
+    <string name="familyhead">¿Es cabeza de familia?</string>
+    <string name="migratorio">Estado Migratorio</string>
+    <string name="option">Por favor selecciona la opción</string>
+
+
 
 
     <string-array name="documentType">

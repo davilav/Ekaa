@@ -86,9 +86,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imgView_userIcon"
                     android:layout_alignParentTop="true"
+                    android:layout_marginLeft="-2dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
                     android:layout_toRightOf="@+id/imgView_userIcon"
                     android:background="#DADADA"
-                    android:hint="@string/email"
+                    android:hint="@string/user"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
 

@@ -44,7 +44,7 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
     private String getUID;
     private Integer id;
 
-    private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, ethnicGroup, familybeneficiary;
+    private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, ethnicGroup;
     private EditText nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary;
     private Button btnRecovery;
     private TextView birthdatebeneficiary, titleForm;
@@ -100,7 +100,6 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
         birthdatebeneficiary = view.findViewById(R.id.birthdatebeneficiary);
         nationalitybeneficiary = view.findViewById(R.id.nationalitybeneficiary);
         ethnicGroup = view.findViewById(R.id.ethnicGroup);
-        familybeneficiary = view.findViewById(R.id.familybeneficiary);
         btnRecovery = view.findViewById(R.id.btn_recovery);
 
         btnRecovery.setOnClickListener(this);
@@ -144,7 +143,6 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
         documentbeneficiary.setText(objectBeneficiary.getDocument());
         ethnicGroup.setText(objectBeneficiary.getEthnicity());
         birthdatebeneficiary.setText(objectBeneficiary.getBirth_date());
-        familybeneficiary.setText(objectBeneficiary.getHousehold_code());
 
         if (objectBeneficiary.getNationality() != null) {
             nationalitybeneficiary.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getNationality(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_NATIONALITY, "")));
@@ -194,7 +192,7 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
                 Beneficiary beneficiary = new Beneficiary(
                         id, namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                         surnamebeneficiary.getText().toString(), objectBeneficiary.getDocument_type(), documentbeneficiary.getText().toString(), objectBeneficiary.getGender(),
-                        ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(), objectBeneficiary.getNationality(), familybeneficiary.getText().toString());
+                        ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(), objectBeneficiary.getNationality(), documentbeneficiary.getText().toString());
                 registerStudent.setBeneficiary(beneficiary);
                 registerStudent.setBelongsProgram("1");
                 mListener.setUploadBeneficiary(registerStudent, selectItem);
