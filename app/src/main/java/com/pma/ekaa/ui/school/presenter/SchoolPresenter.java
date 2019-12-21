@@ -9,9 +9,6 @@ import java.util.ArrayList;
 
 public interface SchoolPresenter {
 
-    void getDataGroup();
-    void getDataClass();
-
     void getListBeneficiary(String keyword, int page, int idSchool, int idGroup);
     void setRegisterAttendance(Double longitude, Double latitude, int institution, int userID, int person, int modality);
     void getAttendanceToday(int userID);
@@ -19,10 +16,6 @@ public interface SchoolPresenter {
     void getListBeneficiarySuccess(BeneficiaryArray beneficiaryArray);
     void setRegisterAttendanceSuccess();
     void attendanceTodaySuccess(ArrayList<AttendanceToday> response);
-
-
-    void getGroupSuccess(ArrayList<Data> data);
-    void getClassSuccess(ArrayList<Data> data);
 
     void createBeneficiarySuccess();
     void updateBeneficiarySuccess();

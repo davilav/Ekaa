@@ -14,4 +14,10 @@ public interface SplashRepository {
     void getRecipient();
 
     void getHouseHoldRole();
+
+    void getDisabilities();
+
+    void getPrograms();
+
+    void getGroups();
 }

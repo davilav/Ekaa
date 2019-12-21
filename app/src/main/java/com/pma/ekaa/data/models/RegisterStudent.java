@@ -11,6 +11,10 @@ public class RegisterStudent {
     @SerializedName("school")
     @Expose
     private Integer school;
+
+    @SerializedName("school_program")
+    @Expose
+    private Integer schoolProgram;
     @SerializedName("school_group")
     @Expose
     private Integer schoolGroup;
@@ -21,12 +25,13 @@ public class RegisterStudent {
     @Expose
     private String belongsProgram;
 
-    public RegisterStudent(Beneficiary beneficiary, Integer school, Integer schoolGroup, Integer schoolClass, String belongsProgram) {
+    public RegisterStudent(Beneficiary beneficiary, Integer school, Integer schoolGroup, Integer schoolClass, String belongsProgram, Integer schoolProgram) {
         this.beneficiary = beneficiary;
         this.school = school;
         this.schoolGroup = schoolGroup;
         this.schoolClass = schoolClass;
         this.belongsProgram = belongsProgram;
+        this.schoolProgram = schoolProgram;
     }
 
     public Beneficiary getBeneficiary() {

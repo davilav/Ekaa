@@ -25,7 +25,7 @@ public class ShowStudentFragment extends Fragment implements View.OnClickListene
 
     private Result objectBeneficiary;
     private ImageView back;
-    private TextView name,familyCode,documentType,documentNumber, nation,gender,phone,registration,info,birthdate,completeName,modality;
+    private TextView name,familyCode,documentType,documentNumber, nation,gender,school,registration,group,birthdate,completeName,modality;
     private Button editBeneficiary;
 
     private OnFragmentInteractionListener mListener;
@@ -69,9 +69,9 @@ public class ShowStudentFragment extends Fragment implements View.OnClickListene
         birthdate = view.findViewById(R.id.tv_birthdate);
         nation = view.findViewById(R.id.tv_nation);
         gender = view.findViewById(R.id.tv_gender);
-        phone = view.findViewById(R.id.tv_phone);
+        school = view.findViewById(R.id.tv_school);
         registration = view.findViewById(R.id.tv_date);
-        info = view.findViewById(R.id.tv_info);
+        group = view.findViewById(R.id.tv_group);
         completeName = view.findViewById(R.id.tv_complete_name);
         modality = view.findViewById(R.id.tv_modality);
         editBeneficiary = view.findViewById(R.id.editKitchenbutton);
@@ -88,9 +88,9 @@ public class ShowStudentFragment extends Fragment implements View.OnClickListene
         birthdate.setText(objectBeneficiary.getBirth_date());
         completeName.setText(objectBeneficiary.getFirst_name()+" "+ objectBeneficiary.getSecond_name()+" "+ objectBeneficiary.getSurname()+" "+ objectBeneficiary.getSecond_surname());
         documentNumber.setText(objectBeneficiary.getDocument());
-        phone.setText(objectBeneficiary.getPhone());
+        //school.setText(objectBeneficiary.getSchool());
         registration.setText(objectBeneficiary.getRegistration_date());
-        info.setText(objectBeneficiary.getAditional_information());
+       // group.setText(objectBeneficiary.getSchoolGroup());
         familyCode.setText(objectBeneficiary.getHousehold_code());
     }
 

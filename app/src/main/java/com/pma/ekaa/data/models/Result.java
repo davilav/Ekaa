@@ -65,6 +65,13 @@ public class Result {
     private String attendance_limit = null;
     @Nullable
     private String color = null;
+    @Nullable
+    private Integer disability;
+
+    @SerializedName("school_program")
+    @Expose
+    private Integer schoolProgram;
+
 
     @SerializedName("school")
     @Expose
@@ -358,4 +365,20 @@ public class Result {
         this.belongsProgram = belongsProgram;
     }
 
+    @Nullable
+    public Integer getDisability() {
+        return disability;
+    }
+
+    public void setDisability(@Nullable Integer disability) {
+        this.disability = disability;
+    }
+
+    public Integer getSchoolProgram() {
+        return schoolProgram;
+    }
+
+    public void setSchoolProgram(Integer schoolProgram) {
+        this.schoolProgram = schoolProgram;
+    }
 }

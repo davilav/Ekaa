@@ -103,12 +103,11 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
 
         initViews();
 
-        group.setOnClickListener(this);
-        bar.setOnClickListener(this);
-
         showLoading();
-        presenter.getDataGroup();
-        presenter.getDataClass();
+
+        searchManager();
+
+        setAdapterRecycler();
 
     }
 
@@ -163,13 +162,6 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     }
 
 
-    public void goToStudentData() {
-        schoolSplash.animate().translationY(140).alpha(0).setDuration(800).setStartDelay(300);
-        students.setVisibility(View.VISIBLE);
-        students.startAnimation(fromBottom);
-        searchManager();
-        setAdapterRecycler();
-    }
 
 
     public void initViews(){
@@ -178,14 +170,12 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         schoolSplash = findViewById(R.id.textsplash);
         students = findViewById(R.id.students);
         fromBottom = AnimationUtils.loadAnimation(this, R.anim.fromdown);
-        group = findViewById(R.id.groupselect);
         searchView = findViewById(R.id.searchView);
         recyclerView = findViewById(R.id.recycler_view);
         nextpage = findViewById(R.id.nextArrowButton);
         previouspage = findViewById(R.id.previousArrowButton);
         fab = findViewById(R.id.floatingActionButton);
         bar = findViewById(R.id.btn_recovery);
-        bar.setEnabled(false);
 
         fab.setOnClickListener(this);
         nextpage.setOnClickListener(this);
@@ -321,18 +311,6 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         loading.setVisibility(View.GONE);
     }
 
-    @Override
-    public void getGroupSuccess(ArrayList<Data> data) {
-        if(data.size() != 0){
-            arrayGroup = new Gson().toJson(data);
-        }
-        hideLoading();
-    }
-
-    @Override
-    public void getClassSuccess(ArrayList<Data> data) {
-
-    }
 
     @Override
     public void getListBeneficiarySuccess(BeneficiaryArray beneficiaryArray) {
@@ -346,6 +324,14 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
             hideLoading();
             showAttendanceDialog(selectBeneficiary, response);
         }
+
+    @Override
+    public void setRegisterAttendanceSuccess() {
+        hideLoading();
+        attendanceDialog.dismiss();
+        Toasty.success(getApplicationContext(), "Atencion registrada exitosamente", Toast.LENGTH_SHORT, true).show();
+        listBeneficiary("",countPage);
+    }
 
     @Override
     public void createBeneficiarySuccess() {
@@ -371,26 +357,6 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.groupselect:
-                if(!arrayGroup.equals("")) {
-                    SelectOptionDialog.newInstance(
-                            arrayGroup,
-                            new SelectOptionDialog.onListenerInterface() {
-                                @Override
-                                public void optionSelect(Data data) {
-                                    groupID = data.getId();
-                                    group.setText(data.getName());
-                                    bar.setEnabled(true);
-                                }
-                            }).show(getSupportFragmentManager(), "");
-                } else {
-                    Toasty.warning(SchoolActivity.this, "No se encontraron grupos", Toast.LENGTH_SHORT, true).show();
-                }
-                break;
-
-            case R.id.btn_recovery:
-                goToStudentData();
-                break;
 
             case R.id.floatingActionButton:{
                 startStudent(StudentActivity.CREATE, null);

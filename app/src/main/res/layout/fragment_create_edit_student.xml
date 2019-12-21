@@ -23,7 +23,6 @@
             app:cardUseCompatPadding="true">
 
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -74,19 +73,19 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView1"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="30dp">
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/namebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Primer Nombre"/>
+                            android:hint="@string/firstname" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
@@ -98,21 +97,20 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout1"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/seconenamebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Segundo Nombre"/>
+                            android:hint="@string/secondname" />
                     </com.google.android.material.textfield.TextInputLayout>
-
 
 
                 </RelativeLayout>
@@ -124,21 +122,20 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout2"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/lastnamebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Primer Apellido"/>
+                            android:hint="@string/lastname" />
                     </com.google.android.material.textfield.TextInputLayout>
-
 
 
                 </RelativeLayout>
@@ -149,19 +146,19 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout5"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/surnamebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Segundo Apellido"/>
+                            android:hint="@string/surname" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -173,21 +170,20 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout3"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/nationalitybeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Nacionalidad"
                             android:focusable="false"
-                            />
+                            android:hint="@string/nationality" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
@@ -198,20 +194,20 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout4"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/documentTypebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Tipo de documento"
-                            android:focusable="false"/>
+                            android:focusable="false"
+                            android:hint="@string/dtype" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -223,19 +219,19 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout6"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/documentbeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Numero de Documento"/>
+                            android:hint="@string/identificationnumber" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -247,19 +243,19 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout7"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ethnicGroup"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Etnia" />
+                            android:hint="@string/etnia" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
@@ -270,12 +266,12 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout8"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -283,7 +279,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
-                            android:hint="Fecha de nacimiento"/>
+                            android:hint="@string/birthdate" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -295,20 +291,71 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout9"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/genderbeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Sexo"
-                            android:focusable="false"/>
+                            android:focusable="false"
+                            android:hint="@string/gender" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/relativeLayout11"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/disabilitiesbeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:hint="@string/disabilities" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/relativeLayout12"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/programbeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:hint="@string/programs" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -318,21 +365,47 @@
                     android:id="@+id/relativeLayout14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/relativeLayout11"
+                    android:layout_below="@+id/relativeLayout13"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/familybeneficiary"
+                            android:id="@+id/groupbeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Codigo de familia"/>
+                            android:focusable="false"
+                            android:hint="@string/group" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/relativeLayout14"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/classbeneficiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:hint="@string/classnumber" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -343,54 +416,26 @@
                     android:id="@+id/chkBox2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/relativeLayout14"
+                    android:layout_below="@id/relativeLayout15"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="30dp"
                     android:checked="true"
                     android:fontFamily="sans-serif"
-                    android:text="¿Pertenece al programa?"
-                    android:textColor="#6e6e6e" />
-
-                <CheckBox
-                    android:id="@+id/chkBox1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/chkBox2"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/agreeterms"
+                    android:text="@string/belongs"
                     android:textColor="#6e6e6e" />
 
                 <Button
                     android:id="@+id/btn_recovery"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/chkBox1"
+                    android:layout_below="@+id/chkBox2"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp"
-                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginRight="30dp"
                     android:background="@color/colorPrimary"
-                    android:textColor="@android:color/white"/>
-
-                <Button
-                    android:id="@+id/memberButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/btn_recovery"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="#00000000"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/help"
-                    android:textAllCaps="false"
-                    android:textColor="#6e6e6e"
-                    android:textSize="13sp" />
-
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@android:color/white" />
 
 
             </RelativeLayout>

@@ -14,18 +14,6 @@
             android:background="@drawable/background"
             android:paddingBottom="20dp">
 
-            <ImageView
-                android:id="@+id/backButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="384dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerInside"
-                android:src="@drawable/arrow" />
-
             <RelativeLayout
                 android:id="@+id/imgUser"
                 android:layout_width="wrap_content"
@@ -77,7 +65,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15sp"
                 android:fontFamily="sans-serif-light"
-                android:text="Atenciones"
+                android:text="@string/attention"
                 android:textColor="#ffffff"
                 android:textSize="20dp" />
 

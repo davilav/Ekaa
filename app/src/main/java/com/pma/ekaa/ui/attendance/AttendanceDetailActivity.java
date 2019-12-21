@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -30,6 +32,7 @@ public class AttendanceDetailActivity extends AppCompatActivity implements Atten
     private Result user;
     private ConstraintLayout loading;
     private TextView nameUser, textNotFound;
+    private ImageView backButton;
     private RecyclerView recyclerAttendance;
     LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
 

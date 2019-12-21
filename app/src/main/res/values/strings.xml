@@ -16,6 +16,7 @@
     <string name="createaccount">REGISTER</string>
     <string name="loginaccount">LOGIN</string>
     <string name="email">Email</string>
+    <string name="user">Username</string>
     <string name="password">Password</string>
     <string name="agreeterms">I agree to the Terms of Service</string>
     <string name="forgotyourpassword">Forgot your password? Click Here</string>
@@ -52,7 +53,8 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="identificationnumber">Identification number</string>
     <string name="tel">Phone</string>
     <string name="save">Save</string>
-    <string name="geolocationselect">Please select your location.</string>
+    <string name="departamentselect">Please select your departament</string>
+    <string name="townselect">Please select your town</string>
     <string name="wfp">WFP</string>
     <string name="Hpartners">Humanitarian Partners</string>
     <string name="Ppartners">Private Partners</string>
@@ -61,7 +63,6 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="SchoolGroup">School Group</string>
     <string name="AddStudent">Add Student</string>
 
-
     <string name="dtype">Document Type</string>
     <string name="gender">Gender</string>
     <string name="nationality">Nationality</string>
@@ -69,6 +70,35 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="Enviar">Send</string>
     <string name="ConfirmEmail">Confirm your email</string>
     <string name="detail"><u>See detail</u></string>
+    <string name="schoolstring">School</string>
+    <string name="group">Group</string>
+    <string name="registrationdate">Registation Date</string>
+    <string name="attention">Attention</string>
+    <string name="lastAttention">The last attention was:</string>
+    <string name="firstname">First Name</string>
+    <string name="secondname">Second Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="surname">Second Last Name</string>
+    <string name="etnia">Ethnic group</string>
+    <string name="belongs">Belong to the program?</string>
+    <string name="phonenumber">Phone Number</string>
+    <string name="note">Note</string>
+    <string name="maritalstatus">Marital Status</string>
+    <string name="recipient">Recipient</string>
+    <string name="familyrol">Family Rol</string>
+    <string name="aditionalinfo">Additional Information</string>
+    <string name="familyhead">Is head of the family?</string>
+    <string name="migratorio">Migratory state</string>
+    <string name="option">Please select the option</string>
+    <string name="disabilities">Disability</string>
+    <string name="programs">Program</string>
+    <string name="classnumber">Class</string>
+
+
+
+
+
+
 
     <string name="groupselect">Please select your group</string>
     <string name="classselect">Please select your class</string>
