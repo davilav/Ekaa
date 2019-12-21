@@ -404,7 +404,6 @@
                             android:id="@+id/classbeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:focusable="false"
                             android:hint="@string/classnumber" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -413,14 +412,13 @@
 
 
                 <CheckBox
-                    android:id="@+id/chkBox2"
+                    android:id="@+id/chk_belongs_program"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/relativeLayout15"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="30dp"
-                    android:checked="true"
                     android:fontFamily="sans-serif"
                     android:text="@string/belongs"
                     android:textColor="#6e6e6e" />
@@ -429,7 +427,7 @@
                     android:id="@+id/btn_recovery"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/chkBox2"
+                    android:layout_below="@+id/chk_belongs_program"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="30dp"

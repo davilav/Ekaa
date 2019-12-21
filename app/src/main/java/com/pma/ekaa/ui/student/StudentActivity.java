@@ -63,7 +63,7 @@ public class StudentActivity extends AppCompatActivity implements StudentView, C
         loading = findViewById(R.id.progressBar);
 
         registerStudent = new Gson().toJson(
-                new RegisterStudent(null, institutionID, 1, 1, null,1)
+                new RegisterStudent(null, institutionID, null, null, null,null)
         );
 
         selectAction();

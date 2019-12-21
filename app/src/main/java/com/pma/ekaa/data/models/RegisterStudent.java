@@ -50,6 +50,14 @@ public class RegisterStudent {
         this.school = school;
     }
 
+    public Integer getSchoolProgram() {
+        return schoolProgram;
+    }
+
+    public void setSchoolProgram(Integer schoolProgram) {
+        this.schoolProgram = schoolProgram;
+    }
+
     public Integer getSchoolGroup() {
         return schoolGroup;
     }
@@ -73,5 +81,4 @@ public class RegisterStudent {
     public void setBelongsProgram(String belongsProgram) {
         this.belongsProgram = belongsProgram;
     }
-
 }

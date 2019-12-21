@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -43,11 +45,13 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
 
     private String getUID;
     private Integer id;
+    private String stateBelongs = "1";
 
     private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, ethnicGroup;
     private EditText nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary, disabilitiesbenenficiary,programbeneficiary,groupbeneficiary,classbeneficiary;
     private Button btnRecovery;
     private TextView birthdatebeneficiary, titleForm;
+    private CheckBox belongsProgram;
     private OnFragmentInteractionListener mListener;
 
     public CreateEditStudentFragment() {
@@ -105,6 +109,7 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
         classbeneficiary = view.findViewById(R.id.classbeneficiary);
         ethnicGroup = view.findViewById(R.id.ethnicGroup);
         btnRecovery = view.findViewById(R.id.btn_recovery);
+        belongsProgram = view.findViewById(R.id.chk_belongs_program);
 
         btnRecovery.setOnClickListener(this);
         genderbeneficiary.setOnClickListener(this);
@@ -114,6 +119,17 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
         programbeneficiary.setOnClickListener(this);
         groupbeneficiary.setOnClickListener(this);
         classbeneficiary.setOnClickListener(this);
+
+        belongsProgram.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean state) {
+                if(state){
+                    stateBelongs = "1";
+                } else {
+                    stateBelongs = "0";
+                }
+            }
+        });
 
         birthdatebeneficiary.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +167,15 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
         documentbeneficiary.setText(objectBeneficiary.getDocument());
         ethnicGroup.setText(objectBeneficiary.getEthnicity());
         birthdatebeneficiary.setText(objectBeneficiary.getBirth_date());
+        classbeneficiary.setText(String.valueOf(objectBeneficiary.getSchoolClass()));
+
+        if(objectBeneficiary.getBelongsProgram().equals(1)){
+            belongsProgram.setChecked(true);
+            stateBelongs = "1";
+        } else if(objectBeneficiary.getBelongsProgram().equals(0)){
+            belongsProgram.setChecked(false);
+            stateBelongs = "0";
+        }
 
         if (objectBeneficiary.getNationality() != null) {
             nationalitybeneficiary.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getNationality(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_NATIONALITY, "")));
@@ -220,7 +245,10 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
                         surnamebeneficiary.getText().toString(), objectBeneficiary.getDocument_type(), documentbeneficiary.getText().toString(), objectBeneficiary.getGender(),
                         ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(), objectBeneficiary.getNationality(), documentbeneficiary.getText().toString(), objectBeneficiary.getDisability());
                 registerStudent.setBeneficiary(beneficiary);
-                registerStudent.setBelongsProgram("1");
+                registerStudent.setSchoolProgram(objectBeneficiary.getSchoolProgram());
+                registerStudent.setSchoolGroup(objectBeneficiary.getSchoolGroup());
+                registerStudent.setSchoolClass(Integer.parseInt(classbeneficiary.getText().toString()));
+                registerStudent.setBelongsProgram(stateBelongs);
                 mListener.setUploadBeneficiary(registerStudent, selectItem);
                 break;
             case R.id.genderbeneficiary:
