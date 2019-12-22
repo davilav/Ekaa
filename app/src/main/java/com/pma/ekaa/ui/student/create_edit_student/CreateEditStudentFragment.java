@@ -145,14 +145,14 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
         });
 
         if (selectItem == StudentActivity.EDIT) {
-            titleForm.setText("Editar Estudiante");
+            titleForm.setText(getResources().getString(R.string.editStudent));
             getUID = objectBeneficiary.getUid();
             id = objectBeneficiary.getId();
-            btnRecovery.setText("Actualizar");
+            btnRecovery.setText(getResources().getString(R.string.update));
             setInfoForm();
         } else {
-            btnRecovery.setText("Registrar");
-            titleForm.setText("Crear Estudiante");
+            btnRecovery.setText(getResources().getString(R.string.registerbeneficiary));
+            titleForm.setText(getResources().getString(R.string.createstudent));
             getUID = "";
             id = null;
         }

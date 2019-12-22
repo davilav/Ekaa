@@ -89,7 +89,31 @@ Si decide no otorgar el consentimiento a ninguna de las entidades requeridas, el
     <string name="disabilities">Discapacidad</string>
     <string name="programs">Programa</string>
     <string name="classnumber">Clase</string>
-
+    <string name="editStudent">Edit Student</string>
+    <string name="update">Actualizar</string>
+    <string name="registerbeneficiary">Registrar</string>
+    <string name="createstudent">Crear Estudiante</string>
+    <string name="studentsuccess">Estudiante creado con éxito</string>
+    <string name="studentupdate">Estudiante actualizado con éxito</string>
+    <string name="attendancesuccess">Added attention successfully</string>
+    <string name="beneficiarysucces">Beneficiario creado con éxito</string>
+    <string name="beneficiaryupdate">Beneficiario actualizado con éxito</string>
+    <string name="page">Página</string>
+    <string name="searchresult">Buscar Resultado</string>
+    <string name="ingresaremail">Se debe ingresar un email</string>
+    <string name="validemail">Se debe ingresar un email válido</string>
+    <string name="ingresarpass">Se debe ingresar una contraseña</string>
+    <string name="ingresaruser">Se debe ingresar un usuario</string>
+    <string name="confirmarspass">Debes confirmar la contraseña</string>
+    <string name="confirmaremail">Se ha enviado un correo electronico para confirrmar su cuenta</string>
+    <string name="welcomeuser">Bienvenido a Ekaa</string>
+    <string name="selectopion">Seleccione una opción</string>
+    <string name="departamentosfound">No se encontraron departamentos</string>
+    <string name="townsfound">No se encontraron municipios</string>
+    <string name="institutionsfound">No se encontraron instituciones</string>
+    <string name="adios">Adios!</string>
+    <string name="coincidircorreos">Los correos electronicos no coinciden</string>
+    <string name="checkboxterminos">Debes aceptar los terminos y condiciones de servicio</string>
 
 
 

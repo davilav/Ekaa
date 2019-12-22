@@ -131,7 +131,7 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     private void searchManager() {
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setQueryHint("Search Result");
+        searchView.setQueryHint(getResources().getString(R.string.searchresult));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -329,21 +329,21 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     public void setRegisterAttendanceSuccess() {
         hideLoading();
         attendanceDialog.dismiss();
-        Toasty.success(getApplicationContext(), "Atencion registrada exitosamente", Toast.LENGTH_SHORT, true).show();
+        Toasty.success(getApplicationContext(), getResources().getString(R.string.attendancesuccess), Toast.LENGTH_SHORT, true).show();
         listBeneficiary("",countPage);
     }
 
     @Override
     public void createBeneficiarySuccess() {
         hideLoading();
-        Toasty.success(this, "Usuario creado con exito", Toast.LENGTH_SHORT, true).show();
+        Toasty.success(this, getResources().getString(R.string.beneficiarysucces), Toast.LENGTH_SHORT, true).show();
         finish();
     }
 
     @Override
     public void updateBeneficiarySuccess() {
         hideLoading();
-        Toasty.success(this, "Usuario actualizado con exito", Toast.LENGTH_SHORT, true).show();
+        Toasty.success(this, getResources().getString(R.string.beneficiaryupdate), Toast.LENGTH_SHORT, true).show();
         finish();
     }
 
@@ -369,13 +369,13 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
             case R.id.nextArrowButton: {
                 countPage+=1;
                 listBeneficiary("",countPage);
-                Toasty.success(this, "Pagina: "+countPage, Toast.LENGTH_SHORT, true).show();
+                Toasty.success(this, getResources().getString(R.string.page)+countPage, Toast.LENGTH_SHORT, true).show();
                 break;
             }
             case R.id.previousArrowButton:
                 countPage-=1;
                 listBeneficiary("",countPage);
-                Toasty.success(this, "Pagina: "+countPage, Toast.LENGTH_SHORT, true).show();
+                Toasty.success(this, getResources().getString(R.string.page)+countPage, Toast.LENGTH_SHORT, true).show();
                 break;
         }
     }

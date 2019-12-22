@@ -177,7 +177,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                                 public void optionSelect(Data data) {
                                     departmentID = data.getId();
                                     departmentGeolocation.setText(data.getName());
-                                    townGeolocation.setText("Seleccione una opcion");
+                                    townGeolocation.setText(getResources().getString(R.string.selectopion));
                                     townGeolocation.setEnabled(true);
                                     institutionGeolocation.setEnabled(false);
                                     bar.setEnabled(false);
@@ -186,7 +186,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                                 }
                             }).show(getSupportFragmentManager(), "");
                 } else {
-                    Toasty.warning(HomeActivity.this, "No se encontraron departamentos", Toast.LENGTH_SHORT, true).show();
+                    Toasty.warning(HomeActivity.this, getResources().getString(R.string.departamentosfound), Toast.LENGTH_SHORT, true).show();
                 }
                 break;
             case R.id.townGeolocation:
@@ -198,7 +198,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                                 public void optionSelect(Data data) {
                                     townID = data.getId();
                                     townGeolocation.setText(data.getName());
-                                    institutionGeolocation.setText("Seleccione una opcion");
+                                    institutionGeolocation.setText(getResources().getString(R.string.selectopion));
                                     institutionGeolocation.setEnabled(true);
                                     bar.setEnabled(false);
                                     showLoading();
@@ -206,7 +206,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                                 }
                             }).show(getSupportFragmentManager(), "");
                 } else {
-                    Toasty.warning(HomeActivity.this, "No se encontraron municipios", Toast.LENGTH_SHORT, true).show();
+                    Toasty.warning(HomeActivity.this, getResources().getString(R.string.townsfound), Toast.LENGTH_SHORT, true).show();
                 }
                 break;
             case R.id.institutionGeolocation:
@@ -223,7 +223,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                             }).show(getSupportFragmentManager(), "");
                     break;
                 } else {
-                    Toasty.warning(HomeActivity.this, "No se encontraron instituciones", Toast.LENGTH_SHORT, true).show();
+                    Toasty.warning(HomeActivity.this,getResources().getString(R.string.institutionsfound), Toast.LENGTH_SHORT, true).show();
                 }
                 break;
         }
@@ -302,7 +302,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
 
     @Override
     public void getLogoutSuccess() {
-        Toasty.success(HomeActivity.this, "Adios!", Toast.LENGTH_SHORT, true).show();
+        Toasty.success(HomeActivity.this, getResources().getString(R.string.adios), Toast.LENGTH_SHORT, true).show();
         Intent intent = new Intent(HomeActivity.this, WelcomeActivity.class);
         startActivity(intent);
         customType(HomeActivity.this, "fadein-to-fadeout");

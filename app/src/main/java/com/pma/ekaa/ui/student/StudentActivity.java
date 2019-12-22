@@ -103,14 +103,14 @@ public class StudentActivity extends AppCompatActivity implements StudentView, C
     @Override
     public void createStudentSuccess() {
         hideLoading();
-        Toasty.success(this, "Estudiante creado con exito", Toast.LENGTH_SHORT, true).show();
+        Toasty.success(this, getResources().getString(R.string.studentsuccess), Toast.LENGTH_SHORT, true).show();
         finish();
     }
 
     @Override
     public void updateStudentSuccess() {
         hideLoading();
-        Toasty.success(this, "Estudiante actualizado con exito", Toast.LENGTH_SHORT, true).show();
+        Toasty.success(this, getResources().getString(R.string.studentupdate), Toast.LENGTH_SHORT, true).show();
         finish();
     }
 

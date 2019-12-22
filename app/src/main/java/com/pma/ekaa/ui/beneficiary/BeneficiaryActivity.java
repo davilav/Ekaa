@@ -98,21 +98,21 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
     @Override
     public void createBeneficiarySuccess() {
         hideLoading();
-        Toasty.success(this, "Usuario creado con exito", Toast.LENGTH_SHORT, true).show();
+        Toasty.success(this, getResources().getString(R.string.beneficiarysucces), Toast.LENGTH_SHORT, true).show();
         finish();
     }
 
     @Override
     public void updateBeneficiarySuccess() {
         hideLoading();
-        Toasty.success(this, "Usuario actualizado con exito", Toast.LENGTH_SHORT, true).show();
+        Toasty.success(this, getResources().getString(R.string.beneficiaryupdate), Toast.LENGTH_SHORT, true).show();
         finish();
     }
 
     @Override
     public void responseError(String msg) {
         hideLoading();
-        Toasty.warning(this, "Adios!", Toast.LENGTH_SHORT, true).show();
+        Toasty.warning(this, "Error", Toast.LENGTH_SHORT, true).show();
     }
 
     @Override

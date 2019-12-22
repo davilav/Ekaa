@@ -180,13 +180,13 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
             case R.id.nextArrowButton: {
                 countPage+=1;
                 listBeneficiary("",countPage);
-                Toasty.success(this, "Pagina: "+countPage, Toast.LENGTH_SHORT, true).show();
+                Toasty.success(this, getResources().getString(R.string.page)+countPage, Toast.LENGTH_SHORT, true).show();
                 break;
             }
             case R.id.previousArrowButton:
                 countPage-=1;
                 listBeneficiary("",countPage);
-                Toasty.success(this, "Pagina: "+countPage, Toast.LENGTH_SHORT, true).show();
+                Toasty.success(this, getResources().getString(R.string.page)+countPage, Toast.LENGTH_SHORT, true).show();
                 break;
         }
     }
@@ -276,7 +276,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     public void setRegisterAttendanceSuccess() {
         hideLoading();
         attendanceDialog.dismiss();
-        Toasty.success(getApplicationContext(), "Atencion registrada exitosamente", Toast.LENGTH_SHORT, true).show();
+        Toasty.success(getApplicationContext(), getResources().getString(R.string.attendancesuccess), Toast.LENGTH_SHORT, true).show();
         listBeneficiary("",countPage);
     }
 

@@ -89,20 +89,20 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
         final String pass2 = confirmPassUser.getText().toString();
 
         if (TextUtils.isEmpty(email)) {
-            Toasty.warning(RegisterActivity.this, "Debes ingresar tu Email", Toast.LENGTH_SHORT, true).show();
+            Toasty.warning(RegisterActivity.this, getResources().getString(R.string.ingresaremail), Toast.LENGTH_SHORT, true).show();
             bar.stopLoader();
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailUser.setError("Enter a valid Email");
+            emailUser.setError(getResources().getString(R.string.validemail));
             emailUser.requestFocus();
             bar.stopLoader();
         } else if (TextUtils.isEmpty(pass)) {
-            Toasty.warning(RegisterActivity.this, "Debes ingresar una contraseña", Toast.LENGTH_SHORT, true).show();
+            Toasty.warning(RegisterActivity.this, getResources().getString(R.string.ingresarpass), Toast.LENGTH_SHORT, true).show();
             bar.stopLoader();
         } else if (TextUtils.isEmpty(userName)) {
-            Toasty.warning(RegisterActivity.this, "Debes ingresar un usuario", Toast.LENGTH_SHORT, true).show();
+            Toasty.warning(RegisterActivity.this, getResources().getString(R.string.ingresaruser), Toast.LENGTH_SHORT, true).show();
             bar.stopLoader();
         } else if (TextUtils.isEmpty(pass2)) {
-            Toasty.warning(RegisterActivity.this, "Debes ingresar una contraseña", Toast.LENGTH_SHORT, true).show();
+            Toasty.warning(RegisterActivity.this, getResources().getString(R.string.confirmarspass), Toast.LENGTH_SHORT, true).show();
             bar.stopLoader();
         } else {
             presenter.setRegister(userName, email, pass, pass2, firstName, lastName, partnerID, Integer.parseInt(userRol.getText().toString()));
@@ -163,7 +163,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
     public void registerSuccess() {
         hideLoading();
         bar.stopLoader();
-        Toasty.success(RegisterActivity.this, "Se ha enviando un mensaje de texto", Toast.LENGTH_SHORT, true).show();
+        Toasty.success(RegisterActivity.this, getResources().getString(R.string.confirmaremail), Toast.LENGTH_SHORT, true).show();
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
         customType(RegisterActivity.this, "fadein-to-fadeout");

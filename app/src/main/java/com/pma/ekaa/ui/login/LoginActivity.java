@@ -76,9 +76,9 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
                 String email = txtEmail.getText().toString();
                 String pass = txtPassword.getText().toString();
                 if (TextUtils.isEmpty(email)) {
-                    Toasty.warning(LoginActivity.this, "Debes ingresar tu usuario!", Toast.LENGTH_SHORT, true).show();
+                    Toasty.warning(LoginActivity.this, getResources().getString(R.string.ingresaruser), Toast.LENGTH_SHORT, true).show();
                 } else if (TextUtils.isEmpty(pass)) {
-                    Toasty.warning(LoginActivity.this, "Debes ingresar tu contraseña!", Toast.LENGTH_SHORT, true).show();
+                    Toasty.warning(LoginActivity.this,getResources().getString(R.string.ingresarpass), Toast.LENGTH_SHORT, true).show();
                 } else {
                     bar.startLoader();
                     login();
@@ -96,7 +96,7 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     public void loginSuccess(UserLog response) {
         bar.stopLoader();
         Utils.getInstance().setDataUser(response);
-        Toasty.success(LoginActivity.this, "Bienvenido!", Toast.LENGTH_SHORT, true).show();
+        Toasty.success(LoginActivity.this, getResources().getString(R.string.welcomeuser), Toast.LENGTH_SHORT, true).show();
         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(intent);
         customType(LoginActivity.this, "fadein-to-fadeout");

@@ -67,16 +67,16 @@ public class PasswordActivity extends BaseActivity implements PasswordView, View
                 String emailConfirm = confirmemail.getText().toString();
 
                 if(TextUtils.isEmpty(email1)){
-                    Toasty.warning(this, "Debes ingresar tu Email", Toast.LENGTH_SHORT).show();
+                    Toasty.warning(this,getResources().getString(R.string.ingresaremail), Toast.LENGTH_SHORT).show();
                     bar.stopLoader();
                 } else if (TextUtils.isEmpty(emailConfirm)){
-                    Toasty.warning(this, "Debes confirmar tu Email", Toast.LENGTH_SHORT).show();
+                    Toasty.warning(this, getResources().getString(R.string.confirmemail), Toast.LENGTH_SHORT).show();
                     bar.stopLoader();
                 } else if(!email1.equals(emailConfirm)){
-                    Toasty.warning(this, "Los correos no coinciden", Toast.LENGTH_SHORT).show();
+                    Toasty.warning(this, getResources().getString(R.string.coincidircorreos), Toast.LENGTH_SHORT).show();
                     bar.stopLoader();
                 } else if(!termsAndConditions.isChecked()){
-                    Toasty.warning(this, "No se han aceptado los terminos y condiciones", Toast.LENGTH_SHORT).show();
+                    Toasty.warning(this, getResources().getString(R.string.checkboxterminos), Toast.LENGTH_SHORT).show();
                     bar.stopLoader();
                 } else {
                     presenter.recoveryPassword(email1);

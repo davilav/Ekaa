@@ -20,6 +20,8 @@ import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
 import com.pma.ekaa.ui.student.StudentActivity;
+import com.pma.ekaa.utils.PreferencesHelper;
+import com.pma.ekaa.utils.Utils;
 
 public class ShowStudentFragment extends Fragment implements View.OnClickListener {
 
@@ -88,10 +90,13 @@ public class ShowStudentFragment extends Fragment implements View.OnClickListene
         birthdate.setText(objectBeneficiary.getBirth_date());
         completeName.setText(objectBeneficiary.getFirst_name()+" "+ objectBeneficiary.getSecond_name()+" "+ objectBeneficiary.getSurname()+" "+ objectBeneficiary.getSecond_surname());
         documentNumber.setText(objectBeneficiary.getDocument());
-        //school.setText(objectBeneficiary.getSchool());
+        //school.setText(objectBeneficiary.getSchool().toString());
         registration.setText(objectBeneficiary.getRegistration_date());
-       // group.setText(objectBeneficiary.getSchoolGroup());
+        nation.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getNationality(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_NATIONALITY, "")));
+        gender.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getGender(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_GENDERS, "")));
+        group.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getSchoolGroup(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_GROUPS, "")));
         familyCode.setText(objectBeneficiary.getHousehold_code());
+
     }
 
     @Override

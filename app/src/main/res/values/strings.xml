@@ -93,9 +93,31 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="disabilities">Disability</string>
     <string name="programs">Program</string>
     <string name="classnumber">Class</string>
-
-
-
+    <string name="editStudent">Edit Student</string>
+    <string name="update">Update</string>
+    <string name="registerbeneficiary">Register</string>
+    <string name="createstudent">Create Student</string>
+    <string name="studentsuccess">Student created successfully</string>
+    <string name="studentupdate">Student updated successfully</string>
+    <string name="attendancesuccess">Added attention successfully</string>
+    <string name="beneficiarysucces">Beneficiary successfully created</string>
+    <string name="beneficiaryupdate">Beneficiary updated successfully</string>
+    <string name="page">Page</string>
+    <string name="searchresult">Search Result</string>
+    <string name="ingresaremail">You must enter an email</string>
+    <string name="validemail">You must enter a valid email</string>
+    <string name="ingresarpass">You must enter an password</string>
+    <string name="ingresaruser">You must enter an user</string>
+    <string name="confirmarspass">You must confirm the password</string>
+    <string name="confirmaremail">An email has been sent to confirm your account</string>
+    <string name="welcomeuser">Welcome to Ekaa</string>
+    <string name="selectopion">Select a option</string>
+    <string name="departamentosfound">No departments found</string>
+    <string name="townsfound">No towns found</string>
+    <string name="institutionsfound">No institutions found</string>
+    <string name="adios">Good Bye!</string>
+    <string name="coincidircorreos">Emails do not match</string>
+    <string name="checkboxterminos">You must agree to terms and conditions</string>
 
 
 
