@@ -31,7 +31,6 @@ import com.pma.ekaa.ui.welcome.WelcomeActivity;
 import com.pma.ekaa.utils.PreferencesHelper;
 
 import es.dmoral.toasty.Toasty;
-import github.ishaan.buttonprogressbar.ButtonProgressBar;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,7 +43,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
     private Button memberButton;
     private EditText nameUser, lastNameUser, emailUser, user, passUser, confirmPassUser, userPartner, userRol;
     private ImageView eyePass, eyeConfirm;
-    private ButtonProgressBar bar;
+    private Button bar;
     private RegisterPresenter presenter;
     private int partnerID;
 
@@ -90,20 +89,15 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
 
         if (TextUtils.isEmpty(email)) {
             Toasty.warning(RegisterActivity.this, getResources().getString(R.string.ingresaremail), Toast.LENGTH_SHORT, true).show();
-            bar.stopLoader();
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailUser.setError(getResources().getString(R.string.validemail));
             emailUser.requestFocus();
-            bar.stopLoader();
         } else if (TextUtils.isEmpty(pass)) {
             Toasty.warning(RegisterActivity.this, getResources().getString(R.string.ingresarpass), Toast.LENGTH_SHORT, true).show();
-            bar.stopLoader();
         } else if (TextUtils.isEmpty(userName)) {
             Toasty.warning(RegisterActivity.this, getResources().getString(R.string.ingresaruser), Toast.LENGTH_SHORT, true).show();
-            bar.stopLoader();
         } else if (TextUtils.isEmpty(pass2)) {
             Toasty.warning(RegisterActivity.this, getResources().getString(R.string.confirmarspass), Toast.LENGTH_SHORT, true).show();
-            bar.stopLoader();
         } else {
             presenter.setRegister(userName, email, pass, pass2, firstName, lastName, partnerID, Integer.parseInt(userRol.getText().toString()));
         }
@@ -114,7 +108,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
         switch (view.getId()) {
             case R.id.btn_recovery: {
                 showLoading();
-                bar.startLoader();
                 register();
                 break;
             }
@@ -162,7 +155,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
     @Override
     public void registerSuccess() {
         hideLoading();
-        bar.stopLoader();
         Toasty.success(RegisterActivity.this, getResources().getString(R.string.confirmaremail), Toast.LENGTH_SHORT, true).show();
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
@@ -172,7 +164,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
     @Override
     public void registerError(String msg) {
         hideLoading();
-        bar.stopLoader();
         Toasty.success(RegisterActivity.this, msg, Toast.LENGTH_SHORT, true).show();
     }
 

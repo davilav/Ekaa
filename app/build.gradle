@@ -62,7 +62,6 @@ dependencies {
 
     // ANIMATION
     implementation 'com.github.hajiyevelnur92:intentanimation:1.0'
-    implementation 'com.github.ishaan1995:ButtonProgressBar:1.0'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.getbase:floatingactionbutton:1.10.1'
     implementation 'com.github.GrenderG:Toasty:1.4.2'

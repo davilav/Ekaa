@@ -241,33 +241,10 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/relativeLayout8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/relativeLayout7"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_height="wrap_content">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/pregnantbeneficiary"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Pregnant"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                </RelativeLayout>
-
-                <RelativeLayout
                     android:id="@+id/relativeLayout9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/relativeLayout8"
+                    android:layout_below="@+id/relativeLayout7"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
@@ -540,7 +517,7 @@
                 </RelativeLayout>
 
                 <CheckBox
-                    android:id="@+id/chkBox2"
+                    android:id="@+id/pregnantbeneficiary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/relativeLayout21"
@@ -548,8 +525,21 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp"
                     android:fontFamily="sans-serif"
+                    android:text="¿Es lactante?"
+                    android:textColor="#6e6e6e"
+                    android:visibility="gone"/>
+
+                <CheckBox
+                    android:id="@+id/chkBox2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/pregnantbeneficiary"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="sans-serif"
                     android:text="@string/familyhead"
-                    android:textColor="#6e6e6e" />
+                    android:textColor="#6e6e6e"/>
 
 
                 <Button

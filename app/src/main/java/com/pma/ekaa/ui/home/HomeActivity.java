@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,7 +33,6 @@ import com.pma.ekaa.ui.welcome.WelcomeActivity;
 import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
-import github.ishaan.buttonprogressbar.ButtonProgressBar;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
@@ -46,7 +46,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
     private LinearLayout textSplash, textHome, home;
     private EditText departmentGeolocation, townGeolocation, institutionGeolocation;
     private TextView splashtext, userText, emailtext;
-    private ButtonProgressBar bar;
+    private Button bar;
 
 
     private String arrayDepartment = "";
@@ -179,6 +179,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                                     departmentGeolocation.setText(data.getName());
                                     townGeolocation.setText(getResources().getString(R.string.selectopion));
                                     townGeolocation.setEnabled(true);
+                                    institutionGeolocation.setText(getResources().getString(R.string.selectopion));
                                     institutionGeolocation.setEnabled(false);
                                     bar.setEnabled(false);
                                     showLoading();

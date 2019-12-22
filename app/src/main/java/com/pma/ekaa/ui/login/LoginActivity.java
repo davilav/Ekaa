@@ -2,13 +2,19 @@ package com.pma.ekaa.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.UserLog;
@@ -20,20 +26,23 @@ import com.pma.ekaa.ui.login.presenter.LoginPresenterImpl;
 import com.pma.ekaa.utils.Utils;
 
 import es.dmoral.toasty.Toasty;
-import github.ishaan.buttonprogressbar.ButtonProgressBar;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
-public class LoginActivity extends BaseActivity implements LoginView, View.OnClickListener {
+public class LoginActivity extends BaseActivity implements LoginView, View.OnClickListener{
 
+    private ConstraintLayout loading;
     Button passButton;
     ImageView eyeButton;
     EditText txtEmail, txtPassword;
-    ButtonProgressBar bar;
+    Button bar;
+    private CheckBox checkTerms;
 
     private LoginPresenter presenter;
 
-    private static String token;
+    private boolean isEmailEmpty = false;
+    private boolean isPasswordEmpty = false;
+    private boolean isTermsEmpty = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +51,59 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
 
         presenter = new LoginPresenterImpl(this);
 
+        loading = findViewById(R.id.progressBar);
         passButton = findViewById(R.id.passwordButton);
         txtEmail = findViewById(R.id.emailText);
         txtPassword = findViewById(R.id.passwordText);
         eyeButton = findViewById(R.id.eyeButton);
+        checkTerms = findViewById(R.id.chk_terms);
         bar = findViewById(R.id.btn_recovery);
 
         eyeButton.setOnClickListener(this);
         passButton.setOnClickListener(this);
         bar.setOnClickListener(this);
+
+        txtEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                isEmailEmpty = editable.length() > 0;
+                validateFields();
+            }
+        });
+
+        txtPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                isPasswordEmpty = editable.length() > 0;
+                validateFields();
+            }
+        });
+
+        checkTerms.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean state) {
+                isTermsEmpty = state;
+                validateFields();
+            }
+        });
 
     }
 
@@ -78,9 +131,9 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
                 if (TextUtils.isEmpty(email)) {
                     Toasty.warning(LoginActivity.this, getResources().getString(R.string.ingresaruser), Toast.LENGTH_SHORT, true).show();
                 } else if (TextUtils.isEmpty(pass)) {
-                    Toasty.warning(LoginActivity.this,getResources().getString(R.string.ingresarpass), Toast.LENGTH_SHORT, true).show();
+                    Toasty.warning(LoginActivity.this, getResources().getString(R.string.ingresarpass), Toast.LENGTH_SHORT, true).show();
                 } else {
-                    bar.startLoader();
+                    showLoading();
                     login();
                 }
                 break;
@@ -91,10 +144,13 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         presenter.loginUser(txtEmail.getText().toString(), txtPassword.getText().toString());
     }
 
+    private void validateFields() {
+        bar.setEnabled(isEmailEmpty && isPasswordEmpty && isTermsEmpty);
+    }
 
     @Override
     public void loginSuccess(UserLog response) {
-        bar.stopLoader();
+        hideLoading();
         Utils.getInstance().setDataUser(response);
         Toasty.success(LoginActivity.this, getResources().getString(R.string.welcomeuser), Toast.LENGTH_SHORT, true).show();
         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -104,10 +160,19 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
 
     @Override
     public void loginError(String msg) {
-        bar.stopLoader();
+        hideLoading();
         Toasty.warning(LoginActivity.this, msg, Toast.LENGTH_SHORT, true).show();
     }
 
+    @Override
+    public void showLoading() {
+        loading.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        loading.setVisibility(View.GONE);
+    }
 }
 
 

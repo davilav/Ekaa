@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="24sp" />
 
-            <github.ishaan.buttonprogressbar.ButtonProgressBar
+            <Button
                 android:id="@+id/btn_recovery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -148,10 +148,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="30dp"
                 android:fontFamily="sans-serif-medium"
-                app:bgColor="#ffffff"
-                app:text="Aceptar"
-                app:textColor="@color/colorPrimary"
-                app:type="indeterminate" />
+                android:background="#ffffff"
+                android:text="Aceptar"
+                android:textColor="@color/colorPrimary" />
 
 
         </LinearLayout>

@@ -5,4 +5,6 @@ public interface PasswordView {
     void passwordSuccess(String msg);
     void passwordError(String msg);
 
+    void showLoading();
+    void hideLoading();
 }

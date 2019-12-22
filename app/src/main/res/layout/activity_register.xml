@@ -296,7 +296,7 @@
                     android:text="@string/agreeterms"
                     android:textColor="#6e6e6e" />
 
-                <github.ishaan.buttonprogressbar.ButtonProgressBar
+                <Button
                     android:id="@+id/btn_recovery"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -305,10 +305,9 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="30dp"
                     android:fontFamily="sans-serif-medium"
-                    app:bgColor="@color/colorPrimary"
-                    app:text="SIGN UP"
-                    app:textColor="#ffffff"
-                    app:type="indeterminate" />
+                    android:background="@drawable/button_selector"
+                    android:text="SIGN UP"
+                    android:textColor="#ffffff"/>
 
                 <Button
                     android:id="@+id/memberButton"

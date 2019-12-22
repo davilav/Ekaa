@@ -45,7 +45,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
-import github.ishaan.buttonprogressbar.ButtonProgressBar;
 
 public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter{
 
@@ -323,7 +322,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         TextView secondComplement = attendanceDialog.findViewById(R.id.second_complement);
         TextView thirdComplement = attendanceDialog.findViewById(R.id.third_complement);
         TextView detailAttendance = attendanceDialog.findViewById(R.id.detail);
-        final ButtonProgressBar bar = attendanceDialog.findViewById(R.id.btnfollow);
+        Button bar = attendanceDialog.findViewById(R.id.btnfollow);
 
         //Se deberia implementar un recycler view para listar las opciones
 
@@ -395,7 +394,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bar.startLoader();
+                showLoading();
 
                 int modality = 0;
                 if(AM.isChecked()){

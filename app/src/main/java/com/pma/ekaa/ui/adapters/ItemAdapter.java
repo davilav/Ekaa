@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import github.ishaan.buttonprogressbar.ButtonProgressBar;
 
 
 public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

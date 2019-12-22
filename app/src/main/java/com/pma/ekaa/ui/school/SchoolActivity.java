@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -48,7 +49,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
-import github.ishaan.buttonprogressbar.ButtonProgressBar;
 
 public class SchoolActivity extends BaseActivity implements SchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter {
 
@@ -59,7 +59,7 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     private ConstraintLayout students, loading;
     private Animation fromBottom;
     private EditText group;
-    private ButtonProgressBar bar;
+    private Button bar;
     private ItemAdapter itemAdapter;
     private List<Result> student;
     private static int countPage = 1;
@@ -198,7 +198,7 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         TextView secondComplement = attendanceDialog.findViewById(R.id.second_complement);
         TextView thirdComplement = attendanceDialog.findViewById(R.id.third_complement);
         TextView detailAttendance = attendanceDialog.findViewById(R.id.detail);
-        final ButtonProgressBar bar = attendanceDialog.findViewById(R.id.btnfollow);
+        final Button bar = attendanceDialog.findViewById(R.id.btnfollow);
 
         //Se deberia implementar un recycler view para listar las opciones
 
@@ -270,7 +270,6 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bar.startLoader();
 
                 int modality = 0;
                 if(AM.isChecked()){

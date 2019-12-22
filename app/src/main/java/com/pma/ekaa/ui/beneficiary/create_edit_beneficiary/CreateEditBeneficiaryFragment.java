@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -40,11 +42,12 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
     private String getUID;
     private String id;
 
-    private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, pregnantbeneficiary, phonebeneficiary,
+    private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, phonebeneficiary,
             familybeneficiary, migratoryStatus, maritalStatus, ethnicGroup, note, infoAditional;
     private EditText nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary,recipientBeneficiary,householdRoleBeneficiary, disabilitiesbeneficiary;
     private TextView birthdatebeneficiary, titleForm;
     private Button btnRecovery;
+    private CheckBox pregnantbeneficiary;
 
     private OnFragmentInteractionListener mListener;
 
@@ -151,6 +154,17 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             }
         });
 
+        pregnantbeneficiary.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean state) {
+                if(state) {
+                    objectBeneficiary.setPregnant("SI");
+                } else {
+                    objectBeneficiary.setPregnant("NO");
+                }
+            }
+        });
+
         if(selectItem == BeneficiaryActivity.EDIT){
             titleForm.setText("Editar Beneficiario");
             agreement = objectBeneficiary.getAgreement();
@@ -177,7 +191,6 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
 
         phonebeneficiary.setText(objectBeneficiary.getPhone());
         birthdatebeneficiary.setText(objectBeneficiary.getBirth_date());
-        pregnantbeneficiary.setText(objectBeneficiary.getPregnant());
         familybeneficiary.setText(objectBeneficiary.getHousehold_code());
 
         if(objectBeneficiary.getNationality() != null) {
@@ -194,6 +207,9 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
 
         if(objectBeneficiary.getGender() != null) {
             genderbeneficiary.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getGender(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_GENDERS, "")));
+            if(objectBeneficiary.getGender().equals(1)) {
+              pregnantbeneficiary.setVisibility(View.VISIBLE);
+            }
         } else {
             genderbeneficiary.setText("");
         }
@@ -220,6 +236,14 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             disabilitiesbeneficiary.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getDisability(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_DISABILITIES, "")));
         } else {
             recipientBeneficiary.setText("");
+        }
+
+        if(objectBeneficiary.getPregnant() != null) {
+            if(objectBeneficiary.getPregnant().equals("SI")) {
+                pregnantbeneficiary.setChecked(true);
+            } else {
+                pregnantbeneficiary.setChecked(false);
+            }
         }
 
         if(optionAction == NotSchoolActivity.KITCHEN){
@@ -270,21 +294,21 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
                             getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocument_type(), objectBeneficiary.getGender(), objectBeneficiary.getHousehold_role(), objectBeneficiary.getRecipient(), 1, 1, objectBeneficiary.getMigratory_status(),
                             objectBeneficiary.getMarital_status(),objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                             surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), null, birthdatebeneficiary.getText().toString(),
-                            pregnantbeneficiary.getText().toString(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
+                            objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
                             familybeneficiary.getText().toString(),agreement);
                 } else  if (optionAction == NotSchoolActivity.WALKERS) {
                     registerBeneficiary = new RegisterBeneficiary(
                             getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocument_type(), objectBeneficiary.getGender(), objectBeneficiary.getHousehold_role(), objectBeneficiary.getRecipient(), 1, 1, objectBeneficiary.getMigratory_status(),
                             objectBeneficiary.getMarital_status(),objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                             surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(),
-                            pregnantbeneficiary.getText().toString(), phonebeneficiary.getText().toString(), null, null,
+                            objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), null, null,
                             familybeneficiary.getText().toString(),agreement);
                 } else if(optionAction == NotSchoolActivity.INKIND) {
                     registerBeneficiary = new RegisterBeneficiary(
                             getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocument_type(), objectBeneficiary.getGender(), objectBeneficiary.getHousehold_role(), objectBeneficiary.getRecipient(), 1, 1, objectBeneficiary.getMigratory_status(),
                             objectBeneficiary.getMarital_status(), objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                             surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(),
-                            pregnantbeneficiary.getText().toString(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
+                            objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
                             familybeneficiary.getText().toString(),agreement);
                 }
                 mListener.setUploadBeneficiary(id ,registerBeneficiary, selectItem);
@@ -297,6 +321,11 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
                     public void optionSelect(Data data) {
                                 objectBeneficiary.setGender(data.getId());
                                 genderbeneficiary.setText(data.getName());
+                                if(data.getId().equals(1)){
+                                    pregnantbeneficiary.setVisibility(View.VISIBLE);
+                                } else {
+                                    pregnantbeneficiary.setVisibility(View.GONE);
+                                }
                     }
                 }).show(getActivity().getSupportFragmentManager(),"");
                 break;
