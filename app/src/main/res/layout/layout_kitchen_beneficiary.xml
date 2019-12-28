@@ -530,7 +530,7 @@
                     android:visibility="gone"/>
 
                 <CheckBox
-                    android:id="@+id/chkBox2"
+                    android:id="@+id/chk_head_family"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/pregnantbeneficiary"
@@ -546,7 +546,7 @@
                     android:id="@+id/btn_recovery"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/chkBox2"
+                    android:layout_below="@+id/chk_head_family"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp"

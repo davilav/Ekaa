@@ -48,6 +48,9 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
     private TextView birthdatebeneficiary, titleForm;
     private Button btnRecovery;
     private CheckBox pregnantbeneficiary;
+    private CheckBox headFamily;
+
+    private Boolean isHeadFamily = false;
 
     private OnFragmentInteractionListener mListener;
 
@@ -118,6 +121,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         householdRoleBeneficiary = view.findViewById(R.id.houseHoldRole);
         disabilitiesbeneficiary = view.findViewById(R.id.disabilities);
         btnRecovery = view.findViewById(R.id.btn_recovery);
+        headFamily = view.findViewById(R.id.chk_head_family);
 
         btnRecovery.setOnClickListener(this);
         genderbeneficiary.setOnClickListener(this);
@@ -162,6 +166,13 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
                 } else {
                     objectBeneficiary.setPregnant("NO");
                 }
+            }
+        });
+
+        headFamily.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean state) {
+                isHeadFamily = state;
             }
         });
 
@@ -311,7 +322,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
                             objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
                             familybeneficiary.getText().toString(),agreement);
                 }
-                mListener.setUploadBeneficiary(id ,registerBeneficiary, selectItem);
+                mListener.setUploadBeneficiary(id ,registerBeneficiary, selectItem, isHeadFamily);
                 break;
             case R.id.genderbeneficiary:
                 SelectOptionDialog.newInstance(
@@ -412,6 +423,6 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
     }
 
     public interface OnFragmentInteractionListener {
-        void setUploadBeneficiary(String id, RegisterBeneficiary registerBeneficiary, int optionAction);
+        void setUploadBeneficiary(String id, RegisterBeneficiary registerBeneficiary, int optionAction, Boolean isHeadFamily);
     }
 }

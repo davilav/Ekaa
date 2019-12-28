@@ -3,6 +3,8 @@ package com.pma.ekaa.ui.beneficiary;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -37,6 +39,7 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
     private int optionAction;
     private String objectBeneficiary;
     private String optionAgreement = "";
+    private Boolean isHeadFamilyBeneficiary = false;
 
     private FrameLayout container;
 
@@ -90,16 +93,37 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
     }
 
     @Override
-    public void setUploadBeneficiary(String id, RegisterBeneficiary registerBeneficiary, int selectItem) {
+    public void setUploadBeneficiary(String id, RegisterBeneficiary registerBeneficiary, int selectItem, Boolean isHeadFamily) {
         showLoading();
+        isHeadFamilyBeneficiary = isHeadFamily;
         presenter.setUploadBeneficiary(id, registerBeneficiary, selectItem);
     }
 
     @Override
     public void createBeneficiarySuccess() {
         hideLoading();
-        Toasty.success(this, getResources().getString(R.string.beneficiarysucces), Toast.LENGTH_SHORT, true).show();
-        finish();
+        if(isHeadFamilyBeneficiary){
+            new AlertDialog.Builder(this)
+                    .setTitle("Usuario agregado con exitp")
+                    .setMessage("¿Desea agregar otro miembro a su nucleo familiar?")
+                    .setCancelable(false)
+                    .setNegativeButton("cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    })
+                    .setPositiveButton("aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            CreateEditBeneficiaryFragment.newInstance(selectItem, optionAction, optionAgreement, objectBeneficiary);
+                            replaceFragment();
+                        }
+                    }).show();
+        } else {
+            Toasty.success(this, getResources().getString(R.string.beneficiarysucces), Toast.LENGTH_SHORT, true).show();
+            finish();
+        }
     }
 
     @Override
