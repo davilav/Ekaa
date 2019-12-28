@@ -161,9 +161,6 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
 
     }
 
-
-
-
     public void initViews(){
 
         loading = findViewById(R.id.progressBar);
@@ -409,6 +406,13 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     private void replaceFragment() {
         getSupportFragmentManager().beginTransaction().replace(R.id.containerBeneficiary, currentFragment)
                 .commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        itemAdapter.notifyDataSetChanged();
+        listBeneficiary("",countPage);
     }
 
 }

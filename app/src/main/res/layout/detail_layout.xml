@@ -27,12 +27,11 @@
             android:id="@+id/detailCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:text="Maicao"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@+id/detailFood"
-            card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/detailOffice" />
 
@@ -40,12 +39,9 @@
             android:id="@+id/detailOffice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="E-SEDE Kurikuli"
-            card_view:layout_constraintBottom_toTopOf="@+id/detailCity"
-            card_view:layout_constraintEnd_toStartOf="@+id/detailType"
-            card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/detailDate" />
 
@@ -53,12 +49,11 @@
             android:id="@+id/detailDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="27/11/2019"
             android:textColor="#000000"
             android:textSize="23dp"
-            card_view:layout_constraintBottom_toTopOf="@+id/detailOffice"
-            card_view:layout_constraintEnd_toStartOf="@+id/detailTime"
-            card_view:layout_constraintHorizontal_bias="0.072"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
@@ -66,36 +61,32 @@
             android:id="@+id/detailTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="8dp"
             android:text="13:10 PM"
+            card_view:layout_constraintBottom_toBottomOf="@+id/detailDate"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            card_view:layout_constraintTop_toTopOf="@+id/detailDate" />
 
         <TextView
             android:id="@+id/detailType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="226dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="8dp"
             android:text="Comedores"
-            card_view:layout_constraintBottom_toTopOf="@+id/detailFood"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/detailOffice"
             card_view:layout_constraintTop_toBottomOf="@+id/detailTime" />
 
         <TextView
             android:id="@+id/detailFood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="288dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:text="Lunch"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/detailCity"
             card_view:layout_constraintTop_toBottomOf="@+id/detailType" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

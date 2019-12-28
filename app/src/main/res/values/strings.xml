@@ -127,6 +127,8 @@ If you decide not to grant consent to any of the required entities, WFP will end
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit_beneficiary">Edit Beneficiary</string>
+    <string name="create_beneficiary">Crete Beneficiary</string>
 
     <!-- Sync Preferences -->
     <string-array name="languages">

@@ -40,6 +40,8 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
     private String objectBeneficiary;
     private String optionAgreement = "";
     private Boolean isHeadFamilyBeneficiary = false;
+    private String familyCode = null;
+    private String householdAgreement;
 
     private FrameLayout container;
 
@@ -75,7 +77,7 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
                 break;
             case CREATE:
             case EDIT:
-                currentFragment = CreateEditBeneficiaryFragment.newInstance(selectItem, optionAction, optionAgreement, objectBeneficiary);
+                currentFragment = CreateEditBeneficiaryFragment.newInstance(selectItem, optionAction, optionAgreement, objectBeneficiary, familyCode);
                 break;
         }
         replaceFragment();
@@ -88,14 +90,17 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
 
     @Override
     public void editBeneficiary() {
-        currentFragment = CreateEditBeneficiaryFragment.newInstance(EDIT, optionAction, optionAgreement, objectBeneficiary);
+        currentFragment = CreateEditBeneficiaryFragment.newInstance(EDIT, optionAction, optionAgreement, objectBeneficiary, familyCode);
         replaceFragment();
     }
 
     @Override
     public void setUploadBeneficiary(String id, RegisterBeneficiary registerBeneficiary, int selectItem, Boolean isHeadFamily) {
         showLoading();
-        isHeadFamilyBeneficiary = isHeadFamily;
+        if(isHeadFamily) {
+            familyCode = registerBeneficiary.getDocument();
+            isHeadFamilyBeneficiary = true;
+        }
         presenter.setUploadBeneficiary(id, registerBeneficiary, selectItem);
     }
 
@@ -116,7 +121,7 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
                     .setPositiveButton("aceptar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            CreateEditBeneficiaryFragment.newInstance(selectItem, optionAction, optionAgreement, objectBeneficiary);
+                            currentFragment = CreateEditBeneficiaryFragment.newInstance(selectItem, optionAction, optionAgreement, objectBeneficiary, familyCode);
                             replaceFragment();
                         }
                     }).show();

@@ -25,6 +25,7 @@ import com.pma.ekaa.ui.school.SchoolActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -41,14 +42,14 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ImageView editInfo, attention;
     private TextView detail;
     private CheckBox AM,lunch,PM;
-    private Button cont;
+    private TextView cont;
     private Dialog myDialog;
     private TextView txtclose;
     private TextView kitchenName;
     private ArrayList<Modality> arrayModality;
     private int institutionID;
 
-    Integer id = 0;
+    private Integer id = 0;
     public int contador=0;
 
     public ItemAdapter(Context context, List<Result> beneficiaries, ArrayList<Modality> modalities, int institutionID, onListenerAdapter mListener) {
@@ -82,7 +83,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        public ItemViewHolder(@NonNull View view) {
+        ItemViewHolder(@NonNull View view) {
             super(view);
             txtName = view.findViewById(R.id.txtName);
             txtID = view.findViewById(R.id.txtID);
@@ -97,13 +98,17 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             lunch = view.findViewById(R.id.lunch);
         }
 
-        public void bindData(final Result result) {
+        void bindData(final Result result) {
 
             txtName.setText(result.getFirst_name() + " " + result.getSurname());
             txtID.setText(result.getDocument());
             txtnumberID.setText(result.getDocument());
             id = result.getId();
-            cont.setText(result.getAttendance());
+            if(Objects.equals(result.getAttendance(), null)){
+                cont.setText("0");
+            } else {
+                cont.setText(result.getAttendance());
+            }
             txtNation.setText(result.getBirth_date());
 
             profileImage.setOnClickListener(new View.OnClickListener() {

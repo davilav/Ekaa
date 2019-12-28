@@ -34,16 +34,19 @@ import java.util.Calendar;
 
 public class CreateEditBeneficiaryFragment extends Fragment implements View.OnClickListener {
 
+    public static String FAMILY_CODE = "family_code";
+
     private int selectItem;
     private int optionAction;
     private Result objectBeneficiary;
     private String agreement;
+    private String familyCode = null;
 
     private String getUID;
     private String id;
 
     private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, phonebeneficiary,
-            familybeneficiary, migratoryStatus, maritalStatus, ethnicGroup, note, infoAditional;
+            migratoryStatus, maritalStatus, ethnicGroup, note, infoAditional;
     private EditText nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary,recipientBeneficiary,householdRoleBeneficiary, disabilitiesbeneficiary;
     private TextView birthdatebeneficiary, titleForm;
     private Button btnRecovery;
@@ -58,13 +61,14 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         // Required empty public constructor
     }
 
-    public static CreateEditBeneficiaryFragment newInstance(int selectItem, int optionAction, String agreement, String objectBeneficiary) {
+    public static CreateEditBeneficiaryFragment newInstance(int selectItem, int optionAction, String agreement, String objectBeneficiary, String familyCode) {
         CreateEditBeneficiaryFragment fragment = new CreateEditBeneficiaryFragment();
         Bundle args = new Bundle();
         args.putInt(NotSchoolActivity.OPTION_ACTION, optionAction);
         args.putInt(BeneficiaryActivity.SELECTED_ITEM, selectItem);
         args.putString(BeneficiaryActivity.OBJECT_BENEFICIARIES, objectBeneficiary);
         args.putString(BeneficiaryActivity.OPTION_AGREEMENT, agreement);
+        args.putString(FAMILY_CODE, familyCode);
         fragment.setArguments(args);
         return fragment;
     }
@@ -76,6 +80,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             optionAction = getArguments().getInt(NotSchoolActivity.OPTION_ACTION);
             selectItem = getArguments().getInt(BeneficiaryActivity.SELECTED_ITEM);
             agreement = getArguments().getString(BeneficiaryActivity.OPTION_AGREEMENT);
+            familyCode = getArguments().getString(FAMILY_CODE);
             if(selectItem == BeneficiaryActivity.EDIT) {
                 objectBeneficiary = new Gson().fromJson(getArguments().getString(BeneficiaryActivity.OBJECT_BENEFICIARIES), Result.class);
             } else {
@@ -116,7 +121,6 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         nationalitybeneficiary = view.findViewById(R.id.nationalitybeneficiary);
         pregnantbeneficiary = view.findViewById(R.id.pregnantbeneficiary);
         maritalStatus = view.findViewById(R.id.maritalStatus);
-        familybeneficiary = view.findViewById(R.id.familybeneficiary);
         recipientBeneficiary = view.findViewById(R.id.recipientID);
         householdRoleBeneficiary = view.findViewById(R.id.houseHoldRole);
         disabilitiesbeneficiary = view.findViewById(R.id.disabilities);
@@ -143,6 +147,11 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             ethnicGroup = view.findViewById(R.id.ethnicGroup);
             note = view.findViewById(R.id.note);
             infoAditional = view.findViewById(R.id.infoAditional);
+        }
+
+        if (familyCode != null) {
+            headFamily.setVisibility(View.GONE);
+            isHeadFamily = true;
         }
 
         birthdatebeneficiary.setOnClickListener(new View.OnClickListener() {
@@ -177,15 +186,15 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         });
 
         if(selectItem == BeneficiaryActivity.EDIT){
-            titleForm.setText("Editar Beneficiario");
+            titleForm.setText(getResources().getString(R.string.edit_beneficiary));
             agreement = objectBeneficiary.getAgreement();
             getUID = objectBeneficiary.getUid();
             id = objectBeneficiary.getId().toString();
-            btnRecovery.setText("Actualizar");
+            btnRecovery.setText(getResources().getString(R.string.update));
             setInfoForm();
         } else {
-            btnRecovery.setText("Registrar");
-            titleForm.setText("Crear Beneficiario");
+            btnRecovery.setText(getResources().getString(R.string.registerbeneficiary));
+            titleForm.setText(getResources().getString(R.string.create_beneficiary));
             getUID = "";
             id = "";
         }
@@ -202,7 +211,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
 
         phonebeneficiary.setText(objectBeneficiary.getPhone());
         birthdatebeneficiary.setText(objectBeneficiary.getBirth_date());
-        familybeneficiary.setText(objectBeneficiary.getHousehold_code());
+        familyCode = objectBeneficiary.getHousehold_code();
 
         if(objectBeneficiary.getNationality() != null) {
             nationalitybeneficiary.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getNationality(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_NATIONALITY, "")));
@@ -268,7 +277,9 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             }
             ethnicGroup.setText(objectBeneficiary.getEthnicity());
         } else if(optionAction == NotSchoolActivity.INKIND){
-
+            ethnicGroup.setText(objectBeneficiary.getEthnicity());
+            note.setText(objectBeneficiary.getNote());
+            infoAditional.setText(objectBeneficiary.getAditional_information());
         }
     }
 
@@ -299,6 +310,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         switch (view.getId()) {
             case R.id.btn_recovery:
                 RegisterBeneficiary registerBeneficiary = null;
+                if(familyCode == null) familyCode = documentbeneficiary.getText().toString();
                 if (optionAction == NotSchoolActivity.KITCHEN){
                     //Validate fields
                     registerBeneficiary = new RegisterBeneficiary(
@@ -306,21 +318,21 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
                             objectBeneficiary.getMarital_status(),objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                             surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), null, birthdatebeneficiary.getText().toString(),
                             objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
-                            familybeneficiary.getText().toString(),agreement);
+                            familyCode,agreement);
                 } else  if (optionAction == NotSchoolActivity.WALKERS) {
                     registerBeneficiary = new RegisterBeneficiary(
                             getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocument_type(), objectBeneficiary.getGender(), objectBeneficiary.getHousehold_role(), objectBeneficiary.getRecipient(), 1, 1, objectBeneficiary.getMigratory_status(),
                             objectBeneficiary.getMarital_status(),objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                             surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(),
                             objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), null, null,
-                            familybeneficiary.getText().toString(),agreement);
+                            familyCode,agreement);
                 } else if(optionAction == NotSchoolActivity.INKIND) {
                     registerBeneficiary = new RegisterBeneficiary(
                             getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocument_type(), objectBeneficiary.getGender(), objectBeneficiary.getHousehold_role(), objectBeneficiary.getRecipient(), 1, 1, objectBeneficiary.getMigratory_status(),
                             objectBeneficiary.getMarital_status(), objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                             surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(),
                             objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
-                            familybeneficiary.getText().toString(),agreement);
+                            familyCode,agreement);
                 }
                 mListener.setUploadBeneficiary(id ,registerBeneficiary, selectItem, isHeadFamily);
                 break;
