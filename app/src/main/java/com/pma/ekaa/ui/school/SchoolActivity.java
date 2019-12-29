@@ -82,7 +82,7 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
 
     private Fragment currentFragment = null;
 
-
+    Integer userID = Utils.getInstance().getDataUser().getUserId();
     Double Longitude = Utils.getInstance().getGeolocation().getLongitude();
     Double Latitude = Utils.getInstance().getGeolocation().getLatitude();
 
@@ -277,7 +277,7 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
                     modality = 3;
                 }
 
-                registerAttendance(institutionID, beneficiary.getId(), 1, modality);
+                registerAttendance(institutionID, beneficiary.getId(), userID, modality);
             }
         });
 

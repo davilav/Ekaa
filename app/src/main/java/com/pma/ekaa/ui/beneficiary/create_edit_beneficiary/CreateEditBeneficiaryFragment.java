@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
+import com.pma.ekaa.data.models.Beneficiary;
 import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.RegisterBeneficiary;
 import com.pma.ekaa.data.models.Result;
@@ -30,6 +33,8 @@ import com.pma.ekaa.utils.PreferencesHelper;
 import com.pma.ekaa.utils.Utils;
 
 import java.util.Calendar;
+
+import es.dmoral.toasty.Toasty;
 
 
 public class CreateEditBeneficiaryFragment extends Fragment implements View.OnClickListener {
@@ -287,7 +292,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         //al pasar la fecha y dar ok se setea la fecha en el textview
         @Override
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            birthdatebeneficiary.setText(year + "/" + month + "/" + day);
+            birthdatebeneficiary.setText(day + "/" + month + "/" + year);
         }
     };
 
@@ -309,6 +314,10 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_recovery:
+                if(TextUtils.isEmpty(disabilitiesbeneficiary.getText())){
+                    disabilitiesbeneficiary.setError("El campo discapacidad es obligatorio");
+                    validate();
+                }else{
                 RegisterBeneficiary registerBeneficiary = null;
                 if(familyCode == null) familyCode = documentbeneficiary.getText().toString();
                 if (optionAction == NotSchoolActivity.KITCHEN){
@@ -335,6 +344,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
                             familyCode,agreement);
                 }
                 mListener.setUploadBeneficiary(id ,registerBeneficiary, selectItem, isHeadFamily);
+                }
                 break;
             case R.id.genderbeneficiary:
                 SelectOptionDialog.newInstance(
@@ -408,6 +418,9 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
                         }).show(getActivity().getSupportFragmentManager(), "");
                 break;
             case R.id.recipientID:
+                if(selectItem == BeneficiaryActivity.EDIT){
+                    recipientBeneficiary.setInputType(InputType.TYPE_NULL);
+                }else {
                 SelectOptionDialog.newInstance(
                         PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_RECIPIENT, ""),
                         new SelectOptionDialog.onListenerInterface() {
@@ -417,6 +430,8 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
                                 recipientBeneficiary.setText(data.getName());
                             }
                         }).show(getActivity().getSupportFragmentManager(), "");
+
+                }
                 break;
             case R.id.disabilities:
                 SelectOptionDialog.newInstance(
@@ -432,6 +447,29 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             default:
                 break;
         }
+    }
+
+    private void validate() {
+
+        if(TextUtils.isEmpty(namebeneficiary.getText())){
+            namebeneficiary.setError("El primer nombre es obligatorio");
+        }
+        if(TextUtils.isEmpty(lastnamebeneficiary.getText())){
+                lastnamebeneficiary.setError("El apellido es obligatorio");
+        }
+        if(TextUtils.isEmpty(documentbeneficiary.getText())){
+                    documentbeneficiary.setError("El documento es obligatorio");
+        }
+        if(TextUtils.isEmpty(documentTypebeneficiary.getText())){
+                        documentTypebeneficiary.setError("El tipo de documento es obligatorio");
+        }
+        if(TextUtils.isEmpty(genderbeneficiary.getText())) {
+                            genderbeneficiary.setError("El genero es obligatorio");
+        }
+        if(TextUtils.isEmpty(nationalitybeneficiary.getText())){
+                                nationalitybeneficiary.setError("El primer nombre es obligatorio");
+        }
+        Toasty.warning(getContext(),"",Toasty.LENGTH_SHORT,true).show();
     }
 
     public interface OnFragmentInteractionListener {

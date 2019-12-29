@@ -17,6 +17,10 @@ public class Data {
     @SerializedName("geolocation_type")
     @Expose
     private Integer geolocationType;
+
+    @SerializedName("abbreviation")
+    @Expose
+    private String abbreviation;
     @SerializedName("parent")
     @Expose
     private Integer parent;
@@ -103,5 +107,13 @@ public class Data {
 
     public void setPartner(Integer partner) {
         this.partner = partner;
+    }
+
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
     }
 }

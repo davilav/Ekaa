@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
@@ -32,6 +34,8 @@ import com.pma.ekaa.utils.PreferencesHelper;
 import com.pma.ekaa.utils.Utils;
 
 import java.util.Calendar;
+
+import es.dmoral.toasty.Toasty;
 
 
 public class CreateEditStudentFragment extends Fragment implements View.OnClickListener {
@@ -240,16 +244,21 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_recovery:
-                Beneficiary beneficiary = new Beneficiary(
-                        id, namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
-                        surnamebeneficiary.getText().toString(), objectBeneficiary.getDocument_type(), documentbeneficiary.getText().toString(), objectBeneficiary.getGender(),
-                        ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(), objectBeneficiary.getNationality(), documentbeneficiary.getText().toString(), objectBeneficiary.getDisability());
-                registerStudent.setBeneficiary(beneficiary);
-                registerStudent.setSchoolProgram(objectBeneficiary.getSchoolProgram());
-                registerStudent.setSchoolGroup(objectBeneficiary.getSchoolGroup());
-                registerStudent.setSchoolClass(Integer.parseInt(classbeneficiary.getText().toString()));
-                registerStudent.setBelongsProgram(stateBelongs);
-                mListener.setUploadBeneficiary(registerStudent, selectItem);
+                if(TextUtils.isEmpty(disabilitiesbenenficiary.getText())){
+                    disabilitiesbenenficiary.setError("El campo discapacidad es obligatorio");
+                    validate();
+                }else {
+                    Beneficiary beneficiary = new Beneficiary(
+                            id, namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
+                            surnamebeneficiary.getText().toString(), objectBeneficiary.getDocument_type(), documentbeneficiary.getText().toString(), objectBeneficiary.getGender(),
+                            ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(), objectBeneficiary.getNationality(), documentbeneficiary.getText().toString(), objectBeneficiary.getDisability());
+                    registerStudent.setBeneficiary(beneficiary);
+                    registerStudent.setSchoolProgram(objectBeneficiary.getSchoolProgram());
+                    registerStudent.setSchoolGroup(objectBeneficiary.getSchoolGroup());
+                    registerStudent.setSchoolClass(Integer.parseInt(classbeneficiary.getText().toString()));
+                    registerStudent.setBelongsProgram(stateBelongs);
+                    mListener.setUploadBeneficiary(registerStudent, selectItem);
+                }
                 break;
             case R.id.genderbeneficiary:
                 SelectOptionDialog.newInstance(
@@ -322,6 +331,39 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
             default:
                 break;
         }
+    }
+
+    private void validate() {
+
+        if(TextUtils.isEmpty(namebeneficiary.getText())){
+            namebeneficiary.setError("El primer nombre es obligatorio");
+        }
+        if(TextUtils.isEmpty(lastnamebeneficiary.getText())){
+            lastnamebeneficiary.setError("El apellido es obligatorio");
+        }
+        if(TextUtils.isEmpty(documentbeneficiary.getText())){
+            documentbeneficiary.setError("El documento es obligatorio");
+        }
+        if(TextUtils.isEmpty(documentTypebeneficiary.getText())){
+            documentTypebeneficiary.setError("El tipo de documento es obligatorio");
+        }
+        if(TextUtils.isEmpty(genderbeneficiary.getText())) {
+            genderbeneficiary.setError("El genero es obligatorio");
+        }
+        if(TextUtils.isEmpty(nationalitybeneficiary.getText())){
+            nationalitybeneficiary.setError("El primer nombre es obligatorio");
+        }
+        if(TextUtils.isEmpty(classbeneficiary.getText())){
+            classbeneficiary.setError("El primer nombre es obligatorio");
+        }
+        if(TextUtils.isEmpty(groupbeneficiary.getText())){
+            groupbeneficiary.setError("El primer nombre es obligatorio");
+        }
+        if(TextUtils.isEmpty(programbeneficiary.getText())){
+            programbeneficiary.setError("El primer nombre es obligatorio");
+        }
+        Toasty.warning(getContext(),"Por favor revise que los campos hayan sido llenados correctamente",Toasty.LENGTH_SHORT,true).show();
+
     }
 
 

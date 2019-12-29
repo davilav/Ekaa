@@ -19,6 +19,8 @@ import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
 import com.pma.ekaa.ui.not_school.NotSchoolActivity;
+import com.pma.ekaa.utils.PreferencesHelper;
+import com.pma.ekaa.utils.Utils;
 
 public class ShowBeneficiaryFragment extends Fragment implements View.OnClickListener {
 
@@ -96,6 +98,11 @@ public class ShowBeneficiaryFragment extends Fragment implements View.OnClickLis
         registration.setText(objectBeneficiary.getRegistration_date());
         info.setText(objectBeneficiary.getAditional_information());
         familyCode.setText(objectBeneficiary.getHousehold_code());
+        documentType.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getDocument_type(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_DOCUMENTS, "")));
+        gender.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getGender(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_GENDERS, "")));
+        nation.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getNationality(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_NATIONALITY, "")));
+
+
 
     }
 

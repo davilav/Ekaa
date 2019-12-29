@@ -73,6 +73,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private SearchView searchView;
     private Dialog attendanceDialog;
     private Result selectBeneficiary;
+    private Integer useriD = Utils.getInstance().getDataUser().getUserId();
 
     Double Longitude = Utils.getInstance().getGeolocation().getLongitude();
     Double Latitude = Utils.getInstance().getGeolocation().getLatitude();
@@ -405,7 +406,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
                     modality = 3;
                 }
 
-                registerAttendance(institutionID, beneficiary.getId(), 1, modality);
+                registerAttendance(institutionID, beneficiary.getId(), useriD, modality);
             }
         });
 

@@ -109,16 +109,16 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
         hideLoading();
         if(isHeadFamilyBeneficiary){
             new AlertDialog.Builder(this)
-                    .setTitle("Usuario agregado con exitp")
-                    .setMessage("¿Desea agregar otro miembro a su nucleo familiar?")
+                    .setTitle(getResources().getString(R.string.usersuccess))
+                    .setMessage(getResources().getString(R.string.useradd))
                     .setCancelable(false)
-                    .setNegativeButton("cancelar", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(getResources().getString(R.string.cancelar), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             finish();
                         }
                     })
-                    .setPositiveButton("aceptar", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getResources().getString(R.string.agree), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             currentFragment = CreateEditBeneficiaryFragment.newInstance(selectItem, optionAction, optionAgreement, objectBeneficiary, familyCode);

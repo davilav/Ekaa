@@ -118,6 +118,10 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="adios">Good Bye!</string>
     <string name="coincidircorreos">Emails do not match</string>
     <string name="checkboxterminos">You must agree to terms and conditions</string>
+    <string name="usersuccess">Beneficiary added successfully</string>
+    <string name="useradd">Do you want to add another member to your family nucleus?</string>
+    <string name="agree">Agree</string>
+    <string name="cancelar">Close</string>
 
 
 

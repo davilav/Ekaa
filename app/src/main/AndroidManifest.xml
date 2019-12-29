@@ -9,10 +9,10 @@
     <application
         android:name=".EkaaApplication"
         android:allowBackup="true"
-        android:icon="@drawable/pmalogo_white"
+        android:icon="@drawable/logopma"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@drawable/pmalogo_white"
+        android:roundIcon="@drawable/logopma"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">

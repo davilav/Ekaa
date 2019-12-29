@@ -102,7 +102,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             txtName.setText(result.getFirst_name() + " " + result.getSurname());
             txtID.setText(result.getDocument());
-            txtnumberID.setText(result.getDocument());
+            txtnumberID.setText(result.getHousehold_code());
             id = result.getId();
             if(Objects.equals(result.getAttendance(), null)){
                 cont.setText("0");

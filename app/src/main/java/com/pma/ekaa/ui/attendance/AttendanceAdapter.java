@@ -55,7 +55,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
 
         public void bindData(final AttendanceDetail data) {
-            String date = data.getYear()+"/"+data.getMonth();
+            String date = data.getDay()+"/"+data.getMonth()+"/"+data.getYear();
             detailDate.setText(date);
             detailOffice.setText(data.getInstitution());
             detailCity.setText(data.getGeolocation());

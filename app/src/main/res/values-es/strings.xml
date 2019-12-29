@@ -116,6 +116,10 @@ Si decide no otorgar el consentimiento a ninguna de las entidades requeridas, el
     <string name="checkboxterminos">Debes aceptar los terminos y condiciones de servicio</string>
     <string name="edit_beneficiary">Editar Beneficiario</string>
     <string name="create_beneficiary">Crear Beneficiario</string>
+    <string name="usersuccess">Beneficiario agregado exitosamente</string>
+    <string name="useradd">¿Desea agregar otro miembro a su núcleo familiar?</string>
+    <string name="agree">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
 
 
     <string-array name="documentType">

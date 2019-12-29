@@ -38,6 +38,9 @@ public class AttendanceDetail {
     @SerializedName("month")
     @Expose
     private Integer month;
+    @SerializedName("day")
+    @Expose
+    private Integer day;
 
     public String getInstitution() {
         return institution;
@@ -125,6 +128,14 @@ public class AttendanceDetail {
 
     public void setMonth(Integer month) {
         this.month = month;
+    }
+
+    public Integer getDay() {
+        return day;
+    }
+
+    public void setDay(Integer day) {
+        this.day = day;
     }
 
 }
