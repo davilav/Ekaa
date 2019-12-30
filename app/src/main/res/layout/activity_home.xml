@@ -20,7 +20,8 @@
             android:elevation="6dp"
             android:src="@drawable/clover"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@null" />
 
         <LinearLayout
             android:id="@+id/textsplash"
@@ -186,7 +187,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.2" />
+                app:layout_constraintVertical_bias="0.2"
+                android:contentDescription="@null" />
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -218,7 +220,8 @@
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/menupoint" />
+                app:srcCompat="@drawable/menupoint"
+                android:contentDescription="@null" />
 
             <TextView
                 android:id="@+id/userText"
@@ -269,7 +272,8 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_marginBottom="4dp"
-                        android:src="@drawable/school" />
+                        android:src="@drawable/school"
+                        android:contentDescription="@null" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -292,7 +296,8 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_marginBottom="4dp"
-                        android:src="@drawable/food" />
+                        android:src="@drawable/food"
+                        android:contentDescription="@null" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -326,7 +331,8 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_marginBottom="4dp"
-                        android:src="@drawable/walk" />
+                        android:src="@drawable/walk"
+                        android:contentDescription="@null" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -349,7 +355,8 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_marginBottom="4dp"
-                        android:src="@drawable/inkiind" />
+                        android:src="@drawable/inkiind"
+                        android:contentDescription="@null" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -384,7 +391,8 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginRight="40dp"
-                android:src="@drawable/cloudy" />
+                android:src="@drawable/cloudy"
+                android:contentDescription="@null" />
 
             <ImageView
                 android:id="@+id/urlButton"
@@ -392,7 +400,8 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginRight="40dp"
-                android:src="@drawable/link" />
+                android:src="@drawable/link"
+                android:contentDescription="@null" />
 
             <ImageView
                 android:id="@+id/aboutButton"
@@ -400,7 +409,8 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginRight="40dp"
-                android:src="@drawable/about" />
+                android:src="@drawable/about"
+                android:contentDescription="@null" />
 
             <ImageView
                 android:id="@+id/settingsButton"
@@ -408,7 +418,8 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginRight="40dp"
-                android:src="@drawable/config" />
+                android:src="@drawable/config"
+                android:contentDescription="@null" />
 
         </LinearLayout>
 

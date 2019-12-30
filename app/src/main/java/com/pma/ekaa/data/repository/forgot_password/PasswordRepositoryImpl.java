@@ -2,7 +2,6 @@ package com.pma.ekaa.data.repository.forgot_password;
 
 import com.pma.ekaa.data.models.Email;
 import com.pma.ekaa.data.models.Password;
-import com.pma.ekaa.data.models.User;
 import com.pma.ekaa.data.remote.ApiClient;
 import com.pma.ekaa.ui.forgot_password.presenter.PasswordPresenter;
 
@@ -28,8 +27,11 @@ public class PasswordRepositoryImpl implements PasswordRepository {
                     case 200:
                         presenter.responseSuccess(response.body().getDetail());
                         break;
+                    case 400:
+                        presenter.responseError("Error");
+                        break;
                     default:
-                        presenter.responseError("Fallo la conexion con el servidor");
+                        presenter.responseError("Error1");
                         break;
                 }
             }

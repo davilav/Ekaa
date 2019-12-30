@@ -1,7 +1,6 @@
 package com.pma.ekaa.ui.login.presenter;
 
 import com.pma.ekaa.data.models.Login;
-import com.pma.ekaa.data.models.RequestUser;
 import com.pma.ekaa.data.models.UserLog;
 import com.pma.ekaa.data.repository.login.LoginRepository;
 import com.pma.ekaa.data.repository.login.LoginRepositoryImpl;

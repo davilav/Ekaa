@@ -36,7 +36,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.974"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:focusable="true" />
 
         <SearchView
             android:id="@+id/searchView"
@@ -94,7 +95,8 @@
             app:layout_constraintHorizontal_bias="0.079"
             app:layout_constraintStart_toStartOf="@+id/toolbar"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:contentDescription="@null" />
 
         <ImageView
             android:id="@+id/previousArrowButton"
@@ -107,7 +109,8 @@
             app:layout_constraintHorizontal_bias="0.714"
             app:layout_constraintStart_toEndOf="@+id/titleToolbar"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.333" />
+            app:layout_constraintVertical_bias="0.333"
+            android:contentDescription="@null" />
 
         <ImageView
             android:id="@+id/nextArrowButton"
@@ -119,7 +122,8 @@
             app:layout_constraintBottom_toTopOf="@+id/searchView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.325" />
+            app:layout_constraintVertical_bias="0.325"
+            android:contentDescription="@null" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

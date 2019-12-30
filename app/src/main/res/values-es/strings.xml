@@ -3,6 +3,7 @@
     <string name="str_en">Inglés</string>
     <string name="str_es">Español</string>
     <string name="app_name">Ekaa</string>
+    <string name="web_name">wfp.org/es</string>
     <string name="about">Acerca</string>
     <string name="agreeterms">Acepto los terminos de servicio</string>
     <string name="cloud">Nube</string>
@@ -11,7 +12,7 @@
     <string name="email">Correo</string>
     <string name="user">Nombre de usuario</string>
     <string name="forgotpassword">¿Olvidaste tu contraseña?</string>
-    <string name="forgotyourpassword">¿Olvidaste tu contraseña?, Toca Aqui</string>
+    <string name="forgotyourpassword">¿Olvidaste tu contraseña?, Toca Aquí</string>
     <string name="inkind">Inkind</string>
     <string name="kitchens">Comedores</string>
     <string name="login">Iniciar sesion</string>
@@ -22,12 +23,12 @@
     <string name="register">¿No tienes una cuenta?, Unete ahora!</string>
     <string name="school">Escolar</string>
     <string name="settings">Configuracion</string>
-    <string name="terms">Al seleccionar iniciar sesion, crear cuenta o las demas opciones, aceptas los terminos de servicio de Ekaa, su politica de privacidad y su politica de no discriminacion</string>
+    <string name="terms">Al seleccionar iniciar sesion, crear cuenta o las demas opciones, aceptas los terminos de servicio de Ekaa, su política de privacidad y su política de no discriminacion</string>
     <string name="url">Url</string>
     <string name="walkers">Caminantes</string>
     <string name="welcome">Bienvenido a Ekaa.</string>
     <string name="moremoreoptions">Más Opciones</string>
-    <string name="alreadymember">¿Ya eres miembro? Toca aqui</string>
+    <string name="alreadymember">¿Ya eres miembro? Toca aquí</string>
     <string name="language">Idioma</string>
     <string name="confirmpassword">Confirmar contraseña</string>
     <string name="implementatorpartner">Socio implementador</string>
@@ -38,7 +39,7 @@ Si decide no otorgar el consentimiento a ninguna de las entidades requeridas, el
     <string name="accept">Aceptar</string>
     <string name="cancel">Cancelar</string>
     <string name="add">Agregar beneficiario</string>
-    <string name="help">¿Necesitas ayuda?, Presiona aqui</string>
+    <string name="help">¿Necesitas ayuda?, Presiona aquí</string>
     <string name="logout">Cerrar Sesion</string>
     <string name="select">Por favor selecciona tu institución.</string>
     <string name="dtype">Tipo de documento</string>

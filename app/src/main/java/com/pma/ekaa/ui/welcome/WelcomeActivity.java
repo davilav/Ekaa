@@ -3,8 +3,6 @@ package com.pma.ekaa.ui.welcome;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentManager;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,14 +16,10 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.Data;
-import com.pma.ekaa.data.models.Geolocation;
 import com.pma.ekaa.ui.BaseActivity;
-import com.pma.ekaa.ui.dialog.SelectOptionDialog;
-import com.pma.ekaa.ui.home.HomeActivity;
 import com.pma.ekaa.ui.login.LoginActivity;
 import com.pma.ekaa.ui.forgot_password.PasswordActivity;
 import com.pma.ekaa.ui.register.RegisterActivity;
@@ -33,8 +27,6 @@ import com.pma.ekaa.ui.welcome.presenter.WelcomePresenter;
 import com.pma.ekaa.ui.welcome.presenter.WelcomePresenterImpl;
 import com.pma.ekaa.utils.Location;
 import com.pma.ekaa.utils.PreferencesHelper;
-import com.pma.ekaa.utils.Utils;
-
 import java.util.ArrayList;
 import java.util.Locale;
 

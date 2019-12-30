@@ -1,12 +1,9 @@
 package com.pma.ekaa.ui.register;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -15,35 +12,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.dialog.SelectOptionDialog;
-import com.pma.ekaa.ui.home.HomeActivity;
 import com.pma.ekaa.ui.login.LoginActivity;
-import com.pma.ekaa.data.remote.ApiClient;
-import com.pma.ekaa.data.models.Register;
-import com.pma.ekaa.data.models.User;
 import com.pma.ekaa.ui.register.presenter.RegisterPresenter;
 import com.pma.ekaa.ui.register.presenter.RegisterPresenterImpl;
-import com.pma.ekaa.ui.welcome.WelcomeActivity;
 import com.pma.ekaa.utils.PreferencesHelper;
 
 import es.dmoral.toasty.Toasty;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
 public class RegisterActivity extends BaseActivity implements RegisterView, View.OnClickListener {
 
     private ConstraintLayout loading;
-    private Button memberButton;
     private EditText nameUser, lastNameUser, emailUser, user, passUser, confirmPassUser, userPartner, userRol;
     private ImageView eyePass, eyeConfirm;
-    private Button bar;
     private RegisterPresenter presenter;
     private int partnerID;
 
@@ -60,10 +46,10 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
         confirmPassUser = findViewById(R.id.confirmPassUser);
         userPartner = findViewById(R.id.userPartner);
         userRol = findViewById(R.id.userRol);
-        memberButton = findViewById(R.id.memberButton);
+        Button memberButton = findViewById(R.id.memberButton);
         eyePass = findViewById(R.id.hidePassword);
         eyeConfirm = findViewById(R.id.hideConfirm);
-        bar = findViewById(R.id.btn_recovery);
+        Button bar = findViewById(R.id.btn_recovery);
 
         presenter = new RegisterPresenterImpl(this);
 

@@ -3,17 +3,12 @@ package com.pma.ekaa.data.repository.school;
 import com.pma.ekaa.data.models.Attendance;
 import com.pma.ekaa.data.models.AttendanceToday;
 import com.pma.ekaa.data.models.BeneficiaryArray;
-import com.pma.ekaa.data.models.Data;
-import com.pma.ekaa.data.models.RegisterBeneficiary;
 import com.pma.ekaa.data.models.RegisterStudent;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.data.remote.ApiClient;
-import com.pma.ekaa.ui.home.presenter.HomePresenter;
 import com.pma.ekaa.ui.school.presenter.SchoolPresenter;
 import com.pma.ekaa.utils.Utils;
-
 import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

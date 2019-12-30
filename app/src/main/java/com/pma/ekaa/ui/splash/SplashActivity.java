@@ -1,7 +1,6 @@
 package com.pma.ekaa.ui.splash;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 
 import com.pma.ekaa.R;
 import com.pma.ekaa.ui.BaseActivity;
-import com.pma.ekaa.ui.login.LoginActivity;
 import com.pma.ekaa.ui.splash.presenter.SplashPresenter;
 import com.pma.ekaa.ui.splash.presenter.SplashPresenterImpl;
 import com.pma.ekaa.ui.welcome.WelcomeActivity;
@@ -31,8 +29,6 @@ public class SplashActivity extends BaseActivity implements SplashView {
     Animation fromtop,fromBottom;
     ProgressBar progressBar;
 
-    private SplashPresenter presenter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +44,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
         progressBar.setMax(100);
         progressBar.setScaleY(3f);
 
-        presenter = new SplashPresenterImpl(this, getApplication());
+        SplashPresenter presenter = new SplashPresenterImpl(this, getApplication());
 
         setAnimation();
 

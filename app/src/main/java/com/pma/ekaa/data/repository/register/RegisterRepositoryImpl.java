@@ -1,21 +1,11 @@
 package com.pma.ekaa.data.repository.register;
 
-import android.content.Intent;
-import android.widget.Toast;
-
 import com.pma.ekaa.data.models.Register;
-import com.pma.ekaa.data.models.User;
 import com.pma.ekaa.data.remote.ApiClient;
-import com.pma.ekaa.ui.home.HomeActivity;
-import com.pma.ekaa.ui.register.RegisterActivity;
 import com.pma.ekaa.ui.register.presenter.RegisterPresenter;
-
-import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static maes.tech.intentanim.CustomIntent.customType;
 
 public class RegisterRepositoryImpl implements RegisterRepository {
 

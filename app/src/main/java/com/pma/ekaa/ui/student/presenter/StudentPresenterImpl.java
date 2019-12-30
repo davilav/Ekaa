@@ -1,11 +1,8 @@
 package com.pma.ekaa.ui.student.presenter;
 
-import com.pma.ekaa.data.models.RegisterBeneficiary;
 import com.pma.ekaa.data.models.RegisterStudent;
-import com.pma.ekaa.data.repository.beneficiary.BeneficiaryRepositoryImpl;
 import com.pma.ekaa.data.repository.student.StudentRepository;
 import com.pma.ekaa.data.repository.student.StudentRepositoryImpl;
-import com.pma.ekaa.ui.beneficiary.BeneficiaryView;
 import com.pma.ekaa.ui.student.StudentActivity;
 import com.pma.ekaa.ui.student.StudentView;
 

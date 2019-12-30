@@ -24,13 +24,20 @@ import com.pma.ekaa.utils.Utils;
 
 public class ShowBeneficiaryFragment extends Fragment implements View.OnClickListener {
 
-    private int selectItem;
-    private int optionAction;
     private Result objectBeneficiary;
 
     private ImageView back;
-    private TextView name,familyCode,documentType,documentNumber, nation,gender,phone,registration,info,birthdate,completeName,modality;
-    private Button editBeneficiary;
+    private TextView name;
+    private TextView familyCode;
+    private TextView documentType;
+    private TextView documentNumber;
+    private TextView nation;
+    private TextView gender;
+    private TextView phone;
+    private TextView registration;
+    private TextView info;
+    private TextView birthdate;
+    private TextView completeName;
 
     private OnFragmentInteractionListener mListener;
 
@@ -53,8 +60,8 @@ public class ShowBeneficiaryFragment extends Fragment implements View.OnClickLis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            selectItem = getArguments().getInt(NotSchoolActivity.OPTION_ACTION);
-            optionAction = getArguments().getInt(BeneficiaryActivity.SELECTED_ITEM);
+            int selectItem = getArguments().getInt(NotSchoolActivity.OPTION_ACTION);
+            int optionAction = getArguments().getInt(BeneficiaryActivity.SELECTED_ITEM);
             objectBeneficiary = new Gson().fromJson(getArguments().getString(BeneficiaryActivity.OBJECT_BENEFICIARIES), Result.class);
         }
     }
@@ -80,8 +87,8 @@ public class ShowBeneficiaryFragment extends Fragment implements View.OnClickLis
         registration = view.findViewById(R.id.tv_date);
         info = view.findViewById(R.id.tv_info);
         completeName = view.findViewById(R.id.tv_complete_name);
-        modality = view.findViewById(R.id.tv_modality);
-        editBeneficiary = view.findViewById(R.id.editKitchenbutton);
+        TextView modality = view.findViewById(R.id.tv_modality);
+        Button editBeneficiary = view.findViewById(R.id.editKitchenbutton);
 
         editBeneficiary.setOnClickListener(this);
 

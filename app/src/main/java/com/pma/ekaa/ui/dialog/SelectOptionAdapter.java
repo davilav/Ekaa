@@ -14,7 +14,6 @@ import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.Data;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SelectOptionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
 

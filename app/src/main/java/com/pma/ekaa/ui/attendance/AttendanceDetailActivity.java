@@ -2,17 +2,12 @@ package com.pma.ekaa.ui.attendance;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.pma.ekaa.R;
@@ -20,7 +15,6 @@ import com.pma.ekaa.data.models.AttendanceDetail;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.ui.attendance.presenter.AttendancePresenter;
 import com.pma.ekaa.ui.attendance.presenter.AttendancePresenterImpl;
-import com.pma.ekaa.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -28,10 +22,8 @@ public class AttendanceDetailActivity extends AppCompatActivity implements Atten
 
     public static String USER_DETAIL = "user_detail";
 
-    private AttendancePresenter presenter;
-    private Result user;
     private ConstraintLayout loading;
-    private TextView nameUser, textNotFound;
+    private TextView textNotFound;
     private ImageView backButton;
     private RecyclerView recyclerAttendance;
     LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -40,6 +32,7 @@ public class AttendanceDetailActivity extends AppCompatActivity implements Atten
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_detail);
+        Result user;
         if(savedInstanceState != null){
             user = new Gson().fromJson(savedInstanceState.getString(USER_DETAIL), new TypeToken<Result>(){}.getType());
         } else {
@@ -47,10 +40,10 @@ public class AttendanceDetailActivity extends AppCompatActivity implements Atten
         }
 
         loading = findViewById(R.id.progressBar);
-        nameUser = findViewById(R.id.tv_name);
+        TextView nameUser = findViewById(R.id.tv_name);
         recyclerAttendance = findViewById(R.id.recycler_attendance);
         textNotFound = findViewById(R.id.textNotFound);
-        presenter = new AttendancePresenterImpl(this);
+        AttendancePresenter presenter = new AttendancePresenterImpl(this);
 
         String name= user.getFirst_name() + " " + user.getSurname();
         nameUser.setText(name);

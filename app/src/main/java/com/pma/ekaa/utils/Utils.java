@@ -1,12 +1,9 @@
 package com.pma.ekaa.utils;
 
-import androidx.annotation.Nullable;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.Geolocation;
-import com.pma.ekaa.data.models.RequestUser;
 import com.pma.ekaa.data.models.UserLog;
 
 import java.util.ArrayList;

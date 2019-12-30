@@ -1,19 +1,12 @@
 package com.pma.ekaa.data.repository.not_school;
 
-import android.view.View;
-import android.widget.Toast;
-
 import com.pma.ekaa.data.models.Attendance;
 import com.pma.ekaa.data.models.AttendanceToday;
 import com.pma.ekaa.data.models.BeneficiaryArray;
 import com.pma.ekaa.data.remote.ApiClient;
-import com.pma.ekaa.ui.adapters.ItemAdapter;
 import com.pma.ekaa.ui.not_school.presenter.NotSchoolPresenter;
 import com.pma.ekaa.utils.Utils;
-
 import java.util.ArrayList;
-
-import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

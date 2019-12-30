@@ -2,7 +2,6 @@ package com.pma.ekaa.ui.school;
 
 import com.pma.ekaa.data.models.AttendanceToday;
 import com.pma.ekaa.data.models.BeneficiaryArray;
-import com.pma.ekaa.data.models.Data;
 
 import java.util.ArrayList;
 

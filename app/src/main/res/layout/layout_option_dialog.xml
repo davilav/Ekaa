@@ -53,7 +53,8 @@
             android:clickable="true"
             android:padding="5dp"
             android:text="close"
-            android:textAllCaps="true" />
+            android:textAllCaps="true"
+            android:focusable="true" />
 
     </LinearLayout>
 </LinearLayout>

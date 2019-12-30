@@ -1,24 +1,19 @@
 package com.pma.ekaa.ui.student.show_student;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.Result;
-import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
 import com.pma.ekaa.ui.student.StudentActivity;
 import com.pma.ekaa.utils.PreferencesHelper;
 import com.pma.ekaa.utils.Utils;
@@ -27,8 +22,16 @@ public class ShowStudentFragment extends Fragment implements View.OnClickListene
 
     private Result objectBeneficiary;
     private ImageView back;
-    private TextView name,familyCode,documentType,documentNumber, nation,gender,school,registration,group,birthdate,completeName,modality;
-    private Button editBeneficiary;
+    private TextView name;
+    private TextView familyCode;
+    private TextView documentType;
+    private TextView documentNumber;
+    private TextView nation;
+    private TextView gender;
+    private TextView registration;
+    private TextView group;
+    private TextView birthdate;
+    private TextView completeName;
 
     private OnFragmentInteractionListener mListener;
 
@@ -71,12 +74,12 @@ public class ShowStudentFragment extends Fragment implements View.OnClickListene
         birthdate = view.findViewById(R.id.tv_birthdate);
         nation = view.findViewById(R.id.tv_nation);
         gender = view.findViewById(R.id.tv_gender);
-        school = view.findViewById(R.id.tv_school);
+        TextView school = view.findViewById(R.id.tv_school);
         registration = view.findViewById(R.id.tv_date);
         group = view.findViewById(R.id.tv_group);
         completeName = view.findViewById(R.id.tv_complete_name);
-        modality = view.findViewById(R.id.tv_modality);
-        editBeneficiary = view.findViewById(R.id.editKitchenbutton);
+        TextView modality = view.findViewById(R.id.tv_modality);
+        Button editBeneficiary = view.findViewById(R.id.editKitchenbutton);
 
         editBeneficiary.setOnClickListener(this);
 

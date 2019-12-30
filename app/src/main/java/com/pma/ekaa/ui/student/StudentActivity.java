@@ -11,9 +11,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
-import com.pma.ekaa.data.models.RegisterBeneficiary;
 import com.pma.ekaa.data.models.RegisterStudent;
-import com.pma.ekaa.ui.register.RegisterActivity;
 import com.pma.ekaa.ui.student.create_edit_student.CreateEditStudentFragment;
 import com.pma.ekaa.ui.student.presenter.StudentPresenter;
 import com.pma.ekaa.ui.student.presenter.StudentPresenterImpl;
@@ -33,10 +31,7 @@ public class StudentActivity extends AppCompatActivity implements StudentView, C
     public final static int EDIT = 2;
 
     private ConstraintLayout loading;
-    private FrameLayout container;
     private String registerStudent;
-    private int institutionID;
-    private int groupID;
     private int selectItem;
     private String objectBeneficiary;
     private StudentPresenter presenter;
@@ -46,6 +41,8 @@ public class StudentActivity extends AppCompatActivity implements StudentView, C
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
+        int groupID;
+        int institutionID;
         if(savedInstanceState != null) {
             selectItem = savedInstanceState.getInt(SELECTED_ITEM);
             objectBeneficiary = savedInstanceState.getString(OBJECT_BENEFICIARIES);
@@ -59,7 +56,7 @@ public class StudentActivity extends AppCompatActivity implements StudentView, C
         }
 
         presenter = new StudentPresenterImpl(this);
-        container = findViewById(R.id.containerStudent);
+        FrameLayout container = findViewById(R.id.containerStudent);
         loading = findViewById(R.id.progressBar);
 
         registerStudent = new Gson().toJson(

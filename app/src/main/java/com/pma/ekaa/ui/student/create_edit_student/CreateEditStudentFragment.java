@@ -2,13 +2,10 @@ package com.pma.ekaa.ui.student.create_edit_student;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +16,6 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.Beneficiary;
@@ -47,14 +42,12 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
 
     private RegisterStudent registerStudent;
 
-    private String getUID;
     private Integer id;
     private String stateBelongs = "1";
 
     private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, ethnicGroup;
     private EditText nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary, disabilitiesbenenficiary,programbeneficiary,groupbeneficiary,classbeneficiary;
-    private Button btnRecovery;
-    private TextView birthdatebeneficiary, titleForm;
+    private TextView birthdatebeneficiary;
     private CheckBox belongsProgram;
     private OnFragmentInteractionListener mListener;
 
@@ -96,7 +89,7 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        titleForm = view.findViewById(R.id.titleForm);
+        TextView titleForm = view.findViewById(R.id.titleForm);
 
         namebeneficiary = view.findViewById(R.id.namebeneficiary);
         seconenamebeneficiary = view.findViewById(R.id.seconenamebeneficiary);
@@ -112,7 +105,7 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
         groupbeneficiary = view.findViewById(R.id.groupbeneficiary);
         classbeneficiary = view.findViewById(R.id.classbeneficiary);
         ethnicGroup = view.findViewById(R.id.ethnicGroup);
-        btnRecovery = view.findViewById(R.id.btn_recovery);
+        Button btnRecovery = view.findViewById(R.id.btn_recovery);
         belongsProgram = view.findViewById(R.id.chk_belongs_program);
 
         btnRecovery.setOnClickListener(this);
@@ -148,6 +141,7 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
             }
         });
 
+        String getUID;
         if (selectItem == StudentActivity.EDIT) {
             titleForm.setText(getResources().getString(R.string.editStudent));
             getUID = objectBeneficiary.getUid();

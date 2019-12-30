@@ -29,7 +29,8 @@
                     android:background="@drawable/circle"
                     android:padding="3dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/user" />
+                    android:src="@drawable/user"
+                    android:contentDescription="@null" />
 
             </RelativeLayout>
 

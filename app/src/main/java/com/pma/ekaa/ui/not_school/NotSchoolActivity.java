@@ -61,14 +61,12 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private int institutionID;
     private RecyclerView recyclerView,detail;
     private ItemAdapter itemAdapter;
-    private List<Result> beneficiaries;
     private static int countPage = 1;
     private final ArrayList<Result> itemList = new ArrayList<>();
     private ArrayList<Modality>  modalities;
-    private ImageView nextpage,previouspage;
+    private ImageView previouspage;
     private ConstraintLayout loading;
-    private ImageView back,info;
-    private FloatingActionButton floatingActionButton;
+    private ImageView info;
     private TextView titleToolbar;
     private SearchView searchView;
     private Dialog attendanceDialog;
@@ -95,12 +93,12 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
 
         presenter = new NotSchoolPresenterImpl(this);
 
-        nextpage = findViewById(R.id.nextArrowButton);
+        ImageView nextpage = findViewById(R.id.nextArrowButton);
         previouspage = findViewById(R.id.previousArrowButton);
         searchView = findViewById(R.id.searchView);
         loading = findViewById(R.id.progressBar);
-        floatingActionButton = findViewById(R.id.floatingActionButton);
-        back = findViewById(R.id.backButton);
+        FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
+        ImageView back = findViewById(R.id.backButton);
         recyclerView = findViewById(R.id.recycler_view);
         titleToolbar = findViewById(R.id.titleToolbar);
 
@@ -203,13 +201,13 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         final AlertDialog dialog = builder.create();
         dialog.show();
 
-        final ArrayList<CheckBox> listCheckBox = new ArrayList<CheckBox>();
+        final ArrayList<CheckBox> listCheckBox = new ArrayList<>();
         listCheckBox.add((CheckBox) view.findViewById(R.id.wfpCheckBox));
         listCheckBox.add((CheckBox) view.findViewById(R.id.humanitarianCheckBox));
         listCheckBox.add((CheckBox) view.findViewById(R.id.privateCheckBox));
         listCheckBox.add((CheckBox) view.findViewById(R.id.governmentCheckBox));
 
-        final ArrayList<String> keys = new ArrayList<String>();
+        final ArrayList<String> keys = new ArrayList<>();
         keys.add("AG1");
         keys.add("AG2");
         keys.add("AG3");
@@ -268,8 +266,8 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     @Override
     public void getListBeneficiarySuccess(BeneficiaryArray beneficiaryArray) {
         hideLoading();
-        beneficiaries =  beneficiaryArray.getResults();
-        recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),beneficiaries, modalities, institutionID, this));
+        List<Result> beneficiaries = beneficiaryArray.getResults();
+        recyclerView.setAdapter(new ItemAdapter(getApplicationContext(), beneficiaries, modalities, institutionID, this));
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.pma.ekaa.data.repository.home;
 
 import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.Modality;
-import com.pma.ekaa.data.models.RequestUser;
 import com.pma.ekaa.data.models.UserLog;
 import com.pma.ekaa.data.remote.ApiClient;
 import com.pma.ekaa.ui.home.presenter.HomePresenter;

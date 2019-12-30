@@ -36,7 +36,6 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     ImageView eyeButton;
     EditText txtEmail, txtPassword;
     Button bar;
-    private CheckBox checkTerms;
 
     private LoginPresenter presenter;
 
@@ -56,7 +55,7 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         txtEmail = findViewById(R.id.emailText);
         txtPassword = findViewById(R.id.passwordText);
         eyeButton = findViewById(R.id.eyeButton);
-        checkTerms = findViewById(R.id.chk_terms);
+        CheckBox checkTerms = findViewById(R.id.chk_terms);
         bar = findViewById(R.id.btn_recovery);
 
         eyeButton.setOnClickListener(this);

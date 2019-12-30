@@ -3,13 +3,8 @@ package com.pma.ekaa.ui.school.presenter;
 import com.pma.ekaa.data.models.Attendance;
 import com.pma.ekaa.data.models.AttendanceToday;
 import com.pma.ekaa.data.models.BeneficiaryArray;
-import com.pma.ekaa.data.models.Data;
-import com.pma.ekaa.data.repository.home.HomeRepository;
-import com.pma.ekaa.data.repository.home.HomeRepositoryImpl;
 import com.pma.ekaa.data.repository.school.SchoolRepository;
 import com.pma.ekaa.data.repository.school.SchoolRepositoryImpl;
-import com.pma.ekaa.ui.home.HomeView;
-import com.pma.ekaa.ui.school.SchoolActivity;
 import com.pma.ekaa.ui.school.SchoolView;
 
 import java.util.ArrayList;

@@ -17,7 +17,6 @@ import com.pma.ekaa.ui.beneficiary.presenter.BeneficiaryPresenter;
 import com.pma.ekaa.ui.beneficiary.presenter.BeneficiaryPresenterImpl;
 import com.pma.ekaa.ui.beneficiary.show_beneficiary.ShowBeneficiaryFragment;
 import com.pma.ekaa.ui.beneficiary.create_edit_beneficiary.CreateEditBeneficiaryFragment;
-import com.pma.ekaa.ui.home.HomeActivity;
 import com.pma.ekaa.ui.not_school.NotSchoolActivity;
 
 import es.dmoral.toasty.Toasty;
@@ -43,8 +42,6 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
     private String familyCode = null;
     private String householdAgreement;
 
-    private FrameLayout container;
-
     private Fragment currentFragment = null;
 
     @Override
@@ -63,7 +60,7 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
             optionAgreement = getIntent().getStringExtra(OPTION_AGREEMENT);
         }
 
-        container = findViewById(R.id.containerBeneficiary);
+        FrameLayout container = findViewById(R.id.containerBeneficiary);
         loading = findViewById(R.id.progressBar);
         presenter = new BeneficiaryPresenterImpl(this);
         selectAction();

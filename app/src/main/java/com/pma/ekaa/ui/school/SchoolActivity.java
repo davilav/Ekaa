@@ -40,7 +40,6 @@ import com.pma.ekaa.ui.student.StudentActivity;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.adapters.ItemAdapter;
 import com.pma.ekaa.ui.attendance.AttendanceDetailActivity;
-import com.pma.ekaa.ui.dialog.SelectOptionDialog;
 import com.pma.ekaa.ui.school.presenter.SchoolPresenter;
 import com.pma.ekaa.ui.school.presenter.SchoolPresenterImpl;
 import com.pma.ekaa.utils.Utils;
@@ -55,22 +54,17 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     public static String OPTION_MODALITY = "option_modality";
     public static String INSTITUTION_ID = "institution_id";
 
-    private LinearLayout schoolSplash;
-    private ConstraintLayout students, loading;
-    private Animation fromBottom;
+    private ConstraintLayout loading;
     private EditText group;
-    private Button bar;
     private ItemAdapter itemAdapter;
-    private List<Result> student;
     private static int countPage = 1;
     private final ArrayList<Result> itemList = new ArrayList<>();
     private ArrayList<Modality>  modalities;
     private SearchView searchView;
     private RecyclerView recyclerView;
-    private FloatingActionButton fab;
 
     private int institutionID;
-    private ImageView nextpage,previouspage;
+    private ImageView previouspage;
     private Dialog attendanceDialog;
     private Result selectBeneficiary;
 
@@ -164,15 +158,15 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     public void initViews(){
 
         loading = findViewById(R.id.progressBar);
-        schoolSplash = findViewById(R.id.textsplash);
-        students = findViewById(R.id.students);
-        fromBottom = AnimationUtils.loadAnimation(this, R.anim.fromdown);
+        LinearLayout schoolSplash = findViewById(R.id.textsplash);
+        ConstraintLayout students = findViewById(R.id.students);
+        Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.fromdown);
         searchView = findViewById(R.id.searchView);
         recyclerView = findViewById(R.id.recycler_view);
-        nextpage = findViewById(R.id.nextArrowButton);
+        ImageView nextpage = findViewById(R.id.nextArrowButton);
         previouspage = findViewById(R.id.previousArrowButton);
-        fab = findViewById(R.id.floatingActionButton);
-        bar = findViewById(R.id.btn_recovery);
+        FloatingActionButton fab = findViewById(R.id.floatingActionButton);
+        Button bar = findViewById(R.id.btn_recovery);
 
         fab.setOnClickListener(this);
         nextpage.setOnClickListener(this);
@@ -311,8 +305,8 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     @Override
     public void getListBeneficiarySuccess(BeneficiaryArray beneficiaryArray) {
         hideLoading();
-        student =  beneficiaryArray.getResults();
-        recyclerView.setAdapter(new ItemAdapter(getApplicationContext(),student, modalities, institutionID, this));
+        List<Result> student = beneficiaryArray.getResults();
+        recyclerView.setAdapter(new ItemAdapter(getApplicationContext(), student, modalities, institutionID, this));
     }
 
     @Override

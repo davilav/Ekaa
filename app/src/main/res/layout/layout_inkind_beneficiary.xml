@@ -12,7 +12,6 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -43,7 +42,8 @@
                         android:background="@drawable/circle"
                         android:padding="10dp"
                         android:src="@drawable/pmalogo_white"
-                        android:tint="#ffffff" />
+                        android:tint="#ffffff"
+                        android:contentDescription="@null" />
 
                     <TextView
                         android:id="@+id/titleForm"
@@ -54,7 +54,7 @@
                         android:fontFamily="sans-serif-medium"
                         android:text="@string/add"
                         android:textColor="#ffffff"
-                        android:textSize="20dp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -66,7 +66,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="-10dp"
                     android:rotation="45"
-                    android:src="@drawable/square" />
+                    android:src="@drawable/square"
+                    android:contentDescription="@null" />
 
                 <RelativeLayout
                     android:id="@+id/relativeLayout1"

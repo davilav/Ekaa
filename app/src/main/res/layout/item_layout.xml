@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -42,7 +41,8 @@
             android:src="@drawable/check"
             card_view:layout_constraintBottom_toBottomOf="@+id/countButton"
             card_view:layout_constraintEnd_toStartOf="@+id/countButton"
-            card_view:layout_constraintTop_toTopOf="@+id/countButton" />
+            card_view:layout_constraintTop_toTopOf="@+id/countButton"
+            android:contentDescription="@null" />
 
         <TextView
             android:id="@+id/txtName"

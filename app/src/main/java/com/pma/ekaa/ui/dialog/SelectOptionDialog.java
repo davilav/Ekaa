@@ -28,7 +28,6 @@ public class SelectOptionDialog extends DialogFragment implements SelectOptionAd
     private static onListenerInterface mListener;
 
     private ArrayList<Data> listData;
-    private SearchView searchBox;
     private SelectOptionAdapter mAdapter;
 
     public SelectOptionDialog() {
@@ -65,7 +64,7 @@ public class SelectOptionDialog extends DialogFragment implements SelectOptionAd
         super.onViewCreated(view, savedInstanceState);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerOption);
-        searchBox = view.findViewById(R.id.searchBox);
+        SearchView searchBox = view.findViewById(R.id.searchBox);
 
         mAdapter = new SelectOptionAdapter(listData, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

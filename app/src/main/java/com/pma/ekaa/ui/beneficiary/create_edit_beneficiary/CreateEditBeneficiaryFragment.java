@@ -19,11 +19,9 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
-import com.pma.ekaa.data.models.Beneficiary;
 import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.RegisterBeneficiary;
 import com.pma.ekaa.data.models.Result;
@@ -32,10 +30,8 @@ import com.pma.ekaa.ui.dialog.SelectOptionDialog;
 import com.pma.ekaa.ui.not_school.NotSchoolActivity;
 import com.pma.ekaa.utils.PreferencesHelper;
 import com.pma.ekaa.utils.Utils;
-
 import java.util.Calendar;
 
-import es.dmoral.toasty.Toasty;
 
 
 public class CreateEditBeneficiaryFragment extends Fragment implements View.OnClickListener {

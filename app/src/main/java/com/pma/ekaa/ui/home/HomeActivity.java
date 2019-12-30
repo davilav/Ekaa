@@ -38,12 +38,20 @@ import static maes.tech.intentanim.CustomIntent.customType;
 
 public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.OnMenuItemClickListener, View.OnClickListener {
 
-    private ImageView kitchen, school, inkind, walkers, cloud, url, settings, info, menu, bgApp, clover;
+    private ImageView kitchen;
+    private ImageView school;
+    private ImageView inkind;
+    private ImageView walkers;
+    private ImageView cloud;
+    private ImageView url;
+    private ImageView settings;
+    private ImageView info;
+    private ImageView menu;
+    private ImageView bgApp;
     private ConstraintLayout loading;
     private ConstraintLayout containerUbication;
     private ConstraintLayout containerHome;
-    private Animation bganim, cloveranim, fromtop, fromBottom;
-    private LinearLayout textSplash, textHome, home;
+    private LinearLayout textHome;
     private EditText departmentGeolocation, townGeolocation, institutionGeolocation;
     private TextView splashtext, userText, emailtext;
     private Button bar;
@@ -94,15 +102,15 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         loading = findViewById(R.id.progressBar);
         containerHome = findViewById(R.id.containerHome);
         containerUbication = findViewById(R.id.containerUbication);
-        cloveranim = AnimationUtils.loadAnimation(this, R.anim.cloveranim);
-        fromtop = AnimationUtils.loadAnimation(this, R.anim.fromtop);
-        fromBottom = AnimationUtils.loadAnimation(this, R.anim.fromdown);
-        textSplash = findViewById(R.id.textsplash);
+        Animation cloveranim = AnimationUtils.loadAnimation(this, R.anim.cloveranim);
+        Animation fromtop = AnimationUtils.loadAnimation(this, R.anim.fromtop);
+        Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.fromdown);
+        LinearLayout textSplash = findViewById(R.id.textsplash);
         splashtext = findViewById(R.id.splashUser);
         //textHome = findViewById(R.id.textOptions);
-        home = findViewById(R.id.menus);
+        LinearLayout home = findViewById(R.id.menus);
         //bgApp = findViewById(R.id.bgapp);
-        bganim = AnimationUtils.loadAnimation(this, R.anim.bganim);
+        Animation bganim = AnimationUtils.loadAnimation(this, R.anim.bganim);
         menu = findViewById(R.id.menupointbutton);
         kitchen = findViewById(R.id.kitchenButton);
         school = findViewById(R.id.schoolButton);
@@ -111,7 +119,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         departmentGeolocation = findViewById(R.id.departmentGeolocation);
         townGeolocation = findViewById(R.id.townGeolocation);
         institutionGeolocation = findViewById(R.id.institutionGeolocation);
-        clover = findViewById(R.id.clover);
+        ImageView clover = findViewById(R.id.clover);
         settings = findViewById(R.id.settingsButton);
         userText = findViewById(R.id.userText);
         emailtext = findViewById(R.id.textemailhome);
@@ -232,7 +240,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
 
     private String getModality(int option) {
 
-        ArrayList<Modality> filterModality = new ArrayList<Modality>();
+        ArrayList<Modality> filterModality = new ArrayList<>();
         int selector;
 
         switch (option) {
