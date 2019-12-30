@@ -78,6 +78,7 @@
                     android:layout_marginTop="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_namebeneficiary"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -102,6 +103,7 @@
                     android:layout_marginTop="15dp">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_secondnamebeneficiary"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -128,6 +130,7 @@
                     android:layout_marginTop="15dp">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_lastnamebeneficiary"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -153,6 +156,7 @@
                     android:layout_marginTop="15dp">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_surnamebeneficiary"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -177,6 +181,7 @@
                     android:layout_marginTop="15dp">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_nationalitybeneficiary"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -202,6 +207,7 @@
                     android:layout_marginTop="15dp">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_documentTypebeneficiary"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -227,6 +233,7 @@
                     android:layout_marginTop="15dp">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_documentbeneficiary"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -251,6 +258,7 @@
                     android:layout_marginTop="15dp">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_birthdatebeneficiary"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -276,6 +284,7 @@
                     android:layout_marginTop="15dp">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_genderbeneficiary"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -301,6 +310,7 @@
                     android:layout_marginTop="15dp">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_phonebeneficiary"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -325,6 +335,7 @@
                     android:layout_marginTop="15dp">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_migratoryStatus"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -351,6 +362,7 @@
                     android:layout_marginTop="15dp">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_maritalStatus"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -377,6 +389,7 @@
                     android:layout_marginTop="15dp">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_ethnicGroup"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -402,6 +415,7 @@
                     android:layout_marginTop="15dp">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_recipientID"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -428,6 +442,7 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_houseHoldRole"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">
@@ -453,6 +468,7 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp">
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_disabilities"
                         android:layout_width="match_parent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content">

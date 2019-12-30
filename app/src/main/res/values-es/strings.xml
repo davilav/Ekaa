@@ -120,6 +120,7 @@ Si decide no otorgar el consentimiento a ninguna de las entidades requeridas, el
     <string name="useradd">¿Desea agregar otro miembro a su núcleo familiar?</string>
     <string name="agree">Aceptar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="obligatorio">Este campo es obligatorio</string>
 
 
     <string-array name="documentType">

@@ -5,7 +5,6 @@
     <string name="app_name">Ekaa</string>
 
 
-    <string name="web_name">wfp.org/es</string>
     <string name="welcome">Welcome to Ekaa.</string>
     <string name="options">Forgot your password?</string>
 
@@ -36,7 +35,6 @@
     <string name="confirmpassword">Confirm password</string>
     <string name="implementatorpartner">Implentator Partner</string>
     <string name="confirmemail">Confirm your email</string>
-    <string name="title_activity_kitchen">KitchenActivity</string>
     <string name="datapolicy">Do you grant WFP permission to process your personal data and share it with your partners, including humanitarian and / or private organizations, and / or the Government in order to implement WFP food assistance program?
 If you decide not to grant consent to any of the required entities, WFP will endeavor to provide other forms of assistance that do not require such personal data, if applicable, and if possible, however, you may not be able to receive assistance.</string>
     <string name="datatitle">Data Processing Policy</string>
@@ -122,6 +120,7 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="useradd">Do you want to add another member to your family nucleus?</string>
     <string name="agree">Agree</string>
     <string name="cancelar">Close</string>
+    <string name="obligatorio">This field is required</string>
 
 
 
@@ -129,8 +128,6 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="groupselect">Please select your group</string>
     <string name="classselect">Please select your class</string>
 
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="edit_beneficiary">Edit Beneficiary</string>
     <string name="create_beneficiary">Crete Beneficiary</string>
 
