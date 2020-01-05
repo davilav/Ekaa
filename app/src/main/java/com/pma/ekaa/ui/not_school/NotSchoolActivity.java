@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +39,7 @@ import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.adapters.ItemAdapter;
 import com.pma.ekaa.ui.attendance.AttendanceDetailActivity;
 import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
+import com.pma.ekaa.ui.beneficiary.create_edit_beneficiary.CreateEditBeneficiaryFragment;
 import com.pma.ekaa.ui.not_school.presenter.NotSchoolPresenter;
 import com.pma.ekaa.ui.not_school.presenter.NotSchoolPresenterImpl;
 import com.pma.ekaa.utils.Utils;
@@ -307,7 +310,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         presenter.getAttendanceToday(beneficiary.getId());
     }
 
-    private void showAttendanceDialog(final Result beneficiary, ArrayList<AttendanceToday> response) {
+    private void showAttendanceDialog(final Result beneficiary, final ArrayList<AttendanceToday> response) {
 
         attendanceDialog = new Dialog(this);
         attendanceDialog.setContentView(R.layout.beneficiary_popup);
@@ -337,12 +340,20 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         kitchenName.setText(beneficiary.getFirst_name()+" "+ beneficiary.getSurname());
 
         for(int cont = 0; cont < response.size(); cont++){
-            if(response.get(cont).getModality_id() == 1){
-                AM.setEnabled(false);
-            } else if(response.get(cont).getModality_id() == 2){
-                lunch.setEnabled(false);
-            } else {
-                PM.setEnabled(false);
+            for(int key = 0; key < modalities.size(); key++ ){
+                if(response.get(cont).getModality_id() == modalities.get(key).getId() ){
+                    switch (key){
+                        case 0:
+                            AM.setEnabled(false);
+                            break;
+                        case 1:
+                            lunch.setEnabled(false);
+                            break;
+                        case 2:
+                            PM.setEnabled(false);
+                            break;
+                    }
+                }
             }
         }
 
@@ -393,20 +404,42 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLoading();
+               showLoading();
 
-                int modality = 0;
-                if(AM.isChecked()){
-                    modality = 1;
-                }else if (lunch.isChecked()){
-                    modality = 2;
-                }else if(PM.isChecked()){
-                    modality = 3;
-                }
+               int modality = 0;
+               if (AM.isChecked()) {
+                   modality = modalities.get(0).getId();
+               } else if (lunch.isChecked()) {
+                   modality = modalities.get(1).getId();
+               } else if (PM.isChecked()) {
+                   modality = modalities.get(2).getId();
+               }
 
-                registerAttendance(institutionID, beneficiary.getId(), useriD, modality);
-            }
-        });
+               registerAttendance(institutionID, beneficiary.getId(), useriD, modality);
+
+
+               if (response.get(0).getId() > 1) {
+                   new android.app.AlertDialog.Builder(NotSchoolActivity.this)
+                           .setTitle("ALERTA")
+                           .setMessage("Este usuario ya recibió una atención en otra modalidad distinta")
+                           .setCancelable(false)
+                           .setNegativeButton(getResources().getString(R.string.cancelar), new DialogInterface.OnClickListener() {
+                               @Override
+                               public void onClick(DialogInterface dialogInterface, int i) {
+                                   finish();
+                               }
+                           })
+                           .setPositiveButton(getResources().getString(R.string.agree), new DialogInterface.OnClickListener() {
+                               @Override
+                               public void onClick(DialogInterface dialog, int which) {
+                                   finish();
+                               }
+                           }).show();
+               } else {
+           }
+       }
+
+    });
 
         attendanceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         attendanceDialog.show();

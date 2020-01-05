@@ -30,11 +30,11 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    @POST("rest-auth/login/")
+    @POST("api/v1/login/")
     Call <UserLog> login(@Body Login login);
 
-    @POST("rest-auth/logout/")
-    Call<UserLog> login();
+    @POST("api/v1/logout/")
+    Call<UserLog> logout(@Header("Authorization") String authToken);
 
     @POST("/api/v1/persons/")
     Call<Register> register(@Body Register register);
@@ -97,7 +97,7 @@ public interface ApiInterface {
     Call<ArrayList<Data>> getGroups();
 
 
-    @GET("rest-auth/login/")
+    @GET("api/v1/login/")
     Call<ResponseBody> getKey(@Header("Authorization") String authToken);
 
     @GET("/api/v1/beneficiaries/")

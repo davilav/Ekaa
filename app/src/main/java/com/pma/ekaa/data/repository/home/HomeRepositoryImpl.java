@@ -131,7 +131,7 @@ public class HomeRepositoryImpl implements HomeRepository {
 
     @Override
     public void setLogout() {
-        Call<UserLog> call = ApiClient.getInstance().getApi().login();
+        Call<UserLog> call = ApiClient.getInstance().getApi().logout("Token " + Utils.getInstance().getDataUser().getToken());
         call.enqueue(new Callback<UserLog>() {
             @Override
             public void onResponse(Call<UserLog> call, Response<UserLog> response) {

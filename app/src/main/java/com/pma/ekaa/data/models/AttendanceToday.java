@@ -2,6 +2,7 @@ package com.pma.ekaa.data.models;
 
 public class AttendanceToday {
 
+    private Integer id;
     private Integer beneficiary_id;
     private Integer modality_id;
     private Integer total;
@@ -28,5 +29,13 @@ public class AttendanceToday {
 
     public void setTotal(Integer total) {
         this.total = total;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

@@ -2,6 +2,7 @@ package com.pma.ekaa.ui.attendance;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
@@ -66,6 +67,9 @@ public class AttendanceDetailActivity extends AppCompatActivity implements Atten
             AttendanceAdapter mAdapter = new AttendanceAdapter(data);
             recyclerAttendance.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             recyclerAttendance.setAdapter(mAdapter);
+
+            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerAttendance.getContext(), mLayoutManager.getOrientation());
+            recyclerAttendance.addItemDecoration(dividerItemDecoration);
 
         }
     }
