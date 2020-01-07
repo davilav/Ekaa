@@ -123,8 +123,6 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="obligatorio">This field is required</string>
 
 
-
-
     <string name="groupselect">Please select your group</string>
     <string name="classselect">Please select your class</string>
 

@@ -2,6 +2,7 @@ package com.pma.ekaa.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.pma.ekaa.data.models.Connection;
 import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.Geolocation;
 import com.pma.ekaa.data.models.UserLog;
@@ -14,6 +15,7 @@ public class Utils {
     private static Utils INSTANCE = null;
     private static UserLog dataUser;
     private static Geolocation geolocation;
+    private static Connection connection;
 
     public Utils() { }
 
@@ -36,6 +38,14 @@ public class Utils {
 
     public void setGeolocation(Geolocation object) {
         Utils.geolocation = object;
+    }
+
+    public static Connection getConnection() {
+        return connection;
+    }
+
+    public static void setConnection(Connection connection) {
+        Utils.connection = connection;
     }
 
     public String findDataSpinner(int id, String dataList){

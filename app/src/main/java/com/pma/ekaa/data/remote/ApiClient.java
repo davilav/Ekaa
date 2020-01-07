@@ -1,5 +1,7 @@
 package com.pma.ekaa.data.remote;
 
+import com.pma.ekaa.utils.Utils;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -7,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static final String BASE_URL = "http://192.168.0.4:8000/";
+    private static final String BASE_URL = Utils.getConnection().getIpAddress();
     private static ApiClient mInstance;
     private  Retrofit retrofit;
 

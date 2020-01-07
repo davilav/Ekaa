@@ -16,17 +16,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.student.StudentActivity" />
-        <activity android:name=".ui.attendance.AttendanceDetailActivity" />
-        <activity android:name=".ui.beneficiary.BeneficiaryActivity" />
-        <activity
-            android:name=".ui.splash.SplashActivity"
+        <activity android:name=".ui.splash.ConnectionActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.student.StudentActivity" />
+        <activity android:name=".ui.attendance.AttendanceDetailActivity" />
+        <activity android:name=".ui.beneficiary.BeneficiaryActivity" />
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".ui.school.SchoolActivity" />
         <activity android:name=".ui.settings.SettingsActivity" />
