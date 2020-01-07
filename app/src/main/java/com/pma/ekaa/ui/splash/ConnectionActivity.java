@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -26,13 +27,14 @@ public class ConnectionActivity extends AppCompatActivity{
     TextView selectText;
     Button next,save;
     String ipHost,ipConn;
-    ConstraintLayout connection;
+    ConstraintLayout connection,animation,content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection);
         initViews();
+
     }
 
     public void initViews() {
@@ -45,6 +47,17 @@ public class ConnectionActivity extends AppCompatActivity{
         next = findViewById(R.id.nextButton);
         save = findViewById(R.id.save);
         connection = findViewById(R.id.connection);
+        animation = findViewById(R.id.animationLayout);
+        content = findViewById(R.id.contentLayout);
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                animation.setVisibility(View.GONE);
+                content.setVisibility(View.VISIBLE);
+            }
+        },7000);
 
 
         save.setOnClickListener(new View.OnClickListener() {
