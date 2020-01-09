@@ -417,27 +417,29 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
 
                registerAttendance(institutionID, beneficiary.getId(), useriD, modality);
 
+               try {
+                   if (response.get(0).getId() > 1) {
+                       new android.app.AlertDialog.Builder(NotSchoolActivity.this)
+                               .setTitle("ALERTA")
+                               .setMessage("Este usuario ya recibió una atención en otra modalidad distinta")
+                               .setCancelable(false)
+                               .setNegativeButton(getResources().getString(R.string.cancelar), new DialogInterface.OnClickListener() {
+                                   @Override
+                                   public void onClick(DialogInterface dialogInterface, int i) {
+                                       finish();
+                                   }
+                               })
+                               .setPositiveButton(getResources().getString(R.string.agree), new DialogInterface.OnClickListener() {
+                                   @Override
+                                   public void onClick(DialogInterface dialog, int which) {
+                                       finish();
+                                   }
+                               }).show();
+                   }
 
-               if (response.get(0).getId() > 1) {
-                   new android.app.AlertDialog.Builder(NotSchoolActivity.this)
-                           .setTitle("ALERTA")
-                           .setMessage("Este usuario ya recibió una atención en otra modalidad distinta")
-                           .setCancelable(false)
-                           .setNegativeButton(getResources().getString(R.string.cancelar), new DialogInterface.OnClickListener() {
-                               @Override
-                               public void onClick(DialogInterface dialogInterface, int i) {
-                                   finish();
-                               }
-                           })
-                           .setPositiveButton(getResources().getString(R.string.agree), new DialogInterface.OnClickListener() {
-                               @Override
-                               public void onClick(DialogInterface dialog, int which) {
-                                   finish();
-                               }
-                           }).show();
-               } else {
-           }
-       }
+               }catch (Exception ex){
+        }
+            }
 
     });
 

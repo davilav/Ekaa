@@ -19,15 +19,11 @@ import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.Connection;
 import com.pma.ekaa.utils.Utils;
 
-public class ConnectionActivity extends AppCompatActivity{
+public class ConnectionActivity extends AppCompatActivity implements View.OnClickListener{
 
-    RadioButton radioServerRemote,radioServerLocale;
-    RadioGroup rd;
-    EditText ipAddress;
-    TextView selectText;
-    Button next,save;
-    String ipHost,ipConn;
-    ConstraintLayout connection,animation,content;
+    Button central,node;
+    ConstraintLayout animation,content;
+    String ipHost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,48 +35,39 @@ public class ConnectionActivity extends AppCompatActivity{
 
     public void initViews() {
 
-        radioServerRemote = findViewById(R.id.remote);
-        radioServerLocale = findViewById(R.id.local);
-        rd = findViewById(R.id.radioGroupConnection);
-        selectText = findViewById(R.id.selectText);
-        ipAddress = findViewById(R.id.ipAdress);
-        next = findViewById(R.id.nextButton);
-        save = findViewById(R.id.save);
-        connection = findViewById(R.id.connection);
+        central = findViewById(R.id.centralServer);
+        node = findViewById(R.id.nodeServer);
         animation = findViewById(R.id.animationLayout);
         content = findViewById(R.id.contentLayout);
+
+        central.setOnClickListener(this);
+        node.setOnClickListener(this);
 
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                animation.setVisibility(View.GONE);
+                //animation.setVisibility(View.GONE);
                 content.setVisibility(View.VISIBLE);
             }
         },7000);
 
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (radioServerRemote.isChecked()){
-                    ipAddress.setText("200.91.218.166");
-                    ipAddress.setFocusable(false);
-                    ipHost = "http://200.91.218.166:8000/";
-                } else if (radioServerLocale.isChecked()){
-                    ipHost = "http://"+ipAddress.getText().toString()+":8000/";
+    }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
 
-                }
-            }
-        });
-
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            case R.id.centralServer:
+                ipHost = "http://200.91.218.166:8000/";
                 goToSplash();
-            }
-        });
+                break;
 
+            case R.id.nodeServer:
+                ipHost = "http://192.168.1.7:8000/";
+                goToSplash();
+                break;
+        }
     }
 
     private void goToSplash() {

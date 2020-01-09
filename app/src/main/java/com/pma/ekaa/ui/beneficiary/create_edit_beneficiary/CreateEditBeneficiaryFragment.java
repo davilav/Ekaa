@@ -56,6 +56,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
 
     private TextView birthdatebeneficiary;
     private CheckBox pregnantbeneficiary;
+    CheckBox headFamily;
 
     private Boolean isHeadFamily = false;
 
@@ -137,7 +138,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         tilnationalitybeneficiary = view.findViewById(R.id.til_nationalitybeneficiary);
         tildisabilitiesbeneficiary = view.findViewById(R.id.til_disabilities);
         Button btnRecovery = view.findViewById(R.id.btn_recovery);
-        CheckBox headFamily = view.findViewById(R.id.chk_head_family);
+        headFamily = view.findViewById(R.id.chk_head_family);
 
 
         btnRecovery.setOnClickListener(this);
