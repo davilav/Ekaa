@@ -121,6 +121,9 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="agree">Agree</string>
     <string name="cancelar">Close</string>
     <string name="obligatorio">This field is required</string>
+    <string name="searchBeneficiary">Search Beneficiary</string>
+    <string name="Alert">Alert</string>
+    <string name="AlertModality">This user has already received attention in a different modality</string>
 
 
     <string name="groupselect">Please select your group</string>

@@ -64,7 +64,7 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     private RecyclerView recyclerView;
 
     private int institutionID;
-    private ImageView previouspage;
+    private ImageView previouspage, nextpage,back;
     private Dialog attendanceDialog;
     private Result selectBeneficiary;
 
@@ -150,7 +150,6 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         }else{
             previouspage.setVisibility(View.VISIBLE);
         }
-
         presenter.getListBeneficiary(keyword,page, institutionID, groupID);
 
     }
@@ -163,14 +162,16 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.fromdown);
         searchView = findViewById(R.id.searchView);
         recyclerView = findViewById(R.id.recycler_view);
-        ImageView nextpage = findViewById(R.id.nextArrowButton);
         previouspage = findViewById(R.id.previousArrowButton);
+        nextpage = findViewById(R.id.nextArrowButton);
+        back = findViewById(R.id.backButton);
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         Button bar = findViewById(R.id.btn_recovery);
 
         fab.setOnClickListener(this);
         nextpage.setOnClickListener(this);
         previouspage.setOnClickListener(this);
+        back.setOnClickListener(this);
 
     }
 
@@ -307,6 +308,16 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         hideLoading();
         List<Result> student = beneficiaryArray.getResults();
         recyclerView.setAdapter(new ItemAdapter(getApplicationContext(), student, modalities, institutionID, this));
+
+        try {
+            if(beneficiaryArray.getNext() == null){
+                nextpage.setVisibility(View.INVISIBLE);
+            }
+            else{
+                nextpage.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception ex){
+        }
     }
 
     @Override

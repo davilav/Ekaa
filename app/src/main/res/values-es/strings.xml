@@ -122,6 +122,9 @@ Si decide no otorgar el consentimiento a ninguna de las entidades requeridas, el
     <string name="agree">Aceptar</string>
     <string name="cancelar">Cancelar</string>
     <string name="obligatorio">Este campo es obligatorio</string>
+    <string name="searchBeneficiary">Buscar Beneficiario</string>
+    <string name="Alert">Alerta</string>
+    <string name="AlertModality">Este usuario ya recibió una atención en una modalidad distinta</string>
 
 
     <string-array name="documentType">

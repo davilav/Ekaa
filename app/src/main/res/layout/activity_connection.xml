@@ -31,7 +31,7 @@
             android:background="@color/colorPrimary"
             android:visibility="invisible"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="-16dp">
+            tools:layout_editor_absoluteY="0dp">
 
 
             <TextView

@@ -238,8 +238,8 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_recovery:
-                if(TextUtils.isEmpty(disabilitiesbenenficiary.getText())){
-                    disabilitiesbenenficiary.setError("El campo discapacidad es obligatorio");
+                if(TextUtils.isEmpty(namebeneficiary.getText())){
+                    namebeneficiary.setError("El primer nombre es obligatorio");
                     validate();
                 }else {
                     Beneficiary beneficiary = new Beneficiary(
@@ -329,9 +329,6 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
 
     private void validate() {
 
-        if(TextUtils.isEmpty(namebeneficiary.getText())){
-            namebeneficiary.setError("El primer nombre es obligatorio");
-        }
         if(TextUtils.isEmpty(lastnamebeneficiary.getText())){
             lastnamebeneficiary.setError("El apellido es obligatorio");
         }

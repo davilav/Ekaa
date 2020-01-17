@@ -67,7 +67,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private static int countPage = 1;
     private final ArrayList<Result> itemList = new ArrayList<>();
     private ArrayList<Modality>  modalities;
-    private ImageView previouspage;
+    private ImageView previouspage,nextpage;
     private ConstraintLayout loading;
     private ImageView info;
     private TextView titleToolbar;
@@ -96,7 +96,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
 
         presenter = new NotSchoolPresenterImpl(this);
 
-        ImageView nextpage = findViewById(R.id.nextArrowButton);
+        nextpage = findViewById(R.id.nextArrowButton);
         previouspage = findViewById(R.id.previousArrowButton);
         searchView = findViewById(R.id.searchView);
         loading = findViewById(R.id.progressBar);
@@ -149,7 +149,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private void searchManager() {
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setQueryHint("Search Result");
+        searchView.setQueryHint(getResources().getString(R.string.searchresult));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -181,13 +181,13 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
             case R.id.nextArrowButton: {
                 countPage+=1;
                 listBeneficiary("",countPage);
-                Toasty.success(this, getResources().getString(R.string.page)+countPage, Toast.LENGTH_SHORT, true).show();
+                Toasty.success(this, getResources().getString(R.string.page)+ countPage, Toast.LENGTH_SHORT, true).show();
                 break;
             }
             case R.id.previousArrowButton:
                 countPage-=1;
                 listBeneficiary("",countPage);
-                Toasty.success(this, getResources().getString(R.string.page)+countPage, Toast.LENGTH_SHORT, true).show();
+                Toasty.success(this, getResources().getString(R.string.page)+ countPage, Toast.LENGTH_SHORT, true).show();
                 break;
         }
     }
@@ -271,6 +271,16 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         hideLoading();
         List<Result> beneficiaries = beneficiaryArray.getResults();
         recyclerView.setAdapter(new ItemAdapter(getApplicationContext(), beneficiaries, modalities, institutionID, this));
+
+        try {
+            if(beneficiaryArray.getNext() == null){
+                nextpage.setVisibility(View.INVISIBLE);
+            }
+            else{
+                nextpage.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception ex){
+        }
     }
 
     @Override
@@ -420,8 +430,8 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
                try {
                    if (response.get(0).getId() > 1) {
                        new android.app.AlertDialog.Builder(NotSchoolActivity.this)
-                               .setTitle("ALERTA")
-                               .setMessage("Este usuario ya recibió una atención en otra modalidad distinta")
+                               .setTitle(getResources().getString(R.string.Alert))
+                               .setMessage(getResources().getString(R.string.AlertModality))
                                .setCancelable(false)
                                .setNegativeButton(getResources().getString(R.string.cancelar), new DialogInterface.OnClickListener() {
                                    @Override

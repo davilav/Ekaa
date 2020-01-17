@@ -484,11 +484,6 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             state = false;
         }
 
-        if (TextUtils.isEmpty(disabilitiesbeneficiary.getText())) {
-            tildisabilitiesbeneficiary.setError(getResources().getString(R.string.obligatorio));
-            state = false;
-        }
-
         return state;
 
     }
