@@ -19,13 +19,13 @@ public class HomePresenterImpl implements HomePresenter {
     }
 
     @Override
-    public void getDataDepartment() {
-        repository.getDataDepartment();
+    public void getDataDepartment(int partnerID) {
+        repository.getDataDepartment(partnerID);
     }
 
     @Override
-    public void getDataTown(int departmentID) {
-        repository.getDataTown(departmentID);
+    public void getDataTown(int partnerID,int departmentID) {
+        repository.getDataTown(partnerID, departmentID);
     }
 
     @Override

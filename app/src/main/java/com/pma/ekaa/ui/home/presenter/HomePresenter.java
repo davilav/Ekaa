@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public interface HomePresenter {
 
-    void getDataDepartment();
-    void getDataTown(int departmentID);
+    void getDataDepartment(int partnerID);
+    void getDataTown(int partnerID, int departmentID);
     void getDataInstitution(int townID);
 
     void setLogout();

@@ -44,6 +44,7 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
 
     private Integer id;
     private String stateBelongs = "1";
+    private Integer userID = Utils.getInstance().getDataUser().getUserId();
 
     private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, ethnicGroup;
     private EditText nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary, disabilitiesbenenficiary,programbeneficiary,groupbeneficiary,classbeneficiary;
@@ -245,7 +246,7 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
                     Beneficiary beneficiary = new Beneficiary(
                             id, namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                             surnamebeneficiary.getText().toString(), objectBeneficiary.getDocument_type(), documentbeneficiary.getText().toString(), objectBeneficiary.getGender(),
-                            ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(), objectBeneficiary.getNationality(), documentbeneficiary.getText().toString(), objectBeneficiary.getDisability());
+                            ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(), objectBeneficiary.getNationality(), documentbeneficiary.getText().toString(), objectBeneficiary.getDisability(),userID);
                     registerStudent.setBeneficiary(beneficiary);
                     registerStudent.setSchoolProgram(objectBeneficiary.getSchoolProgram());
                     registerStudent.setSchoolGroup(objectBeneficiary.getSchoolGroup());

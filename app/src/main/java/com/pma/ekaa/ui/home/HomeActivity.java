@@ -56,6 +56,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
     private TextView splashtext, userText, emailtext;
     private Button bar;
 
+    private int partnerID = Utils.getInstance().getDataUser().getPartner();
 
     private String arrayDepartment = "";
     private String arrayTown = "";
@@ -92,7 +93,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         showLoading();
 
         setDataUserSuccess();
-        presenter.getDataDepartment();
+        presenter.getDataDepartment(partnerID);
         presenter.getModalities();
 
     }
@@ -191,7 +192,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                                     institutionGeolocation.setEnabled(false);
                                     bar.setEnabled(false);
                                     showLoading();
-                                    presenter.getDataTown(departmentID);
+                                    presenter.getDataTown(partnerID,departmentID);
                                 }
                             }).show(getSupportFragmentManager(), "");
                 } else {

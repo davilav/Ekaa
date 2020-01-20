@@ -68,9 +68,13 @@ public class Result {
     @Nullable
     private Integer disability;
 
+    private Integer user;
+
     @SerializedName("school_program")
     @Expose
     private Integer schoolProgram;
+
+
 
 
     @SerializedName("school")
@@ -380,5 +384,13 @@ public class Result {
 
     public void setSchoolProgram(Integer schoolProgram) {
         this.schoolProgram = schoolProgram;
+    }
+
+    public Integer getUser() {
+        return user;
+    }
+
+    public void setUser(Integer user) {
+        this.user = user;
     }
 }

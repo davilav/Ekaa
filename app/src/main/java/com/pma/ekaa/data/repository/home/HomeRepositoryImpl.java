@@ -22,8 +22,8 @@ public class HomeRepositoryImpl implements HomeRepository {
     }
 
     @Override
-    public void getDataDepartment() {
-        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().getDepartments("Token " + Utils.getInstance().getDataUser().getToken());
+    public void getDataDepartment(int partnerID) {
+        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().getDepartments(Integer.toString(partnerID),"Token " + Utils.getInstance().getDataUser().getToken());
         call.enqueue(new Callback<ArrayList<Data>>() {
             @Override
             public void onResponse(Call<ArrayList<Data>> call, Response<ArrayList<Data>> response) {
@@ -49,8 +49,8 @@ public class HomeRepositoryImpl implements HomeRepository {
     }
 
     @Override
-    public void getDataTown(int departmentID) {
-        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().getTown(Integer.toString(departmentID), "Token " + Utils.getInstance().getDataUser().getToken());
+    public void getDataTown(int partnerID, int departmentID) {
+        Call<ArrayList<Data>> call = ApiClient.getInstance().getApi().getTown(Integer.toString(partnerID),Integer.toString(departmentID), "Token " + Utils.getInstance().getDataUser().getToken());
         call.enqueue(new Callback<ArrayList<Data>>() {
             @Override
             public void onResponse(Call<ArrayList<Data>> call, Response<ArrayList<Data>> response) {

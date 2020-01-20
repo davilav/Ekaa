@@ -22,6 +22,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -116,11 +117,11 @@ public interface ApiInterface {
     @POST("/api/v1/attendances/")
     Call<Attendance> registerAttendance(@Body Attendance attendance,@Header("Authorization") String authToken);
 
-    @GET("/api/v1/geolocationstype/1/geolocations/")
-    Call<ArrayList<Data>> getDepartments(@Header("Authorization") String authToken);
+    @GET("/api/v1/partner/{partner_id}/geolocationstype/1/geolocations/")
+    Call<ArrayList<Data>> getDepartments(@Path("partner_id") String partnerID, @Header("Authorization") String authToken);
 
-    @GET("/api/v1/geolocationstype/2/geolocations/{id}")
-    Call<ArrayList<Data>> getTown(@Path("id") String id, @Header("Authorization") String authToken);
+    @GET("/api/v1/partner/{partner_id}/geolocationstype/2/parent/{geolocation_parent_id}/geolocations/")
+    Call<ArrayList<Data>> getTown(@Path("partner_id") String partnerID ,@Path("geolocation_parent_id") String id, @Header("Authorization") String authToken);
 
     @GET("/api/v1/institutions/partner/{partner_id}/geolocation/{town_id}/ ")
     Call<ArrayList<Data>> getInstitution(@Path("partner_id") String partnerID, @Path("town_id") String townID, @Header("Authorization") String authToken);

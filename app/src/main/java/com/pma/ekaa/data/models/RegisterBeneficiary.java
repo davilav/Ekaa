@@ -26,9 +26,10 @@ public class RegisterBeneficiary {
     private String note;
     private String household_code;
     private String agreement;
+    private Integer user;
 
 
-    public RegisterBeneficiary(String uid, Integer nationality, Integer document_type, Integer gender, Integer household_role, Integer recipient, Integer status, Integer beneficiary_type, Integer migratory_status, Integer marital_status, Integer disability, String first_name, String second_name, String surname, String second_surname, String document, String ethnicity, String birth_date, String pregnant, String phone, String aditional_information, String note, String household_code, String agreement) {
+    public RegisterBeneficiary(String uid, Integer nationality, Integer document_type, Integer gender, Integer household_role, Integer recipient, Integer status, Integer beneficiary_type, Integer migratory_status, Integer marital_status, Integer disability, String first_name, String second_name, String surname, String second_surname, String document, String ethnicity, String birth_date, String pregnant, String phone, String aditional_information, String note, String household_code, String agreement, Integer user) {
         this.uid = uid;
         this.nationality = nationality;
         this.document_type = document_type;
@@ -53,6 +54,7 @@ public class RegisterBeneficiary {
         this.note = note;
         this.household_code = household_code;
         this.agreement = agreement;
+        this.user = user;
     }
 
     public String getUid() {
@@ -241,5 +243,17 @@ public class RegisterBeneficiary {
 
     public void setDisability(Integer disability) {
         this.disability = disability;
+    }
+
+    public Integer getDisability() {
+        return disability;
+    }
+
+    public Integer getUser() {
+        return user;
+    }
+
+    public void setUser(Integer user) {
+        this.user = user;
     }
 }

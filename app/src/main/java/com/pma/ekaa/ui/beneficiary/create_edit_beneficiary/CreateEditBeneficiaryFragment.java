@@ -46,6 +46,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
 
     private String getUID;
     private String id;
+    private Integer userID = Utils.getInstance().getDataUser().getUserId();
 
     private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, phonebeneficiary,
             migratoryStatus, maritalStatus, ethnicGroup, note, infoAditional;
@@ -254,6 +255,12 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             maritalStatus.setText("");
         }
 
+        if (objectBeneficiary.getMigratory_status() != null) {
+            migratoryStatus.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getMigratory_status(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_MIGRATORY, "")));
+        } else {
+            migratoryStatus.setText("");
+        }
+
         if (objectBeneficiary.getHousehold_role() != null) {
             householdRoleBeneficiary.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getHousehold_role(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_HOUSESHOLD, "")));
         } else {
@@ -284,11 +291,6 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             note.setText(objectBeneficiary.getNote());
             infoAditional.setText(objectBeneficiary.getAditional_information());
         } else if (optionAction == NotSchoolActivity.WALKERS) {
-            if (objectBeneficiary.getMigratory_status() != null) {
-                migratoryStatus.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getMigratory_status(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_MIGRATORY, "")));
-            } else {
-                migratoryStatus.setText("");
-            }
             ethnicGroup.setText(objectBeneficiary.getEthnicity());
         } else if (optionAction == NotSchoolActivity.INKIND) {
             ethnicGroup.setText(objectBeneficiary.getEthnicity());
@@ -333,21 +335,21 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
                                 objectBeneficiary.getMarital_status(), objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                                 surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), null, birthdatebeneficiary.getText().toString(),
                                 objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
-                                familyCode, agreement);
+                                familyCode, agreement,userID);
                     } else if (optionAction == NotSchoolActivity.WALKERS) {
                         registerBeneficiary = new RegisterBeneficiary(
                                 getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocument_type(), objectBeneficiary.getGender(), objectBeneficiary.getHousehold_role(), objectBeneficiary.getRecipient(), 1, 1, objectBeneficiary.getMigratory_status(),
                                 objectBeneficiary.getMarital_status(), objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                                 surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(),
                                 objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), null, null,
-                                familyCode, agreement);
+                                familyCode, agreement,userID);
                     } else if (optionAction == NotSchoolActivity.INKIND) {
                         registerBeneficiary = new RegisterBeneficiary(
                                 getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocument_type(), objectBeneficiary.getGender(), objectBeneficiary.getHousehold_role(), objectBeneficiary.getRecipient(), 1, 1, objectBeneficiary.getMigratory_status(),
                                 objectBeneficiary.getMarital_status(), objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                                 surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(),
                                 objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
-                                familyCode, agreement);
+                                familyCode, agreement,userID);
                     }
                     mListener.setUploadBeneficiary(id, registerBeneficiary, selectItem, isHeadFamily);
                 }
@@ -481,6 +483,11 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         }
         if (TextUtils.isEmpty(nationalitybeneficiary.getText())) {
             tilnationalitybeneficiary.setError(getResources().getString(R.string.obligatorio));
+            state = false;
+        }
+
+        if (TextUtils.isEmpty(migratoryStatus.getText())) {
+            migratoryStatus.setError(getResources().getString(R.string.obligatorio));
             state = false;
         }
 
