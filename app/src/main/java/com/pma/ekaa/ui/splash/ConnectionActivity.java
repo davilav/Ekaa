@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -19,11 +20,15 @@ import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.Connection;
 import com.pma.ekaa.utils.Utils;
 
+import es.dmoral.toasty.Toasty;
+
 public class ConnectionActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button central,node;
     ConstraintLayout animation,content;
     String ipHost;
+    CheckBox checkBox;
+    EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,8 @@ public class ConnectionActivity extends AppCompatActivity implements View.OnClic
         node = findViewById(R.id.nodeServer);
         animation = findViewById(R.id.animationLayout);
         content = findViewById(R.id.contentLayout);
+        checkBox = findViewById(R.id.checkBox);
+        editText = findViewById(R.id.editText);
 
         central.setOnClickListener(this);
         node.setOnClickListener(this);
@@ -53,6 +60,19 @@ public class ConnectionActivity extends AppCompatActivity implements View.OnClic
         },7000);
 
 
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean state) {
+                if(state){
+                    editText.setVisibility(View.VISIBLE);
+                    node.setEnabled(true);
+                }else{
+                    editText.setVisibility(View.INVISIBLE);
+                    node.setEnabled(false);
+                }
+            }
+        });
+
     }
     @Override
     public void onClick(View view) {
@@ -64,8 +84,13 @@ public class ConnectionActivity extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.nodeServer:
-                ipHost = "http://192.168.1.7:8000/";
-                goToSplash();
+
+                if(editText.getText().toString().matches("^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$")){
+                    ipHost = "http://"+editText.getText().toString()+":8000/";
+                    goToSplash();
+                } else {
+                    Toasty.warning(this, "Por favor ingrese una dirección IP valida", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }

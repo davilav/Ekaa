@@ -130,6 +130,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         recipientBeneficiary = view.findViewById(R.id.recipientID);
         householdRoleBeneficiary = view.findViewById(R.id.houseHoldRole);
         disabilitiesbeneficiary = view.findViewById(R.id.disabilities);
+        migratoryStatus = view.findViewById(R.id.migratoryStatus);
 
         tilnamebeneficiary = view.findViewById(R.id.til_namebeneficiary);
         tillastnamebeneficiary = view.findViewById(R.id.til_lastnamebeneficiary);
@@ -150,14 +151,14 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         disabilitiesbeneficiary.setOnClickListener(this);
         householdRoleBeneficiary.setOnClickListener(this);
         recipientBeneficiary.setOnClickListener(this);
+        migratoryStatus.setOnClickListener(this);
 
         if (optionAction == NotSchoolActivity.KITCHEN) {
             note = view.findViewById(R.id.note);
             infoAditional = view.findViewById(R.id.infoAditional);
         } else if (optionAction == NotSchoolActivity.WALKERS) {
-            migratoryStatus = view.findViewById(R.id.migratoryStatus);
             ethnicGroup = view.findViewById(R.id.ethnicGroup);
-            migratoryStatus.setOnClickListener(this);
+
         } else {
             ethnicGroup = view.findViewById(R.id.ethnicGroup);
             note = view.findViewById(R.id.note);
