@@ -304,7 +304,8 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         //al pasar la fecha y dar ok se setea la fecha en el textview
         @Override
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            birthdatebeneficiary.setText(day + "/" + month + "/" + year);
+            int mont = month + 1;
+            birthdatebeneficiary.setText(day + "/" + mont+ "/" + year);
         }
     };
 

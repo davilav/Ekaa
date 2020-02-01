@@ -217,7 +217,8 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
         //al pasar la fecha y dar ok se setea la fecha en el textview
         @Override
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            birthdatebeneficiary.setText(year + "/" + month + "/" + day);
+            int mont = month+1;
+            birthdatebeneficiary.setText(year + "/" + mont + "/" + day);
         }
     };
 
