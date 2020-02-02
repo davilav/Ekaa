@@ -26,6 +26,9 @@ public class StudentPresenterImpl implements StudentPresenter {
             case StudentActivity.EDIT:
                 repository.setUpdateStudent(registerStudent);
                 break;
+            default:
+
+                break;
         }
     }
 

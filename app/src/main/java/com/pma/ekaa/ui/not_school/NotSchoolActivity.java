@@ -15,7 +15,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -39,7 +38,6 @@ import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.adapters.ItemAdapter;
 import com.pma.ekaa.ui.attendance.AttendanceDetailActivity;
 import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
-import com.pma.ekaa.ui.beneficiary.create_edit_beneficiary.CreateEditBeneficiaryFragment;
 import com.pma.ekaa.ui.not_school.presenter.NotSchoolPresenter;
 import com.pma.ekaa.ui.not_school.presenter.NotSchoolPresenterImpl;
 import com.pma.ekaa.utils.Utils;
@@ -51,25 +49,25 @@ import es.dmoral.toasty.Toasty;
 
 public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter{
 
-    public static String OPTION_ACTION = "option_action";
-    public static String OPTION_MODALITY = "option_modality";
-    public static String INSTITUTION_ID = "institution_id";
+    public static final String OPTION_ACTION = "option_action";
+    public static final String OPTION_MODALITY = "option_modality";
+    public static final String INSTITUTION_ID = "institution_id";
 
-    public final static int KITCHEN = 0;
-    public final static int WALKERS = 1;
-    public final static int INKIND = 2;
+    public static final int KITCHEN = 0;
+    public static final int WALKERS = 1;
+    public static final int INKIND = 2;
 
     private NotSchoolPresenter presenter;
     private int optionAction;
     private int institutionID;
-    private RecyclerView recyclerView,detail;
+    private RecyclerView recyclerView;
     private ItemAdapter itemAdapter;
     private static int countPage = 1;
     private final ArrayList<Result> itemList = new ArrayList<>();
     private ArrayList<Modality>  modalities;
-    private ImageView previouspage,nextpage;
+    private ImageView previouspage;
+    private ImageView nextpage;
     private ConstraintLayout loading;
-    private ImageView info;
     private TextView titleToolbar;
     private SearchView searchView;
     private Dialog attendanceDialog;
@@ -143,6 +141,8 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
             case INKIND:
                 titleToolbar.setText(getResources().getString(R.string.inkind));
                 break;
+            default:
+                break;
         }
     }
 
@@ -188,6 +188,9 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
                 countPage-=1;
                 listBeneficiary("",countPage);
                 Toasty.success(this, getResources().getString(R.string.page)+ countPage, Toast.LENGTH_SHORT, true).show();
+                break;
+            default:
+
                 break;
         }
     }
@@ -280,6 +283,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
                 nextpage.setVisibility(View.VISIBLE);
             }
         }catch (Exception ex){
+
         }
     }
 
@@ -325,8 +329,8 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         attendanceDialog = new Dialog(this);
         attendanceDialog.setContentView(R.layout.beneficiary_popup);
 
-        final CheckBox AM = attendanceDialog.findViewById(R.id.AM);
-        final CheckBox PM = attendanceDialog.findViewById(R.id.PM);
+        final CheckBox am = attendanceDialog.findViewById(R.id.AM);
+        final CheckBox pm = attendanceDialog.findViewById(R.id.PM);
         final CheckBox lunch = attendanceDialog.findViewById(R.id.lunch);
         TextView txtclose = attendanceDialog.findViewById(R.id.txtclose);
         TextView kitchenName = attendanceDialog.findViewById(R.id.kitchen_name);
@@ -354,34 +358,36 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
                 if(response.get(cont).getModality_id() == modalities.get(key).getId() ){
                     switch (key){
                         case 0:
-                            AM.setEnabled(false);
+                            am.setEnabled(false);
                             break;
                         case 1:
                             lunch.setEnabled(false);
                             break;
                         case 2:
-                            PM.setEnabled(false);
+                            pm.setEnabled(false);
+                            break;
+                        default:
                             break;
                     }
                 }
             }
         }
 
-        AM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        am.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
-                    PM.setChecked(false);
+                    pm.setChecked(false);
                     lunch.setChecked(false);
                 }
             }
         });
 
-        PM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        pm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
-                    AM.setChecked(false);
+                    am.setChecked(false);
                     lunch.setChecked(false);
                 }
             }
@@ -391,8 +397,8 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
-                    PM.setChecked(false);
-                    AM.setChecked(false);
+                    pm.setChecked(false);
+                    am.setChecked(false);
                 }
             }
         });
@@ -417,11 +423,11 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
                showLoading();
 
                int modality = 0;
-               if (AM.isChecked()) {
+               if (am.isChecked()) {
                    modality = modalities.get(0).getId();
                } else if (lunch.isChecked()) {
                    modality = modalities.get(1).getId();
-               } else if (PM.isChecked()) {
+               } else if (pm.isChecked()) {
                    modality = modalities.get(2).getId();
                }
 

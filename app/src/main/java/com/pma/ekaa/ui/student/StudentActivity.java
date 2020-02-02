@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -21,14 +20,14 @@ import es.dmoral.toasty.Toasty;
 
 public class StudentActivity extends AppCompatActivity implements StudentView, CreateEditStudentFragment.OnFragmentInteractionListener, ShowStudentFragment.OnFragmentInteractionListener {
 
-    public static String SELECTED_ITEM = "select_item";
-    public static String OBJECT_BENEFICIARIES = "object_beneficiaries";
-    public static String INSTITUTION_ID = "institution_id";
-    public static String GROUP_ID = "group_id";
+    public static final String SELECTED_ITEM = "select_item";
+    public static final String OBJECT_BENEFICIARIES = "object_beneficiaries";
+    public static final String INSTITUTION_ID = "institution_id";
+    public static final String GROUP_ID = "group_id";
 
-    public final static int SHOW = 0;
-    public final static int CREATE = 1;
-    public final static int EDIT = 2;
+    public static final int SHOW = 0;
+    public static final int CREATE = 1;
+    public static final int EDIT = 2;
 
     private ConstraintLayout loading;
     private String registerStudent;
@@ -56,7 +55,6 @@ public class StudentActivity extends AppCompatActivity implements StudentView, C
         }
 
         presenter = new StudentPresenterImpl(this);
-        FrameLayout container = findViewById(R.id.containerStudent);
         loading = findViewById(R.id.progressBar);
 
         registerStudent = new Gson().toJson(
@@ -74,6 +72,8 @@ public class StudentActivity extends AppCompatActivity implements StudentView, C
             case CREATE:
             case EDIT:
                 currentFragment = CreateEditStudentFragment.newInstance(selectItem, objectBeneficiary, registerStudent);
+                break;
+            default:
                 break;
         }
         replaceFragment();

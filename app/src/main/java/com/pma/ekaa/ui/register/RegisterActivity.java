@@ -28,8 +28,16 @@ import static maes.tech.intentanim.CustomIntent.customType;
 public class RegisterActivity extends BaseActivity implements RegisterView, View.OnClickListener {
 
     private ConstraintLayout loading;
-    private EditText nameUser, lastNameUser, emailUser, user, passUser, confirmPassUser, userPartner, userRol;
-    private ImageView eyePass, eyeConfirm;
+    private EditText nameUser;
+    private EditText lastNameUser;
+    private EditText emailUser;
+    private EditText user;
+    private EditText passUser;
+    private EditText confirmPassUser;
+    private EditText userPartner;
+    private EditText userRol;
+    private ImageView eyePass;
+    private ImageView eyeConfirm;
     private RegisterPresenter presenter;
     private int partnerID;
 
@@ -134,6 +142,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
                     eyeConfirm.setBackgroundResource(R.drawable.eyeshow);
                 }
                 confirmPassUser.setSelection(confirmPassUser.getText().length());
+                break;
+            default:
                 break;
         }
     }

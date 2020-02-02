@@ -46,13 +46,25 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
     private String stateBelongs = "1";
     private Integer userID = Utils.getInstance().getDataUser().getUserId();
 
-    private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, ethnicGroup;
-    private EditText nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary, disabilitiesbenenficiary,programbeneficiary,groupbeneficiary,classbeneficiary;
+    private EditText namebeneficiary;
+    private EditText seconenamebeneficiary;
+    private EditText lastnamebeneficiary;
+    private EditText surnamebeneficiary;
+    private EditText documentbeneficiary;
+    private EditText ethnicGroup;
+    private EditText nationalitybeneficiary;
+    private EditText documentTypebeneficiary;
+    private EditText genderbeneficiary;
+    private EditText disabilitiesbenenficiary;
+    private EditText programbeneficiary;
+    private EditText groupbeneficiary;
+    private EditText classbeneficiary;
     private TextView birthdatebeneficiary;
     private CheckBox belongsProgram;
     private OnFragmentInteractionListener mListener;
 
     public CreateEditStudentFragment() {
+        //Creacion del fragment
 
     }
 

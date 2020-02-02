@@ -1,0 +1,9 @@
+
+\squid:S1068K">Remove this unused "tildisabilitiesbeneficiary" private field.(Ùİ‹8½šó•€.
+‡squid:S1450K"iRemove the "tildisabilitiesbeneficiary" field and declare it as a local variable in the relevant methods.(Ùİ‹8½šó•€.
+Vsquid:S1659K"8Declare "tildisabilitiesbeneficiary" on a separate line.(Ùİ‹8½šó•€.
+vsquid:S3776Ú"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(Ğ¸™áúÿÿÿÿ8½šó•€.
+Nsquid:S5411İ"*Use the primitive boolean expression here.(ò—«¢şÿÿÿÿ8½šó•€.
+asquid:S1126¯"BReplace this if-then-else statement by a single method invocation.(ëšš8½šó•€.
+qsquid:S3776ï"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.( Ú8½šó•€.
+tsquid:S3008'"VRename this field "FAMILY_CODE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼î€ò8¿³à•€.

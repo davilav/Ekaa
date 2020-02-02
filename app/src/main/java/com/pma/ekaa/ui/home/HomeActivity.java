@@ -4,12 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,19 +39,19 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
     private ImageView school;
     private ImageView inkind;
     private ImageView walkers;
-    private ImageView cloud;
-    private ImageView url;
     private ImageView settings;
-    private ImageView info;
     private ImageView menu;
-    private ImageView bgApp;
     private ConstraintLayout loading;
     private ConstraintLayout containerUbication;
     private ConstraintLayout containerHome;
-    private LinearLayout textHome;
-    private EditText departmentGeolocation, townGeolocation, institutionGeolocation;
-    private TextView splashtext, userText, emailtext;
+    private EditText departmentGeolocation;
+    private EditText townGeolocation;
+    private EditText institutionGeolocation;
+    private TextView splashtext;
+    private TextView userText;
+    private TextView emailtext;
     private Button bar;
+    String fadein = "fadein-to-fadeout";
 
     private int partnerID = Utils.getInstance().getDataUser().getPartner();
 
@@ -103,15 +100,8 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         loading = findViewById(R.id.progressBar);
         containerHome = findViewById(R.id.containerHome);
         containerUbication = findViewById(R.id.containerUbication);
-        Animation cloveranim = AnimationUtils.loadAnimation(this, R.anim.cloveranim);
-        Animation fromtop = AnimationUtils.loadAnimation(this, R.anim.fromtop);
-        Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.fromdown);
-        LinearLayout textSplash = findViewById(R.id.textsplash);
+
         splashtext = findViewById(R.id.splashUser);
-        //textHome = findViewById(R.id.textOptions);
-        LinearLayout home = findViewById(R.id.menus);
-        //bgApp = findViewById(R.id.bgapp);
-        Animation bganim = AnimationUtils.loadAnimation(this, R.anim.bganim);
         menu = findViewById(R.id.menupointbutton);
         kitchen = findViewById(R.id.kitchenButton);
         school = findViewById(R.id.schoolButton);
@@ -120,7 +110,6 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
         departmentGeolocation = findViewById(R.id.departmentGeolocation);
         townGeolocation = findViewById(R.id.townGeolocation);
         institutionGeolocation = findViewById(R.id.institutionGeolocation);
-        ImageView clover = findViewById(R.id.clover);
         settings = findViewById(R.id.settingsButton);
         userText = findViewById(R.id.userText);
         emailtext = findViewById(R.id.textemailhome);
@@ -141,7 +130,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 intentSchool.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(3));
                 intentSchool.putExtra(SchoolActivity.INSTITUTION_ID, institution.getId());
                 startActivity(intentSchool);
-                customType(HomeActivity.this, "fadein-to-fadeout");
+                customType(HomeActivity.this, fadein);
                 break;
             case R.id.kitchenButton:
                 Intent intent = new Intent(HomeActivity.this, NotSchoolActivity.class);
@@ -149,7 +138,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 intent.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(NotSchoolActivity.KITCHEN));
                 intent.putExtra(NotSchoolActivity.INSTITUTION_ID, institution.getId());
                 startActivity(intent);
-                customType(HomeActivity.this, "fadein-to-fadeout");
+                customType(HomeActivity.this, fadein);
                 break;
             case R.id.walkersButton:
                 Intent intentWalkers = new Intent(HomeActivity.this, NotSchoolActivity.class);
@@ -157,7 +146,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 intentWalkers.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(NotSchoolActivity.WALKERS));
                 intentWalkers.putExtra(NotSchoolActivity.INSTITUTION_ID, institution.getId());
                 startActivity(intentWalkers);
-                customType(HomeActivity.this, "fadein-to-fadeout");
+                customType(HomeActivity.this, fadein);
                 break;
             case R.id.inkindButton:
                 Intent intentInkind = new Intent(HomeActivity.this, NotSchoolActivity.class);
@@ -165,12 +154,12 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 intentInkind.putExtra(NotSchoolActivity.OPTION_MODALITY, getModality(NotSchoolActivity.INKIND));
                 intentInkind.putExtra(NotSchoolActivity.INSTITUTION_ID, institution.getId());
                 startActivity(intentInkind);
-                customType(HomeActivity.this, "fadein-to-fadeout");
+                customType(HomeActivity.this, fadein);
                 break;
             case R.id.settingsButton:
                 Intent intentSettings = new Intent(HomeActivity.this, SettingsActivity.class);
                 startActivity(intentSettings);
-                customType(HomeActivity.this, "fadein-to-fadeout");
+                customType(HomeActivity.this, fadein);
                 break;
             case R.id.btn_recovery:
                 showLoading();
@@ -235,6 +224,8 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
                 } else {
                     Toasty.warning(HomeActivity.this,getResources().getString(R.string.institutionsfound), Toast.LENGTH_SHORT, true).show();
                 }
+                break;
+            default:
                 break;
         }
     }
@@ -330,13 +321,7 @@ public class HomeActivity extends BaseActivity implements HomeView, PopupMenu.On
     }
 
     public void goHome() {
-        //bgApp.animate().translationY(-1900).setDuration(800).setStartDelay(300);
-        //clover.animate().alpha(0).setDuration(800).setStartDelay(600);
-        //textSplash.animate().translationY(140).alpha(0).setDuration(800).setStartDelay(300);
-        //textHome.setVisibility(View.VISIBLE);
-        //home.setVisibility(View.VISIBLE);
-        //textHome.startAnimation(fromBottom);
-        //home.startAnimation(fromBottom);
+
 
         containerHome.setVisibility(View.VISIBLE);
 

@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -26,7 +25,6 @@ public class ShowBeneficiaryFragment extends Fragment implements View.OnClickLis
 
     private Result objectBeneficiary;
 
-    private ImageView back;
     private TextView name;
     private TextView familyCode;
     private TextView documentType;
@@ -60,8 +58,6 @@ public class ShowBeneficiaryFragment extends Fragment implements View.OnClickLis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            int selectItem = getArguments().getInt(NotSchoolActivity.OPTION_ACTION);
-            int optionAction = getArguments().getInt(BeneficiaryActivity.SELECTED_ITEM);
             objectBeneficiary = new Gson().fromJson(getArguments().getString(BeneficiaryActivity.OBJECT_BENEFICIARIES), Result.class);
         }
     }
@@ -87,7 +83,6 @@ public class ShowBeneficiaryFragment extends Fragment implements View.OnClickLis
         registration = view.findViewById(R.id.tv_date);
         info = view.findViewById(R.id.tv_info);
         completeName = view.findViewById(R.id.tv_complete_name);
-        TextView modality = view.findViewById(R.id.tv_modality);
         Button editBeneficiary = view.findViewById(R.id.editKitchenbutton);
 
         editBeneficiary.setOnClickListener(this);

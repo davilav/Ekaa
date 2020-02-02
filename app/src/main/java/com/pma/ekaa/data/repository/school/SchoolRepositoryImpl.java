@@ -16,6 +16,9 @@ import retrofit2.Response;
 public class SchoolRepositoryImpl implements SchoolRepository {
 
     private SchoolPresenter presenter;
+    String token = "Token ";
+    String error = "Error ";
+    String error1 = "Error 1";
 
     public SchoolRepositoryImpl(SchoolPresenter presenter) {
         this.presenter = presenter;
@@ -24,7 +27,7 @@ public class SchoolRepositoryImpl implements SchoolRepository {
 
     @Override
     public void getListBeneficiary(String keyword, int page, int idSchool, int idGroup) {
-        retrofit2.Call<BeneficiaryArray> call = ApiClient.getInstance().getApi().listStudents("Token "+ Utils.getInstance().getDataUser().getToken(), String.valueOf(idSchool), keyword, page);
+        retrofit2.Call<BeneficiaryArray> call = ApiClient.getInstance().getApi().listStudents( token+ Utils.getInstance().getDataUser().getToken(), String.valueOf(idSchool), keyword, page);
         call.enqueue(new Callback<BeneficiaryArray>() {
             @Override
             public void onResponse(Call<BeneficiaryArray> call, Response<BeneficiaryArray> response) {
@@ -33,23 +36,23 @@ public class SchoolRepositoryImpl implements SchoolRepository {
                         presenter.getListBeneficiarySuccess(response.body());
                         break;
                     case 400:
-                        presenter.responseError("Error");
+                        presenter.responseError(error);
                         break;
                     default:
-                        presenter.responseError("Error1");
+                        presenter.responseError(error1);
                         break;
                 }
             }
             @Override
             public void onFailure(Call<BeneficiaryArray> call, Throwable t) {
-                presenter.responseError("Error1");
+                presenter.responseError(error1);
             }
         });
     }
 
     @Override
     public void getAttendanceToday(int userID) {
-        retrofit2.Call<ArrayList<AttendanceToday>> call = ApiClient.getInstance().getApi().getTodayAttendance(String.valueOf(userID), "Token "+ Utils.getInstance().getDataUser().getToken());
+        retrofit2.Call<ArrayList<AttendanceToday>> call = ApiClient.getInstance().getApi().getTodayAttendance(String.valueOf(userID), token+ Utils.getInstance().getDataUser().getToken());
         call.enqueue(new Callback<ArrayList<AttendanceToday>>() {
             @Override
             public void onResponse(Call<ArrayList<AttendanceToday>> call, Response<ArrayList<AttendanceToday>> response) {
@@ -58,23 +61,23 @@ public class SchoolRepositoryImpl implements SchoolRepository {
                         presenter.attendanceTodaySuccess(response.body());
                         break;
                     case 400:
-                        presenter.responseError("Error");
+                        presenter.responseError(error);
                         break;
                     default:
-                        presenter.responseError("Error1");
+                        presenter.responseError(error1);
                         break;
                 }
             }
             @Override
             public void onFailure(Call<ArrayList<AttendanceToday>> call, Throwable t) {
-                presenter.responseError("Error1");
+                presenter.responseError(error1);
             }
         });
     }
 
     @Override
     public void setRegisterAttendance(Attendance attendance) {
-        Call<Attendance> call = ApiClient.getInstance().getApi().registerAttendance(attendance,("Token "+Utils.getInstance().getDataUser().getToken()));
+        Call<Attendance> call = ApiClient.getInstance().getApi().registerAttendance(attendance,(token +Utils.getInstance().getDataUser().getToken()));
         call.enqueue(new Callback<Attendance>() {
             @Override
             public void onResponse(Call<Attendance> call, Response<Attendance> response) {
@@ -85,10 +88,10 @@ public class SchoolRepositoryImpl implements SchoolRepository {
                         presenter.setRegisterAttendanceSuccess();
                         break;
                     case 400:
-                        presenter.responseError("Error");
+                        presenter.responseError(error);
                         break;
                     default:
-                        presenter.responseError("Error1");
+                        presenter.responseError(error1);
                         break;
                 }
 
@@ -96,7 +99,7 @@ public class SchoolRepositoryImpl implements SchoolRepository {
 
             @Override
             public void onFailure(Call<Attendance> call, Throwable t) {
-                presenter.responseError("Error1");
+                presenter.responseError(error1);
             }
         });
     }
@@ -104,7 +107,7 @@ public class SchoolRepositoryImpl implements SchoolRepository {
     @Override
     public void setCreateBeneficiary(RegisterStudent registerStudent) {
 
-        Call<Result> call = ApiClient.getInstance().getApi().registerStudents(registerStudent,"Token " + Utils.getInstance().getDataUser().getToken());
+        Call<Result> call = ApiClient.getInstance().getApi().registerStudents(registerStudent, token + Utils.getInstance().getDataUser().getToken());
         call.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
@@ -114,17 +117,17 @@ public class SchoolRepositoryImpl implements SchoolRepository {
                         presenter.createBeneficiarySuccess();
                         break;
                     case 400:
-                        presenter.responseError("Error");
+                        presenter.responseError(error);
                         break;
                     default:
-                        presenter.responseError("Error1");
+                        presenter.responseError(error1);
                         break;
                 }
             }
 
             @Override
             public void onFailure(Call<Result> call, Throwable t) {
-                presenter.responseError("error");
+                presenter.responseError(error);
             }
 
         });
@@ -133,7 +136,7 @@ public class SchoolRepositoryImpl implements SchoolRepository {
 
     @Override
     public void setUpdateBeneficiary(String id, RegisterStudent registerStudent) {
-        Call<Result> call = ApiClient.getInstance().getApi().updateStudent(id, registerStudent, "Token " + Utils.getInstance().getDataUser().getToken());
+        Call<Result> call = ApiClient.getInstance().getApi().updateStudent(id, registerStudent, token + Utils.getInstance().getDataUser().getToken());
         call.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
@@ -142,17 +145,17 @@ public class SchoolRepositoryImpl implements SchoolRepository {
                         presenter.updateBeneficiarySuccess();
                         break;
                     case 400:
-                        presenter.responseError("Error");
+                        presenter.responseError(error);
                         break;
                     default:
-                        presenter.responseError("Error1");
+                        presenter.responseError(error1);
                         break;
                 }
             }
 
             @Override
             public void onFailure(Call<Result> call, Throwable t) {
-                presenter.responseError("error");
+                presenter.responseError(error);
             }
 
         });

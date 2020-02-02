@@ -25,8 +25,10 @@ import static maes.tech.intentanim.CustomIntent.customType;
 public class SplashActivity extends BaseActivity implements SplashView {
 
     ImageView logo;
-    TextView webname,loading;
-    Animation fromtop,fromBottom;
+    TextView webname;
+    TextView loading;
+    Animation fromtop;
+    Animation fromBottom;
     ProgressBar progressBar;
 
     @Override
@@ -49,8 +51,6 @@ public class SplashActivity extends BaseActivity implements SplashView {
         setAnimation();
 
         presenter.getData();
-
-        //requestPermission();
 
     }
 

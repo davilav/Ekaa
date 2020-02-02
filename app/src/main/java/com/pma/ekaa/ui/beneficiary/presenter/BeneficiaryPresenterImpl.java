@@ -19,13 +19,11 @@ public class BeneficiaryPresenterImpl implements BeneficiaryPresenter {
 
     @Override
     public void setUploadBeneficiary(String id ,RegisterBeneficiary registerBeneficiary, int optionAction) {
-        switch (optionAction){
-            case BeneficiaryActivity.CREATE:
-                repository.setCreateBeneficiary(registerBeneficiary);
-                break;
-            case BeneficiaryActivity.EDIT:
-                repository.setUpdateBeneficiary(id, registerBeneficiary);
-                break;
+
+        if(optionAction == BeneficiaryActivity.CREATE){
+            repository.setCreateBeneficiary(registerBeneficiary);
+        }else if(optionAction == BeneficiaryActivity.EDIT){
+            repository.setUpdateBeneficiary(id, registerBeneficiary);
         }
     }
 
@@ -41,6 +39,7 @@ public class BeneficiaryPresenterImpl implements BeneficiaryPresenter {
 
     @Override
     public void responseError(String msg) {
+        //Muestra error
 
     }
 }

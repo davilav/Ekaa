@@ -27,8 +27,6 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     @Override
     public void responseSuccess(UserLog response) {
-        /*RequestUser requestUser = new RequestUser();
-        requestUser.setToken(response);*/
         view.loginSuccess(response);
     }
 

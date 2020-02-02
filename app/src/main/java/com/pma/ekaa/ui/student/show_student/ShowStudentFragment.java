@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
@@ -21,7 +20,7 @@ import com.pma.ekaa.utils.Utils;
 public class ShowStudentFragment extends Fragment implements View.OnClickListener {
 
     private Result objectBeneficiary;
-    private ImageView back;
+
     private TextView name;
     private TextView familyCode;
     private TextView documentType;
@@ -74,11 +73,9 @@ public class ShowStudentFragment extends Fragment implements View.OnClickListene
         birthdate = view.findViewById(R.id.tv_birthdate);
         nation = view.findViewById(R.id.tv_nation);
         gender = view.findViewById(R.id.tv_gender);
-        TextView school = view.findViewById(R.id.tv_school);
         registration = view.findViewById(R.id.tv_date);
         group = view.findViewById(R.id.tv_group);
         completeName = view.findViewById(R.id.tv_complete_name);
-        TextView modality = view.findViewById(R.id.tv_modality);
         Button editBeneficiary = view.findViewById(R.id.editKitchenbutton);
 
         editBeneficiary.setOnClickListener(this);

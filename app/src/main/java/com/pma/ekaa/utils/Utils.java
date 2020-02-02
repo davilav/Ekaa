@@ -17,7 +17,9 @@ public class Utils {
     private static Geolocation geolocation;
     private static Connection connection;
 
-    public Utils() { }
+    public Utils() {
+        //Utils
+    }
 
     public static Utils getInstance() {
         if (INSTANCE == null) {

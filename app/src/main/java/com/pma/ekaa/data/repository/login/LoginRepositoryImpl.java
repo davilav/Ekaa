@@ -27,10 +27,8 @@ public class LoginRepositoryImpl implements LoginRepository {
                 if (response.code() == 200) {
                     presenter.responseSuccess(response.body());
                 } else if (response.code() == 400) {
-                    //Toasty.error(LoginActivity.this, "Error al iniciar sesion.", Toast.LENGTH_SHORT, true).show();
                     presenter.responseError("Error al iniciar sesion.");
                 } else {
-                    //Toasty.error(LoginActivity.this, "Error al iniciar sesion.", Toast.LENGTH_SHORT, true).show();
                     presenter.responseError("Error al iniciar sesion.");
                 }
             }
@@ -38,7 +36,6 @@ public class LoginRepositoryImpl implements LoginRepository {
             @Override
             public void onFailure(Call<UserLog> call, Throwable t) {
                 presenter.responseError("Fallo la conexion con el servidor");
-                //Toasty.warning(LoginActivity.this, "Fallo la conexion con el servidor", Toast.LENGTH_SHORT, true).show();
             }
         });
 

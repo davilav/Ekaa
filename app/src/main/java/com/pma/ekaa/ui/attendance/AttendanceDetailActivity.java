@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -21,11 +20,10 @@ import java.util.ArrayList;
 
 public class AttendanceDetailActivity extends AppCompatActivity implements AttendanceView {
 
-    public static String USER_DETAIL = "user_detail";
+    public static final String USER_DETAIL = "user_detail";
 
     private ConstraintLayout loading;
     private TextView textNotFound;
-    private ImageView backButton;
     private RecyclerView recyclerAttendance;
     LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
 

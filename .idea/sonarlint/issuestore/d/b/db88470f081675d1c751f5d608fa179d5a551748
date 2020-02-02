@@ -1,0 +1,13 @@
+
+Jsquid:S1199µ"-Extract this nested code block into a method.(§İ— ÿÿÿÿÿ
+Nsquid:S2696¶"6Make the enclosing method "static" or remove this set.(Ì»¯
+osquid:S3776Ç"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(ûòÊèúÿÿÿÿ
+Nsquid:S00108È")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ8¾¨ÆŒ€.
+rsquid:S00116N"SRename this field "Latitude" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Äê¥¾8îĞŠ€.
+esquid:MaximumInheritanceDepth2"<This class has 7 parents which is greater than 5 authorized.(Üú
+Ssquid:S2696¼"6Make the enclosing method "static" or remove this set.(õ´ÛØüÿÿÿÿ
+Vsquid:S4973æ"9Use the "equals" method if value comparison was intended.(ë°´ãüÿÿÿÿ
+Jsquid:S1199±"-Extract this nested code block into a method.(™ˆş¦ıÿÿÿÿ
+Esquid:S1199­"-Extract this nested code block into a method.(ğëÕ™
+ssquid:S00116M"TRename this field "Longitude" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ï‰Â®8á¹Š€.
+Gsquid:S00108")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ

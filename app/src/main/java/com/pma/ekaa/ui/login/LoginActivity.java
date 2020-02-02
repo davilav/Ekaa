@@ -34,7 +34,8 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     private ConstraintLayout loading;
     Button passButton;
     ImageView eyeButton;
-    EditText txtEmail, txtPassword;
+    EditText txtEmail;
+    EditText txtPassword;
     Button bar;
 
     private LoginPresenter presenter;
@@ -65,10 +66,13 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         txtEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
+                //Antes de cambiar el texto
 
+            }
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //Durante el cambio
+
             }
 
             @Override
@@ -81,11 +85,12 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         txtPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                //Antes de cambiar el texto
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //Durante el cambio
 
             }
 
@@ -136,6 +141,9 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
                     login();
                 }
                 break;
+            default:
+
+                break;
         }
     }
 
@@ -144,6 +152,7 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     }
 
     private void validateFields() {
+
         bar.setEnabled(isEmailEmpty && isPasswordEmpty && isTermsEmpty);
     }
 

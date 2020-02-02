@@ -1,12 +1,10 @@
 
 package com.pma.ekaa.ui.adapters;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -27,14 +25,13 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private onListenerAdapter mListener;
 
-    private TextView txtName, txtID, txtnumberID, txtNation, firstComplement, secondComplement, thirdComplement;
+    private TextView txtName;
+    private TextView txtID;
+    private TextView txtnumberID;
+    private TextView txtNation;
     private CircleImageView profileImage;
-    private ImageView editInfo, attention;
-    private TextView detail;
+    private ImageView  attention;
     private TextView cont;
-    private Dialog myDialog;
-    private TextView txtclose;
-    private TextView kitchenName;
 
     public int contador=0;
 
@@ -74,11 +71,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             txtNation = view.findViewById(R.id.txtNation);
             txtnumberID = view.findViewById(R.id.txtnumberID);
             attention = view.findViewById(R.id.image_atention);
-            //editInfo = view.findViewById(R.id.editInfoButton);
             cont = view.findViewById(R.id.countButton);
-            CheckBox AM = view.findViewById(R.id.AM);
-            CheckBox PM = view.findViewById(R.id.PM);
-            CheckBox lunch = view.findViewById(R.id.lunch);
         }
 
         void bindData(final Result result) {
@@ -86,7 +79,6 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             txtName.setText(result.getFirst_name() + " " + result.getSurname());
             txtID.setText(result.getDocument());
             txtnumberID.setText(result.getHousehold_code());
-            Integer id = result.getId();
             if(Objects.equals(result.getAttendance(), null)){
                 cont.setText("0");
             } else {

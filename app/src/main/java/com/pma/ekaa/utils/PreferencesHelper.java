@@ -7,17 +7,17 @@ import androidx.preference.PreferenceManager;
 
 public class PreferencesHelper {
 
-    public static String KEY_NATIONALITY = "key_nationality";
-    public static String KEY_DOCUMENTS = "key_documents";
-    public static String KEY_GENDERS = "key_genders";
-    public static String KEY_MARITAL = "key_marital";
-    public static String KEY_MIGRATORY = "key_migratory";
-    public static String KEY_RECIPIENT = "key_recipient";
-    public static String KEY_HOUSESHOLD = "key_household";
-    public static String KEY_DISABILITIES = "key_disabilities";
-    public static String KEY_PROGRAMS = "key_programs";
-    public static String KEY_GROUPS = "key_groups";
-    public static String KEY_PARTNER = "key_partner";
+    public static final String KEY_NATIONALITY = "key_nationality";
+    public static final String KEY_DOCUMENTS = "key_documents";
+    public static final String KEY_GENDERS = "key_genders";
+    public static final String KEY_MARITAL = "key_marital";
+    public static final String KEY_MIGRATORY = "key_migratory";
+    public static final String KEY_RECIPIENT = "key_recipient";
+    public static final String KEY_HOUSESHOLD = "key_household";
+    public static final String KEY_DISABILITIES = "key_disabilities";
+    public static final String KEY_PROGRAMS = "key_programs";
+    public static final String KEY_GROUPS = "key_groups";
+    public static final String KEY_PARTNER = "key_partner";
 
     /** Called to save supplied value in shared preferences against given key.
      * @param context Context of caller activity

@@ -40,7 +40,12 @@ public class AttendanceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView detailCity, detailOffice, detailDate, detailTime, detailType, detailFood;
+        private TextView detailCity;
+        private TextView detailOffice;
+        private TextView detailDate;
+        private TextView detailTime;
+        private TextView detailType;
+        private TextView detailFood;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);

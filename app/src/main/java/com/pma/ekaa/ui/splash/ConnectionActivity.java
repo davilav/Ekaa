@@ -11,9 +11,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pma.ekaa.R;
@@ -24,8 +21,10 @@ import es.dmoral.toasty.Toasty;
 
 public class ConnectionActivity extends AppCompatActivity implements View.OnClickListener{
 
-    Button central,node;
-    ConstraintLayout animation,content;
+    Button central;
+    Button node;
+    ConstraintLayout animation;
+    ConstraintLayout content;
     String ipHost;
     CheckBox checkBox;
     EditText editText;
@@ -54,7 +53,6 @@ public class ConnectionActivity extends AppCompatActivity implements View.OnClic
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //animation.setVisibility(View.GONE);
                 content.setVisibility(View.VISIBLE);
             }
         },7000);
@@ -92,7 +90,11 @@ public class ConnectionActivity extends AppCompatActivity implements View.OnClic
                     Toasty.warning(this, "Por favor ingrese una dirección IP valida", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            default:
+
+                break;
         }
+
     }
 
     private void goToSplash() {

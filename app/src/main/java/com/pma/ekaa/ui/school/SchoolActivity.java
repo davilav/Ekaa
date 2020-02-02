@@ -8,20 +8,15 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,7 +28,6 @@ import com.google.gson.reflect.TypeToken;
 import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.AttendanceToday;
 import com.pma.ekaa.data.models.BeneficiaryArray;
-import com.pma.ekaa.data.models.Data;
 import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.ui.student.StudentActivity;
@@ -51,11 +45,10 @@ import es.dmoral.toasty.Toasty;
 
 public class SchoolActivity extends BaseActivity implements SchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter {
 
-    public static String OPTION_MODALITY = "option_modality";
-    public static String INSTITUTION_ID = "institution_id";
+    public static final String OPTION_MODALITY = "option_modality";
+    public static final String INSTITUTION_ID = "institution_id";
 
     private ConstraintLayout loading;
-    private EditText group;
     private ItemAdapter itemAdapter;
     private static int countPage = 1;
     private final ArrayList<Result> itemList = new ArrayList<>();
@@ -64,17 +57,16 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     private RecyclerView recyclerView;
 
     private int institutionID;
-    private ImageView previouspage, nextpage,back;
+    private ImageView previouspage;
+    private ImageView nextpage;
+    private ImageView back;
     private Dialog attendanceDialog;
     private Result selectBeneficiary;
 
     private int groupID = 0;
-    private String arrayGroup = "";
-    private ArrayList<Data> arrayData;
 
     private SchoolPresenter presenter;
 
-    private Fragment currentFragment = null;
 
     Integer userID = Utils.getInstance().getDataUser().getUserId();
     Double Longitude = Utils.getInstance().getGeolocation().getLongitude();
@@ -157,16 +149,12 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     public void initViews(){
 
         loading = findViewById(R.id.progressBar);
-        LinearLayout schoolSplash = findViewById(R.id.textsplash);
-        ConstraintLayout students = findViewById(R.id.students);
-        Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.fromdown);
         searchView = findViewById(R.id.searchView);
         recyclerView = findViewById(R.id.recycler_view);
         previouspage = findViewById(R.id.previousArrowButton);
         nextpage = findViewById(R.id.nextArrowButton);
         back = findViewById(R.id.backButton);
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
-        Button bar = findViewById(R.id.btn_recovery);
 
         fab.setOnClickListener(this);
         nextpage.setOnClickListener(this);
@@ -378,6 +366,9 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
                 listBeneficiary("",countPage);
                 Toasty.success(this, getResources().getString(R.string.page)+countPage, Toast.LENGTH_SHORT, true).show();
                 break;
+            default:
+
+                break;
         }
     }
 
@@ -404,14 +395,10 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         showLoading();
         selectBeneficiary = beneficiary;
         presenter.getAttendanceToday(beneficiary.getId());
-        //showAttendanceDialog(selectBeneficiary, null);
 
     }
 
-    private void replaceFragment() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerBeneficiary, currentFragment)
-                .commit();
-    }
+
 
     @Override
     protected void onResume() {

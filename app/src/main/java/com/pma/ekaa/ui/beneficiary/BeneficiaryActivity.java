@@ -7,7 +7,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.pma.ekaa.R;
@@ -25,13 +24,13 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
 
     private BeneficiaryPresenter presenter;
 
-    public static String SELECTED_ITEM = "select_item";
-    public static String OBJECT_BENEFICIARIES = "object_beneficiaries";
-    public static String OPTION_AGREEMENT = "object_agreement";
+    public static final String SELECTED_ITEM = "select_item";
+    public static final String OBJECT_BENEFICIARIES = "object_beneficiaries";
+    public static final String OPTION_AGREEMENT = "object_agreement";
 
-    public final static int SHOW = 0;
-    public final static int CREATE = 1;
-    public final static int EDIT = 2;
+    public static final int SHOW = 0;
+    public static final int CREATE = 1;
+    public static final int EDIT = 2;
 
     private ConstraintLayout loading;
     private int selectItem;
@@ -40,7 +39,6 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
     private String optionAgreement = "";
     private Boolean isHeadFamilyBeneficiary = false;
     private String familyCode = null;
-    private String householdAgreement;
 
     private Fragment currentFragment = null;
 
@@ -60,7 +58,6 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
             optionAgreement = getIntent().getStringExtra(OPTION_AGREEMENT);
         }
 
-        FrameLayout container = findViewById(R.id.containerBeneficiary);
         loading = findViewById(R.id.progressBar);
         presenter = new BeneficiaryPresenterImpl(this);
         selectAction();
@@ -75,6 +72,8 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
             case CREATE:
             case EDIT:
                 currentFragment = CreateEditBeneficiaryFragment.newInstance(selectItem, optionAction, optionAgreement, objectBeneficiary, familyCode);
+                break;
+            default:
                 break;
         }
         replaceFragment();

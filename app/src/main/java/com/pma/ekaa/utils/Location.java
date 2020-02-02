@@ -26,16 +26,19 @@ public class Location implements LocationListener {
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
+        //Cambio de estado
 
     }
 
     @Override
     public void onProviderEnabled(String provider) {
+        //Proveedor habilitado
 
     }
 
     @Override
     public void onProviderDisabled(String provider) {
+        //Proveedor deshabilitado
 
     }
 }

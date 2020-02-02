@@ -38,9 +38,15 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView, View.O
 
     private WelcomePresenter presenter;
     private ConstraintLayout loading;
-    Button login, register, password, idioma;
+    Button login;
+    Button idioma;
+    Button register;
+    Button password;
+    String animation = "fadein-to-fadeout";
     private Locale locale;
-    Double Latitude,Longitude;
+    Double latitude;
+    Double longitude;
+
     private Configuration config = new Configuration();
 
     @Override
@@ -77,7 +83,7 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView, View.O
             case R.id.loginButton:
                 Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                 startActivity(intent);
-                customType(WelcomeActivity.this, "fadein-to-fadeout");
+                customType(WelcomeActivity.this, animation);
                 break;
             case R.id.registerButton:
                 showLoading();
@@ -86,10 +92,13 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView, View.O
             case R.id.optionsButton:
                 Intent intent2 = new Intent(WelcomeActivity.this, PasswordActivity.class);
                 startActivity(intent2);
-                customType(WelcomeActivity.this, "fadein-to-fadeout");
+                customType(WelcomeActivity.this, animation);
                 break;
             case R.id.idiomaButton:
                 showDialog();
+                break;
+            default:
+
                 break;
         }
     }
@@ -106,15 +115,13 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView, View.O
             public void onClick(DialogInterface dialog, int which) {
 
                 dialog.dismiss();
-                switch (which) {
-                    case 0:
-                        locale = new Locale("en");
-                        config.locale = locale;
-                        break;
-                    case 1:
-                        locale = new Locale("es");
-                        config.locale = locale;
-                        break;
+                if(which == 0){
+                    locale = new Locale("en");
+                    config.locale = locale;
+
+                }else if(which == 1){
+                    locale = new Locale("es");
+                    config.locale = locale;
                 }
                 getResources().updateConfiguration(config, null);
                 Intent refresh = new Intent(WelcomeActivity.this, WelcomeActivity.class);
@@ -145,12 +152,11 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView, View.O
         mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) Local);
 
     }
-
+    @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == 1000) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 locationStart();
-                return;
             }
         }
     }

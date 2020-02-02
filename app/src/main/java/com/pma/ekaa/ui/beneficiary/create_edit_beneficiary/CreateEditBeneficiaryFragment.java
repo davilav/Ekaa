@@ -48,11 +48,30 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
     private String id;
     private Integer userID = Utils.getInstance().getDataUser().getUserId();
 
-    private EditText namebeneficiary, seconenamebeneficiary, lastnamebeneficiary, surnamebeneficiary, documentbeneficiary, phonebeneficiary,
-            migratoryStatus, maritalStatus, ethnicGroup, note, infoAditional;
-    private EditText nationalitybeneficiary, documentTypebeneficiary, genderbeneficiary, recipientBeneficiary, householdRoleBeneficiary, disabilitiesbeneficiary;
+    private EditText namebeneficiary;
+    private EditText seconenamebeneficiary;
+    private EditText lastnamebeneficiary;
+    private EditText surnamebeneficiary;
+    private EditText documentbeneficiary;
+    private EditText phonebeneficiary;
+    private EditText migratoryStatus;
+    private EditText maritalStatus;
+    private EditText ethnicGroup;
+    private EditText note;
+    private EditText infoAditional;
+    private EditText nationalitybeneficiary;
+    private EditText documentTypebeneficiary;
+    private EditText genderbeneficiary;
+    private EditText recipientBeneficiary;
+    private EditText householdRoleBeneficiary;
+    private EditText disabilitiesbeneficiary;
 
-    private TextInputLayout tilnamebeneficiary, tillastnamebeneficiary, tildocumentbeneficiary, tilnationalitybeneficiary, tildocumentTypebeneficiary, tilgenderbeneficiary,
+    private TextInputLayout tilnamebeneficiary;
+    private TextInputLayout tillastnamebeneficiary;
+    private TextInputLayout tildocumentbeneficiary;
+    private TextInputLayout tilnationalitybeneficiary;
+    private TextInputLayout tildocumentTypebeneficiary;
+    private TextInputLayout tilgenderbeneficiary,
             tildisabilitiesbeneficiary;
 
     private TextView birthdatebeneficiary;
