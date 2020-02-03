@@ -1,58 +1,111 @@
 package com.pma.ekaa.data.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class RegisterBeneficiary {
 
+    @SerializedName("uid")
+    @Expose
     private String uid;
+    @SerializedName("nationality")
+    @Expose
     private Integer nationality;
-    private Integer document_type;
+    @SerializedName("document_type")
+    @Expose
+    private Integer documentType;
+    @SerializedName("gender")
+    @Expose
     private Integer gender;
-    private Integer household_role;
+    @SerializedName("household_role")
+    @Expose
+    private Integer householdRole;
+    @SerializedName("recipient")
+    @Expose
     private Integer recipient;
+    @SerializedName("status")
+    @Expose
     private Integer status;
-    private Integer beneficiary_type;
-    private Integer migratory_status;
-    private Integer marital_status;
+    @SerializedName("beneficiary_type")
+    @Expose
+    private Integer beneficiaryType;
+    @SerializedName("migratory_status")
+    @Expose
+    private Integer migratoryStatus;
+    @SerializedName("marital_status")
+    @Expose
+    private Integer maritalStatus;
+    @SerializedName("disability")
+    @Expose
     private Integer disability;
-    private String first_name;
-    private String second_name;
+    @SerializedName("first_name")
+    @Expose
+    private String firstName;
+    @SerializedName("second_name")
+    @Expose
+    private String secondName;
+    @SerializedName("surname")
+    @Expose
     private String surname;
-    private String second_surname;
+    @SerializedName("second_surname")
+    @Expose
+    private String secondSurname;
+    @SerializedName("document")
+    @Expose
     private String document;
+    @SerializedName("ethnicity")
+    @Expose
     private String ethnicity;
-    private String birth_date;
+    @SerializedName("birth_date")
+    @Expose
+    private String birthDate;
+    @SerializedName("pregnant")
+    @Expose
     private String pregnant;
+    @SerializedName("phone")
+    @Expose
     private String phone;
-    private String aditional_information;
+    @SerializedName("aditional_information")
+    @Expose
+    private String aditionalInformation;
+    @SerializedName("note")
+    @Expose
     private String note;
-    private String household_code;
+    @SerializedName("household_code")
+    @Expose
+    private String householdCode;
+    @SerializedName("agreement")
+    @Expose
     private String agreement;
+    @SerializedName("user")
+    @Expose
     private Integer user;
 
 
-    public RegisterBeneficiary(String uid, Integer nationality, Integer document_type, Integer gender, Integer household_role, Integer recipient, Integer status, Integer beneficiary_type, Integer migratory_status, Integer marital_status, Integer disability, String first_name, String second_name, String surname, String second_surname, String document, String ethnicity, String birth_date, String pregnant, String phone, String aditional_information, String note, String household_code, String agreement, Integer user) {
+    public RegisterBeneficiary(String uid, Integer nationality, Integer documentType, Integer gender, Integer householdRole, Integer recipient, Integer status, Integer beneficiaryType, Integer migratoryStatus, Integer maritalStatus, Integer disability, String firstName, String secondName, String surname, String secondSurname, String document, String ethnicity, String birthDate, String pregnant, String phone, String aditionalInformation, String note, String householdCode, String agreement, Integer user) {
         this.uid = uid;
         this.nationality = nationality;
-        this.document_type = document_type;
+        this.documentType = documentType;
         this.gender = gender;
-        this.household_role = household_role;
+        this.householdRole = householdRole;
         this.recipient = recipient;
         this.status = status;
-        this.beneficiary_type = beneficiary_type;
-        this.migratory_status = migratory_status;
-        this.marital_status = marital_status;
+        this.beneficiaryType = beneficiaryType;
+        this.migratoryStatus = migratoryStatus;
+        this.maritalStatus = maritalStatus;
         this.disability = disability;
-        this.first_name = first_name;
-        this.second_name = second_name;
+        this.firstName = firstName;
+        this.secondName = secondName;
         this.surname = surname;
-        this.second_surname = second_surname;
+        this.secondSurname = secondSurname;
         this.document = document;
         this.ethnicity = ethnicity;
-        this.birth_date = birth_date;
+        this.birthDate = birthDate;
         this.pregnant = pregnant;
         this.phone = phone;
-        this.aditional_information = aditional_information;
+        this.aditionalInformation = aditionalInformation;
         this.note = note;
-        this.household_code = household_code;
+        this.householdCode = householdCode;
         this.agreement = agreement;
         this.user = user;
     }
@@ -73,12 +126,12 @@ public class RegisterBeneficiary {
         this.nationality = nationality;
     }
 
-    public Integer getDocument_type() {
-        return document_type;
+    public Integer getDocumentType() {
+        return documentType;
     }
 
-    public void setDocument_type(Integer document_type) {
-        this.document_type = document_type;
+    public void setDocumentType(Integer documentType) {
+        this.documentType = documentType;
     }
 
     public Integer getGender() {
@@ -89,12 +142,12 @@ public class RegisterBeneficiary {
         this.gender = gender;
     }
 
-    public Integer getHousehold_role() {
-        return household_role;
+    public Integer getHouseholdRole() {
+        return householdRole;
     }
 
-    public void setHousehold_role(Integer household_role) {
-        this.household_role = household_role;
+    public void setHouseholdRole(Integer householdRole) {
+        this.householdRole = householdRole;
     }
 
     public Integer getRecipient() {
@@ -113,44 +166,44 @@ public class RegisterBeneficiary {
         this.status = status;
     }
 
-    public Integer getBeneficiary_type() {
-        return beneficiary_type;
+    public Integer getBeneficiaryType() {
+        return beneficiaryType;
     }
 
-    public void setBeneficiary_type(Integer beneficiary_type) {
-        this.beneficiary_type = beneficiary_type;
+    public void setBeneficiaryType(Integer beneficiaryType) {
+        this.beneficiaryType = beneficiaryType;
     }
 
-    public Integer getMigratory_status() {
-        return migratory_status;
+    public Integer getMigratoryStatus() {
+        return migratoryStatus;
     }
 
-    public void setMigratory_status(Integer migratory_status) {
-        this.migratory_status = migratory_status;
+    public void setMigratoryStatus(Integer migratoryStatus) {
+        this.migratoryStatus = migratoryStatus;
     }
 
-    public Integer getMarital_status() {
-        return marital_status;
+    public Integer getMaritalStatus() {
+        return maritalStatus;
     }
 
-    public void setMarital_status(Integer marital_status) {
-        this.marital_status = marital_status;
+    public void setMaritalStatus(Integer maritalStatus) {
+        this.maritalStatus = maritalStatus;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSecond_name() {
-        return second_name;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setSecond_name(String second_name) {
-        this.second_name = second_name;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     public String getSurname() {
@@ -161,12 +214,12 @@ public class RegisterBeneficiary {
         this.surname = surname;
     }
 
-    public String getSecond_surname() {
-        return second_surname;
+    public String getSecondSurname() {
+        return secondSurname;
     }
 
-    public void setSecond_surname(String second_surname) {
-        this.second_surname = second_surname;
+    public void setSecondSurname(String secondSurname) {
+        this.secondSurname = secondSurname;
     }
 
     public String getDocument() {
@@ -185,12 +238,12 @@ public class RegisterBeneficiary {
         this.ethnicity = ethnicity;
     }
 
-    public String getBirth_date() {
-        return birth_date;
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirth_date(String birth_date) {
-        this.birth_date = birth_date;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getPregnant() {
@@ -209,12 +262,12 @@ public class RegisterBeneficiary {
         this.phone = phone;
     }
 
-    public String getAditional_information() {
-        return aditional_information;
+    public String getAditionalInformation() {
+        return aditionalInformation;
     }
 
-    public void setAditional_information(String aditional_information) {
-        this.aditional_information = aditional_information;
+    public void setAditionalInformation(String aditionalInformation) {
+        this.aditionalInformation = aditionalInformation;
     }
 
     public String getNote() {
@@ -225,12 +278,12 @@ public class RegisterBeneficiary {
         this.note = note;
     }
 
-    public String getHousehold_code() {
-        return household_code;
+    public String getHouseholdCode() {
+        return householdCode;
     }
 
-    public void setHousehold_code(String household_code) {
-        this.household_code = household_code;
+    public void setHouseholdCode(String householdCode) {
+        this.householdCode = householdCode;
     }
 
     public String getAgreement() {

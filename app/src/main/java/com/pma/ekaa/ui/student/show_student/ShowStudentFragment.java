@@ -86,16 +86,16 @@ public class ShowStudentFragment extends Fragment implements View.OnClickListene
 
     private void completeBeneficiary() {
 
-        name.setText(objectBeneficiary.getFirst_name()+" "+ objectBeneficiary.getSurname());
-        birthdate.setText(objectBeneficiary.getBirth_date());
-        completeName.setText(objectBeneficiary.getFirst_name()+" "+ objectBeneficiary.getSecond_name()+" "+ objectBeneficiary.getSurname()+" "+ objectBeneficiary.getSecond_surname());
+        name.setText(objectBeneficiary.getFirstName()+" "+ objectBeneficiary.getSurname());
+        birthdate.setText(objectBeneficiary.getBirthDate());
+        completeName.setText(objectBeneficiary.getFirstName()+" "+ objectBeneficiary.getSecondName()+" "+ objectBeneficiary.getSurname()+" "+ objectBeneficiary.getSecondSurname());
         documentNumber.setText(objectBeneficiary.getDocument());
-        registration.setText(objectBeneficiary.getRegistration_date());
+        registration.setText(objectBeneficiary.getRegistrationDate());
         nation.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getNationality(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_NATIONALITY, "")));
         gender.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getGender(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_GENDERS, "")));
         group.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getSchoolGroup(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_GROUPS, "")));
-        documentType.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getDocument_type(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_DOCUMENTS, "")));
-        familyCode.setText(objectBeneficiary.getHousehold_code());
+        documentType.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getDocumentType(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_DOCUMENTS, "")));
+        familyCode.setText(objectBeneficiary.getHouseholdCode());
 
     }
 

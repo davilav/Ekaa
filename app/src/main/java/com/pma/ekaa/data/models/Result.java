@@ -8,73 +8,132 @@ import com.google.gson.annotations.SerializedName;
 public class Result {
 
     @Nullable
+    @SerializedName("id")
+    @Expose
     private Integer id;
     @Nullable
+    @SerializedName("uid")
+    @Expose
     private String uid = null;
     @Nullable
+    @SerializedName("nationality")
+    @Expose
     private Integer nationality;
     @Nullable
-    private Integer document_type;
+    @SerializedName("document_type")
+    @Expose
+    private Integer documentType;
     @Nullable
+    @SerializedName("gender")
+    @Expose
     private Integer gender;
     @Nullable
-    private Integer household_role;
+    @SerializedName("household_role")
+    @Expose
+    private Integer householdRole;
     @Nullable
+    @SerializedName("recipient")
+    @Expose
     private Integer recipient;
     @Nullable
+    @SerializedName("status")
+    @Expose
     private Integer status;
     @Nullable
-    private Integer beneficiary_type;
+    @SerializedName("beneficiary_type")
+    @Expose
+    private Integer beneficiaryType;
     @Nullable
-    private Integer migratory_status;
+    @SerializedName("migratory_status")
+    @Expose
+    private Integer migratoryStatus;
     @Nullable
-    private Integer marital_status;
+    @SerializedName("marital_status")
+    @Expose
+    private Integer maritalStatus;
     @Nullable
-    private String first_name;
+    @SerializedName("first_name")
+    @Expose
+    private String firstName;
     @Nullable
-    private String second_name;
+    @SerializedName("second_name")
+    @Expose
+    private String secondName;
     @Nullable
+    @SerializedName("surname")
+    @Expose
     private String surname;
     @Nullable
-    private String second_surname;
+    @SerializedName("second_surname")
+    @Expose
+    private String secondSurname;
     @Nullable
+    @SerializedName("document")
+    @Expose
     private String document;
     @Nullable
+    @SerializedName("ethnicity")
+    @Expose
     private String ethnicity;
     @Nullable
-    private String birth_date;
+    @SerializedName("birth_date")
+    @Expose
+    private String birthDate;
     @Nullable
+    @SerializedName("pregnant")
+    @Expose
     private String pregnant;
     @Nullable
+    @SerializedName("phone")
+    @Expose
     private String phone;
     @Nullable
-    private String aditional_information;
+    @SerializedName("aditional_information")
+    @Expose
+    private String aditionalInformation;
     @Nullable
+    @SerializedName("note")
+    @Expose
     private String note;
     @Nullable
-    private String household_code;
+    @SerializedName("household_code")
+    @Expose
+    private String householdCode;
     @Nullable
+    @SerializedName("agreement")
+    @Expose
     private String agreement;
     @Nullable
-    private String registration_date;
+    @SerializedName("registration_date")
+    @Expose
+    private String registrationDate;
     @Nullable
-    private String updated_date;
+    @SerializedName("updated_date")
+    @Expose
+    private String updatedDate;
     @Nullable
+    @SerializedName("attendance")
+    @Expose
     private String attendance = null;
     @Nullable
-    private String attendance_limit = null;
+    @SerializedName("attendance_limit")
+    @Expose
+    private String attendanceLimit = null;
     @Nullable
+    @SerializedName("color")
+    @Expose
     private String color = null;
     @Nullable
+    @SerializedName("disability")
+    @Expose
     private Integer disability;
-
+    @SerializedName("user")
+    @Expose
     private Integer user;
 
     @SerializedName("school_program")
     @Expose
     private Integer schoolProgram;
-
-
 
 
     @SerializedName("school")
@@ -92,7 +151,6 @@ public class Result {
     @SerializedName("belongs_program")
     @Expose
     private Integer belongsProgram;
-
 
 
     public Integer getId() {
@@ -119,12 +177,12 @@ public class Result {
         this.nationality = nationality;
     }
 
-    public Integer getDocument_type() {
-        return document_type;
+    public Integer getDocumentType() {
+        return documentType;
     }
 
-    public void setDocument_type(Integer document_type) {
-        this.document_type = document_type;
+    public void setDocumentType(Integer documentType) {
+        this.documentType = documentType;
     }
 
     public Integer getGender() {
@@ -135,12 +193,12 @@ public class Result {
         this.gender = gender;
     }
 
-    public Integer getHousehold_role() {
-        return household_role;
+    public Integer getHouseholdRole() {
+        return householdRole;
     }
 
-    public void setHousehold_role(Integer household_role) {
-        this.household_role = household_role;
+    public void setHouseholdRole(Integer householdRole) {
+        this.householdRole = householdRole;
     }
 
     public Integer getRecipient() {
@@ -159,44 +217,44 @@ public class Result {
         this.status = status;
     }
 
-    public Integer getBeneficiary_type() {
-        return beneficiary_type;
+    public Integer getBeneficiaryType() {
+        return beneficiaryType;
     }
 
-    public void setBeneficiary_type(Integer beneficiary_type) {
-        this.beneficiary_type = beneficiary_type;
+    public void setBeneficiaryType(Integer beneficiaryType) {
+        this.beneficiaryType = beneficiaryType;
     }
 
-    public Integer getMigratory_status() {
-        return migratory_status;
+    public Integer getMigratoryStatus() {
+        return migratoryStatus;
     }
 
-    public void setMigratory_status(Integer migratory_status) {
-        this.migratory_status = migratory_status;
+    public void setMigratoryStatus(Integer migratoryStatus) {
+        this.migratoryStatus = migratoryStatus;
     }
 
-    public Integer getMarital_status() {
-        return marital_status;
+    public Integer getMaritalStatus() {
+        return maritalStatus;
     }
 
-    public void setMarital_status(Integer marital_status) {
-        this.marital_status = marital_status;
+    public void setMaritalStatus(Integer maritalStatus) {
+        this.maritalStatus = maritalStatus;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSecond_name() {
-        return second_name;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setSecond_name(String second_name) {
-        this.second_name = second_name;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     public String getSurname() {
@@ -207,12 +265,12 @@ public class Result {
         this.surname = surname;
     }
 
-    public String getSecond_surname() {
-        return second_surname;
+    public String getSecondSurname() {
+        return secondSurname;
     }
 
-    public void setSecond_surname(String second_surname) {
-        this.second_surname = second_surname;
+    public void setSecondSurname(String secondSurname) {
+        this.secondSurname = secondSurname;
     }
 
     public String getDocument() {
@@ -231,12 +289,12 @@ public class Result {
         this.ethnicity = ethnicity;
     }
 
-    public String getBirth_date() {
-        return birth_date;
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirth_date(String birth_date) {
-        this.birth_date = birth_date;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getPregnant() {
@@ -255,12 +313,12 @@ public class Result {
         this.phone = phone;
     }
 
-    public String getAditional_information() {
-        return aditional_information;
+    public String getAditionalInformation() {
+        return aditionalInformation;
     }
 
-    public void setAditional_information(String aditional_information) {
-        this.aditional_information = aditional_information;
+    public void setAditionalInformation(String aditionalInformation) {
+        this.aditionalInformation = aditionalInformation;
     }
 
     public String getNote() {
@@ -271,12 +329,12 @@ public class Result {
         this.note = note;
     }
 
-    public String getHousehold_code() {
-        return household_code;
+    public String getHouseholdCode() {
+        return householdCode;
     }
 
-    public void setHousehold_code(String household_code) {
-        this.household_code = household_code;
+    public void setHouseholdCode(String householdCode) {
+        this.householdCode = householdCode;
     }
 
     public String getAgreement() {
@@ -287,37 +345,37 @@ public class Result {
         this.agreement = agreement;
     }
 
-    public String getRegistration_date() {
-        return registration_date;
+    public String getRegistrationDate() {
+        return registrationDate;
     }
 
-    public void setRegistration_date(String registration_date) {
-        this.registration_date = registration_date;
+    public void setRegistrationDate(String registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
-    public String getUpdated_date() {
-        return updated_date;
+    public String getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setUpdated_date(String updated_date) {
-        this.updated_date = updated_date;
+    public void setUpdatedDate(String updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     public String getAttendance() {
         return attendance;
     }
 
-    public void setAttendance( String attendance) {
+    public void setAttendance(String attendance) {
         this.attendance = attendance;
     }
 
 
-    public String getAttendance_limit() {
-        return attendance_limit;
+    public String getAttendanceLimit() {
+        return attendanceLimit;
     }
 
-    public void setAttendance_limit( String attendance_limit) {
-        this.attendance_limit = attendance_limit;
+    public void setAttendanceLimit(String attendanceLimit) {
+        this.attendanceLimit = attendanceLimit;
     }
 
 

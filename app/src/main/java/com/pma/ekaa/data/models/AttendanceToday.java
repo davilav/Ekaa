@@ -1,26 +1,37 @@
 package com.pma.ekaa.data.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class AttendanceToday {
 
+    @SerializedName("id")
+    @Expose
     private Integer id;
-    private Integer beneficiary_id;
-    private Integer modality_id;
+    @SerializedName("beneficiary_id")
+    @Expose
+    private Integer beneficiaryId;
+    @SerializedName("modality_id")
+    @Expose
+    private Integer modalityId;
+    @SerializedName("total")
+    @Expose
     private Integer total;
 
-    public Integer getBeneficiary_id() {
-        return beneficiary_id;
+    public Integer getBeneficiaryId() {
+        return beneficiaryId;
     }
 
-    public void setBeneficiary_id(Integer beneficiary_id) {
-        this.beneficiary_id = beneficiary_id;
+    public void setBeneficiaryId(Integer beneficiaryId) {
+        this.beneficiaryId = beneficiaryId;
     }
 
-    public Integer getModality_id() {
-        return modality_id;
+    public Integer getModalityId() {
+        return modalityId;
     }
 
-    public void setModality_id(Integer modality_id) {
-        this.modality_id = modality_id;
+    public void setModalityId(Integer modalityId) {
+        this.modalityId = modalityId;
     }
 
     public Integer getTotal() {

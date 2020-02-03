@@ -1,6 +1,5 @@
 
-Jsquid:S1481"+Remove this unused "getUID" local variable.(îñú¦8•…ñ–€.
 Ysquid:S1854 ":Remove this useless assignment to local variable "getUID".(ıúöˆ8•…ñ–€.
-wsquid:S3008&"[Rename this field "REGISTER_STUDENT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òğ›‹úÿÿÿÿ
-squid:S1192€"`Define a constant instead of duplicating this literal "El primer nombre es obligatorio" 5 times.(ªå Í8™»î–€.
 ^squid:S1854§":Remove this useless assignment to local variable "getUID".(šÃ¥Êúÿÿÿÿ8•…ñ–€.
+Jsquid:S1481"+Remove this unused "getUID" local variable.(îñú¦8•…ñ–€.
+squid:S1192€"`Define a constant instead of duplicating this literal "El primer nombre es obligatorio" 5 times.(ªå Í8™»î–€.

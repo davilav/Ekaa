@@ -44,7 +44,7 @@ public class AttendanceDetailActivity extends AppCompatActivity implements Atten
         textNotFound = findViewById(R.id.textNotFound);
         AttendancePresenter presenter = new AttendancePresenterImpl(this);
 
-        String name= user.getFirst_name() + " " + user.getSurname();
+        String name= user.getFirstName() + " " + user.getSurname();
         nameUser.setText(name);
 
         showLoading();

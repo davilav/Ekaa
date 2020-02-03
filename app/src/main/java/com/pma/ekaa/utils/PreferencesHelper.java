@@ -2,6 +2,7 @@ package com.pma.ekaa.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import androidx.preference.PreferenceManager;
 
@@ -45,6 +46,7 @@ public class PreferencesHelper {
             return sharedPrefs.getString(key, defaultValue);
         } catch (Exception e) {
             e.printStackTrace();
+            Log.println(Log.ERROR,"", String.valueOf(e));
             return defaultValue;
         }
     }

@@ -69,8 +69,8 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
 
 
     Integer userID = Utils.getInstance().getDataUser().getUserId();
-    Double Longitude = Utils.getInstance().getGeolocation().getLongitude();
-    Double Latitude = Utils.getInstance().getGeolocation().getLatitude();
+    Double longitude = Utils.getInstance().getGeolocation().getLongitude();
+    Double latitude = Utils.getInstance().getGeolocation().getLatitude();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,8 +169,8 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         attendanceDialog = new Dialog(this);
         attendanceDialog.setContentView(R.layout.beneficiary_popup);
 
-        final CheckBox AM = attendanceDialog.findViewById(R.id.AM);
-        final CheckBox PM = attendanceDialog.findViewById(R.id.PM);
+        final CheckBox am = attendanceDialog.findViewById(R.id.AM);
+        final CheckBox pm = attendanceDialog.findViewById(R.id.PM);
         final CheckBox lunch = attendanceDialog.findViewById(R.id.lunch);
         TextView txtclose = attendanceDialog.findViewById(R.id.txtclose);
         TextView kitchenName = attendanceDialog.findViewById(R.id.kitchen_name);
@@ -191,33 +191,33 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         ((LinearLayout) attendanceDialog.findViewById(R.id.color_third)).setBackgroundColor(Color.parseColor(modalities.get(2).getColor()));
 
         txtclose.setText("X");
-        kitchenName.setText(beneficiary.getFirst_name()+" "+ beneficiary.getSurname());
+        kitchenName.setText(beneficiary.getFirstName()+" "+ beneficiary.getSurname());
 
         for(int cont = 0; cont < response.size(); cont++){
-            if(response.get(cont).getModality_id() == 1){
-                AM.setEnabled(false);
-            } else if(response.get(cont).getModality_id() == 2){
+            if(response.get(cont).getModalityId() == 1){
+                am.setEnabled(false);
+            } else if(response.get(cont).getModalityId() == 2){
                 lunch.setEnabled(false);
             } else {
-                PM.setEnabled(false);
+                pm.setEnabled(false);
             }
         }
 
-        AM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        am.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
-                    PM.setChecked(false);
+                    pm.setChecked(false);
                     lunch.setChecked(false);
                 }
             }
         });
 
-        PM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        pm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
-                    AM.setChecked(false);
+                    am.setChecked(false);
                     lunch.setChecked(false);
                 }
             }
@@ -227,8 +227,8 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
-                    PM.setChecked(false);
-                    AM.setChecked(false);
+                    pm.setChecked(false);
+                    am.setChecked(false);
                 }
             }
         });
@@ -252,11 +252,11 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
             public void onClick(View v) {
 
                 int modality = 0;
-                if(AM.isChecked()){
+                if(am.isChecked()){
                     modality = 1;
                 }else if (lunch.isChecked()){
                     modality = 2;
-                }else if(PM.isChecked()){
+                }else if(pm.isChecked()){
                     modality = 3;
                 }
 
@@ -276,7 +276,7 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
 
     private void registerAttendance(int institution, int userID, int person, int modality){
         showLoading();
-        presenter.setRegisterAttendance(Longitude, Latitude, institution, userID, person, modality);
+        presenter.setRegisterAttendance(longitude, latitude, institution, userID, person, modality);
     }
 
 

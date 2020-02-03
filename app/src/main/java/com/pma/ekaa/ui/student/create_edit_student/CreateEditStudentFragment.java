@@ -35,7 +35,7 @@ import es.dmoral.toasty.Toasty;
 
 public class CreateEditStudentFragment extends Fragment implements View.OnClickListener {
 
-    private static String REGISTER_STUDENT = "register_student";
+    private static final String REGISTER_STUDENT = "register_student";
 
     private int selectItem;
     private Result objectBeneficiary;
@@ -171,13 +171,13 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
     }
 
     private void setInfoForm() {
-        namebeneficiary.setText(objectBeneficiary.getFirst_name());
-        seconenamebeneficiary.setText(objectBeneficiary.getSecond_name());
+        namebeneficiary.setText(objectBeneficiary.getFirstName());
+        seconenamebeneficiary.setText(objectBeneficiary.getSecondName());
         lastnamebeneficiary.setText(objectBeneficiary.getSurname());
-        surnamebeneficiary.setText(objectBeneficiary.getSecond_surname());
+        surnamebeneficiary.setText(objectBeneficiary.getSecondSurname());
         documentbeneficiary.setText(objectBeneficiary.getDocument());
         ethnicGroup.setText(objectBeneficiary.getEthnicity());
-        birthdatebeneficiary.setText(objectBeneficiary.getBirth_date());
+        birthdatebeneficiary.setText(objectBeneficiary.getBirthDate());
         classbeneficiary.setText(String.valueOf(objectBeneficiary.getSchoolClass()));
 
         if(objectBeneficiary.getBelongsProgram().equals(1)){
@@ -194,8 +194,8 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
             nationalitybeneficiary.setText("");
         }
 
-        if (objectBeneficiary.getDocument_type() != null) {
-            documentTypebeneficiary.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getDocument_type(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_DOCUMENTS, "")));
+        if (objectBeneficiary.getDocumentType() != null) {
+            documentTypebeneficiary.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getDocumentType(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_DOCUMENTS, "")));
         } else {
             documentTypebeneficiary.setText("");
         }
@@ -258,7 +258,7 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
                 }else {
                     Beneficiary beneficiary = new Beneficiary(
                             id, namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
-                            surnamebeneficiary.getText().toString(), objectBeneficiary.getDocument_type(), documentbeneficiary.getText().toString(), objectBeneficiary.getGender(),
+                            surnamebeneficiary.getText().toString(), objectBeneficiary.getDocumentType(), documentbeneficiary.getText().toString(), objectBeneficiary.getGender(),
                             ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(), objectBeneficiary.getNationality(), documentbeneficiary.getText().toString(), objectBeneficiary.getDisability(),userID);
                     registerStudent.setBeneficiary(beneficiary);
                     registerStudent.setSchoolProgram(objectBeneficiary.getSchoolProgram());
@@ -296,7 +296,7 @@ public class CreateEditStudentFragment extends Fragment implements View.OnClickL
                         new SelectOptionDialog.onListenerInterface() {
                             @Override
                             public void optionSelect(Data data) {
-                                objectBeneficiary.setDocument_type(data.getId());
+                                objectBeneficiary.setDocumentType(data.getId());
                                 documentTypebeneficiary.setText(data.getName());
                             }
                         }).show(getActivity().getSupportFragmentManager(), "");

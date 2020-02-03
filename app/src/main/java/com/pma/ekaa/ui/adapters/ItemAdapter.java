@@ -76,15 +76,15 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         void bindData(final Result result) {
 
-            txtName.setText(result.getFirst_name() + " " + result.getSurname());
+            txtName.setText(result.getFirstName() + " " + result.getSurname());
             txtID.setText(result.getDocument());
-            txtnumberID.setText(result.getHousehold_code());
+            txtnumberID.setText(result.getHouseholdCode());
             if(Objects.equals(result.getAttendance(), null)){
                 cont.setText("0");
             } else {
                 cont.setText(result.getAttendance());
             }
-            txtNation.setText(result.getBirth_date());
+            txtNation.setText(result.getBirthDate());
 
             profileImage.setOnClickListener(new View.OnClickListener() {
                 @Override

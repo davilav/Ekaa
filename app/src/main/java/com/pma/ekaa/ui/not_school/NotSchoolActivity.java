@@ -351,11 +351,11 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         ((LinearLayout) attendanceDialog.findViewById(R.id.color_third)).setBackgroundColor(Color.parseColor(modalities.get(2).getColor()));
 
         txtclose.setText("X");
-        kitchenName.setText(beneficiary.getFirst_name()+" "+ beneficiary.getSurname());
+        kitchenName.setText(beneficiary.getFirstName()+" "+ beneficiary.getSurname());
 
         for(int cont = 0; cont < response.size(); cont++){
             for(int key = 0; key < modalities.size(); key++ ){
-                if(response.get(cont).getModality_id() == modalities.get(key).getId() ){
+                if(response.get(cont).getModalityId() == modalities.get(key).getId() ){
                     switch (key){
                         case 0:
                             am.setEnabled(false);

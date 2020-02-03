@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Utils {
 
-    private static Utils INSTANCE = null;
+    private static Utils instance = null;
     private static UserLog dataUser;
     private static Geolocation geolocation;
     private static Connection connection;
@@ -22,24 +22,24 @@ public class Utils {
     }
 
     public static Utils getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Utils();
+        if (instance == null) {
+            instance = new Utils();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public UserLog getDataUser() {
         return dataUser;
     }
 
-    public void setDataUser(UserLog dataUser) {
-        Utils.dataUser = dataUser;
+    public static void setDataUser(UserLog object) {
+        dataUser = object;
     }
 
     public Geolocation getGeolocation() { return geolocation; }
 
-    public void setGeolocation(Geolocation object) {
-        Utils.geolocation = object;
+    static void setGeolocation(Geolocation object) {
+        geolocation = object;
     }
 
     public static Connection getConnection() {

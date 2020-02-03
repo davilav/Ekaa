@@ -24,7 +24,7 @@ import java.util.List;
 
 public class SelectOptionDialog extends DialogFragment implements SelectOptionAdapter.onAdapterListener {
 
-    private static String LIST_DATA = "list_data";
+    private static final String LIST_DATA = "list_data";
     private static onListenerInterface mListener;
 
     private ArrayList<Data> listData;

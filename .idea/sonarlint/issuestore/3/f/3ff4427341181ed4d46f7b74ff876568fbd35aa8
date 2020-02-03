@@ -1,13 +1,9 @@
 
-Jsquid:S1199æ"-Extract this nested code block into a method.(§Ý— ÿÿÿÿÿ
-jsquid:S00117¬"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŸÔˆÚ
 Gsquid:S00108³")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ
-lsquid:S00116H"TRename this field "Longitude" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ï‰Â®
-Nsquid:S2696ç"6Make the enclosing method "static" or remove this set.(Ì»Ž¯
-jsquid:S1450>"SRemove the "back" field and declare it as a local variable in the relevant methods.(Ä­ìé
-osquid:S00117­"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡Œó†úÿÿÿÿ
+Ssquid:S2696í"6Make the enclosing method "static" or remove this set.(õ´ÛØüÿÿÿÿ
+Jsquid:S1199æ"-Extract this nested code block into a method.(§Ý— ÿÿÿÿÿ
 jsquid:MaximumInheritanceDepth."<This class has 7 parents which is greater than 5 authorized.(ƒûáíùÿÿÿÿ
 Esquid:S1199Þ"-Extract this nested code block into a method.(ðëÕ™
-ksquid:S00116I"SRename this field "Latitude" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Äê¥¾
 Jsquid:S1199â"-Extract this nested code block into a method.(™ˆþ¦ýÿÿÿÿ
-Ssquid:S2696í"6Make the enclosing method "static" or remove this set.(õ´ÛØüÿÿÿÿ
+jsquid:S1450>"SRemove the "back" field and declare it as a local variable in the relevant methods.(Ä­ìé
+Nsquid:S2696ç"6Make the enclosing method "static" or remove this set.(Ì»Ž¯

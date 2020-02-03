@@ -92,15 +92,15 @@ public class ShowBeneficiaryFragment extends Fragment implements View.OnClickLis
     }
 
     private void completeBeneficiary() {
-        name.setText(objectBeneficiary.getFirst_name()+" "+ objectBeneficiary.getSurname());
-        birthdate.setText(objectBeneficiary.getBirth_date());
-        completeName.setText(objectBeneficiary.getFirst_name()+" "+ objectBeneficiary.getSecond_name()+" "+ objectBeneficiary.getSurname()+" "+ objectBeneficiary.getSecond_surname());
+        name.setText(objectBeneficiary.getFirstName()+" "+ objectBeneficiary.getSurname());
+        birthdate.setText(objectBeneficiary.getBirthDate());
+        completeName.setText(objectBeneficiary.getFirstName()+" "+ objectBeneficiary.getSecondName()+" "+ objectBeneficiary.getSurname()+" "+ objectBeneficiary.getSecondSurname());
         documentNumber.setText(objectBeneficiary.getDocument());
         phone.setText(objectBeneficiary.getPhone());
-        registration.setText(objectBeneficiary.getRegistration_date());
-        info.setText(objectBeneficiary.getAditional_information());
-        familyCode.setText(objectBeneficiary.getHousehold_code());
-        documentType.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getDocument_type(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_DOCUMENTS, "")));
+        registration.setText(objectBeneficiary.getRegistrationDate());
+        info.setText(objectBeneficiary.getAditionalInformation());
+        familyCode.setText(objectBeneficiary.getHouseholdCode());
+        documentType.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getDocumentType(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_DOCUMENTS, "")));
         gender.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getGender(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_GENDERS, "")));
         nation.setText(Utils.getInstance().findDataSpinner(objectBeneficiary.getNationality(), PreferencesHelper.getPreference(getActivity(), PreferencesHelper.KEY_NATIONALITY, "")));
 

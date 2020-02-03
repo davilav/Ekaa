@@ -138,7 +138,7 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView, View.O
 
     private void locationStart() {
         LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Location Local = new Location();
+        Location local = new Location();
         final boolean gpsEnabled = mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         if (!gpsEnabled) {
             Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -148,8 +148,8 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView, View.O
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
             return;
         }
-        mlocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, (LocationListener) Local);
-        mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) Local);
+        mlocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, (LocationListener) local);
+        mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) local);
 
     }
     @Override
@@ -164,7 +164,7 @@ public class WelcomeActivity extends BaseActivity implements WelcomeView, View.O
     @Override
     public void getPartnersSuccess(ArrayList<Data> data) {
         hideLoading();
-        if(data.size() != 0) {
+        if(!data.isEmpty()) {
             PreferencesHelper.setPreference(getApplication(), PreferencesHelper.KEY_PARTNER, new Gson().toJson(data));
             Intent intent = new Intent(WelcomeActivity.this, RegisterActivity.class);
             startActivity(intent);

@@ -37,7 +37,7 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
     private int optionAction;
     private String objectBeneficiary;
     private String optionAgreement = "";
-    private Boolean isHeadFamilyBeneficiary = false;
+    private boolean isHeadFamilyBeneficiary = false;
     private String familyCode = null;
 
     private Fragment currentFragment = null;
@@ -91,7 +91,7 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
     }
 
     @Override
-    public void setUploadBeneficiary(String id, RegisterBeneficiary registerBeneficiary, int selectItem, Boolean isHeadFamily) {
+    public void setUploadBeneficiary(String id, RegisterBeneficiary registerBeneficiary, int selectItem, boolean isHeadFamily) {
         showLoading();
         if(isHeadFamily) {
             familyCode = registerBeneficiary.getDocument();
