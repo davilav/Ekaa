@@ -1,5 +1,5 @@
 
-Hsquid:S1481+",Remove this unused "groupID" local variable.(Áá”¬øÿÿÿÿ
-Wsquid:S18541";Remove this useless assignment to local variable "groupID".(íüÖàûÿÿÿÿ
 Rsquid:S18546";Remove this useless assignment to local variable "groupID".(½ú²˜
+Wsquid:S18541";Remove this useless assignment to local variable "groupID".(íüÖàûÿÿÿÿ
 dsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(ê£Ën
+Hsquid:S1481+",Remove this unused "groupID" local variable.(Áá”¬øÿÿÿÿ

@@ -26,6 +26,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -70,7 +71,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private ConstraintLayout loading;
     private TextView titleToolbar;
     private SearchView searchView;
-    private Dialog attendanceDialog;
+    private BottomSheetDialog attendanceDialog;
     private Result selectBeneficiary;
     private Integer useriD = Utils.getInstance().getDataUser().getUserId();
 
@@ -326,8 +327,11 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
 
     private void showAttendanceDialog(final Result beneficiary, final ArrayList<AttendanceToday> response) {
 
-        attendanceDialog = new Dialog(this);
-        attendanceDialog.setContentView(R.layout.beneficiary_popup);
+        View view = getLayoutInflater().inflate(R.layout.beneficiary_popup,null);
+        attendanceDialog = new BottomSheetDialog(this);
+        attendanceDialog.setContentView(view);
+
+
 
         final CheckBox am = attendanceDialog.findViewById(R.id.AM);
         final CheckBox pm = attendanceDialog.findViewById(R.id.PM);

@@ -1,9 +1,9 @@
 
 Gsquid:S00108³")Either remove or fill this block of code.(±—±ÿÿÿÿÿ
-Ssquid:S2696ν"6Make the enclosing method "static" or remove this set.(υ΄ΫΨόÿÿÿÿ
 Jsquid:S1199ζ"-Extract this nested code block into a method.(§έ— ÿÿÿÿÿ
-jsquid:MaximumInheritanceDepth."<This class has 7 parents which is greater than 5 authorized.(ƒϋανωÿÿÿÿ
-Esquid:S1199ή"-Extract this nested code block into a method.(πλΥ™
-Jsquid:S1199β"-Extract this nested code block into a method.(™ώ¦ύÿÿÿÿ
 jsquid:S1450>"SRemove the "back" field and declare it as a local variable in the relevant methods.(Δ­μι
+jsquid:MaximumInheritanceDepth."<This class has 7 parents which is greater than 5 authorized.(ƒϋανωÿÿÿÿ
+Jsquid:S1199β"-Extract this nested code block into a method.(™ώ¦ύÿÿÿÿ
+Esquid:S1199ή"-Extract this nested code block into a method.(πλΥ™
 Nsquid:S2696η"6Make the enclosing method "static" or remove this set.(Μ»―
+Ssquid:S2696ν"6Make the enclosing method "static" or remove this set.(υ΄ΫΨόÿÿÿÿ
