@@ -1,14 +1,15 @@
 
-Jsquid:S1199¶"-Extract this nested code block into a method.(§Ý— ÿÿÿÿÿ
-osquid:S3776È"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(ûòÊèúÿÿÿÿ
-rsquid:S00116O"SRename this field "Latitude" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Äê¥¾8›”ˆ¯„.
-Xsquid:S4973ê"9Use the "equals" method if value comparison was intended.(»÷ÁÙ8¹‡Û»€.
-Nsquid:S2696·"6Make the enclosing method "static" or remove this set.(Ì»Ž¯
-Ssquid:S2696½"6Make the enclosing method "static" or remove this set.(õ´ÛØüÿÿÿÿ
-ssquid:S00116N"TRename this field "Longitude" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ï‰Â®8›”ˆ¯„.
-lsquid:MaximumInheritanceDepth3"<This class has 7 parents which is greater than 5 authorized.(žÜŽú8›”ˆ¯„.
-Esquid:S1199®"-Extract this nested code block into a method.(ðëÕ™
-Gsquid:S00108ž")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ
-Jsquid:S1199²"-Extract this nested code block into a method.(™ˆþ¦ýÿÿÿÿ
+vsquid:S3776È"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(ûòÊèúÿÿÿÿ8¾Ã²Ñ„.
+Usquid:S2696·"6Make the enclosing method "static" or remove this set.(Ì»Ž¯8¾Ã²Ñ„.
 Nsquid:S00108Ì")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ8¾¨ÆŒ€.
-squid:UselessImportCheck"VRemove this unused import 'com.google.android.material.bottomsheet.BottomSheetDialog'.(ùÎœ8ôÌÛ°„.
+ssquid:S00116N"TRename this field "Longitude" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ï‰Â®8¾Ã²Ñ„.
+Zsquid:S2696½"6Make the enclosing method "static" or remove this set.(õ´ÛØüÿÿÿÿ8¾Ã²Ñ„.
+Lsquid:S1199®"-Extract this nested code block into a method.(ðëÕ™8¾Ã²Ñ„.
+Qsquid:S1199²"-Extract this nested code block into a method.(™ˆþ¦ýÿÿÿÿ8¾Ã²Ñ„.
+lsquid:MaximumInheritanceDepth3"<This class has 7 parents which is greater than 5 authorized.(žÜŽú8¾Ã²Ñ„.
+Qsquid:S1199¶"-Extract this nested code block into a method.(§Ý— ÿÿÿÿÿ8¾Ã²Ñ„.
+rsquid:S00116O"SRename this field "Latitude" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Äê¥¾8¾Ã²Ñ„.
+_squid:UselessImportCheck
+"/Remove this unused import 'android.app.Dialog'.(·‚Àžúÿÿÿÿ8¾Ã²Ñ„.
+Nsquid:S00108ž")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ8¾Ã²Ñ„.
+Xsquid:S4973ê"9Use the "equals" method if value comparison was intended.(»÷ÁÙ8¹‡Û»€.

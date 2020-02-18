@@ -125,6 +125,12 @@ Si decide no otorgar el consentimiento a ninguna de las entidades requeridas, el
     <string name="searchBeneficiary">Buscar Beneficiario</string>
     <string name="Alert">Alerta</string>
     <string name="AlertModality">Este usuario ya recibió una atención en una modalidad distinta</string>
+    <string name="Addmember">Agregar Miembro</string>
+    <string name="Deletemember">Eliminar Miembro</string>
+    <string name="deletemember">Por favor selecciona la causa por la cual se quiere eliminar este miembro de hogar</string>
+
+
+    Por favor selecciona la causa por la cual quiere eliminar este miemebro de hogar
 
 
     <string-array name="documentType">

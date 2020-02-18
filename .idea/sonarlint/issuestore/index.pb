@@ -219,3 +219,5 @@ c
 3app/src/main/java/com/pma/ekaa/EkaaApplication.java,3\1\319929b82316585ee18f54a628321e77349de35a
 c
 3app/src/main/java/com/pma/ekaa/ui/BaseActivity.java,8\4\84162cae77abf97ae9a22696d394b755bc823635
+q
+Aapp/src/main/java/com/pma/ekaa/ui/adapters/ModalitiesAdapter.java,6\6\66156d697632e6c3b5153825db1385ca7a8785b5

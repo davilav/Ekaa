@@ -124,6 +124,9 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="searchBeneficiary">Search Beneficiary</string>
     <string name="Alert">Alert</string>
     <string name="AlertModality">This user has already received attention in a different modality</string>
+    <string name="Addmember">Add Member</string>
+    <string name="Deletemember">Delete Member</string>
+    <string name="deletemember">Please select the cause for which you want to remove this household member</string>
 
 
     <string name="groupselect">Please select your group</string>

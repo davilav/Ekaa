@@ -47,58 +47,48 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:textColor="#000000" />
-    </LinearLayout>
 
 
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="@string/deletemember"
+            android:textColor="#000000"
+            android:textStyle="italic" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
 
-
-
-    <LinearLayout
-
-        android:layout_marginTop="15dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_modalities"
+        <RelativeLayout
+            android:id="@+id/relativeLayout22"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/info"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_migratoryStatus"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/migratoryStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="Motivo" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-        </androidx.recyclerview.widget.RecyclerView>
+        </RelativeLayout>
+
 
     </LinearLayout>
 
-
-
-    </ScrollView>
-
-
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:text="@string/lastAttention"
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:text="@string/detail"
-        android:textColor="#1f75fe" />
 
     <Button
         android:id="@+id/btnfollow"
@@ -108,8 +98,8 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/button_selector"
         android:fontFamily="sans-serif-medium"
-        android:text="@string/createaccount"
-        android:textColor="#ffffff"/>
+        android:text="@string/Deletemember"
+        android:textColor="#ffffff" />
 
 
 

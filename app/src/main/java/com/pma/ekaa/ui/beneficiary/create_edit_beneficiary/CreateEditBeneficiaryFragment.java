@@ -2,11 +2,15 @@ package com.pma.ekaa.ui.beneficiary.create_edit_beneficiary;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.text.InputType;
 import android.text.TextUtils;
@@ -19,19 +23,25 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.pma.ekaa.R;
+import com.pma.ekaa.data.models.Beneficiary;
 import com.pma.ekaa.data.models.Data;
+import com.pma.ekaa.data.models.Register;
 import com.pma.ekaa.data.models.RegisterBeneficiary;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
 import com.pma.ekaa.ui.dialog.SelectOptionDialog;
 import com.pma.ekaa.ui.not_school.NotSchoolActivity;
+import com.pma.ekaa.ui.student.create_edit_student.CreateEditStudentFragment;
 import com.pma.ekaa.utils.PreferencesHelper;
 import com.pma.ekaa.utils.Utils;
-import java.util.Calendar;
 
+import java.util.Calendar;
+import java.util.Objects;
 
 
 public class CreateEditBeneficiaryFragment extends Fragment implements View.OnClickListener {
@@ -42,7 +52,10 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
     private int optionAction;
     private Result objectBeneficiary;
     private String agreement;
+    private String pobjectBeneficiary;
     private String familyCode = null;
+    private String optionAgreement = "";
+    private BottomSheetDialog deleteDialog;
 
     private String getUID;
     private String id;
@@ -66,6 +79,8 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
     private EditText householdRoleBeneficiary;
     private EditText disabilitiesbeneficiary;
 
+    private TextView deletenamebeneficiary;
+
     private TextInputLayout tilnamebeneficiary;
     private TextInputLayout tillastnamebeneficiary;
     private TextInputLayout tildocumentbeneficiary;
@@ -75,6 +90,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
 
     private TextView birthdatebeneficiary;
     private CheckBox pregnantbeneficiary;
+    private Button add, delete;
     CheckBox headFamily;
 
     private Boolean isHeadFamily = false;
@@ -107,10 +123,12 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
             familyCode = getArguments().getString(FAMILY_CODE);
             if (selectItem == BeneficiaryActivity.EDIT) {
                 objectBeneficiary = new Gson().fromJson(getArguments().getString(BeneficiaryActivity.OBJECT_BENEFICIARIES), Result.class);
+
             } else {
                 objectBeneficiary = new Result();
             }
         }
+
     }
 
     @Override
@@ -158,8 +176,11 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         tilnationalitybeneficiary = view.findViewById(R.id.til_nationalitybeneficiary);
         Button btnRecovery = view.findViewById(R.id.btn_recovery);
         headFamily = view.findViewById(R.id.chk_head_family);
+        add = view.findViewById(R.id.btn_add);
+        delete = view.findViewById(R.id.btn_delete);
 
-
+        add.setOnClickListener(this);
+        delete.setOnClickListener(this);
         btnRecovery.setOnClickListener(this);
         genderbeneficiary.setOnClickListener(this);
         nationalitybeneficiary.setOnClickListener(this);
@@ -219,12 +240,22 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         });
 
         if (selectItem == BeneficiaryActivity.EDIT) {
+            add.setVisibility(View.VISIBLE);
+            delete.setVisibility(View.VISIBLE);
             titleForm.setText(getResources().getString(R.string.edit_beneficiary));
             agreement = objectBeneficiary.getAgreement();
             getUID = objectBeneficiary.getUid();
             id = objectBeneficiary.getId().toString();
             btnRecovery.setText(getResources().getString(R.string.update));
             setInfoForm();
+            if (Integer.parseInt(Objects.requireNonNull(objectBeneficiary.getHouseholdCode())) == Integer.parseInt(Objects.requireNonNull(objectBeneficiary.getDocument()))) {
+                add.setEnabled(true);
+                delete.setEnabled(false);
+            } else {
+                add.setEnabled(false);
+                delete.setEnabled(true);
+            }
+
         } else {
             btnRecovery.setText(getResources().getString(R.string.registerbeneficiary));
             titleForm.setText(getResources().getString(R.string.create_beneficiary));
@@ -322,7 +353,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
         @Override
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
             int mont = month + 1;
-            birthdatebeneficiary.setText(day + "/" + mont+ "/" + year);
+            birthdatebeneficiary.setText(day + "/" + mont + "/" + year);
         }
     };
 
@@ -354,21 +385,21 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
                                 objectBeneficiary.getMaritalStatus(), objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                                 surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), null, birthdatebeneficiary.getText().toString(),
                                 objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
-                                familyCode, agreement,userID);
+                                familyCode, agreement, userID);
                     } else if (optionAction == NotSchoolActivity.WALKERS) {
                         registerBeneficiary = new RegisterBeneficiary(
                                 getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocumentType(), objectBeneficiary.getGender(), objectBeneficiary.getHouseholdRole(), objectBeneficiary.getRecipient(), 1, 1, objectBeneficiary.getMigratoryStatus(),
                                 objectBeneficiary.getMaritalStatus(), objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                                 surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(),
                                 objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), null, null,
-                                familyCode, agreement,userID);
+                                familyCode, agreement, userID);
                     } else if (optionAction == NotSchoolActivity.INKIND) {
                         registerBeneficiary = new RegisterBeneficiary(
                                 getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocumentType(), objectBeneficiary.getGender(), objectBeneficiary.getHouseholdRole(), objectBeneficiary.getRecipient(), 1, 1, objectBeneficiary.getMigratoryStatus(),
                                 objectBeneficiary.getMaritalStatus(), objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
                                 surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(),
                                 objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
-                                familyCode, agreement,userID);
+                                familyCode, agreement, userID);
                     }
                     mListener.setUploadBeneficiary(id, registerBeneficiary, selectItem, isHeadFamily);
                 }
@@ -471,6 +502,24 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
                             }
                         }).show(getActivity().getSupportFragmentManager(), "");
                 break;
+
+            case R.id.btn_add:
+                mListener.addMemberFamily(objectBeneficiary.getAgreement(), familyCode);
+                break;
+
+            case R.id.btn_delete:
+
+                View v = getLayoutInflater().inflate(R.layout.delete_member, null);
+                deleteDialog = new BottomSheetDialog(getContext());
+                deleteDialog.setContentView(v);
+
+                deletenamebeneficiary = v.findViewById(R.id.kitchen_name);
+                deletenamebeneficiary.setText(objectBeneficiary.getFirstName()+" "+objectBeneficiary.getSurname());
+
+                deleteDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                deleteDialog.show();
+
+                break;
             default:
                 break;
         }
@@ -516,5 +565,7 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
 
     public interface OnFragmentInteractionListener {
         void setUploadBeneficiary(String id, RegisterBeneficiary registerBeneficiary, int optionAction, boolean isHeadFamily);
+
+        void addMemberFamily(String agreement, String familyCode);
     }
 }

@@ -37,6 +37,7 @@ import com.pma.ekaa.data.models.Modality;
 import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.adapters.ItemAdapter;
+import com.pma.ekaa.ui.adapters.ModalitiesAdapter;
 import com.pma.ekaa.ui.attendance.AttendanceDetailActivity;
 import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
 import com.pma.ekaa.ui.not_school.presenter.NotSchoolPresenter;
@@ -48,7 +49,7 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
-public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter{
+public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter,ModalitiesAdapter.onListenAdapter {
 
     public static final String OPTION_ACTION = "option_action";
     public static final String OPTION_MODALITY = "option_modality";
@@ -63,6 +64,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private int institutionID;
     private RecyclerView recyclerView;
     private ItemAdapter itemAdapter;
+    private ModalitiesAdapter modalitiesAdapter;
     private static int countPage = 1;
     private final ArrayList<Result> itemList = new ArrayList<>();
     private ArrayList<Modality>  modalities;
@@ -327,85 +329,49 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
 
     private void showAttendanceDialog(final Result beneficiary, final ArrayList<AttendanceToday> response) {
 
-        View view = getLayoutInflater().inflate(R.layout.beneficiary_popup,null);
+        View view = getLayoutInflater().inflate(R.layout.beneficiary_popup, null);
         attendanceDialog = new BottomSheetDialog(this);
         attendanceDialog.setContentView(view);
 
 
-
-        final CheckBox am = attendanceDialog.findViewById(R.id.AM);
-        final CheckBox pm = attendanceDialog.findViewById(R.id.PM);
-        final CheckBox lunch = attendanceDialog.findViewById(R.id.lunch);
         TextView txtclose = attendanceDialog.findViewById(R.id.txtclose);
         TextView kitchenName = attendanceDialog.findViewById(R.id.kitchen_name);
-        TextView firstComplement = attendanceDialog.findViewById(R.id.first_complement);
-        TextView secondComplement = attendanceDialog.findViewById(R.id.second_complement);
-        TextView thirdComplement = attendanceDialog.findViewById(R.id.third_complement);
         TextView detailAttendance = attendanceDialog.findViewById(R.id.detail);
         Button bar = attendanceDialog.findViewById(R.id.btnfollow);
 
-        //Se deberia implementar un recycler view para listar las opciones
+        final RecyclerView recyclerModalities = attendanceDialog.findViewById(R.id.recycler_modalities);
 
-        firstComplement.setText(modalities.get(0).getName());
-        secondComplement.setText(modalities.get(1).getName());
-        thirdComplement.setText(modalities.get(2).getName());
-
-        ((LinearLayout) attendanceDialog.findViewById(R.id.color_first)).setBackgroundColor(Color.parseColor(modalities.get(0).getColor()));
-        ((LinearLayout) attendanceDialog.findViewById(R.id.color_second)).setBackgroundColor(Color.parseColor(modalities.get(1).getColor()));
-        ((LinearLayout) attendanceDialog.findViewById(R.id.color_third)).setBackgroundColor(Color.parseColor(modalities.get(2).getColor()));
+        modalitiesAdapter = new ModalitiesAdapter(getApplicationContext(), modalities, this);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerModalities.setLayoutManager(mLayoutManager);
+        recyclerModalities.setItemAnimator(new DefaultItemAnimator());
+        recyclerModalities.setHasFixedSize(true);
+        recyclerModalities.setAdapter(modalitiesAdapter);
 
         txtclose.setText("X");
         kitchenName.setText(beneficiary.getFirstName()+" "+ beneficiary.getSurname());
 
-        for(int cont = 0; cont < response.size(); cont++){
-            for(int key = 0; key < modalities.size(); key++ ){
-                if(response.get(cont).getModalityId() == modalities.get(key).getId() ){
-                    switch (key){
-                        case 0:
-                            am.setEnabled(false);
-                            break;
-                        case 1:
-                            lunch.setEnabled(false);
-                            break;
-                        case 2:
-                            pm.setEnabled(false);
-                            break;
-                        default:
-                            break;
+
+        //Se deberia implementar un recycler view para listar las opciones
+
+        /*for(int cont = 0; cont < response.size(); cont++){
+                for(int key = 0; key < modalities.size(); key++ ){
+                    if(response.get(cont).getModalityId() == modalities.get(key).getId() ){
+                        switch (key){
+                            case 0:
+                                modalities.setEnabled(false);
+                                break;
+                            case 1:
+                                lunch.setEnabled(false);
+                                break;
+                            case 2:
+                                pm.setEnabled(false);
+                                break;
+                            default:
+                                break;
+                        }
                     }
-                }
-            }
-        }
-
-        am.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
-                    pm.setChecked(false);
-                    lunch.setChecked(false);
-                }
-            }
-        });
-
-        pm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
-                    am.setChecked(false);
-                    lunch.setChecked(false);
-                }
-            }
-        });
-
-        lunch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
-                    pm.setChecked(false);
-                    am.setChecked(false);
-                }
-            }
-        });
+                }*/
 
         detailAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -427,13 +393,13 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
                showLoading();
 
                int modality = 0;
-               if (am.isChecked()) {
+               /*if (am.isChecked()) {
                    modality = modalities.get(0).getId();
                } else if (lunch.isChecked()) {
                    modality = modalities.get(1).getId();
                } else if (pm.isChecked()) {
                    modality = modalities.get(2).getId();
-               }
+               }*/
 
                registerAttendance(institutionID, beneficiary.getId(), useriD, modality);
 

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.RegisterBeneficiary;
+import com.pma.ekaa.data.models.Result;
 import com.pma.ekaa.ui.BaseActivity;
 import com.pma.ekaa.ui.beneficiary.presenter.BeneficiaryPresenter;
 import com.pma.ekaa.ui.beneficiary.presenter.BeneficiaryPresenterImpl;
@@ -98,6 +99,12 @@ public class BeneficiaryActivity extends BaseActivity implements CreateEditBenef
             isHeadFamilyBeneficiary = true;
         }
         presenter.setUploadBeneficiary(id, registerBeneficiary, selectItem);
+    }
+
+    @Override
+    public void addMemberFamily(String agreement, String familyCode) {
+        currentFragment = CreateEditBeneficiaryFragment.newInstance(CREATE, optionAction, agreement, null, familyCode);
+        replaceFragment();
     }
 
     @Override

@@ -1,4 +1,12 @@
 
-qsquid:S3776í"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.( Ú8½šó•€.
-asquid:S1126­"BReplace this if-then-else statement by a single method invocation.(ëšš8½šó•€.
-vsquid:S3776Ø"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(Ğ¸™áúÿÿÿÿ8½šó•€.
+Bsquid:S1659Y"$Declare "delete" on a separate line.(àœ‘Ğ8è¢ñÑ„.
+vsquid:UselessImportCheck"FRemove this unused import 'androidx.fragment.app.FragmentTransaction'.(¦İÚ¿şÿÿÿÿ8·§ŒÓ„.
+vsquid:S3776ñ"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(Ğ¸™áúÿÿÿÿ8½šó•€.
+’squid:UselessImportCheck&"bRemove this unused import 'com.pma.ekaa.ui.student.create_edit_student.CreateEditStudentFragment'.(‚ò–ëúÿÿÿÿ8·§ŒÓ„.
+qsquid:UselessImportCheck"ARemove this unused import 'com.pma.ekaa.data.models.Beneficiary'.(¬ñ€Ôşÿÿÿÿ8æ­’Ó„.
+psquid:S1450Y"RRemove the "add" field and declare it as a local variable in the relevant methods.(àœ‘Ğ8şŞÊÒ„.
+qsquid:S3776†"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.( Ú8½šó•€.
+ssquid:S1450Y"URemove the "delete" field and declare it as a local variable in the relevant methods.(àœ‘Ğ8şŞÊÒ„.
+~squid:S14508"[Remove the "deleteDialog" field and declare it as a local variable in the relevant methods.(İ¬Ò½úÿÿÿÿ8«ª£Ó„.
+]squid:UselessImportCheck"3Remove this unused import 'android.content.Intent'.(³ğ‹G8õ–“Ó„.
+asquid:S1126Æ"BReplace this if-then-else statement by a single method invocation.(ëšš8½šó•€.

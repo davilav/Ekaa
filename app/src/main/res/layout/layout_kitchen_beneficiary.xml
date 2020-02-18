@@ -562,10 +562,39 @@
 
 
                 <Button
+                    android:id="@+id/btn_add"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/chk_head_family"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp"
+                    android:text="@string/Addmember"
+                    android:visibility="gone"
+                    android:background="@drawable/button_selector"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/btn_delete"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Deletemember"
+                    android:visibility="gone"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_below="@+id/chk_head_family"
+                    android:layout_toRightOf="@+id/btn_add"
+                    android:background="@drawable/button_selector"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@android:color/white" />
+
+
+                <Button
                     android:id="@+id/btn_recovery"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/chk_head_family"
+                    android:layout_below="@+id/btn_add"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp"

@@ -1,0 +1,7 @@
+
+[squid:UselessImportCheck"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8â¡ŠÑ„.
+usquid:S00114O"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¥äÿÿÿÿÿ8ı‡îĞ„.
+Psquid:S1068"-Remove this unused "mListener" private field.(Æ´ï›ùÿÿÿÿ8ÕÌÉĞ„.
+Ysquid:UselessImportCheck".Remove this unused import 'java.util.Objects'.(¼¸õ›8‘é¨Ğ„.
+lsquid:UselessImportCheck"<Remove this unused import 'com.pma.ekaa.data.models.Result'.(œ¥¡Åûÿÿÿÿ8ÈüÖĞ„.
+Lsquid:S1172".Remove this unused method parameter "context".(™¿¬8ğøÕĞ„.
