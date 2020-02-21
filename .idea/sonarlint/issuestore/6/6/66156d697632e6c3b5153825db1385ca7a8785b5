@@ -1,7 +1,6 @@
 
-[squid:UselessImportCheck"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8â¡ŠÑ„.
-usquid:S00114O"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¥äÿÿÿÿÿ8ı‡îĞ„.
-Psquid:S1068"-Remove this unused "mListener" private field.(Æ´ï›ùÿÿÿÿ8ÕÌÉĞ„.
-Ysquid:UselessImportCheck".Remove this unused import 'java.util.Objects'.(¼¸õ›8‘é¨Ğ„.
-lsquid:UselessImportCheck"<Remove this unused import 'com.pma.ekaa.data.models.Result'.(œ¥¡Åûÿÿÿÿ8ÈüÖĞ„.
-Lsquid:S1172".Remove this unused method parameter "context".(™¿¬8ğøÕĞ„.
+Qsquid:S1172$".Remove this unused method parameter "context".(êıø²úÿÿÿÿ8ğøÕĞ„.
+Ysquid:UselessImportCheck".Remove this unused import 'java.util.Objects'.(¼¸õ›8ä­Æ….
+squid:S1319$"zThe type of the "attendanceToday" object should be an interface such as "List" rather than the implementation "ArrayList".(êıø²úÿÿÿÿ8ØŠÿì….
+lsquid:UselessImportCheck"<Remove this unused import 'com.pma.ekaa.data.models.Result'.(œ¥¡Åûÿÿÿÿ8ä­Æ….
+Wsquid:S4973M"9Use the "equals" method if value comparison was intended.(ıšô¶8ÉĞí….

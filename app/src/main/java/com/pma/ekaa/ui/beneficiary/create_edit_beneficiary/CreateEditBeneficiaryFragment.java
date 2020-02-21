@@ -2,6 +2,7 @@ package com.pma.ekaa.ui.beneficiary.create_edit_beneficiary;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -37,10 +39,12 @@ import com.pma.ekaa.ui.beneficiary.BeneficiaryActivity;
 import com.pma.ekaa.ui.dialog.SelectOptionDialog;
 import com.pma.ekaa.ui.not_school.NotSchoolActivity;
 import com.pma.ekaa.ui.student.create_edit_student.CreateEditStudentFragment;
+import com.pma.ekaa.ui.welcome.WelcomeActivity;
 import com.pma.ekaa.utils.PreferencesHelper;
 import com.pma.ekaa.utils.Utils;
 
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
 
 
@@ -509,21 +513,126 @@ public class CreateEditBeneficiaryFragment extends Fragment implements View.OnCl
 
             case R.id.btn_delete:
 
+                final EditText cause;
+                final Button send;
                 View v = getLayoutInflater().inflate(R.layout.delete_member, null);
                 deleteDialog = new BottomSheetDialog(getContext());
                 deleteDialog.setContentView(v);
 
                 deletenamebeneficiary = v.findViewById(R.id.kitchen_name);
                 deletenamebeneficiary.setText(objectBeneficiary.getFirstName()+" "+objectBeneficiary.getSurname());
+                cause = v.findViewById(R.id.motivo);
+                send = v.findViewById(R.id.btndelete);
 
                 deleteDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 deleteDialog.show();
+
+                cause.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialog.Builder b = new AlertDialog.Builder(getContext());
+                        b.setTitle(getResources().getString(R.string.deletemember));
+                        String[] types = getResources().getStringArray(R.array.homechange);
+                        b.setItems(types, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                if(which == 0){
+                                    cause.setText(R.string.newhome);
+                                    send.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            newHomeBeneficiary();
+                                        }
+                                    });
+
+                                }else if(which == 1){
+                                    cause.setText(R.string.died);
+                                    send.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            deadBeneficiary();
+                                        }
+                                    });
+
+                                }
+
+                            }
+
+                        });
+
+                        b.show();
+                    }
+                });
 
                 break;
             default:
                 break;
         }
     }
+
+    private void newHomeBeneficiary() {
+        RegisterBeneficiary registerBeneficiary = null;
+        if (optionAction == NotSchoolActivity.KITCHEN) {
+            //Validate fields
+            registerBeneficiary = new RegisterBeneficiary(
+                    getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocumentType(), objectBeneficiary.getGender(), objectBeneficiary.getHouseholdRole(), objectBeneficiary.getRecipient(), 1, 1, objectBeneficiary.getMigratoryStatus(),
+                    objectBeneficiary.getMaritalStatus(), objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
+                    surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), null, birthdatebeneficiary.getText().toString(),
+                    objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
+                    documentbeneficiary.getText().toString(), agreement, userID);
+        } else if (optionAction == NotSchoolActivity.WALKERS) {
+            registerBeneficiary = new RegisterBeneficiary(
+                    getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocumentType(), objectBeneficiary.getGender(), objectBeneficiary.getHouseholdRole(), objectBeneficiary.getRecipient(), 1, 1, objectBeneficiary.getMigratoryStatus(),
+                    objectBeneficiary.getMaritalStatus(), objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
+                    surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(),
+                    objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), null, null,
+                    documentbeneficiary.getText().toString(), agreement, userID);
+        } else if (optionAction == NotSchoolActivity.INKIND) {
+            registerBeneficiary = new RegisterBeneficiary(
+                    getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocumentType(), objectBeneficiary.getGender(), objectBeneficiary.getHouseholdRole(), objectBeneficiary.getRecipient(), 1, 1, objectBeneficiary.getMigratoryStatus(),
+                    objectBeneficiary.getMaritalStatus(), objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
+                    surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(),
+                    objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
+                    documentbeneficiary.getText().toString(), agreement, userID);
+        }
+        mListener.setUploadBeneficiary(id, registerBeneficiary, selectItem, isHeadFamily);
+
+    }
+
+    private void deadBeneficiary() {
+
+        RegisterBeneficiary registerBeneficiary = null;
+        if (optionAction == NotSchoolActivity.KITCHEN) {
+            //Validate fields
+            registerBeneficiary = new RegisterBeneficiary(
+                    getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocumentType(), objectBeneficiary.getGender(), objectBeneficiary.getHouseholdRole(), objectBeneficiary.getRecipient(), 4, 1, objectBeneficiary.getMigratoryStatus(),
+                    objectBeneficiary.getMaritalStatus(), objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
+                    surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), null, birthdatebeneficiary.getText().toString(),
+                    objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
+                    familyCode.toString(), agreement, userID);
+        } else if (optionAction == NotSchoolActivity.WALKERS) {
+            registerBeneficiary = new RegisterBeneficiary(
+                    getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocumentType(), objectBeneficiary.getGender(), objectBeneficiary.getHouseholdRole(), objectBeneficiary.getRecipient(), 4, 1, objectBeneficiary.getMigratoryStatus(),
+                    objectBeneficiary.getMaritalStatus(), objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
+                    surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(),
+                    objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), null, null,
+                    familyCode.toString(), agreement, userID);
+        } else if (optionAction == NotSchoolActivity.INKIND) {
+            registerBeneficiary = new RegisterBeneficiary(
+                    getUID, objectBeneficiary.getNationality(), objectBeneficiary.getDocumentType(), objectBeneficiary.getGender(), objectBeneficiary.getHouseholdRole(), objectBeneficiary.getRecipient(), 4, 1, objectBeneficiary.getMigratoryStatus(),
+                    objectBeneficiary.getMaritalStatus(), objectBeneficiary.getDisability(), namebeneficiary.getText().toString(), seconenamebeneficiary.getText().toString(), lastnamebeneficiary.getText().toString(),
+                    surnamebeneficiary.getText().toString(), documentbeneficiary.getText().toString(), ethnicGroup.getText().toString(), birthdatebeneficiary.getText().toString(),
+                    objectBeneficiary.getPregnant(), phonebeneficiary.getText().toString(), infoAditional.getText().toString(), note.getText().toString(),
+                    familyCode.toString(), agreement, userID);
+        }
+        mListener.setUploadBeneficiary(id, registerBeneficiary, selectItem, isHeadFamily);
+
+
+
+    }
+
 
     private boolean validate() {
 

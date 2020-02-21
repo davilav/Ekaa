@@ -1,5 +1,5 @@
 
-nsquid:S00114l"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¥äÿÿÿÿÿ
 <squid:S1172&"&Remove these unused method parameters.(²‰|
-‹squid:S1319&"uThe type of the "modalities" object should be an interface such as "List" rather than the implementation "ArrayList".(²‰|
 ‡"squid:ClassVariableVisibilityCheck$"TMake contador a static final constant or non-public and provide accessors if needed.(Ñ¦©ùÿÿÿÿ
+‹squid:S1319&"uThe type of the "modalities" object should be an interface such as "List" rather than the implementation "ArrayList".(²‰|
+nsquid:S00114l"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¥äÿÿÿÿÿ

@@ -1,15 +1,16 @@
 
-vsquid:S3776È"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(ûòÊèúÿÿÿÿ8¾Ã²Ñ„.
-Usquid:S2696·"6Make the enclosing method "static" or remove this set.(Ì»Ž¯8¾Ã²Ñ„.
-Nsquid:S00108Ì")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ8¾¨ÆŒ€.
-ssquid:S00116N"TRename this field "Longitude" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ï‰Â®8¾Ã²Ñ„.
-Zsquid:S2696½"6Make the enclosing method "static" or remove this set.(õ´ÛØüÿÿÿÿ8¾Ã²Ñ„.
-Lsquid:S1199®"-Extract this nested code block into a method.(ðëÕ™8¾Ã²Ñ„.
-Qsquid:S1199²"-Extract this nested code block into a method.(™ˆþ¦ýÿÿÿÿ8¾Ã²Ñ„.
-lsquid:MaximumInheritanceDepth3"<This class has 7 parents which is greater than 5 authorized.(žÜŽú8¾Ã²Ñ„.
-Qsquid:S1199¶"-Extract this nested code block into a method.(§Ý— ÿÿÿÿÿ8¾Ã²Ñ„.
-rsquid:S00116O"SRename this field "Latitude" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Äê¥¾8¾Ã²Ñ„.
 _squid:UselessImportCheck
-"/Remove this unused import 'android.app.Dialog'.(·‚Àžúÿÿÿÿ8¾Ã²Ñ„.
-Nsquid:S00108ž")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ8¾Ã²Ñ„.
-Xsquid:S4973ê"9Use the "equals" method if value comparison was intended.(»÷ÁÙ8¹‡Û»€.
+"/Remove this unused import 'android.app.Dialog'.(·‚Àžúÿÿÿÿ8€µ¨Ä….
+Lsquid:S1199²"-Extract this nested code block into a method.(ðëÕ™8¾Ã²Ñ„.
+hsquid:UselessImportCheck"8Remove this unused import 'android.widget.LinearLayout'.(çîšçúÿÿÿÿ8€µ¨Ä….
+ƒsquid:S1450C"`Remove the "modalitiesAdapter" field and declare it as a local variable in the relevant methods.(ùš¦øÿÿÿÿ8™¥›Ä….
+Zsquid:S2696Á"6Make the enclosing method "static" or remove this set.(õ´ÛØüÿÿÿÿ8¾Ã²Ñ„.
+Qsquid:S1199¶"-Extract this nested code block into a method.(™ˆþ¦ýÿÿÿÿ8¾Ã²Ñ„.
+rsquid:S00116S"SRename this field "Latitude" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Äê¥¾8¾Ã²Ñ„.
+esquid:UselessImportCheck":Remove this unused import 'android.widget.CompoundButton'.(®½¤Þ8Å±ÌÄ….
+Nsquid:S00108¢")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ8¾Ã²Ñ„.
+Usquid:S2696»"6Make the enclosing method "static" or remove this set.(Ì»Ž¯8¾Ã²Ñ„.
+ssquid:S00116R"TRename this field "Longitude" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ï‰Â®8¾Ã²Ñ„.
+Nsquid:S00108Ž")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ8ôÅÌÄ….
+Qsquid:S1199º"-Extract this nested code block into a method.(§Ý— ÿÿÿÿÿ8¾Ã²Ñ„.
+qsquid:MaximumInheritanceDepth4"<This class has 7 parents which is greater than 5 authorized.(ËÔºÈøÿÿÿÿ8™îÄí….

@@ -128,6 +128,9 @@ Si decide no otorgar el consentimiento a ninguna de las entidades requeridas, el
     <string name="Addmember">Agregar Miembro</string>
     <string name="Deletemember">Eliminar Miembro</string>
     <string name="deletemember">Por favor selecciona la causa por la cual se quiere eliminar este miembro de hogar</string>
+    <string name="newhome">Nuevo Hogar</string>
+    <string name="died">Fallecimiento</string>
+
 
 
     Por favor selecciona la causa por la cual quiere eliminar este miemebro de hogar

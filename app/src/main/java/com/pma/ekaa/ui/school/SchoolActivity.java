@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -45,7 +46,7 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
-public class SchoolActivity extends BaseActivity implements SchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter {
+public class SchoolActivity extends BaseActivity implements SchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter, ModalitiesAdapter.OnListenerAdapter {
 
     public static final String OPTION_MODALITY = "option_modality";
     public static final String INSTITUTION_ID = "institution_id";
@@ -54,7 +55,7 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     private ItemAdapter itemAdapter;
     private static int countPage = 1;
     private final ArrayList<Result> itemList = new ArrayList<>();
-    private ArrayList<Modality>  modalities;
+    private ArrayList<Modality> modalities;
     private SearchView searchView;
     private RecyclerView recyclerView;
     private ModalitiesAdapter modalitiesAdapter;
@@ -67,6 +68,7 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     private Result selectBeneficiary;
 
     private int groupID = 0;
+    private Integer modalityID;
 
     private SchoolPresenter presenter;
 
@@ -80,11 +82,13 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school);
 
-        if(savedInstanceState != null){
-            modalities = new Gson().fromJson(savedInstanceState.getString(OPTION_MODALITY), new TypeToken<List<Modality>>(){}.getType());
+        if (savedInstanceState != null) {
+            modalities = new Gson().fromJson(savedInstanceState.getString(OPTION_MODALITY), new TypeToken<List<Modality>>() {
+            }.getType());
             institutionID = savedInstanceState.getInt(INSTITUTION_ID);
         } else {
-            modalities = new Gson().fromJson(getIntent().getStringExtra(OPTION_MODALITY), new TypeToken<List<Modality>>(){}.getType());
+            modalities = new Gson().fromJson(getIntent().getStringExtra(OPTION_MODALITY), new TypeToken<List<Modality>>() {
+            }.getType());
             institutionID = getIntent().getIntExtra(INSTITUTION_ID, -1);
         }
 
@@ -112,9 +116,8 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), mLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        listBeneficiary("",countPage);
+        listBeneficiary("", countPage);
     }
-
 
 
     private void searchManager() {
@@ -124,32 +127,32 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (query.length() < 2){
-                    listBeneficiary(query,countPage);
+                if (query.length() < 2) {
+                    listBeneficiary(query, countPage);
                 }
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                listBeneficiary(s,countPage);
+                listBeneficiary(s, countPage);
                 return false;
             }
         });
     }
 
-    public void listBeneficiary(final String keyword, int page){
+    public void listBeneficiary(final String keyword, int page) {
         showLoading();
-        if(countPage == 1){
+        if (countPage == 1) {
             previouspage.setVisibility(View.INVISIBLE);
-        }else{
+        } else {
             previouspage.setVisibility(View.VISIBLE);
         }
-        presenter.getListBeneficiary(keyword,page, institutionID, groupID);
+        presenter.getListBeneficiary(keyword, page, institutionID, groupID);
 
     }
 
-    public void initViews(){
+    public void initViews() {
 
         loading = findViewById(R.id.progressBar);
         searchView = findViewById(R.id.searchView);
@@ -181,7 +184,7 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
 
         final RecyclerView recyclerModalities = attendanceDialog.findViewById(R.id.recycler_modalities);
 
-        modalitiesAdapter = new ModalitiesAdapter(getApplicationContext(),modalities, (ModalitiesAdapter.onListenAdapter) this);
+        modalitiesAdapter = new ModalitiesAdapter(getApplicationContext(), modalities, this, response);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerModalities.setLayoutManager(mLayoutManager);
         recyclerModalities.setItemAnimator(new DefaultItemAnimator());
@@ -189,17 +192,8 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         recyclerModalities.setAdapter(modalitiesAdapter);
 
         txtclose.setText("X");
-        kitchenName.setText(beneficiary.getFirstName()+" "+ beneficiary.getSurname());
+        kitchenName.setText(beneficiary.getFirstName() + " " + beneficiary.getSurname());
 
-        for(int cont = 0; cont < response.size(); cont++){
-            if(response.get(cont).getModalityId() == 1){
-                //am.setEnabled(false);
-            } else if(response.get(cont).getModalityId() == 2){
-               // lunch.setEnabled(false);
-            } else {
-               // pm.setEnabled(false);
-            }
-        }
 
         /*am.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -249,16 +243,7 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
             @Override
             public void onClick(View v) {
 
-                int modality = 1;
-                if(modality == 1){
-                    modality = 1;
-                }else if (modality == 2){
-                    modality = 2;
-                }else if(modality == 3){
-                    modality = 3;
-                }
-
-                registerAttendance(institutionID, beneficiary.getId(), userID, modality);
+                registerAttendance(institutionID, beneficiary.getId(), userID, modalityID);
             }
         });
 
@@ -272,7 +257,7 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         startActivity(intent);
     }
 
-    private void registerAttendance(int institution, int userID, int person, int modality){
+    private void registerAttendance(int institution, int userID, int person, int modality) {
         showLoading();
         presenter.setRegisterAttendance(longitude, latitude, institution, userID, person, modality);
     }
@@ -296,28 +281,27 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         recyclerView.setAdapter(new ItemAdapter(getApplicationContext(), student, modalities, institutionID, this));
 
         try {
-            if(beneficiaryArray.getNext() == null){
+            if (beneficiaryArray.getNext() == null) {
                 nextpage.setVisibility(View.INVISIBLE);
-            }
-            else{
+            } else {
                 nextpage.setVisibility(View.VISIBLE);
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
         }
     }
 
     @Override
     public void attendanceTodaySuccess(ArrayList<AttendanceToday> response) {
-            hideLoading();
-            showAttendanceDialog(selectBeneficiary, response);
-        }
+        hideLoading();
+        showAttendanceDialog(selectBeneficiary, response);
+    }
 
     @Override
     public void setRegisterAttendanceSuccess() {
         hideLoading();
         attendanceDialog.dismiss();
         Toasty.success(getApplicationContext(), getResources().getString(R.string.attendancesuccess), Toast.LENGTH_SHORT, true).show();
-        listBeneficiary("",countPage);
+        listBeneficiary("", countPage);
     }
 
     @Override
@@ -343,26 +327,26 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
 
-            case R.id.floatingActionButton:{
+            case R.id.floatingActionButton: {
                 startStudent(StudentActivity.CREATE, null);
                 break;
             }
-            case R.id.backButton:{
+            case R.id.backButton: {
                 finish();
                 break;
             }
             case R.id.nextArrowButton: {
-                countPage+=1;
-                listBeneficiary("",countPage);
-                Toasty.success(this, getResources().getString(R.string.page)+countPage, Toast.LENGTH_SHORT, true).show();
+                countPage += 1;
+                listBeneficiary("", countPage);
+                Toasty.success(this, getResources().getString(R.string.page) + countPage, Toast.LENGTH_SHORT, true).show();
                 break;
             }
             case R.id.previousArrowButton:
-                countPage-=1;
-                listBeneficiary("",countPage);
-                Toasty.success(this, getResources().getString(R.string.page)+countPage, Toast.LENGTH_SHORT, true).show();
+                countPage -= 1;
+                listBeneficiary("", countPage);
+                Toasty.success(this, getResources().getString(R.string.page) + countPage, Toast.LENGTH_SHORT, true).show();
                 break;
             default:
 
@@ -375,7 +359,7 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
         intent.putExtra(StudentActivity.SELECTED_ITEM, item);
         intent.putExtra(StudentActivity.INSTITUTION_ID, institutionID);
         intent.putExtra(StudentActivity.GROUP_ID, groupID);
-        if(beneficiary != null) {
+        if (beneficiary != null) {
             intent.putExtra(StudentActivity.OBJECT_BENEFICIARIES, new Gson().toJson(beneficiary));
         } else {
             intent.putExtra(StudentActivity.OBJECT_BENEFICIARIES, "");
@@ -397,12 +381,15 @@ public class SchoolActivity extends BaseActivity implements SchoolView, View.OnC
     }
 
 
-
     @Override
     protected void onResume() {
         super.onResume();
         itemAdapter.notifyDataSetChanged();
-        listBeneficiary("",countPage);
+        listBeneficiary("", countPage);
     }
 
+    @Override
+    public void registerAttendace(int modalityID) {
+        this.modalityID = modalityID;
+    }
 }

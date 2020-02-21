@@ -49,7 +49,7 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
-public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter,ModalitiesAdapter.onListenAdapter {
+public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter,ModalitiesAdapter.OnListenerAdapter{
 
     public static final String OPTION_ACTION = "option_action";
     public static final String OPTION_MODALITY = "option_modality";
@@ -76,6 +76,8 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private BottomSheetDialog attendanceDialog;
     private Result selectBeneficiary;
     private Integer useriD = Utils.getInstance().getDataUser().getUserId();
+
+    private Integer modalityID;
 
     Double Longitude = Utils.getInstance().getGeolocation().getLongitude();
     Double Latitude = Utils.getInstance().getGeolocation().getLatitude();
@@ -341,7 +343,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
 
         final RecyclerView recyclerModalities = attendanceDialog.findViewById(R.id.recycler_modalities);
 
-        modalitiesAdapter = new ModalitiesAdapter(getApplicationContext(), modalities, this);
+        modalitiesAdapter = new ModalitiesAdapter(getApplicationContext(), modalities, this, response);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerModalities.setLayoutManager(mLayoutManager);
         recyclerModalities.setItemAnimator(new DefaultItemAnimator());
@@ -351,27 +353,6 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         txtclose.setText("X");
         kitchenName.setText(beneficiary.getFirstName()+" "+ beneficiary.getSurname());
 
-
-        //Se deberia implementar un recycler view para listar las opciones
-
-        /*for(int cont = 0; cont < response.size(); cont++){
-                for(int key = 0; key < modalities.size(); key++ ){
-                    if(response.get(cont).getModalityId() == modalities.get(key).getId() ){
-                        switch (key){
-                            case 0:
-                                modalities.setEnabled(false);
-                                break;
-                            case 1:
-                                lunch.setEnabled(false);
-                                break;
-                            case 2:
-                                pm.setEnabled(false);
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                }*/
 
         detailAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -392,16 +373,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
             public void onClick(View v) {
                showLoading();
 
-               int modality = 0;
-               /*if (am.isChecked()) {
-                   modality = modalities.get(0).getId();
-               } else if (lunch.isChecked()) {
-                   modality = modalities.get(1).getId();
-               } else if (pm.isChecked()) {
-                   modality = modalities.get(2).getId();
-               }*/
-
-               registerAttendance(institutionID, beneficiary.getId(), useriD, modality);
+               registerAttendance(institutionID, beneficiary.getId(), useriD, modalityID);
 
                try {
                    if (response.get(0).getId() > 1) {
@@ -472,5 +444,10 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         super.onResume();
         itemAdapter.notifyDataSetChanged();
         listBeneficiary("",countPage);
+    }
+
+    @Override
+    public void registerAttendace(int modalityID) {
+        this.modalityID = modalityID;
     }
 }

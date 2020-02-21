@@ -127,6 +127,8 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="Addmember">Add Member</string>
     <string name="Deletemember">Delete Member</string>
     <string name="deletemember">Please select the cause for which you want to remove this household member</string>
+    <string name="newhome">New home</string>
+    <string name="died">Death</string>
 
 
     <string name="groupselect">Please select your group</string>
@@ -134,6 +136,12 @@ If you decide not to grant consent to any of the required entities, WFP will end
 
     <string name="edit_beneficiary">Edit Beneficiary</string>
     <string name="create_beneficiary">Crete Beneficiary</string>
+
+
+    <string-array name="homechange">
+        <item>@string/newhome</item>
+        <item>@string/died</item>
+    </string-array>
 
     <!-- Sync Preferences -->
     <string-array name="languages">

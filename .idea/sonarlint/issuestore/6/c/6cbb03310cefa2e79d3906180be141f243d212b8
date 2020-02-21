@@ -1,12 +1,21 @@
 
-Bsquid:S1659Y"$Declare "delete" on a separate line.(àœ‘Ğ8è¢ñÑ„.
-vsquid:UselessImportCheck"FRemove this unused import 'androidx.fragment.app.FragmentTransaction'.(¦İÚ¿şÿÿÿÿ8·§ŒÓ„.
-vsquid:S3776ñ"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(Ğ¸™áúÿÿÿÿ8½šó•€.
-’squid:UselessImportCheck&"bRemove this unused import 'com.pma.ekaa.ui.student.create_edit_student.CreateEditStudentFragment'.(‚ò–ëúÿÿÿÿ8·§ŒÓ„.
-qsquid:UselessImportCheck"ARemove this unused import 'com.pma.ekaa.data.models.Beneficiary'.(¬ñ€Ôşÿÿÿÿ8æ­’Ó„.
-psquid:S1450Y"RRemove the "add" field and declare it as a local variable in the relevant methods.(àœ‘Ğ8şŞÊÒ„.
-qsquid:S3776†"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.( Ú8½šó•€.
-ssquid:S1450Y"URemove the "delete" field and declare it as a local variable in the relevant methods.(àœ‘Ğ8şŞÊÒ„.
-~squid:S14508"[Remove the "deleteDialog" field and declare it as a local variable in the relevant methods.(İ¬Ò½úÿÿÿÿ8«ª£Ó„.
-]squid:UselessImportCheck"3Remove this unused import 'android.content.Intent'.(³ğ‹G8õ–“Ó„.
-asquid:S1126Æ"BReplace this if-then-else statement by a single method invocation.(ëšš8½šó•€.
+]squid:UselessImportCheck/"-Remove this unused import 'java.util.Locale'.(åğ×±ûÿÿÿÿ8·¿úñ….
+qsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.( Ú8½šó•€.
+vsquid:S3776û"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(Ğ¸™áúÿÿÿÿ8½šó•€.
+lsquid:S1858í"M"familyCode" is already a string, there's no need to call "toString()" on it.(ñÓÖ—8ùÈºƒ†.
+lsquid:S1858ô"M"familyCode" is already a string, there's no need to call "toString()" on it.(ñÓÖ—8ùÈºƒ†.
+asquid:S1126Ğ"BReplace this if-then-else statement by a single method invocation.(ëšš8½šó•€.
+qsquid:UselessImportCheck!"ARemove this unused import 'com.pma.ekaa.data.models.Beneficiary'.(¬ñ€Ôşÿÿÿÿ8–â±ƒ†.
+Tsquid:S1068;"6Remove this unused "pobjectBeneficiary" private field.(—×¸ù8†˜­Â….
+vsquid:UselessImportCheck"FRemove this unused import 'androidx.fragment.app.FragmentTransaction'.(¦İÚ¿şÿÿÿÿ8·§ŒÓ„.
+ssquid:S1450a"URemove the "delete" field and declare it as a local variable in the relevant methods.(àœ‘Ğ8şŞÊÒ„.
+Qsquid:S1068="3Remove this unused "optionAgreement" private field.(¨ÇŞŠ8†˜­Â….
+psquid:S1450a"RRemove the "add" field and declare it as a local variable in the relevant methods.(àœ‘Ğ8şŞÊÒ„.
+lsquid:S1858æ"M"familyCode" is already a string, there's no need to call "toString()" on it.(ñÓÖ—8ùÈºƒ†.
+nsquid:UselessImportCheck#">Remove this unused import 'com.pma.ekaa.data.models.Register'.(ê¶Ø‚üÿÿÿÿ8–¾ªÂ….
+]squid:UselessImportCheck"3Remove this unused import 'android.content.Intent'.(³ğ‹G8…ûùñ….
+~squid:S1450>"[Remove the "deleteDialog" field and declare it as a local variable in the relevant methods.(İ¬Ò½úÿÿÿÿ8şÀÖñ….
+’squid:UselessImportCheck)"bRemove this unused import 'com.pma.ekaa.ui.student.create_edit_student.CreateEditStudentFragment'.(‚ò–ëúÿÿÿÿ8·§ŒÓ„.
+osquid:UselessImportCheck*"DRemove this unused import 'com.pma.ekaa.ui.welcome.WelcomeActivity'.(èÛÃä8…ûùñ….
+Bsquid:S1659a"$Declare "delete" on a separate line.(àœ‘Ğ8è¢ñÑ„.
+‡squid:S1450V"dRemove the "deletenamebeneficiary" field and declare it as a local variable in the relevant methods.(ƒø®Õüÿÿÿÿ8şÀÖñ….
