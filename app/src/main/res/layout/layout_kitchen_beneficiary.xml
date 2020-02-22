@@ -88,6 +88,7 @@
                             android:id="@+id/namebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="textCapCharacters"
                             android:hint="@string/firstname"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,6 +114,7 @@
                             android:id="@+id/seconenamebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="textCapCharacters"
                             android:hint="@string/secondname"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -140,6 +142,7 @@
                             android:id="@+id/lastnamebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="textCapCharacters"
                             android:hint="@string/lastname"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -166,6 +169,7 @@
                             android:id="@+id/surnamebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="textCapCharacters"
                             android:hint="@string/surname"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -242,6 +246,7 @@
                             android:id="@+id/documentbeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="phone"
                             android:hint="@string/identificationnumber"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -319,6 +324,7 @@
                             android:id="@+id/phonebeneficiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="phone"
                             android:hint="@string/phonenumber"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -344,6 +350,7 @@
                             android:id="@+id/note"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="textCapCharacters"
                             android:hint="@string/note"
                             />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -397,6 +404,7 @@
                             android:id="@+id/ethnicGroup"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="textCapCharacters"
                             android:hint="@string/etnia"
                             />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -476,6 +484,7 @@
                             android:id="@+id/infoAditional"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="textCapCharacters"
                             android:hint="@string/aditionalinfo" />
                     </com.google.android.material.textfield.TextInputLayout>
 

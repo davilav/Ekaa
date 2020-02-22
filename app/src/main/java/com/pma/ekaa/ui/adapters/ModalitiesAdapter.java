@@ -16,21 +16,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pma.ekaa.R;
 import com.pma.ekaa.data.models.AttendanceToday;
 import com.pma.ekaa.data.models.Modality;
-import com.pma.ekaa.data.models.Result;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class ModalitiesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     private List<Modality> modality;
     private OnListenerAdapter mListener;
+    private int selectedPosition = -1;
 
-    private TextView modalityname;
-    private LinearLayout modalitybox;
-    private CheckBox modalitycheckbox;
+
     private ArrayList<AttendanceToday> attendanceToday;
 
     public ModalitiesAdapter(Context context, List<Modality> modality, OnListenerAdapter mListener, ArrayList<AttendanceToday> attendanceToday) {
@@ -49,8 +46,25 @@ public class ModalitiesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((ItemViewHolder) holder).bindData(modality.get(position));
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+        ItemViewHolder itemViewHolder = ((ItemViewHolder) holder);
+        itemViewHolder.bindData(modality.get(position));
+        setCheckedItem(itemViewHolder, position);
+        itemViewHolder.modalitycheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    selectedPosition = holder.getAdapterPosition();
+                    notifyDataSetChanged();
+                }
+            }
+        });
+    }
+
+    private void setCheckedItem(ItemViewHolder holder, int position) {
+        boolean isCheckedItem = selectedPosition == position;
+        holder.modalitycheckbox.setChecked(isCheckedItem);
+        if (isCheckedItem) mListener.registerAttendace(modality.get(position).getId());
     }
 
     @Override
@@ -60,13 +74,15 @@ public class ModalitiesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
+        private TextView modalityname;
+        private LinearLayout modalitybox;
+        private CheckBox modalitycheckbox;
+
         ItemViewHolder(@NonNull View view) {
             super(view);
-
             modalityname = view.findViewById(R.id.first_complement);
             modalitybox = view.findViewById(R.id.color_first);
             modalitycheckbox = view.findViewById(R.id.modalitycheckbox);
-
         }
 
         void bindData(final Modality modality) {
@@ -76,22 +92,10 @@ public class ModalitiesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             for (int cont = 0; cont < attendanceToday.size(); cont++) {
                 if (attendanceToday.get(cont).getModalityId() == modality.getId()) {
                     modalitycheckbox.setEnabled(false);
-                    modalitycheckbox.setChecked(true);
                     break;
                 }
             }
-
-            modalitycheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked){
-                        mListener.registerAttendace(modality.getId());
-                    }
-                }
-            });
-
         }
-
 
     }
 

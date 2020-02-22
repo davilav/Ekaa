@@ -49,7 +49,7 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
-public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter,ModalitiesAdapter.OnListenerAdapter{
+public class NotSchoolActivity extends BaseActivity implements NotSchoolView, View.OnClickListener, ItemAdapter.onListenerAdapter, ModalitiesAdapter.OnListenerAdapter {
 
     public static final String OPTION_ACTION = "option_action";
     public static final String OPTION_MODALITY = "option_modality";
@@ -67,7 +67,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     private ModalitiesAdapter modalitiesAdapter;
     private static int countPage = 1;
     private final ArrayList<Result> itemList = new ArrayList<>();
-    private ArrayList<Modality>  modalities;
+    private ArrayList<Modality> modalities;
     private ImageView previouspage;
     private ImageView nextpage;
     private ConstraintLayout loading;
@@ -87,13 +87,15 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_not_school);
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             optionAction = savedInstanceState.getInt(OPTION_ACTION);
-            modalities = new Gson().fromJson(savedInstanceState.getString(OPTION_MODALITY), new TypeToken<List<Modality>>(){}.getType());
+            modalities = new Gson().fromJson(savedInstanceState.getString(OPTION_MODALITY), new TypeToken<List<Modality>>() {
+            }.getType());
             institutionID = savedInstanceState.getInt(INSTITUTION_ID);
         } else {
             optionAction = getIntent().getIntExtra(OPTION_ACTION, -1);
-            modalities = new Gson().fromJson(getIntent().getStringExtra(OPTION_MODALITY), new TypeToken<List<Modality>>(){}.getType());
+            modalities = new Gson().fromJson(getIntent().getStringExtra(OPTION_MODALITY), new TypeToken<List<Modality>>() {
+            }.getType());
             institutionID = getIntent().getIntExtra(INSTITUTION_ID, -1);
         }
 
@@ -132,12 +134,12 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), mLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        listBeneficiary("",countPage);
+        listBeneficiary("", countPage);
     }
 
     private void setTitleToolbar() {
-        switch (optionAction){
-            case KITCHEN :
+        switch (optionAction) {
+            case KITCHEN:
                 titleToolbar.setText(getResources().getString(R.string.kitchens));
                 break;
             case WALKERS:
@@ -158,15 +160,15 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (query.length() < 2){
-                    listBeneficiary(query,countPage);
+                if (query.length() < 2) {
+                    listBeneficiary(query, countPage);
                 }
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                listBeneficiary(s,countPage);
+                listBeneficiary(s, countPage);
                 return false;
             }
         });
@@ -174,25 +176,25 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.floatingActionButton:{
+        switch (view.getId()) {
+            case R.id.floatingActionButton: {
                 mostrarAlert();
                 break;
             }
-            case R.id.backButton:{
+            case R.id.backButton: {
                 finish();
                 break;
             }
             case R.id.nextArrowButton: {
-                countPage+=1;
-                listBeneficiary("",countPage);
-                Toasty.success(this, getResources().getString(R.string.page)+ countPage, Toast.LENGTH_SHORT, true).show();
+                countPage += 1;
+                listBeneficiary("", countPage);
+                Toasty.success(this, getResources().getString(R.string.page) + countPage, Toast.LENGTH_SHORT, true).show();
                 break;
             }
             case R.id.previousArrowButton:
-                countPage-=1;
-                listBeneficiary("",countPage);
-                Toasty.success(this, getResources().getString(R.string.page)+ countPage, Toast.LENGTH_SHORT, true).show();
+                countPage -= 1;
+                listBeneficiary("", countPage);
+                Toasty.success(this, getResources().getString(R.string.page) + countPage, Toast.LENGTH_SHORT, true).show();
                 break;
             default:
 
@@ -200,12 +202,12 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         }
     }
 
-    private void mostrarAlert(){
+    private void mostrarAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         LayoutInflater inflater = getLayoutInflater();
 
-        View view = inflater.inflate(R.layout.layout_alert_message,null);
+        View view = inflater.inflate(R.layout.layout_alert_message, null);
 
         builder.setView(view);
 
@@ -225,14 +227,13 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         keys.add("AG4");
 
 
-
         Button btnAceptar = view.findViewById(R.id.ButtonAceptar);
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
                 String option = setOptionAgreement(listCheckBox, keys);
-                startBeneficiary(optionAction, BeneficiaryActivity.CREATE, option,null);
+                startBeneficiary(optionAction, BeneficiaryActivity.CREATE, option, null);
             }
         });
 
@@ -251,26 +252,26 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
 
     private String setOptionAgreement(ArrayList<CheckBox> listCheckBox, ArrayList<String> keys) {
         String result = "";
-        for(int cont = 0; cont < listCheckBox.size(); cont++ ){
-            if(listCheckBox.get(cont).isChecked()){
+        for (int cont = 0; cont < listCheckBox.size(); cont++) {
+            if (listCheckBox.get(cont).isChecked()) {
                 result = agreement.replace(keys.get(cont), "1");
             } else {
-                result =agreement.replace(keys.get(cont), "0");
+                result = agreement.replace(keys.get(cont), "0");
             }
             agreement = result;
         }
         return agreement;
     }
 
-    public void listBeneficiary(final String keyword, int page){
+    public void listBeneficiary(final String keyword, int page) {
         showLoading();
-        if(countPage == 1){
+        if (countPage == 1) {
             previouspage.setVisibility(View.INVISIBLE);
-        }else{
+        } else {
             previouspage.setVisibility(View.VISIBLE);
         }
 
-        presenter.getListBeneficiary(keyword,page);
+        presenter.getListBeneficiary(keyword, page);
 
     }
 
@@ -281,13 +282,12 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         recyclerView.setAdapter(new ItemAdapter(getApplicationContext(), beneficiaries, modalities, institutionID, this));
 
         try {
-            if(beneficiaryArray.getNext() == null){
+            if (beneficiaryArray.getNext() == null) {
                 nextpage.setVisibility(View.INVISIBLE);
-            }
-            else{
+            } else {
                 nextpage.setVisibility(View.VISIBLE);
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
 
         }
     }
@@ -295,7 +295,6 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     @Override
     public void setRegisterAttendanceSuccess() {
         hideLoading();
-        attendanceDialog.dismiss();
         Toasty.success(getApplicationContext(), getResources().getString(R.string.attendancesuccess), Toast.LENGTH_SHORT, true).show();
         listBeneficiary("",countPage);
     }
@@ -312,7 +311,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         Toasty.error(getApplicationContext(), msg, Toast.LENGTH_SHORT, true).show();
     }
 
-    private void registerAttendance(int institution, int userID, int person, int modality){
+    private void registerAttendance(int institution, int userID, int person, int modality) {
         showLoading();
         presenter.setRegisterAttendance(Longitude, Latitude, institution, userID, person, modality);
     }
@@ -351,7 +350,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         recyclerModalities.setAdapter(modalitiesAdapter);
 
         txtclose.setText("X");
-        kitchenName.setText(beneficiary.getFirstName()+" "+ beneficiary.getSurname());
+        kitchenName.setText(beneficiary.getFirstName() + " " + beneficiary.getSurname());
 
 
         detailAttendance.setOnClickListener(new View.OnClickListener() {
@@ -371,35 +370,11 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               showLoading();
-
-               registerAttendance(institutionID, beneficiary.getId(), useriD, modalityID);
-
-               try {
-                   if (response.get(0).getId() > 1) {
-                       new android.app.AlertDialog.Builder(NotSchoolActivity.this)
-                               .setTitle(getResources().getString(R.string.Alert))
-                               .setMessage(getResources().getString(R.string.AlertModality))
-                               .setCancelable(false)
-                               .setNegativeButton(getResources().getString(R.string.cancelar), new DialogInterface.OnClickListener() {
-                                   @Override
-                                   public void onClick(DialogInterface dialogInterface, int i) {
-                                       finish();
-                                   }
-                               })
-                               .setPositiveButton(getResources().getString(R.string.agree), new DialogInterface.OnClickListener() {
-                                   @Override
-                                   public void onClick(DialogInterface dialog, int which) {
-                                       finish();
-                                   }
-                               }).show();
-                   }
-
-               }catch (Exception ex){
-        }
+                showLoading();
+                registerAttendance(institutionID, beneficiary.getId(), useriD, modalityID);
+                attendanceDialog.dismiss();
             }
-
-    });
+        });
 
         attendanceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         attendanceDialog.show();
@@ -415,12 +390,12 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
         Intent intent = new Intent(this, BeneficiaryActivity.class);
         intent.putExtra(OPTION_ACTION, option);
         intent.putExtra(BeneficiaryActivity.SELECTED_ITEM, item);
-        if(beneficiary != null) {
+        if (beneficiary != null) {
             intent.putExtra(BeneficiaryActivity.OBJECT_BENEFICIARIES, new Gson().toJson(beneficiary));
         } else {
             intent.putExtra(BeneficiaryActivity.OBJECT_BENEFICIARIES, "");
         }
-        if(agreement != null) {
+        if (agreement != null) {
             intent.putExtra(BeneficiaryActivity.OPTION_AGREEMENT, agreement);
         } else {
             intent.putExtra(BeneficiaryActivity.OPTION_AGREEMENT, "");
@@ -443,7 +418,7 @@ public class NotSchoolActivity extends BaseActivity implements NotSchoolView, Vi
     protected void onResume() {
         super.onResume();
         itemAdapter.notifyDataSetChanged();
-        listBeneficiary("",countPage);
+        listBeneficiary("", countPage);
     }
 
     @Override

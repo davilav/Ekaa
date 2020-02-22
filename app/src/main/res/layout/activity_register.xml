@@ -87,7 +87,8 @@
                             android:id="@+id/nameUser"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Nombre" />
+                            android:inputType="textCapCharacters"
+                            android:hint="@string/firstname" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -112,7 +113,8 @@
                             android:id="@+id/lastnameUser"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Apellido" />
+                            android:inputType="textCapCharacters"
+                            android:hint="@string/lastname" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
@@ -159,7 +161,7 @@
                             android:id="@+id/user"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Usuario" />
+                            android:hint="@string/user" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </RelativeLayout>
