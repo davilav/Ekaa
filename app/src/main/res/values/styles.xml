@@ -20,4 +20,7 @@
     <style name="Theme.MyFancyTheme" parent="android:Theme.Holo">
     </style>
 
+    <style name="My.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+    </style>
+
 </resources>

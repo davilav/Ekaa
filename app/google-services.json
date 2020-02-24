@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "342868281198",
+    "firebase_url": "https://ekaa-62e2f.firebaseio.com",
+    "project_id": "ekaa-62e2f",
+    "storage_bucket": "ekaa-62e2f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:342868281198:android:83d3eaeb16800d4867237f",
+        "android_client_info": {
+          "package_name": "com.pma.ekaa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "342868281198-lcmh82ban3e9db0f2bgdfivm6doop8j0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxVjVVBukHRD9iswiM_1CvRyEDR61RjiE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "342868281198-lcmh82ban3e9db0f2bgdfivm6doop8j0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

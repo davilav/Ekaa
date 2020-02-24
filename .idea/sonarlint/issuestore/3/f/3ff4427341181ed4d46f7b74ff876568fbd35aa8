@@ -1,0 +1,15 @@
+
+ƒsquid:S1450="`Remove the "modalitiesAdapter" field and declare it as a local variable in the relevant methods.(ùš¦øÿÿÿÿ8Ö£›Í….
+Jsquid:S1199Ğ"-Extract this nested code block into a method.(™ˆş¦ıÿÿÿÿ
+jsquid:S1450B"SRemove the "back" field and declare it as a local variable in the relevant methods.(Ä­ìé
+osquid:CommentedOutCodeLineÆ"<This block of commented-out lines of code should be removed.(ÑáåÒûÿÿÿÿ8£ìæí….
+Ssquid:S2696Û"6Make the enclosing method "static" or remove this set.(õ´ÛØüÿÿÿÿ
+_squid:UselessImportCheck"/Remove this unused import 'android.app.Dialog'.(·‚Àúÿÿÿÿ8‡ú™Í….
+hsquid:UselessImportCheck"8Remove this unused import 'android.widget.LinearLayout'.(çîšçúÿÿÿÿ8ÓÿµÄ….
+Jsquid:S1199Ô"-Extract this nested code block into a method.(§İ— ÿÿÿÿÿ
+Gsquid:S00108¡")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ
+Nsquid:S2696Õ"6Make the enclosing method "static" or remove this set.(Ì»¯
+^squid:UselessImportCheck"4Remove this unused import 'android.widget.CheckBox'.(Ùáb8ô•™Í….
+osquid:CommentedOutCodeLineĞ"<This block of commented-out lines of code should be removed.(‰üâÊùÿÿÿÿ8ÿ—§Í….
+esquid:MaximumInheritanceDepth1"<This class has 7 parents which is greater than 5 authorized.(‹šÙÔ
+Esquid:S1199Ì"-Extract this nested code block into a method.(ğëÕ™

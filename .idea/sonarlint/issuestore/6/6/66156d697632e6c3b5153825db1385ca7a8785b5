@@ -1,0 +1,6 @@
+
+Qsquid:S1172$".Remove this unused method parameter "context".(êıø²úÿÿÿÿ8ğøÕĞ„.
+Ysquid:UselessImportCheck".Remove this unused import 'java.util.Objects'.(¼¸õ›8ä­Æ….
+squid:S1319$"zThe type of the "attendanceToday" object should be an interface such as "List" rather than the implementation "ArrayList".(êıø²úÿÿÿÿ8ØŠÿì….
+lsquid:UselessImportCheck"<Remove this unused import 'com.pma.ekaa.data.models.Result'.(œ¥¡Åûÿÿÿÿ8ä­Æ….
+Wsquid:S4973M"9Use the "equals" method if value comparison was intended.(ıšô¶8ÉĞí….

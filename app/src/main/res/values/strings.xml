@@ -4,7 +4,6 @@
     <string name="str_es">Spanish</string>
     <string name="app_name">Ekaa</string>
 
-
     <string name="web_name">wfp.org/es</string>
     <string name="welcome">Welcome to Ekaa.</string>
     <string name="options">Forgot your password?</string>
@@ -16,6 +15,7 @@
     <string name="createaccount">REGISTER</string>
     <string name="loginaccount">LOGIN</string>
     <string name="email">Email</string>
+    <string name="user">Username</string>
     <string name="password">Password</string>
     <string name="agreeterms">I agree to the Terms of Service</string>
     <string name="forgotyourpassword">Forgot your password? Click Here</string>
@@ -35,7 +35,6 @@
     <string name="confirmpassword">Confirm password</string>
     <string name="implementatorpartner">Implentator Partner</string>
     <string name="confirmemail">Confirm your email</string>
-    <string name="title_activity_kitchen">KitchenActivity</string>
     <string name="datapolicy">Do you grant WFP permission to process your personal data and share it with your partners, including humanitarian and / or private organizations, and / or the Government in order to implement WFP food assistance program?
 If you decide not to grant consent to any of the required entities, WFP will endeavor to provide other forms of assistance that do not require such personal data, if applicable, and if possible, however, you may not be able to receive assistance.</string>
     <string name="datatitle">Data Processing Policy</string>
@@ -52,29 +51,103 @@ If you decide not to grant consent to any of the required entities, WFP will end
     <string name="identificationnumber">Identification number</string>
     <string name="tel">Phone</string>
     <string name="save">Save</string>
-    <string name="geolocationselect">Please select your location.</string>
+    <string name="departamentselect">Please select your departament</string>
+    <string name="townselect">Please select your town</string>
     <string name="wfp">WFP</string>
     <string name="Hpartners">Humanitarian Partners</string>
     <string name="Ppartners">Private Partners</string>
     <string name="Gpartners">Government Partners</string>
-    <string name="ConfirmEmail">Confirm your email</string>
-    <string name="Enviar">Send</string>
-    <string name="aceptar">Confirm</string>
-
-
+    <string name="School">School</string>
+    <string name="SchoolGroup">School Group</string>
+    <string name="AddStudent">Add Student</string>
 
     <string name="dtype">Document Type</string>
     <string name="gender">Gender</string>
     <string name="nationality">Nationality</string>
     <string name="comedor">Comedor</string>
+    <string name="Enviar">Send</string>
+    <string name="ConfirmEmail">Confirm your email</string>
+    <string name="detail"><u>See detail</u></string>
+    <string name="schoolstring">School</string>
+    <string name="group">Group</string>
+    <string name="registrationdate">Registation Date</string>
+    <string name="attention">Attention</string>
+    <string name="lastAttention">The last attention was:</string>
+    <string name="firstname">First Name</string>
+    <string name="secondname">Second Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="surname">Second Last Name</string>
+    <string name="etnia">Ethnic group</string>
+    <string name="belongs">Belong to the program?</string>
+    <string name="phonenumber">Phone Number</string>
+    <string name="note">Note</string>
+    <string name="maritalstatus">Marital Status</string>
+    <string name="recipient">Recipient</string>
+    <string name="familyrol">Family Rol</string>
+    <string name="aditionalinfo">Additional Information</string>
+    <string name="familyhead">Is head of the family?</string>
+    <string name="migratorio">Migratory state</string>
+    <string name="option">Please select the option</string>
+    <string name="disabilities">Disability</string>
+    <string name="programs">Program</string>
+    <string name="classnumber">Class</string>
+    <string name="editStudent">Edit Student</string>
+    <string name="update">Update</string>
+    <string name="registerbeneficiary">Register</string>
+    <string name="createstudent">Create Student</string>
+    <string name="studentsuccess">Student created successfully</string>
+    <string name="studentupdate">Student updated successfully</string>
+    <string name="attendancesuccess">Added attention successfully</string>
+    <string name="beneficiarysucces">Beneficiary successfully created</string>
+    <string name="beneficiaryupdate">Beneficiary updated successfully</string>
+    <string name="page">Page</string>
+    <string name="searchresult">Search Result</string>
+    <string name="ingresaremail">You must enter an email</string>
+    <string name="validemail">You must enter a valid email</string>
+    <string name="ingresarpass">You must enter an password</string>
+    <string name="ingresaruser">You must enter an user</string>
+    <string name="confirmarspass">You must confirm the password</string>
+    <string name="confirmaremail">An email has been sent to confirm your account</string>
+    <string name="welcomeuser">Welcome to Ekaa</string>
+    <string name="selectopion">Select a option</string>
+    <string name="departamentosfound">No departments found</string>
+    <string name="townsfound">No towns found</string>
+    <string name="institutionsfound">No institutions found</string>
+    <string name="adios">Good Bye!</string>
+    <string name="coincidircorreos">Emails do not match</string>
+    <string name="checkboxterminos">You must agree to terms and conditions</string>
+    <string name="usersuccess">Beneficiary added successfully</string>
+    <string name="useradd">Do you want to add another member to your family nucleus?</string>
+    <string name="agree">Agree</string>
+    <string name="cancelar">Close</string>
+    <string name="obligatorio">This field is required</string>
+    <string name="searchBeneficiary">Search Beneficiary</string>
+    <string name="Alert">Alert</string>
+    <string name="AlertModality">This user has already received attention in a different modality</string>
+    <string name="Addmember">Add Member</string>
+    <string name="Deletemember">Delete Member</string>
+    <string name="deletemember">Please select the cause for which you want to remove this household member</string>
+    <string name="newhome">New home</string>
+    <string name="died">Death</string>
 
 
+    <string name="groupselect">Please select your group</string>
+    <string name="classselect">Please select your class</string>
+
+    <string name="edit_beneficiary">Edit Beneficiary</string>
+    <string name="create_beneficiary">Crete Beneficiary</string>
+
+
+    <string-array name="homechange">
+        <item>@string/newhome</item>
+        <item>@string/died</item>
+    </string-array>
+
+    <!-- Sync Preferences -->
     <string-array name="languages">
         <item>@string/str_en</item>
         <item>@string/str_es</item>
     </string-array>
-
-    <!-- Sync Preferences -->
     <string-array name="documentType">
         <item>@string/dtype</item>
         <item>Cédula de Ciudadanía</item>
@@ -101,6 +174,8 @@ If you decide not to grant consent to any of the required entities, WFP will end
         <item>Colombia</item>
         <item>Venezuela</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="comedor">
         <item>Institution</item>
         <item>Kitchen 1</item>
