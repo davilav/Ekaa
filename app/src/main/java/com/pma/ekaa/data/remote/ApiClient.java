@@ -1,5 +1,6 @@
 package com.pma.ekaa.data.remote;
 
+import com.pma.ekaa.BuildConfig;
 import com.pma.ekaa.utils.Utils;
 
 import okhttp3.OkHttpClient;
@@ -11,36 +12,39 @@ public class ApiClient {
 
     private static final String BASE_URL = Utils.getConnection().getIpAddress();
     private static ApiClient mInstance;
-    private  Retrofit retrofit;
+    private Retrofit retrofit;
 
-    private ApiClient(){
+    private ApiClient() {
 
-        // Creamos un interceptor y le indicamos el log level a usar
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        if (BuildConfig.DEBUG) {
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        } else {
+            interceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
+        }
 
-        // Asociamos el interceptor a las peticiones
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addInterceptor(logging);
-
-        retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient.build()) // <-- usamos el log level
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
                 .build();
 
 
+        retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient)
+                .build();
+
     }
 
-    public static synchronized ApiClient getInstance(){
+    public static synchronized ApiClient getInstance() {
 
-        if (mInstance == null){
+        if (mInstance == null) {
             mInstance = new ApiClient();
         }
 
         return mInstance;
     }
 
-    public ApiInterface getApi(){
+    public ApiInterface getApi() {
 
         return retrofit.create(ApiInterface.class);
 
